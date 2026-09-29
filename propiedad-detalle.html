@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excelente, Oficina de 135 m² con factibilidad de adaptarla a tu modelo de negocio — Enkapta</title>
+  <meta name="description" content="Se alquila impecable oficina de 135m2 en Edificio Cámara de Comercio de Caracas, Distrito Capital.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Inter & Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Leaflet CSS & JS for Interactive Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#FF7900',
+              hover: '#E66D00',
+              glow: '#FF9433',
+              light: '#FFF4EB',
+              dark: '#CC6100'
+            },
+            surface: {
+              50: '#F9FAFB',
+              100: '#F3F4F6',
+              200: '#E5E7EB',
+              800: '#1F2937',
+              900: '#111827'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'glow': '0 0 25px -5px rgba(255, 121, 0, 0.4)',
+            'card-hover': '0 20px 30px -10px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            'floating': '0 16px 48px -12px rgba(15, 23, 42, 0.18)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Leaflet z-index fix */
+    .leaflet-pane {
+      z-index: 10 !important;
+    }
+    .leaflet-top, .leaflet-bottom {
+      z-index: 11 !important;
+    }
+
+    /* Custom thin scrollbar for sticky sidebar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #e2e8f0;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #cbd5e1;
+    }
+    .custom-scrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: #e2e8f0 transparent;
+    }
+  </style>
+
+  <!-- Auth Logic -->
+  <script src="assets/auth.js"></script>
+</head>
+<body class="bg-gray-50/60 text-gray-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR / HEADER -->
+  <header class="bg-white sticky top-0 z-50 border-b border-gray-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+      
+      <!-- LEFT: Logo + Nav Items (Calendly Style) -->
+      <div class="flex items-center space-x-7 lg:space-x-9">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 group shrink-0">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shadow-2xs shrink-0 overflow-hidden">
+            <img src="assets/enkapta-logo1.png" alt="Enkapta Logo" class="w-8 h-8 object-contain rounded-lg"/>
+          </div>
+          <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            Enkapta
+          </span>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-6 lg:space-x-7">
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="index.html">Inicio</a>
+          <a class="text-primary font-extrabold transition-colors text-xs sm:text-sm" href="propiedades.html">Propiedades</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="planes.html">Planes</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="quienes-somos.html">Quiénes somos</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="contacto.html">Contacto</a>
+        </nav>
+
+      </div>
+
+      <!-- RIGHT: Calendly Style Auth Buttons -->
+      <div class="hidden md:flex items-center space-x-3">
+        <div id="header-auth-container"></div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center md:hidden">
+        <button id="mobile-menu-btn" class="p-1.5 rounded-lg text-gray-800 hover:text-gray-900 hover:bg-white/60 focus:outline-none">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Nav Flyout -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 mt-2 rounded-2xl mx-4 shadow-lg">
+    <div id="mobile-auth-container"></div>
+    <a href="index.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Inicio</a>
+    <a href="propiedades.html" class="block px-3 py-2 rounded-lg text-sm font-bold text-primary bg-orange-50">Propiedades</a>
+    <a href="planes.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Planes</a>
+    <a href="quienes-somos.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Quiénes somos</a>
+    <a href="contacto.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Contacto</a>
+  </div>
+</header>
+
+  <!-- MAIN PROPERTY DETAILS -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1">
+    
+    <!-- BACK BUTTON -->
+    <div class="mb-5">
+      <a href="propiedades.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-gray-200/90 text-xs sm:text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:text-primary transition-all shadow-xs">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Volver a propiedades</span>
+      </a>
+    </div>
+
+    <!-- 2-COLUMN LAYOUT -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      
+      <!-- LEFT COLUMN: GALLERY & PROPERTY INFORMATION (66% width on desktop) -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- IMAGE GALLERY CAROUSEL -->
+        <div class="space-y-4">
+          <!-- Main Hero Image with Controls -->
+          <div class="relative w-full h-96 sm:h-[500px] md:h-[580px] lg:h-[640px] rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-900 group shadow-md cursor-pointer" onclick="if (!event.target.closest('button')) openFullscreenGallery()">
+            <img 
+              id="main-image" 
+              src="assets/properties/gallery/oficina-1.jpg" 
+              alt="Excelente, Oficina de 135 m²" 
+              class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+            />
+            
+            <!-- Floating Prev Button -->
+            <button onclick="event.stopPropagation(); prevImage()" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-white text-gray-800 flex items-center justify-center shadow-lg transition-all hover:scale-110 active:scale-95 z-20 cursor-pointer">
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Floating Next Button -->
+            <button onclick="event.stopPropagation(); nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-white text-gray-800 flex items-center justify-center shadow-lg transition-all hover:scale-110 active:scale-95 z-20 cursor-pointer">
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Top Right Action Controls: Fullscreen & Share -->
+            <div class="absolute top-4 right-4 flex items-center gap-2 z-20">
+              <!-- Fullscreen Button -->
+              <button 
+                onclick="event.stopPropagation(); openFullscreenGallery()" 
+                title="Ver en pantalla completa" 
+                class="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-primary flex items-center justify-center shadow-md transition-all hover:scale-110 active:scale-95 cursor-pointer"
+              >
+                <i data-lucide="maximize" class="w-4 h-4"></i>
+              </button>
+
+              <!-- Share Button -->
+              <button 
+                onclick="event.stopPropagation(); shareProperty()" 
+                title="Compartir" 
+                class="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-primary flex items-center justify-center shadow-md transition-all hover:scale-110 active:scale-95 cursor-pointer"
+              >
+                <i data-lucide="share-2" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- Bottom Left Counter Badge & Fullscreen Hint -->
+            <div class="absolute bottom-4 left-4 flex items-center gap-2 z-20">
+              <div class="bg-black/75 backdrop-blur-md text-white text-xs font-bold px-3.5 py-1.5 rounded-xl shadow-sm">
+                <span id="current-index-badge">1</span> / 7
+              </div>
+              <button 
+                onclick="event.stopPropagation(); openFullscreenGallery()" 
+                class="hidden sm:inline-flex items-center gap-1.5 bg-black/75 hover:bg-black/90 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-xl shadow-sm transition-all hover:scale-105 cursor-pointer"
+              >
+                <i data-lucide="expand" class="w-3.5 h-3.5 text-orange-400"></i>
+                <span>Pantalla completa</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Thumbnails Row (Más grandes y visibles) -->
+          <div class="flex items-center gap-3 overflow-x-auto pb-2 pt-1 no-scrollbar">
+            <button onclick="selectImage(0)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-primary ring-2 ring-primary/30 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-1.jpg" alt="Thumb 1" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(1)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-2.jpg" alt="Thumb 2" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(2)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-3.jpg" alt="Thumb 3" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(3)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-4.jpg" alt="Thumb 4" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(4)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-5.jpg" alt="Thumb 5" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(5)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-6.jpg" alt="Thumb 6" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(6)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-7.jpg" alt="Thumb 7" class="w-full h-full object-cover"/>
+            </button>
+          </div>
+        </div>
+
+        <!-- PROPERTY HEADER: TITLE, PRICE & SPECS -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm space-y-6">
+          
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <!-- Title and Location -->
+            <div class="max-w-2xl">
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight">
+                Excelente, Oficina de 135 m² con factibilidad de adaptarla a tu modelo de negocio
+              </h1>
+              
+              <div class="flex items-center gap-1.5 text-sm font-medium text-gray-500 mt-2.5">
+                <i data-lucide="map-pin" class="w-4 h-4 text-primary shrink-0"></i>
+                <span>Distrito Capital • Venezuela</span>
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="text-left sm:text-right shrink-0">
+              <div class="text-3xl sm:text-4xl font-black text-primary">
+                USD 860
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Specs: Habitaciones & Área -->
+          <div class="flex items-center gap-6 pt-2 pb-1 text-sm sm:text-base font-semibold text-gray-800">
+            <div class="flex items-center gap-2">
+              <i data-lucide="bed-double" class="w-5 h-5 text-primary"></i>
+              <span>6 Habitaciones</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="ruler" class="w-5 h-5 text-primary"></i>
+              <span>Área: 135 m²</span>
+            </div>
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <div class="pt-6 border-t border-gray-100 space-y-4">
+            <h2 class="text-lg sm:text-xl font-bold text-gray-900">Descripción</h2>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+              ¡Impulsa tu negocio en el espacio ideal! Se alquila impecable oficina de 135m2 diseñada para el máximo rendimiento. Espacios amplios, iluminados y listos para ocupar. Distribución: 5 cubículos espaciosos (ideales para gerencia o equipos operativos). Comodidades: 2 baños y kitchinette integrada. Ubicación: Edificio Camara de Comercio de Caracas. ¡La imagen corporativa que tu empresa merece!
+            </p>
+
+            <!-- Technical attributes row -->
+            <div class="pt-3 space-y-1.5 text-sm text-gray-700">
+              <div><span class="font-bold text-gray-900">Fecha de construcción:</span> Año 1974</div>
+              <div><span class="font-bold text-gray-900">Status:</span> Usado</div>
+              <div><span class="font-bold text-gray-900">Área construida:</span> 135 m²</div>
+            </div>
+          </div>
+
+          <!-- CARACTERÍSTICAS -->
+          <div class="pt-6 border-t border-gray-100">
+            <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">Características</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs sm:text-sm font-semibold text-gray-700">
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="car" class="w-5 h-5 text-primary"></i>
+                <span>Estacionamiento</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="arrow-up-down" class="w-5 h-5 text-primary"></i>
+                <span>Ascensor</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="shield-check" class="w-5 h-5 text-primary"></i>
+                <span>Seguridad</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- METADATA GRID (Categoría, Tipo, Estado, Municipio) -->
+          <div class="pt-6 border-t border-gray-100 grid grid-cols-2 gap-y-3 gap-x-6 text-sm">
+            <div>
+              <span class="text-gray-500">Categoría:</span>
+              <span class="font-semibold text-gray-900 ml-1">Alquiler</span>
+            </div>
+            <div>
+              <span class="text-gray-500">Tipo:</span>
+              <span class="font-semibold text-gray-900 ml-1">Oficina</span>
+            </div>
+            <div>
+              <span class="text-gray-500">Estado:</span>
+              <span class="font-semibold text-gray-900 ml-1">Distrito Capital</span>
+            </div>
+            <div>
+              <span class="text-gray-500">Municipio:</span>
+              <span class="font-semibold text-gray-900 ml-1">Libertador</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: SIDEBAR (PUBLICADOR, ACCIONES, MAPA) (Sticky on desktop, never clipped) -->
+      <aside class="space-y-4 lg:sticky lg:top-20 lg:self-start lg:z-30">
+        
+        <!-- CARD: PUBLICADOR -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl border border-gray-200/80 p-5 sm:p-6 shadow-sm">
+          <h2 class="text-base sm:text-lg font-bold text-gray-900 mb-3.5">Publicador</h2>
+          
+          <div class="flex items-center gap-3.5 sm:gap-4">
+            <!-- Dueñas Agency Logo -->
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-black flex items-center justify-center shrink-0 border border-gray-100 shadow-xs">
+              <img src="assets/duenas-logo.jpg" alt="Dueñas Real Estate" class="w-full h-full object-cover"/>
+            </div>
+
+            <!-- Broker Info -->
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5 font-bold text-gray-900 text-sm sm:text-base">
+                <span>Daniel Dueñas</span>
+                <i data-lucide="badge-check" class="w-4 h-4 text-primary shrink-0" title="Broker Verificado"></i>
+              </div>
+              <p class="text-xs text-gray-500 mt-0.5">Publicado por: broker</p>
+              <p class="text-xs text-gray-500 mt-0.5 truncate">jdb@dre.com.ve</p>
+            </div>
+          </div>
+
+          <!-- SECCIÓN DE CONTACTO: ¿Te interesó esta propiedad? -->
+          <div class="pt-4 mt-4 border-t border-gray-100 space-y-2.5">
+            <h3 class="text-xs sm:text-sm font-bold text-gray-900">
+              ¿Te interesó esta propiedad?
+            </h3>
+            <button 
+              type="button" 
+              onclick="requireAuthForContact('https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interes%C3%B3%20esta%20propiedad:%20Excelente,%20Oficina%20de%20135%20m%C2%B2%20en%20C%C3%A1mara%20de%20Comercio%20de%20Caracas')"
+              class="w-full py-3 px-4 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg hover:shadow-primary/30 flex items-center justify-center gap-2 cursor-pointer group"
+            >
+              <i data-lucide="message-square" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+              <span>Contáctame</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="space-y-2">
+          <!-- Guardar en favoritos -->
+          <button id="btn-fav" onclick="toggleFav()" class="w-full flex items-center justify-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-white border border-gray-200/90 hover:bg-gray-50 text-gray-700 text-xs sm:text-sm font-semibold transition-all shadow-xs group cursor-pointer">
+            <i id="fav-icon" data-lucide="heart" class="w-4 h-4 text-gray-500 group-hover:text-red-500 transition-colors"></i>
+            <span id="fav-text">Guardar en favoritos</span>
+          </button>
+
+          <!-- Ver perfil del propietario -->
+          <button class="w-full flex items-center justify-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-white border border-gray-200/90 hover:bg-gray-50 text-gray-700 text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer">
+            <i data-lucide="user" class="w-4 h-4 text-gray-500"></i>
+            <span>Ver perfil del propietario</span>
+          </button>
+
+          <!-- Compartir propiedad -->
+          <button onclick="shareProperty()" class="w-full flex items-center justify-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-white border border-gray-200/90 hover:bg-gray-50 text-gray-700 text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer">
+            <i data-lucide="share-2" class="w-4 h-4 text-gray-500"></i>
+            <span>Compartir propiedad</span>
+          </button>
+        </div>
+
+        <!-- CARD: UBICACIÓN (Interactive Map matching original) -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl border border-gray-200/80 p-4 sm:p-5 shadow-sm space-y-3">
+          <h2 class="text-sm sm:text-base font-bold text-gray-900">Ubicación</h2>
+          
+          <div class="relative w-full h-44 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100">
+            <div id="map" class="w-full h-full"></div>
+            
+            <!-- Expand / Fullscreen Button -->
+            <button onclick="toggleMapFullscreen()" title="Pantalla completa" class="absolute bottom-2.5 right-2.5 z-20 w-8 h-8 rounded-lg bg-white shadow-md border border-gray-200/90 flex items-center justify-center text-gray-700 hover:text-primary transition-all cursor-pointer">
+              <i data-lucide="maximize" class="w-4 h-4"></i>
+            </button>
+          </div>
+          
+          <p class="text-[11px] sm:text-xs text-gray-500 leading-tight">
+            <span class="font-semibold text-gray-700">Zona:</span> Edif. Cámara de Comercio, Av Este 2, Caracas 1050, Distrito Capital.
+          </p>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- RECOMENDACIONES: PROPIEDADES SIMILARES                                     -->
+  <!-- ========================================================================= -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 w-full">
+    <!-- Header de Recomendaciones -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+          Propiedades similares
+        </h2>
+        <p class="text-sm sm:text-base text-gray-500 mt-1">
+          Inmuebles verificados con ubicación y características afines que te pueden interesar.
+        </p>
+      </div>
+
+      <a href="propiedades.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-hover group transition-colors shrink-0">
+        <span>Ver todas las propiedades</span>
+        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+      </a>
+    </div>
+
+    <!-- Cards Grid (3 Columnas con tamaño más balanceado y compacto) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- CARD 1: Oficina en venta El Recreo OSVI -->
+      <div onclick="if (!event.target.closest('button')) window.location.href='propiedad-detalle.html'" class="cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col">
+        <div class="relative h-52 sm:h-56 overflow-hidden">
+          <img 
+            src="assets/properties/prop-2.png" 
+            alt="Oficina en venta El Recreo OSVI" 
+            class="w-full h-full object-cover transition-opacity duration-300"
+          >
+          <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Oficina</span>
+          </div>
+          <button class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+            <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-2">
+              Oficina en venta El Recreo OSVI
+            </h3>
+            
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <div class="w-8 h-8 rounded-full ring-2 ring-primary/20 shadow-2xs overflow-hidden shrink-0 border border-white bg-gray-100">
+                  <img src="assets/realtors/valeria.jpg" alt="Lic. Valeria Valera" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="flex items-center gap-1 min-w-0">
+                  <span class="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-primary transition-colors tracking-tight truncate">
+                    Lic. Valeria Valera
+                  </span>
+                  <i data-lucide="badge-check" class="w-4 h-4 text-primary shrink-0" title="Realtor Verificado"></i>
+                </div>
+              </div>
+
+              <button 
+                type="button" 
+                onclick="event.stopPropagation(); requireAuthForContact('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Oficina%20en%20venta%20El%20Recreo')" 
+                title="Enviar mensaje directo"
+                class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer ml-2 group/msg"
+              >
+                <i data-lucide="message-square" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/msg:scale-110 transition-transform"></i>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-2.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i> Distrito Capital, El Recreo
+            </div>
+
+            <div class="text-xl sm:text-2xl font-black text-primary">
+              USD 152.000
+            </div>
+          </div>
+
+          <!-- Specs with Orange Icons matching Home -->
+          <div class="pt-3 border-t border-gray-100 flex items-center flex-wrap gap-x-3.5 gap-y-1.5 text-xs text-gray-700 font-bold">
+            <div class="flex items-center gap-1">
+              <i data-lucide="bed" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>hab. 3</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="bath" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>baños 3</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="car" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>estac. 2</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="ruler" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>área 235 m²</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Oficina en venta bello monte torre financiera JULI -->
+      <div onclick="if (!event.target.closest('button')) window.location.href='propiedad-detalle.html'" class="cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col">
+        <div class="relative h-52 sm:h-56 overflow-hidden">
+          <img 
+            src="assets/properties/prop-3.jpg" 
+            alt="Oficina en venta bello monte torre financiera JULI" 
+            class="w-full h-full object-cover transition-opacity duration-300"
+          >
+          <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Oficina</span>
+          </div>
+          <button class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+            <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-2">
+              Oficina en venta bello monte torre financiera JULI
+            </h3>
+            
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <div class="w-8 h-8 rounded-full ring-2 ring-primary/20 shadow-2xs overflow-hidden shrink-0 border border-white bg-gray-100">
+                  <img src="assets/realtors/roberto.jpg" alt="Roberto Rodríguez" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="flex items-center gap-1 min-w-0">
+                  <span class="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-primary transition-colors tracking-tight truncate">
+                    Roberto Rodríguez
+                  </span>
+                  <i data-lucide="badge-check" class="w-4 h-4 text-primary shrink-0" title="Realtor Verificado"></i>
+                </div>
+              </div>
+
+              <button 
+                type="button" 
+                onclick="event.stopPropagation(); requireAuthForContact('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Oficina%20en%20venta%20Bello%20Monte')" 
+                title="Enviar mensaje directo"
+                class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer ml-2 group/msg"
+              >
+                <i data-lucide="message-square" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/msg:scale-110 transition-transform"></i>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-2.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i> Distrito Capital, Bello Monte
+            </div>
+
+            <div class="text-xl sm:text-2xl font-black text-primary">
+              USD 147.000
+            </div>
+          </div>
+
+          <!-- Specs with Orange Icons matching Home -->
+          <div class="pt-3 border-t border-gray-100 flex items-center flex-wrap gap-x-3.5 gap-y-1.5 text-xs text-gray-700 font-bold">
+            <div class="flex items-center gap-1">
+              <i data-lucide="bed" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>hab. 2</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="bath" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>baños 2</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="car" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>estac. 2</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="ruler" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>área 190 m²</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: Casa comercial Colinas De Los Chaguaramos OSVI -->
+      <div onclick="if (!event.target.closest('button')) window.location.href='propiedad-detalle.html'" class="cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col">
+        <div class="relative h-52 sm:h-56 overflow-hidden">
+          <img 
+            src="assets/properties/prop-1.jpg" 
+            alt="Casa comercial Colinas De Los Chaguaramos OSVI" 
+            class="w-full h-full object-cover transition-opacity duration-300"
+          >
+          <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Comercial</span>
+          </div>
+          <button class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+            <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-2">
+              Casa comercial Colinas De Los Chaguaramos OSVI
+            </h3>
+            
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <div class="w-8 h-8 rounded-full ring-2 ring-primary/20 shadow-2xs overflow-hidden shrink-0 border border-white bg-gray-100">
+                  <img src="assets/realtors/carlos.jpg" alt="Lic. Carlos Mendoza" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="flex items-center gap-1 min-w-0">
+                  <span class="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-primary transition-colors tracking-tight truncate">
+                    Lic. Carlos Mendoza
+                  </span>
+                  <i data-lucide="badge-check" class="w-4 h-4 text-primary shrink-0" title="Realtor Verificado"></i>
+                </div>
+              </div>
+
+              <button 
+                type="button" 
+                onclick="event.stopPropagation(); requireAuthForContact('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Casa%20comercial%20Colinas%20De%20Los%20Chaguaramos')" 
+                title="Enviar mensaje directo"
+                class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer ml-2 group/msg"
+              >
+                <i data-lucide="message-square" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/msg:scale-110 transition-transform"></i>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-2.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i> Distrito Capital, Libertador
+            </div>
+
+            <div class="text-xl sm:text-2xl font-black text-primary">
+              USD 935.000
+            </div>
+          </div>
+
+          <!-- Specs with Orange Icons matching Home -->
+          <div class="pt-3 border-t border-gray-100 flex items-center flex-wrap gap-x-3.5 gap-y-1.5 text-xs text-gray-700 font-bold">
+            <div class="flex items-center gap-1">
+              <i data-lucide="bed" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>hab. 5</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="bath" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>baños 7</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="car" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>estac. 6</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="ruler" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>área 850 m²</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- NEW FOOTER GRID -->
+      <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
+        
+        <!-- Left Section: 4 Columnas de Navegación de Propiedash -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 flex-1">
+          
+          <!-- 1. EXPLORAR -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Explorar</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="propiedades.html?categoria=Venta" class="hover:text-primary transition-colors">Comprar</a></li>
+              <li><a href="propiedades.html?categoria=Alquiler" class="hover:text-primary transition-colors">Alquilar</a></li>
+              <li><a href="propiedades.html" class="hover:text-primary transition-colors">Propiedades por estado</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Directorio de profesionales</a></li>
+            </ul>
+          </div>
+
+          <!-- 2. RECURSOS -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Recursos</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Guías</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Glosario inmobiliario</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Datos de mercado</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Noticias</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. EMPRESA -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Empresa</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="quienes-somos.html" class="hover:text-primary transition-colors">Sobre nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Trabaja con nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Prensa</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Precios</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Publica tu propiedad</a></li>
+              <li><a href="contacto.html" class="hover:text-primary transition-colors">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- 4. LEGAL -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Legal</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Términos y condiciones</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Política de privacidad</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Eliminar cuenta</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Preguntas frecuentes</a></li>
+              <li><a href="https://wa.me/584248407372" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Centro de ayuda</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right Section: Marca, Slogan, Tarjetas Móviles y Redes (Estilo Privy) -->
+        <div class="lg:w-96 flex flex-col items-start lg:items-end text-left lg:text-right shrink-0">
+          
+          <!-- Logo Enkapta en Naranja (sin icono) -->
+          <a href="index.html" class="inline-flex items-center mb-4 group">
+            <span class="text-3xl sm:text-4xl font-black text-primary tracking-tight group-hover:brightness-110 transition-all">Enkapta</span>
+          </a>
+
+          <!-- Slogan / Tagline (Estilo Privy) -->
+          <p class="text-base sm:text-lg font-semibold text-gray-800 lg:text-right max-w-sm mb-6 leading-snug">
+            La plataforma inmobiliaria moderna. Conectamos compradores, inquilinos y agentes.
+          </p>
+
+          <!-- EN TU MÓVIL O TABLET - Tarjetas App Store & Google Play (Propiedash) -->
+          <div class="mb-6 w-full flex flex-col items-start lg:items-end">
+            <span class="text-xs font-black uppercase tracking-wider text-gray-400 mb-3 block">En tu móvil o tablet</span>
+            <div class="flex items-center gap-3 flex-wrap justify-start lg:justify-end">
+              
+              <!-- Tarjeta App Store iOS -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 fill-current shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.15.65-2.84 1.45-.6.7-.99 1.77-.96 2.83 1.08.08 2.18-.56 2.79-1.41z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[10px] text-gray-300 font-normal">Descárgalo en el</div>
+                  <div class="text-xs font-bold text-white tracking-wide">App Store</div>
+                </div>
+              </a>
+
+              <!-- Tarjeta Google Play Android -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M3.61 1.814L13.793 12 3.61 22.186A2.296 2.296 0 0 1 3 20.655V3.345c0-.6.23-1.157.61-1.531z"/>
+                  <path fill="#FBBC04" d="M17.186 8.607L13.793 12l3.393 3.393 3.83-2.189a1.642 1.642 0 0 0 0-2.812l-3.83-2.189z"/>
+                  <path fill="#EA4335" d="M3.61 1.814l10.183 10.186 3.393-3.393L5.474.965A2.327 2.327 0 0 0 3.61 1.814z"/>
+                  <path fill="#34A853" d="M3.61 22.186A2.327 2.327 0 0 0 5.474 23.035l11.712-7.642-3.393-3.393L3.61 22.186z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[9px] uppercase tracking-wider text-gray-300 font-medium">DESCARGAR EN</div>
+                  <div class="text-xs font-bold text-white tracking-wide">Google Play</div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Redes Sociales (Instagram, Facebook, TikTok) -->
+          <div class="flex items-center gap-3 justify-start lg:justify-end mb-4">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Instagram">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Facebook">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="TikTok">
+              <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Copyright (Estilo Privy) -->
+          <div class="text-xs text-gray-400 font-medium lg:text-right">
+            © 2026 Enkapta, C.A. Todos los derechos reservados.
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX / FULLSCREEN GALLERY MODAL -->
+  <div id="fullscreen-modal" class="hidden fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex flex-col justify-between select-none animate-fadeIn">
+    
+    <!-- Top Bar -->
+    <div class="flex items-center justify-between p-4 sm:p-6 text-white z-30">
+      <div class="flex items-center gap-3">
+        <span class="text-xs sm:text-sm font-semibold text-gray-300 bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/10">
+          Foto <span id="fs-current-index" class="text-white font-bold">1</span> de 7
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Native Browser Fullscreen Toggle -->
+        <button 
+          type="button"
+          onclick="toggleNativeFullscreen()" 
+          title="Alternar pantalla completa nativa" 
+          class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer"
+        >
+          <i id="fs-expand-icon" data-lucide="maximize" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Close Button -->
+        <button 
+          type="button"
+          onclick="closeFullscreenGallery()" 
+          title="Cerrar (Esc)" 
+          class="w-10 h-10 rounded-full bg-white/10 hover:bg-red-500/80 text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Center Stage: Main High-Res Image with Prev / Next Navigation -->
+    <div class="relative flex-1 flex items-center justify-center px-4 sm:px-12 my-auto overflow-hidden">
+      
+      <!-- Prev Button -->
+      <button 
+        type="button"
+        onclick="prevImage()" 
+        title="Foto anterior" 
+        class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/15 hover:bg-white text-white hover:text-gray-900 backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-90 shadow-xl z-30 cursor-pointer"
+      >
+        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+      </button>
+
+      <!-- The Main Fullscreen Image -->
+      <div class="relative max-w-6xl max-h-[75vh] flex items-center justify-center">
+        <img 
+          id="fs-main-image" 
+          src="assets/properties/gallery/oficina-1.jpg" 
+          alt="Vista en pantalla completa" 
+          class="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl transition-all duration-300"
+        />
+      </div>
+
+      <!-- Next Button -->
+      <button 
+        type="button"
+        onclick="nextImage()" 
+        title="Siguiente foto" 
+        class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/15 hover:bg-white text-white hover:text-gray-900 backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-90 shadow-xl z-30 cursor-pointer"
+      >
+        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Bottom Bar: Thumbnails Carousel -->
+    <div class="p-4 sm:p-6 bg-black/40 backdrop-blur-md border-t border-white/10 z-30">
+      <div class="max-w-5xl mx-auto flex items-center justify-center gap-2.5 overflow-x-auto no-scrollbar py-1">
+        <button onclick="selectImage(0)" class="fs-thumb-btn shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-xl overflow-hidden border-2 border-primary ring-2 ring-primary/40 transition-all cursor-pointer">
+          <img src="assets/properties/gallery/oficina-1.jpg" alt="Thumb 1" class="w-full h-full object-cover"/>
+        </button>
+        <button onclick="selectImage(1)" class="fs-thumb-btn shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-xl overflow-hidden border-2 border-transparent opacity-50 hover:opacity-90 transition-all cursor-pointer">
+          <img src="assets/properties/gallery/oficina-2.jpg" alt="Thumb 2" class="w-full h-full object-cover"/>
+        </button>
+        <button onclick="selectImage(2)" class="fs-thumb-btn shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-xl overflow-hidden border-2 border-transparent opacity-50 hover:opacity-90 transition-all cursor-pointer">
+          <img src="assets/properties/gallery/oficina-3.jpg" alt="Thumb 3" class="w-full h-full object-cover"/>
+        </button>
+        <button onclick="selectImage(3)" class="fs-thumb-btn shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-xl overflow-hidden border-2 border-transparent opacity-50 hover:opacity-90 transition-all cursor-pointer">
+          <img src="assets/properties/gallery/oficina-4.jpg" alt="Thumb 4" class="w-full h-full object-cover"/>
+        </button>
+        <button onclick="selectImage(4)" class="fs-thumb-btn shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-xl overflow-hidden border-2 border-transparent opacity-50 hover:opacity-90 transition-all cursor-pointer">
+          <img src="assets/properties/gallery/oficina-5.jpg" alt="Thumb 5" class="w-full h-full object-cover"/>
+        </button>
+        <button onclick="selectImage(5)" class="fs-thumb-btn shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-xl overflow-hidden border-2 border-transparent opacity-50 hover:opacity-90 transition-all cursor-pointer">
+          <img src="assets/properties/gallery/oficina-6.jpg" alt="Thumb 6" class="w-full h-full object-cover"/>
+        </button>
+        <button onclick="selectImage(6)" class="fs-thumb-btn shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-xl overflow-hidden border-2 border-transparent opacity-50 hover:opacity-90 transition-all cursor-pointer">
+          <img src="assets/properties/gallery/oficina-7.jpg" alt="Thumb 7" class="w-full h-full object-cover"/>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Gallery images list
+    const galleryImages = [
+      'assets/properties/gallery/oficina-1.jpg',
+      'assets/properties/gallery/oficina-2.jpg',
+      'assets/properties/gallery/oficina-3.jpg',
+      'assets/properties/gallery/oficina-4.jpg',
+      'assets/properties/gallery/oficina-5.jpg',
+      'assets/properties/gallery/oficina-6.jpg',
+      'assets/properties/gallery/oficina-7.jpg'
+    ];
+
+    let currentIndex = 0;
+
+    function updateGalleryUI() {
+      const mainImg = document.getElementById('main-image');
+      const badge = document.getElementById('current-index-badge');
+      const thumbs = document.querySelectorAll('.thumb-btn');
+
+      if (mainImg) mainImg.src = galleryImages[currentIndex];
+      if (badge) badge.textContent = currentIndex + 1;
+
+      thumbs.forEach((thumb, idx) => {
+        if (idx === currentIndex) {
+          thumb.className = 'thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-primary ring-2 ring-primary/30 opacity-100 transition-all scale-105 cursor-pointer';
+        } else {
+          thumb.className = 'thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer';
+        }
+      });
+
+      // Update Fullscreen Modal UI if present
+      const fsImg = document.getElementById('fs-main-image');
+      const fsBadge = document.getElementById('fs-current-index');
+      const fsThumbs = document.querySelectorAll('.fs-thumb-btn');
+
+      if (fsImg) fsImg.src = galleryImages[currentIndex];
+      if (fsBadge) fsBadge.textContent = currentIndex + 1;
+
+      fsThumbs.forEach((thumb, idx) => {
+        if (idx === currentIndex) {
+          thumb.className = 'fs-thumb-btn shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-xl overflow-hidden border-2 border-primary ring-2 ring-primary/50 opacity-100 transition-all scale-105 cursor-pointer';
+        } else {
+          thumb.className = 'fs-thumb-btn shrink-0 w-16 sm:w-20 h-12 sm:h-14 rounded-xl overflow-hidden border-2 border-transparent opacity-50 hover:opacity-90 transition-all cursor-pointer';
+        }
+      });
+    }
+
+    function selectImage(index) {
+      currentIndex = index;
+      updateGalleryUI();
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      updateGalleryUI();
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateGalleryUI();
+    }
+
+    // Fullscreen Gallery Logic
+    function openFullscreenGallery() {
+      const modal = document.getElementById('fullscreen-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      updateGalleryUI();
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      }
+    }
+
+    function closeFullscreenGallery() {
+      const modal = document.getElementById('fullscreen-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function toggleNativeFullscreen() {
+      const modal = document.getElementById('fullscreen-modal');
+      if (!document.fullscreenElement) {
+        if (modal && modal.requestFullscreen) {
+          modal.requestFullscreen().catch(() => {});
+        } else if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+    }
+
+    // Keyboard navigation: Escape to close, Left/Right arrows to navigate
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('fullscreen-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeFullscreenGallery();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+      }
+    });
+
+    // Favorite button toggle
+    let isFav = false;
+    function toggleFav() {
+      isFav = !isFav;
+      const icon = document.getElementById('fav-icon');
+      const text = document.getElementById('fav-text');
+      if (isFav) {
+        icon.classList.remove('text-gray-500');
+        icon.classList.add('text-red-500', 'fill-red-500');
+        text.textContent = 'Guardado en favoritos';
+      } else {
+        icon.classList.remove('text-red-500', 'fill-red-500');
+        icon.classList.add('text-gray-500');
+        text.textContent = 'Guardar en favoritos';
+      }
+    }
+
+    // Share link
+    function shareProperty() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Excelente, Oficina de 135 m² — Enkapta',
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Enlace copiado al portapapeles');
+      }
+    }
+
+    // Leaflet Interactive Map Initialization
+    // Coordinates for Edif. Cámara de Comercio de Caracas, Av Este 2, La Candelaria / Bellas Artes
+    const lat = 10.5042;
+    const lng = -66.8995;
+
+    const map = L.map('map', {
+      center: [lat, lng],
+      zoom: 15,
+      zoomControl: true
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Custom marker icon matching red pin
+    const redPin = L.divIcon({
+      className: 'custom-pin',
+      html: `
+        <div style="transform: translate(-50%, -100%);">
+          <svg width="34" height="42" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0C5.37258 0 0 5.37258 0 12C0 19.5 12 30 12 30C12 30 24 19.5 24 12C24 5.37258 18.6274 0 12 0Z" fill="#EA4335"/>
+            <circle cx="12" cy="11" r="5" fill="#FFFFFF"/>
+          </svg>
+        </div>
+      `,
+      iconSize: [34, 42],
+      iconAnchor: [17, 30]
+    });
+
+    L.marker([lat, lng], { icon: redPin })
+      .addTo(map)
+      .bindPopup('<b>Edif. Cámara de Comercio</b><br>Av. Este 2, Caracas')
+      .openPopup();
+
+    function toggleMapFullscreen() {
+      const mapEl = document.getElementById('map').parentElement;
+      if (!document.fullscreenElement) {
+        mapEl.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  
+</script>
+</body>
+</html>

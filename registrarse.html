@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear cuenta — Enkapta</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Inter & Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Auth Logic -->
+  <script src="assets/auth.js"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#FF7900',
+              hover: '#E66D00',
+              glow: '#FF9433',
+              light: '#FFF4EB',
+              dark: '#CC6100'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .animate-float {
+      animation: float-slow 5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="h-screen w-screen overflow-hidden bg-white text-gray-900 m-0 p-0 flex">
+
+  <!-- FULL PAGE SPLIT CONTAINER (100% Flush to browser, zero outer margins) -->
+  <div class="w-full h-full flex flex-col md:flex-row bg-white m-0 p-0 overflow-hidden">
+    
+    <!-- LEFT PANEL: Flush to Left, Top, Bottom. ONLY Right Divider Edge is Curved! -->
+    <div class="hidden md:flex md:w-5/12 lg:w-1/2 h-full bg-gradient-to-br from-primary via-[#FF7A00] to-[#E66900] p-6 lg:p-10 text-white flex-col justify-between relative shrink-0 rounded-r-[44px] lg:rounded-r-[56px] shadow-2xl shadow-orange-950/25 z-10">
+      
+      <!-- Top: Brand Logo -->
+      <div class="relative z-10">
+        <a href="index.html" class="inline-flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center p-1.5 border border-white/30 shadow-xs transition-transform group-hover:scale-105">
+            <img src="assets/enkapta-logo1.png" alt="Enkapta Logo" class="w-full h-full object-contain brightness-0 invert"/>
+          </div>
+          <span class="font-extrabold text-2xl tracking-tight text-white drop-shadow-xs">Enkapta</span>
+        </a>
+      </div>
+
+      <!-- Center: Clean PropTech Graphic & Message -->
+      <div class="relative z-10 my-auto py-2 space-y-4 max-w-sm mx-auto">
+        
+        <!-- Graphic / Illustration (Compact so it never overflows) -->
+        <div class="w-full max-w-[300px] lg:max-w-[330px] mx-auto animate-float">
+          <svg class="w-full h-auto drop-shadow-lg" viewBox="0 0 380 215" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Glass Background Card -->
+            <rect x="40" y="30" width="300" height="170" rx="20" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+            
+            <!-- Property Badge 1 -->
+            <g transform="translate(20, 15)">
+              <rect width="165" height="68" rx="14" fill="white" filter="drop-shadow(0 8px 18px rgba(0,0,0,0.12))"/>
+              <rect x="10" y="10" width="48" height="48" rx="10" fill="#FF7900" opacity="0.12"/>
+              <path d="M34 21L21 32H27V45H41V32H47L34 21Z" fill="#FF7900"/>
+              <rect x="66" y="17" width="75" height="8" rx="4" fill="#1F2937"/>
+              <rect x="66" y="30" width="55" height="6" rx="3" fill="#9CA3AF"/>
+              <rect x="66" y="42" width="45" height="12" rx="6" fill="#FFF4EB"/>
+              <text x="70" y="51" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="bold" fill="#FF7900">Verificado</text>
+            </g>
+
+            <!-- Deal / Security Badge 2 -->
+            <g transform="translate(200, 75)">
+              <rect width="145" height="60" rx="14" fill="white" filter="drop-shadow(0 8px 20px rgba(0,0,0,0.14))"/>
+              <circle cx="32" cy="30" r="16" fill="#10B981" opacity="0.15"/>
+              <path d="M25 30L29 34L38 25" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="56" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="bold" fill="#1F2937">Contrato Seguro</text>
+              <text x="56" y="41" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" fill="#6B7280">100% Digital</text>
+            </g>
+
+            <!-- Rating Pill -->
+            <g transform="translate(110, 160)">
+              <rect width="150" height="34" rx="17" fill="rgba(255,255,255,0.95)" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.1))"/>
+              <text x="18" y="21" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="bold" fill="#FF7900">★ 4.9</text>
+              <text x="52" y="21" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#4B5563">PropTech Venezuela</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Headline & Copy -->
+        <div class="space-y-2">
+          <h2 class="text-2xl lg:text-3xl font-black text-white leading-tight">
+            Únete a la nueva era inmobiliaria en Venezuela
+          </h2>
+          <p class="text-xs sm:text-sm text-white/90 leading-relaxed font-medium">
+            Crea tu cuenta gratis para publicar, buscar propiedades y conectar con miles de clientes.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Bottom: Social Networks (TikTok, Facebook, Instagram Centered & Bigger) -->
+      <div class="relative z-10 pt-4 border-t border-white/20 flex flex-col items-center justify-center text-center">
+        
+        <!-- Social Networks: TikTok, Facebook, Instagram -->
+        <div class="flex items-center justify-center gap-4">
+          
+          <!-- TikTok -->
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" title="TikTok" class="w-11 h-11 rounded-full bg-white/20 hover:bg-white text-white hover:text-primary backdrop-blur-md flex items-center justify-center transition-all duration-200 transform hover:scale-110 shadow-sm cursor-pointer">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook" class="w-11 h-11 rounded-full bg-white/20 hover:bg-white text-white hover:text-primary backdrop-blur-md flex items-center justify-center transition-all duration-200 transform hover:scale-110 shadow-sm cursor-pointer">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram" class="w-11 h-11 rounded-full bg-white/20 hover:bg-white text-white hover:text-primary backdrop-blur-md flex items-center justify-center transition-all duration-200 transform hover:scale-110 shadow-sm cursor-pointer">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-3 text-center space-y-0.5">
+          <span class="text-xs text-white/90 font-semibold block">© 2025 Enkapta</span>
+          <span class="text-[11px] text-white/70 block">Todos los derechos reservados</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT PANEL: Full Height Form (Form Fields TOP | Google & iOS BOTTOM) -->
+    <div class="w-full md:w-7/12 lg:w-1/2 h-full bg-white p-6 sm:p-10 lg:p-14 flex flex-col justify-between overflow-y-auto">
+      
+      <!-- Top Action: Back to Home Link -->
+      <div class="flex items-center justify-between pb-2">
+        <a href="index.html" class="md:hidden inline-flex items-center gap-2">
+          <div class="w-7 h-7 rounded-lg bg-orange-100 flex items-center justify-center p-1">
+            <img src="assets/enkapta-logo1.png" alt="Enkapta" class="w-full h-full object-contain"/>
+          </div>
+          <span class="font-black text-lg text-primary">Enkapta</span>
+        </a>
+
+        <a href="index.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-primary transition-colors ml-auto group">
+          <span>Volver al inicio</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1"></i>
+        </a>
+      </div>
+
+      <!-- Main Form Wrapper -->
+      <div class="my-auto max-w-md w-full mx-auto py-2">
+        
+        <!-- Header Title -->
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight mb-5">
+          Crear cuenta
+        </h1>
+
+        <!-- 1. REGISTRATION FORM (AT THE TOP) -->
+        <form onsubmit="handleRegisterRedirect(event)" class="space-y-3.5">
+          
+          <!-- Nombre Completo -->
+          <div>
+            <label for="name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+              Nombre completo
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <i data-lucide="user" class="w-4 h-4"></i>
+              </span>
+              <input 
+                type="text" 
+                id="name" 
+                placeholder="Ej. Roger Quijada" 
+                required
+                class="w-full pl-10 pr-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-gray-900 font-medium"
+              />
+            </div>
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div>
+            <label for="email" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+              Correo electrónico
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </span>
+              <input 
+                type="email" 
+                id="email" 
+                placeholder="nombre@ejemplo.com" 
+                required
+                class="w-full pl-10 pr-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-gray-900 font-medium"
+              />
+            </div>
+          </div>
+
+          <!-- Contraseña with View Password Toggle -->
+          <div>
+            <label for="password" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">
+              Contraseña
+            </label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </span>
+              <input 
+                type="password" 
+                id="password" 
+                placeholder="Mínimo 8 caracteres" 
+                required
+                class="w-full pl-10 pr-10 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-gray-900 font-medium"
+              />
+              <button 
+                type="button" 
+                onclick="togglePasswordVisibility()" 
+                class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none cursor-pointer"
+                title="Mostrar u ocultar contraseña"
+              >
+                <!-- Eye Open -->
+                <svg id="eye-open" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <!-- Eye Closed (hidden) -->
+                <svg id="eye-closed" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Términos y Condiciones Checkbox -->
+          <div class="flex items-start gap-2 pt-0.5">
+            <input 
+              type="checkbox" 
+              id="terms" 
+              required
+              class="w-4 h-4 mt-0.5 rounded text-primary focus:ring-primary border-gray-300 transition-colors cursor-pointer"
+            />
+            <label for="terms" class="text-xs text-gray-600 font-medium cursor-pointer select-none leading-tight">
+              Acepto los <a href="#" class="text-primary hover:underline font-semibold">Términos y Condiciones</a> y la <a href="#" class="text-primary hover:underline font-semibold">Política de Privacidad</a>.
+            </label>
+          </div>
+
+          <!-- Primary Submit Button -->
+          <button 
+            type="submit" 
+            class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-6 rounded-xl bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white text-sm font-bold shadow-md hover:shadow-lg hover:shadow-primary/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+          >
+            <span>Crear cuenta gratis</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+
+        </form>
+
+        <!-- 2. CLEAN & PROPORTIONED DIVIDER (Línea de o) -->
+        <div class="relative flex items-center justify-center my-5">
+          <div class="border-t border-gray-200 w-full"></div>
+          <span class="bg-white px-4 text-xs font-bold text-gray-400 uppercase tracking-widest absolute">
+            o
+          </span>
+        </div>
+
+        <!-- 3. GOOGLE & APPLE (iOS) BUTTONS (AT THE BOTTOM) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          
+          <!-- Google Login Button -->
+          <button 
+            type="button" 
+            onclick="handleRegisterRedirect(event)" 
+            class="w-full py-2.5 px-3.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50/90 hover:border-gray-300 text-xs sm:text-sm font-bold text-gray-700 flex items-center justify-center gap-2.5 transition-all shadow-2xs hover:shadow-xs group cursor-pointer"
+          >
+            <svg class="w-4 h-4 shrink-0 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span>Google</span>
+          </button>
+
+          <!-- Apple (iOS) Login Button -->
+          <button 
+            type="button" 
+            onclick="handleRegisterRedirect(event)" 
+            class="w-full py-2.5 px-3.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50/90 hover:border-gray-300 text-xs sm:text-sm font-bold text-gray-700 flex items-center justify-center gap-2.5 transition-all shadow-2xs hover:shadow-xs group cursor-pointer"
+          >
+            <svg class="w-4 h-4 fill-gray-900 shrink-0 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            <span>Apple</span>
+          </button>
+
+        </div>
+
+        <!-- Login Switch Link -->
+        <div class="text-center text-xs sm:text-sm text-gray-500 pt-4">
+          <span>¿Ya tienes cuenta? </span>
+          <a id="login-link" href="iniciar-sesion.html" class="font-bold text-primary hover:underline">
+            Inicia sesión
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom Security & Trust -->
+      <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-400">
+        <span class="flex items-center gap-1.5">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+          Conexión segura SSL
+        </span>
+        <div class="flex items-center gap-3">
+          <a href="#" class="hover:underline">Términos</a>
+          <span>•</span>
+          <a href="#" class="hover:underline">Privacidad</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Register with redirect target
+    function handleRegisterRedirect(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      const params = new URLSearchParams(window.location.search);
+      const target = params.get('redirect') || 'index.html';
+      loginAsRoger(target);
+    }
+
+    // Check for redirect param to update login link
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectParam = urlParams.get('redirect');
+    if (redirectParam) {
+      const logLink = document.getElementById('login-link');
+      if (logLink) logLink.href = 'iniciar-sesion.html?redirect=' + encodeURIComponent(redirectParam);
+    }
+
+    // Toggle password visibility
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('password');
+      const eyeOpen = document.getElementById('eye-open');
+      const eyeClosed = document.getElementById('eye-closed');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        if (eyeOpen) eyeOpen.classList.add('hidden');
+        if (eyeClosed) eyeClosed.classList.remove('hidden');
+      } else {
+        passwordInput.type = 'password';
+        if (eyeOpen) eyeOpen.classList.remove('hidden');
+        if (eyeClosed) eyeClosed.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

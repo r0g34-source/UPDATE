@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" fill="none">
+  <path d="M40 16L60 27.5V50.5L40 62L20 50.5V27.5L40 16Z" stroke="#222222" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M40 28L50 34V46L40 52L30 46V34L40 28Z" fill="#444444"/>
+  <circle cx="40" cy="40" r="3" fill="#ffffff"/>
+  <text x="75" y="40" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-size="22" font-weight="800" fill="#222222" letter-spacing="1.5">NOVA</text>
+  <text x="75" y="56" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-size="10" font-weight="600" fill="#666666" letter-spacing="2">PROPTECH</text>
+</svg>

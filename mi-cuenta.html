@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi cuenta — Enkapta</title>
+  <meta name="description" content="Gestiona tu perfil personal, propiedades, favoritos y plan en Enkapta.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Inter & Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#FF7900',
+              hover: '#E66D00',
+              glow: '#FF9433',
+              light: '#FFF4EB',
+              dark: '#CC6100'
+            },
+            surface: {
+              50: '#F9FAFB',
+              100: '#F3F4F6',
+              200: '#E5E7EB',
+              800: '#1F2937',
+              900: '#111827'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'glow': '0 0 25px -5px rgba(255, 121, 0, 0.4)',
+            'card-hover': '0 20px 30px -10px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            'floating': '0 16px 48px -12px rgba(15, 23, 42, 0.18)'
+          },
+          spacing: {
+            '4.5': '1.125rem'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+
+  <!-- Auth Logic -->
+  <script src="assets/auth.js"></script>
+</head>
+<body class="bg-gray-50/70 text-gray-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR / HEADER -->
+  <header class="bg-white sticky top-0 z-40 border-b border-gray-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+      
+        <!-- LEFT: Logo + Nav Items -->
+        <div class="flex items-center space-x-7 lg:space-x-9">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center gap-2 group shrink-0">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shadow-2xs shrink-0 overflow-hidden">
+              <img src="assets/enkapta-logo1.png" alt="Enkapta Logo" class="w-8 h-8 object-contain rounded-lg"/>
+            </div>
+            <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+              Enkapta
+            </span>
+          </a>
+
+          <!-- Navigation Links -->
+          <nav class="hidden md:flex items-center space-x-6 lg:space-x-7">
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="index.html">Inicio</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="propiedades.html">Propiedades</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="planes.html">Planes</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="quienes-somos.html">Quiénes somos</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="contacto.html">Contacto</a>
+          </nav>
+        </div>
+
+        <!-- RIGHT: Auth / Profile Button -->
+        <div class="hidden md:flex items-center space-x-3">
+          <div id="header-auth-container"></div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center md:hidden">
+          <button id="mobile-menu-btn" class="p-1.5 rounded-lg text-gray-800 hover:text-gray-900 hover:bg-white/60 focus:outline-none">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Nav Flyout -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 mt-2 rounded-2xl mx-4 shadow-lg">
+      <div id="mobile-auth-container"></div>
+      <a href="index.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Inicio</a>
+      <a href="propiedades.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Propiedades</a>
+      <a href="planes.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Planes</a>
+      <a href="quienes-somos.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Quiénes somos</a>
+      <a href="contacto.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Contacto</a>
+    </div>
+  </header>
+
+  <!-- 1. FULL-WIDTH HERO COVER BANNER (Completo de borde a borde como las otras secciones, sin márgenes laterales) -->
+  <section id="hero-banner-section" class="w-full relative h-48 sm:h-60 lg:h-68 bg-gradient-to-r from-orange-100/70 via-amber-50/80 to-orange-50/90 border-b border-gray-200/80 overflow-hidden group/hero-banner">
+    <!-- Imagen de Banner Dinámica -->
+    <img id="hero-banner-img" src="" alt="Banner de perfil" class="hidden absolute inset-0 w-full h-full object-cover">
+    <div id="hero-banner-pattern" class="absolute inset-0 bg-[radial-gradient(#ff7900_1px,transparent_1px)] [background-size:24px_24px] opacity-15"></div>
+
+    <!-- Botón directo en el banner para cambiar portada -->
+    <button 
+      type="button" 
+      onclick="openEditProfileModal()" 
+      class="absolute bottom-3 right-4 sm:right-6 lg:right-8 bg-white/90 hover:bg-white backdrop-blur-md px-3 py-1.5 rounded-lg border border-gray-200/90 shadow-2xs text-xs font-bold text-gray-700 hover:text-gray-900 flex items-center gap-1.5 transition-all cursor-pointer z-10 hover:scale-105 active:scale-95"
+    >
+      <i data-lucide="camera" class="w-3.5 h-3.5 text-gray-500"></i>
+      <span class="hidden sm:inline">Cambiar portada</span>
+    </button>
+  </section>
+
+  <!-- 2. BARRA DE PERFIL SUPERIOR (Full-width de fondo, contenido alineado a max-w-7xl como el resto del sitio) -->
+  <section class="w-full bg-white border-b border-gray-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Fila superior: Avatar a la izquierda superpuesto al banner, Botón Ver perfil a la derecha -->
+      <div class="flex items-end justify-between gap-4">
+        
+        <!-- Avatar circular superpuesto al banner con anillo blanco -->
+        <div class="-mt-16 sm:-mt-20 lg:-mt-24 relative z-10 shrink-0 group/hero-avatar">
+          <div class="w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full ring-4 ring-white shadow-lg overflow-hidden bg-white relative">
+            <img id="hero-avatar-img" src="assets/realtors/alejandro.jpg" alt="Roger" class="w-full h-full object-cover">
+            <span id="hero-avatar-initial" class="hidden">R</span>
+            <!-- Botón superpuesto para cambiar foto al pasar el ratón -->
+            <button 
+              type="button" 
+              onclick="openEditProfileModal()" 
+              class="absolute inset-0 bg-black/45 text-white flex flex-col items-center justify-center opacity-0 group-hover/hero-avatar:opacity-100 transition-opacity cursor-pointer" 
+              title="Cambiar foto de perfil"
+            >
+              <i data-lucide="camera" class="w-6 h-6"></i>
+              <span class="text-[10px] font-bold mt-1">Cambiar</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón Superior "Ver perfil" (Estilo Untitled UI) -->
+        <div class="pb-2 sm:pb-3">
+          <button 
+            type="button" 
+            onclick="openEditProfileModal()" 
+            class="px-5 py-2.5 rounded-xl border border-gray-200/90 hover:border-gray-300 bg-white hover:bg-gray-50 text-xs sm:text-sm font-semibold text-gray-700 shadow-2xs hover:shadow-xs transition-all inline-flex items-center gap-2 cursor-pointer whitespace-nowrap"
+          >
+            <i data-lucide="user" class="w-4 h-4 text-gray-500"></i>
+            <span>Ver perfil</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Nombre y Email (directamente debajo del avatar) -->
+      <div class="mt-4 sm:mt-5 space-y-0.5">
+        <div class="flex items-center gap-2">
+          <h1 id="hero-display-name" class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
+            Roger
+          </h1>
+          <!-- Verified Check Badge -->
+          <span class="inline-flex items-center" title="Identidad Verificada">
+            <svg class="w-6 h-6 fill-primary text-white" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#FF7900"/>
+              <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </span>
+        </div>
+
+        <p id="hero-display-email" class="text-xs sm:text-sm text-gray-400 font-normal">
+          rogeralejandroquijadaavilera@gmail.com
+        </p>
+      </div>
+
+      <!-- Barra de Estadísticas en 4 Columnas (Limpia y espaciosa, exactamente como en la referencia) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 sm:pt-8 pb-8 border-t border-gray-100 mt-6 sm:mt-7">
+        
+        <!-- Stat 1: Plan -->
+        <div>
+          <span class="text-xs font-medium text-gray-400 block mb-1">Plan actual</span>
+          <div class="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
+            Visitante
+          </div>
+          <span class="text-xs text-gray-400 font-normal">Gratis permanente</span>
+        </div>
+
+        <!-- Stat 2: Propiedades -->
+        <div>
+          <span class="text-xs font-medium text-gray-400 block mb-1">Propiedades activas</span>
+          <div class="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
+            0 / 0 cupos
+          </div>
+          <a href="planes.html" class="text-xs text-primary hover:underline font-medium">Activar cupo para publicar</a>
+        </div>
+
+        <!-- Stat 3: Favoritos -->
+        <div>
+          <span class="text-xs font-medium text-gray-400 block mb-1">Favoritos guardados</span>
+          <div class="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
+            1 inmueble
+          </div>
+          <a href="#mis-favoritos" class="text-xs text-gray-500 hover:text-primary font-medium">Ver en la lista ↓</a>
+        </div>
+
+        <!-- Stat 4: Registro / Antigüedad -->
+        <div>
+          <span class="text-xs font-medium text-gray-400 block mb-1">Miembro desde</span>
+          <div class="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
+            Septiembre 2025
+          </div>
+          <span class="text-xs text-emerald-600 font-medium flex items-center gap-1">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Verificado
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MAIN ACCOUNT DASHBOARD (Alineado con el ancho completo max-w-7xl de las otras secciones) -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1 w-full space-y-12">
+
+    <!-- CONFIGURACIÓN RÁPIDA DE PERFIL (Tarjeta limpia estilo Untitled UI con bordes redondeados pequeños) -->
+    <div class="bg-white rounded-2xl border border-gray-200/90 shadow-2xs p-6 sm:p-8 space-y-6">
+      
+      <!-- Fila 1: Public profile (Nombre y URL pública) -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+        <div class="md:col-span-4 space-y-0.5">
+          <h3 class="text-sm font-bold text-gray-900">Perfil público</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Esta información se mostrará en tu perfil y publicaciones dentro de Enkapta.
+          </p>
+        </div>
+
+        <div class="md:col-span-8 space-y-3">
+          <div>
+            <label for="quick-name-input" class="sr-only">Nombre completo</label>
+            <input 
+              type="text" 
+              id="quick-name-input" 
+              value="Roger" 
+              placeholder="Nombre completo" 
+              class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-2xs"
+            />
+          </div>
+
+          <div>
+            <label for="quick-slug-input" class="sr-only">Enlace de tu perfil</label>
+            <div class="flex items-center rounded-lg border border-gray-200 overflow-hidden shadow-2xs focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all bg-white">
+              <span class="bg-gray-50 px-3.5 py-2.5 text-xs sm:text-sm text-gray-400 font-normal border-r border-gray-200 select-none flex items-center shrink-0">
+                enkapta.com/u/
+              </span>
+              <input 
+                type="text" 
+                id="quick-slug-input" 
+                value="roger" 
+                placeholder="usuario" 
+                class="flex-1 min-w-0 px-3.5 py-2.5 text-sm font-medium text-gray-900 focus:outline-none bg-white"
+              />
+              <button 
+                type="button" 
+                id="btn-copy-profile-link" 
+                onclick="copyProfileLink('quick-slug-input')" 
+                title="Copiar enlace del perfil" 
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 mr-1.5 rounded-md text-xs font-semibold text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 transition-colors cursor-pointer shrink-0 shadow-2xs active:bg-gray-200"
+              >
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span class="copy-label hidden sm:inline">Copiar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-100"></div>
+
+      <!-- Fila 3: Contraseña y seguridad -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        <div class="md:col-span-8 space-y-0.5">
+          <h3 class="text-sm font-bold text-gray-900">Contraseña y seguridad</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Actualiza tu contraseña periódicamente para proteger el acceso a tu cuenta.
+          </p>
+        </div>
+
+        <div class="md:col-span-4 flex items-center justify-start md:justify-end">
+          <button 
+            type="button" 
+            onclick="openSecurityModal()" 
+            class="inline-flex items-center gap-2 px-4.5 py-2.5 rounded-xl border border-gray-200 hover:border-primary/40 hover:bg-orange-50/50 hover:text-primary bg-white text-xs sm:text-sm font-semibold text-gray-700 transition-all shadow-2xs cursor-pointer whitespace-nowrap"
+          >
+            <i data-lucide="key-round" class="w-3.5 h-3.5 text-gray-500"></i>
+            <span>Cambiar contraseña</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-100"></div>
+
+      <!-- Fila 4: Cerrar sesión en otros dispositivos -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        <div class="md:col-span-8 space-y-0.5">
+          <h3 class="text-sm font-bold text-gray-900">Cerrar sesión en otros dispositivos</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Cierra todas las demás sesiones activas en otros teléfonos móviles o computadoras además de este.
+          </p>
+        </div>
+
+        <div class="md:col-span-4 flex items-center justify-start md:justify-end">
+          <button 
+            type="button" 
+            onclick="handleLogoutOtherDevices()" 
+            class="inline-flex items-center gap-2 px-4.5 py-2.5 rounded-xl bg-gray-100 hover:bg-red-50 hover:text-red-600 hover:border-red-200 border border-gray-200/80 text-xs sm:text-sm font-semibold text-gray-700 transition-all shadow-2xs cursor-pointer whitespace-nowrap"
+          >
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+            <span>Cerrar sesiones</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-100"></div>
+
+      <!-- Fila 5: Botones Inferiores de Guardar Cambios / Cancelar (Exactos como en la referencia) -->
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button 
+          type="button" 
+          onclick="resetQuickProfileFields()" 
+          class="px-5 py-2.5 rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-xs sm:text-sm font-semibold text-gray-700 transition-colors cursor-pointer whitespace-nowrap shadow-2xs hover:shadow-xs"
+        >
+          Cancelar
+        </button>
+
+        <button 
+          type="button" 
+          onclick="saveQuickProfile()" 
+          class="px-6 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md active:scale-95 transition-all cursor-pointer inline-flex items-center gap-2 whitespace-nowrap"
+        >
+          <span>Guardar cambios</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- SECCIÓN 1: MIS PROPIEDADES (Diseño limpio y moderno) -->
+    <div id="mis-propiedades" class="space-y-4 pt-2">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">Mis propiedades</h2>
+          <p class="text-xs sm:text-sm text-gray-500 mt-0.5">0 de 0 activas en el plan visitante.</p>
+        </div>
+
+        <button 
+          type="button" 
+          onclick="openPublishModal()" 
+          class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md active:scale-95 transition-all cursor-pointer self-start sm:self-auto whitespace-nowrap"
+        >
+          <i data-lucide="plus" class="w-4 h-4"></i>
+          <span>Publicar propiedad</span>
+        </button>
+      </div>
+
+      <!-- Empty State Moderno y Refinado -->
+      <div class="bg-white rounded-2xl border border-gray-200/90 p-8 sm:p-12 text-center shadow-xs">
+        <div class="w-14 h-14 rounded-2xl bg-orange-50 border border-orange-100 text-primary flex items-center justify-center mx-auto mb-3 shadow-2xs">
+          <i data-lucide="home" class="w-7 h-7"></i>
+        </div>
+        
+        <h3 class="text-base sm:text-lg font-bold text-gray-900">
+          Todavía no publicaste ninguna propiedad.
+        </h3>
+        
+        <p class="text-xs sm:text-sm text-gray-500 max-w-md mx-auto mt-1 leading-relaxed">
+          Tu cuenta actual está lista para buscar y guardar favoritos. Si deseas publicar apartamentos, casas o locales comerciales, activa un plan o publica un inmueble individual.
+        </p>
+
+        <div class="flex items-center justify-center mt-6">
+          <a 
+            href="planes.html" 
+            class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl border border-gray-200 hover:border-primary hover:bg-orange-50/50 hover:text-primary text-xs sm:text-sm font-bold text-gray-700 shadow-2xs transition-all cursor-pointer"
+          >
+            <span>Ver planes</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: MIS FAVORITOS (Inspirada exactamente en la tarjeta del usuario) -->
+    <div id="mis-favoritos" class="space-y-4 pt-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">Mis favoritos</h2>
+          <p class="text-xs sm:text-sm text-gray-500 mt-0.5">1 propiedad guardada en tu lista de seguimiento.</p>
+        </div>
+
+        <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-primary">
+          1 guardado
+        </span>
+      </div>
+
+      <!-- Favorites Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        
+        <!-- FAVORITE CARD (Inmueble con foto, precio USD 50.000, broker Dueñas y detalles) -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-gray-200/90 shadow-2xs hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col">
+          
+          <!-- Imagen de la propiedad con botón de favorito activo (corazón naranja) -->
+          <div class="relative h-56 sm:h-60 overflow-hidden bg-gray-100 cursor-pointer" onclick="window.location.href='propiedad-detalle.html'">
+            <img 
+              src="assets/properties/fav-apto.jpg" 
+              alt="Oportunidad de inversión" 
+              class="w-full h-full object-cover transition-opacity duration-300"
+            />
+            
+            <!-- Badge En Venta -->
+            <div class="absolute top-3.5 left-3.5 flex items-center gap-2">
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold tracking-wide bg-primary text-white shadow-sm">
+                En venta
+              </span>
+            </div>
+
+            <!-- Botón de Favorito Activo (Naranja) -->
+            <button 
+              type="button" 
+              onclick="event.stopPropagation(); removeFavorite(this);" 
+              title="Quitar de favoritos" 
+              class="absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-primary flex items-center justify-center shadow-sm hover:scale-110 active:scale-90 transition-all cursor-pointer backdrop-blur-md"
+            >
+              <i data-lucide="heart" class="w-4.5 h-4.5 fill-primary text-primary"></i>
+            </button>
+          </div>
+
+          <!-- Contenido de la tarjeta -->
+          <div class="p-5 sm:p-5.5 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 
+                onclick="window.location.href='propiedad-detalle.html'" 
+                class="text-base sm:text-[17px] font-extrabold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-2.5 leading-snug cursor-pointer"
+                title="Oportunidad de inversión"
+              >
+                Oportunidad de inversión
+              </h3>
+
+              <!-- Realtor Row with Direct Message Icon -->
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full ring-2 ring-primary/20 shadow-2xs overflow-hidden shrink-0 border border-white bg-gray-100">
+                    <img src="assets/duenas-logo.jpg" alt="Dueñas Inmobiliaria" class="w-full h-full object-cover"/>
+                  </div>
+                  <div class="flex items-center gap-1.5 min-w-0">
+                    <span class="text-sm sm:text-[15px] font-extrabold text-gray-900 group-hover:text-primary transition-colors tracking-tight truncate">
+                      Dueñas Inmobiliaria
+                    </span>
+                    <i data-lucide="badge-check" class="w-4.5 h-4.5 text-primary shrink-0" title="Broker Verificado"></i>
+                  </div>
+                </div>
+
+                <button 
+                  type="button" 
+                  onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Oportunidad%20de%20inversión', '_blank')" 
+                  title="Enviar mensaje directo"
+                  class="w-8 h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer ml-2 group/msg"
+                >
+                  <i data-lucide="message-square" class="w-4 h-4 group-hover/msg:scale-110 transition-transform"></i>
+                </button>
+              </div>
+
+              <!-- Location -->
+              <div class="flex items-center gap-1.5 text-xs sm:text-[13px] font-medium text-gray-500 mb-3">
+                <i data-lucide="map-pin" class="w-4 h-4 text-primary shrink-0"></i>
+                <span>Miranda • Sucre</span>
+              </div>
+
+              <!-- Price -->
+              <div class="text-2xl sm:text-[26px] font-black tracking-tight text-primary mb-3.5">
+                USD 50.000
+              </div>
+            </div>
+
+            <!-- Specs -->
+            <div class="pt-3.5 border-t border-gray-100 flex items-center flex-wrap gap-x-4 gap-y-2 text-xs sm:text-[13px] text-gray-700 font-bold">
+              <div class="flex items-center gap-1.5">
+                <i data-lucide="bed" class="w-4 h-4 text-primary shrink-0"></i>
+                <span>1 hab.</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <i data-lucide="bath" class="w-4 h-4 text-primary shrink-0"></i>
+                <span>1 baño</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <i data-lucide="ruler" class="w-4 h-4 text-primary shrink-0"></i>
+                <span>52 m²</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: MI PLAN (Formato moderno y limpio de Enkapta) -->
+    <div id="mi-plan" class="space-y-4 pt-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">Mi plan</h2>
+          <p class="text-xs sm:text-sm text-gray-500 mt-0.5">Controla tu suscripción, cupos y beneficios activos.</p>
+        </div>
+
+        <a 
+          href="planes.html" 
+          class="text-xs sm:text-sm font-bold text-primary hover:underline flex items-center gap-1"
+        >
+          <span>Comparar todos los planes</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-gray-200/90 p-6 sm:p-8 shadow-xs flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-gray-100 text-gray-800">
+              Plan activo
+            </span>
+            <span class="text-xs font-semibold text-emerald-600 flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i> Sin cobros periódicos
+            </span>
+          </div>
+
+          <div>
+            <h3 class="text-lg sm:text-xl font-black text-gray-900">Plan visitante</h3>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1 max-w-xl leading-relaxed">
+              Hasta 0 propiedades activas. Usás 0. El plan no cambia tu tipo de cuenta.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-gray-600 font-medium pt-1">
+            <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Búsqueda y filtros ilimitados</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Guardar favoritos y alertas</span>
+            <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Contacto directo con anunciantes</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row md:flex-col items-start md:items-end gap-3 shrink-0">
+          <div class="text-left md:text-right">
+            <div class="text-2xl font-black text-gray-900 tracking-tight">Gratis</div>
+            <div class="text-xs text-gray-400 font-medium">Acceso ilimitado</div>
+          </div>
+
+          <a 
+            href="planes.html" 
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200/90 hover:border-primary hover:bg-orange-50/50 bg-white text-xs sm:text-sm font-bold text-gray-800 hover:text-primary shadow-2xs transition-all cursor-pointer"
+          >
+            <span>Ver planes y cambiar</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL: EDITAR PERFIL COMPLETO -->
+  <div id="modal-edit-profile" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-gray-200 shadow-2xl max-w-lg w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between shrink-0">
+        <h3 class="text-base font-extrabold text-gray-900">Editar perfil personal</h3>
+        <button type="button" onclick="closeEditProfileModal()" class="w-8 h-8 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 flex items-center justify-center transition-colors cursor-pointer">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <form id="form-edit-profile" onsubmit="handleSaveFullProfile(event)" class="p-6 space-y-4.5 overflow-y-auto flex-1">
+        
+        <!-- SECCIÓN: CAMBIAR FOTO DE PERFIL Y BANNER -->
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-2">Foto de perfil y banner</label>
+          
+          <div class="rounded-2xl border border-gray-200 overflow-hidden bg-gray-50/60 shadow-2xs">
+            
+            <!-- Vista Previa Banner / Portada -->
+            <div class="relative h-28 sm:h-32 w-full bg-gradient-to-r from-orange-100/70 via-amber-50/80 to-orange-50/90 overflow-hidden group/modal-banner">
+              <img id="modal-banner-preview" src="" alt="Banner de perfil" class="hidden w-full h-full object-cover">
+              <div id="modal-banner-pattern" class="absolute inset-0 bg-[radial-gradient(#ff7900_1px,transparent_1px)] [background-size:20px_20px] opacity-15"></div>
+              
+              <!-- Botón flotante para cambiar banner -->
+              <label 
+                for="modal-input-banner" 
+                class="absolute top-2.5 right-2.5 bg-white/95 hover:bg-white backdrop-blur-md px-3 py-1.5 rounded-lg border border-gray-200/90 shadow-2xs text-xs font-bold text-gray-700 hover:text-primary transition-all flex items-center gap-1.5 cursor-pointer hover:scale-105 active:scale-95"
+              >
+                <i data-lucide="image" class="w-3.5 h-3.5 text-gray-500"></i>
+                <span>Cambiar banner</span>
+              </label>
+              <input type="file" id="modal-input-banner" accept="image/*" class="hidden" onchange="handleBannerSelect(this)">
+            </div>
+
+            <!-- Fila inferior: Avatar superpuesto + Botones de acción -->
+            <div class="px-4 pb-4 pt-0 bg-white flex items-end justify-between gap-3 border-t border-gray-100">
+              <div class="flex items-center gap-3 -mt-8 sm:-mt-10">
+                <!-- Avatar Circular -->
+                <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full ring-4 ring-white shadow-md overflow-hidden bg-white shrink-0 group/modal-avatar">
+                  <img id="modal-avatar-preview" src="assets/realtors/alejandro.jpg" alt="Foto de perfil" class="w-full h-full object-cover">
+                  <label 
+                    for="modal-input-avatar" 
+                    class="absolute inset-0 bg-black/45 text-white flex flex-col items-center justify-center opacity-0 group-hover/modal-avatar:opacity-100 transition-opacity cursor-pointer" 
+                    title="Cambiar foto de perfil"
+                  >
+                    <i data-lucide="camera" class="w-4 h-4"></i>
+                    <span class="text-[9px] font-bold mt-0.5">Cambiar</span>
+                  </label>
+                  <input type="file" id="modal-input-avatar" accept="image/*" class="hidden" onchange="handleAvatarSelect(this)">
+                </div>
+
+                <!-- Botones y descripción avatar -->
+                <div class="pt-8 space-y-0.5">
+                  <div class="flex items-center gap-2">
+                    <label for="modal-input-avatar" class="text-xs font-bold text-primary hover:text-primary-hover hover:underline cursor-pointer inline-flex items-center gap-1">
+                      <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                      <span>Cambiar foto</span>
+                    </label>
+                    <button type="button" id="btn-remove-avatar" onclick="handleRemoveAvatar()" class="text-xs font-medium text-gray-400 hover:text-red-500 transition-colors cursor-pointer hidden">
+                      Quitar
+                    </button>
+                  </div>
+                  <p class="text-[11px] text-gray-400">JPG, PNG o WebP</p>
+                </div>
+              </div>
+
+              <!-- Botón Quitar banner si existe -->
+              <button type="button" id="btn-remove-banner" onclick="handleRemoveBanner()" class="text-xs font-medium text-gray-400 hover:text-red-500 transition-colors cursor-pointer pb-1 hidden">
+                Quitar banner
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Nombre</label>
+          <input type="text" id="modal-input-name" required class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Correo electrónico</label>
+          <input type="email" id="modal-input-email" disabled class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-sm font-medium text-gray-500 cursor-not-allowed">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Enlace público de perfil (Slug)</label>
+          <div class="flex items-center rounded-lg border border-gray-200 overflow-hidden focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all bg-white">
+            <span class="bg-gray-50 px-3 py-2.5 text-xs text-gray-500 font-medium border-r border-gray-200 select-none shrink-0">enkapta.com/u/</span>
+            <input type="text" id="modal-input-slug" class="flex-1 min-w-0 px-3 py-2.5 text-sm font-semibold text-gray-900 focus:outline-none">
+            <button 
+              type="button" 
+              onclick="copyProfileLink('modal-input-slug')" 
+              title="Copiar enlace del perfil" 
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 mr-1.5 rounded-md text-xs font-semibold text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 transition-colors cursor-pointer shrink-0 shadow-2xs active:bg-gray-200"
+            >
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span class="copy-label hidden sm:inline">Copiar</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Teléfono / WhatsApp</label>
+          <input type="text" id="modal-input-phone" placeholder="+58 424 000 0000" class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-3 border-t border-gray-100 shrink-0">
+          <button 
+            type="button" 
+            onclick="closeEditProfileModal()" 
+            class="px-5 py-2.5 rounded-xl border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 shadow-2xs hover:shadow-xs transition-all cursor-pointer whitespace-nowrap"
+          >
+            Cancelar
+          </button>
+          <button 
+            type="submit" 
+            class="px-6 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+          >
+            Guardar cambios
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- MODAL: PERFIL DE VENDEDOR -->
+  <div id="modal-seller" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-gray-200 shadow-2xl max-w-md w-full overflow-hidden p-6 text-center space-y-4">
+      <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100 text-primary flex items-center justify-center mx-auto shadow-2xs">
+        <i data-lucide="briefcase" class="w-6 h-6"></i>
+      </div>
+      <h3 class="text-lg font-black text-gray-900">Perfil de vendedor en Enkapta</h3>
+      <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">
+        Como vendedor o broker en Enkapta, obtienes tu propia vitrina inmobiliaria, sello de broker verificado, estadísticas de clientes potenciales y soporte prioritario.
+      </p>
+      <div class="pt-2 flex flex-col gap-2">
+        <a href="planes.html" class="w-full py-2.5 px-4 rounded-lg bg-primary hover:bg-primary-hover text-white font-bold text-xs shadow-xs text-center">
+          Activar plan para brokers
+        </a>
+        <button type="button" onclick="closeSellerModal()" class="w-full py-2 px-4 rounded-lg border border-gray-200 text-gray-700 font-bold text-xs hover:bg-gray-50">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ACCESO Y CONTRASEÑA -->
+  <div id="modal-security" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-gray-200 shadow-2xl max-w-md w-full overflow-hidden p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+        <h3 class="text-base font-extrabold text-gray-900">Acceso y seguridad</h3>
+        <button type="button" onclick="closeSecurityModal()" class="w-7 h-7 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 flex items-center justify-center">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Contraseña actual</label>
+          <input type="password" placeholder="••••••••" class="w-full px-3.5 py-2 rounded-lg border border-gray-200 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Nueva contraseña</label>
+          <input type="password" placeholder="••••••••" class="w-full px-3.5 py-2 rounded-lg border border-gray-200 text-sm">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Confirmar nueva contraseña</label>
+          <input type="password" placeholder="••••••••" class="w-full px-3.5 py-2 rounded-lg border border-gray-200 text-sm">
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-gray-100 flex items-center justify-end gap-3">
+        <button 
+          type="button" 
+          onclick="closeSecurityModal()" 
+          class="px-5 py-2.5 rounded-xl border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 shadow-2xs hover:shadow-xs transition-all cursor-pointer whitespace-nowrap"
+        >
+          Cancelar
+        </button>
+        <button 
+          type="button" 
+          onclick="handleSavePassword()" 
+          class="px-6 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+        >
+          Actualizar contraseña
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST FEEDBACK -->
+  <div id="toast-notification" class="fixed bottom-6 right-6 z-50 hidden transform transition-all duration-300 translate-y-4 opacity-0">
+    <div class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-gray-900 text-white shadow-xl border border-gray-700 text-xs font-bold">
+      <span class="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white shrink-0">
+        <i data-lucide="check" class="w-3 h-3 stroke-[3]"></i>
+      </span>
+      <span id="toast-message">Cambios guardados exitosamente</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- NEW FOOTER GRID -->
+      <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
+        
+        <!-- Left Section: 4 Columnas de Navegación de Propiedash -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 flex-1">
+          
+          <!-- 1. EXPLORAR -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Explorar</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="propiedades.html?categoria=Venta" class="hover:text-primary transition-colors">Comprar</a></li>
+              <li><a href="propiedades.html?categoria=Alquiler" class="hover:text-primary transition-colors">Alquilar</a></li>
+              <li><a href="propiedades.html" class="hover:text-primary transition-colors">Propiedades por estado</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Directorio de profesionales</a></li>
+            </ul>
+          </div>
+
+          <!-- 2. RECURSOS -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Recursos</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Guías</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Glosario inmobiliario</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Datos de mercado</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Noticias</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. EMPRESA -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Empresa</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="quienes-somos.html" class="hover:text-primary transition-colors">Sobre nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Trabaja con nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Prensa</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Precios y Planes</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Publica tu propiedad</a></li>
+              <li><a href="contacto.html" class="hover:text-primary transition-colors">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- 4. LEGAL -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Legal</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Términos y condiciones</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Política de privacidad</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Eliminar cuenta</a></li>
+              <li><a href="planes.html#faq-section" class="hover:text-primary transition-colors">Preguntas frecuentes</a></li>
+              <li><a href="https://wa.me/584248407372" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Centro de ayuda</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right Section: Marca, Slogan, Tarjetas Móviles y Redes (Estilo Privy) -->
+        <div class="lg:w-96 flex flex-col items-start lg:items-end text-left lg:text-right shrink-0">
+          
+          <!-- Logo Enkapta en Naranja (sin icono) -->
+          <a href="index.html" class="inline-flex items-center mb-4 group">
+            <span class="text-3xl sm:text-4xl font-black text-primary tracking-tight group-hover:brightness-110 transition-all">Enkapta</span>
+          </a>
+
+          <!-- Slogan / Tagline (Estilo Privy) -->
+          <p class="text-base sm:text-lg font-semibold text-gray-800 lg:text-right max-w-sm mb-6 leading-snug">
+            La plataforma inmobiliaria moderna. Conectamos compradores, inquilinos y agentes.
+          </p>
+
+          <!-- EN TU MÓVIL O TABLET - Tarjetas App Store & Google Play (Propiedash) -->
+          <div class="mb-6 w-full flex flex-col items-start lg:items-end">
+            <span class="text-xs font-black uppercase tracking-wider text-gray-400 mb-3 block">En tu móvil o tablet</span>
+            <div class="flex items-center gap-3 flex-wrap justify-start lg:justify-end">
+              
+              <!-- Tarjeta App Store iOS -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 fill-current shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.15.65-2.84 1.45-.6.7-.99 1.77-.96 2.83 1.08.08 2.18-.56 2.79-1.41z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[10px] text-gray-300 font-normal">Descárgalo en el</div>
+                  <div class="text-xs font-bold text-white tracking-wide">App Store</div>
+                </div>
+              </a>
+
+              <!-- Tarjeta Google Play Android -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M3.61 1.814L13.793 12 3.61 22.186A2.296 2.296 0 0 1 3 20.655V3.345c0-.6.23-1.157.61-1.531z"/>
+                  <path fill="#FBBC04" d="M17.186 8.607L13.793 12l3.393 3.393 3.83-2.189a1.642 1.642 0 0 0 0-2.812l-3.83-2.189z"/>
+                  <path fill="#EA4335" d="M3.61 1.814l10.183 10.186 3.393-3.393L5.474.965A2.327 2.327 0 0 0 3.61 1.814z"/>
+                  <path fill="#34A853" d="M3.61 22.186A2.327 2.327 0 0 0 5.474 23.035l11.712-7.642-3.393-3.393L3.61 22.186z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[9px] uppercase tracking-wider text-gray-300 font-medium">DESCARGAR EN</div>
+                  <div class="text-xs font-bold text-white tracking-wide">Google Play</div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Redes Sociales (Instagram, Facebook, TikTok) -->
+          <div class="flex items-center gap-3 justify-start lg:justify-end mb-4">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Instagram">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Facebook">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="TikTok">
+              <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Copyright (Estilo Privy) -->
+          <div class="text-xs text-gray-400 font-medium lg:text-right">
+            © 2026 Enkapta, C.A. Todos los derechos reservados.
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+
+    // Estado local sincronizado
+    let currentSupportAccess = true;
+    let pendingAvatarData = null; // null = sin cambios, 'remove' = eliminado, o dataUrl
+    let pendingBannerData = null; // null = sin cambios, 'remove' = eliminado, o dataUrl
+
+    // Load initial user state
+    function initProfileData() {
+      const user = getAuthUser() || ROGER_USER;
+      const displayName = user.name || "Roger";
+      const displayEmail = user.email || "rogeralejandroquijadaavilera@gmail.com";
+      const displaySlug = user.slug || displayName.toLowerCase().replace(/\s+/g, '');
+
+      // Header display
+      const heroName = document.getElementById("hero-display-name");
+      const heroEmail = document.getElementById("hero-display-email");
+      const heroAvatar = document.getElementById("hero-avatar-initial");
+      if (heroName) heroName.innerText = displayName;
+      if (heroEmail) heroEmail.innerText = displayEmail;
+      if (heroAvatar) heroAvatar.innerText = displayName.charAt(0).toUpperCase();
+
+      // Avatar hero image
+      const heroAvatarImg = document.getElementById("hero-avatar-img");
+      if (heroAvatarImg) {
+        heroAvatarImg.src = user.avatar || "assets/realtors/alejandro.jpg";
+      }
+
+      // Banner hero image
+      const heroBannerImg = document.getElementById("hero-banner-img");
+      const heroBannerPattern = document.getElementById("hero-banner-pattern");
+      if (user.banner) {
+        if (heroBannerImg) {
+          heroBannerImg.src = user.banner;
+          heroBannerImg.classList.remove("hidden");
+        }
+        if (heroBannerPattern) heroBannerPattern.classList.add("hidden");
+      } else {
+        if (heroBannerImg) heroBannerImg.classList.add("hidden");
+        if (heroBannerPattern) heroBannerPattern.classList.remove("hidden");
+      }
+
+      // Quick inputs
+      const qName = document.getElementById("quick-name-input");
+      const qSlug = document.getElementById("quick-slug-input");
+      if (qName) qName.value = displayName;
+      if (qSlug) qSlug.value = displaySlug;
+
+      // Modal inputs
+      const mName = document.getElementById("modal-input-name");
+      const mEmail = document.getElementById("modal-input-email");
+      const mSlug = document.getElementById("modal-input-slug");
+      const mPhone = document.getElementById("modal-input-phone");
+      if (mName) mName.value = displayName;
+      if (mEmail) mEmail.value = displayEmail;
+      if (mSlug) mSlug.value = displaySlug;
+      if (mPhone && user.phone) mPhone.value = user.phone;
+
+      // Support toggle state
+      if (user.supportAccess !== undefined) {
+        currentSupportAccess = !!user.supportAccess;
+      }
+      updateSupportToggleUI();
+    }
+
+    // Toggle switch logic
+    function toggleSupportSwitch() {
+      currentSupportAccess = !currentSupportAccess;
+      updateSupportToggleUI();
+    }
+
+    function updateSupportToggleUI() {
+      const btn = document.getElementById("support-toggle-btn");
+      const circle = document.getElementById("support-toggle-circle");
+      if (!btn || !circle) return;
+
+      if (currentSupportAccess) {
+        btn.classList.remove("bg-gray-200", "bg-gray-300");
+        btn.classList.add("bg-gray-900");
+        btn.style.backgroundColor = "#111827";
+        btn.setAttribute("aria-checked", "true");
+        circle.classList.remove("translate-x-0");
+        circle.classList.add("translate-x-5");
+        circle.style.transform = "translateX(20px)";
+      } else {
+        btn.classList.remove("bg-gray-900");
+        btn.classList.add("bg-gray-200");
+        btn.style.backgroundColor = "#E5E7EB";
+        btn.setAttribute("aria-checked", "false");
+        circle.classList.remove("translate-x-5", "translate-x-6");
+        circle.classList.add("translate-x-0");
+        circle.style.transform = "translateX(0px)";
+      }
+    }
+
+    // Copiar enlace del perfil al portapapeles sin animación ni notificación
+    function copyProfileLink(inputId) {
+      const input = document.getElementById(inputId || "quick-slug-input");
+      const slug = input ? input.value.trim() : "roger";
+      const fullUrl = `https://enkapta.com/u/${slug}`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fullUrl).catch(() => {
+          fallbackCopyText(fullUrl);
+        });
+      } else {
+        fallbackCopyText(fullUrl);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      temp.style.position = "fixed";
+      temp.style.opacity = "0";
+      document.body.appendChild(temp);
+      temp.select();
+      try {
+        document.execCommand("copy");
+      } catch (e) {}
+      document.body.removeChild(temp);
+    }
+
+    // Save quick profile fields (from image 1 inspiration)
+    function saveQuickProfile() {
+      const qName = document.getElementById("quick-name-input");
+      const qSlug = document.getElementById("quick-slug-input");
+      const newName = qName ? qName.value.trim() : "Roger";
+      const newSlug = qSlug ? qSlug.value.trim() : "roger";
+
+      const existing = getAuthUser() || ROGER_USER;
+      const updated = {
+        ...existing,
+        name: newName || "Roger",
+        slug: newSlug || "roger",
+        supportAccess: currentSupportAccess
+      };
+
+      localStorage.setItem("enkapta_user_data", JSON.stringify(updated));
+      initProfileData();
+      renderHeaderAuth();
+      showToast("Cambios del perfil guardados exitosamente");
+    }
+
+    // Reset quick fields
+    function resetQuickProfileFields() {
+      initProfileData();
+      showToast("Cambios cancelados");
+    }
+
+    // Logout from other devices
+    function handleLogoutOtherDevices() {
+      showToast("Todas las otras sesiones se han cerrado correctamente");
+    }
+
+    // Compresión y redimensionamiento de imagen en cliente
+    function compressImage(file, maxWidth, maxHeight, quality, callback) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          let width = img.width;
+          let height = img.height;
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+          if (height > maxHeight) {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+          const canvas = document.createElement("canvas");
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL("image/jpeg", quality);
+          callback(dataUrl);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Manejo de cambio de Foto de Perfil
+    function handleAvatarSelect(input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        compressImage(file, 400, 400, 0.85, (dataUrl) => {
+          pendingAvatarData = dataUrl;
+          const mAvatarImg = document.getElementById("modal-avatar-preview");
+          if (mAvatarImg) mAvatarImg.src = dataUrl;
+          const btnRemove = document.getElementById("btn-remove-avatar");
+          if (btnRemove) btnRemove.classList.remove("hidden");
+        });
+      }
+    }
+
+    function handleRemoveAvatar() {
+      pendingAvatarData = "remove";
+      const mAvatarImg = document.getElementById("modal-avatar-preview");
+      if (mAvatarImg) mAvatarImg.src = "assets/realtors/alejandro.jpg";
+      const btnRemove = document.getElementById("btn-remove-avatar");
+      if (btnRemove) btnRemove.classList.add("hidden");
+    }
+
+    // Manejo de cambio de Banner
+    function handleBannerSelect(input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        compressImage(file, 1400, 600, 0.85, (dataUrl) => {
+          pendingBannerData = dataUrl;
+          const mBannerImg = document.getElementById("modal-banner-preview");
+          const mBannerPattern = document.getElementById("modal-banner-pattern");
+          if (mBannerImg) {
+            mBannerImg.src = dataUrl;
+            mBannerImg.classList.remove("hidden");
+          }
+          if (mBannerPattern) mBannerPattern.classList.add("hidden");
+          const btnRemove = document.getElementById("btn-remove-banner");
+          if (btnRemove) btnRemove.classList.remove("hidden");
+        });
+      }
+    }
+
+    function handleRemoveBanner() {
+      pendingBannerData = "remove";
+      const mBannerImg = document.getElementById("modal-banner-preview");
+      const mBannerPattern = document.getElementById("modal-banner-pattern");
+      if (mBannerImg) mBannerImg.classList.add("hidden");
+      if (mBannerPattern) mBannerPattern.classList.remove("hidden");
+      const btnRemove = document.getElementById("btn-remove-banner");
+      if (btnRemove) btnRemove.classList.add("hidden");
+    }
+
+    // Modals
+    function openEditProfileModal() {
+      const modal = document.getElementById("modal-edit-profile");
+      if (modal) {
+        initProfileData();
+        const user = getAuthUser() || ROGER_USER;
+        pendingAvatarData = null;
+        pendingBannerData = null;
+
+        // Reset file inputs
+        const inAvatar = document.getElementById("modal-input-avatar");
+        const inBanner = document.getElementById("modal-input-banner");
+        if (inAvatar) inAvatar.value = "";
+        if (inBanner) inBanner.value = "";
+
+        // Avatar preview
+        const mAvatarImg = document.getElementById("modal-avatar-preview");
+        const btnRemoveAvatar = document.getElementById("btn-remove-avatar");
+        if (mAvatarImg) {
+          mAvatarImg.src = user.avatar || "assets/realtors/alejandro.jpg";
+        }
+        if (btnRemoveAvatar) {
+          if (user.avatar) btnRemoveAvatar.classList.remove("hidden");
+          else btnRemoveAvatar.classList.add("hidden");
+        }
+
+        // Banner preview
+        const mBannerImg = document.getElementById("modal-banner-preview");
+        const mBannerPattern = document.getElementById("modal-banner-pattern");
+        const btnRemoveBanner = document.getElementById("btn-remove-banner");
+        if (user.banner) {
+          if (mBannerImg) {
+            mBannerImg.src = user.banner;
+            mBannerImg.classList.remove("hidden");
+          }
+          if (mBannerPattern) mBannerPattern.classList.add("hidden");
+          if (btnRemoveBanner) btnRemoveBanner.classList.remove("hidden");
+        } else {
+          if (mBannerImg) mBannerImg.classList.add("hidden");
+          if (mBannerPattern) mBannerPattern.classList.remove("hidden");
+          if (btnRemoveBanner) btnRemoveBanner.classList.add("hidden");
+        }
+
+        modal.classList.remove("hidden");
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      }
+    }
+
+    function closeEditProfileModal() {
+      const modal = document.getElementById("modal-edit-profile");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    function handleSaveFullProfile(e) {
+      e.preventDefault();
+      const mName = document.getElementById("modal-input-name").value.trim();
+      const mSlug = document.getElementById("modal-input-slug").value.trim();
+      const mPhone = document.getElementById("modal-input-phone").value.trim();
+
+      const existing = getAuthUser() || ROGER_USER;
+
+      let finalAvatar = existing.avatar || "";
+      if (pendingAvatarData === "remove") {
+        finalAvatar = "";
+      } else if (pendingAvatarData) {
+        finalAvatar = pendingAvatarData;
+      }
+
+      let finalBanner = existing.banner || "";
+      if (pendingBannerData === "remove") {
+        finalBanner = "";
+      } else if (pendingBannerData) {
+        finalBanner = pendingBannerData;
+      }
+
+      const updated = {
+        ...existing,
+        name: mName || "Roger",
+        slug: mSlug || "roger",
+        phone: mPhone,
+        avatar: finalAvatar,
+        banner: finalBanner,
+        supportAccess: currentSupportAccess
+      };
+
+      localStorage.setItem("enkapta_user_data", JSON.stringify(updated));
+      initProfileData();
+      renderHeaderAuth();
+      closeEditProfileModal();
+      showToast("Perfil actualizado con éxito");
+    }
+
+    function openSellerModal() {
+      const modal = document.getElementById("modal-seller");
+      if (modal) modal.classList.remove("hidden");
+    }
+    function closeSellerModal() {
+      const modal = document.getElementById("modal-seller");
+      if (modal) modal.classList.add("hidden");
+    }
+
+    function openSecurityModal() {
+      const modal = document.getElementById("modal-security");
+      if (modal) modal.classList.remove("hidden");
+    }
+    function closeSecurityModal() {
+      const modal = document.getElementById("modal-security");
+      if (modal) modal.classList.add("hidden");
+    }
+    function handleSavePassword() {
+      closeSecurityModal();
+      showToast("Contraseña actualizada con éxito");
+    }
+
+    function openPublishModal() {
+      window.location.href = "planes.html";
+    }
+
+    function removeFavorite(btn) {
+      const card = btn.closest('.group');
+      if (card) {
+        card.style.opacity = '0.4';
+        card.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          showToast("Propiedad retirada de favoritos");
+        }, 200);
+      }
+    }
+
+    // Toast Notification Feedback
+    function showToast(msg) {
+      const toast = document.getElementById("toast-notification");
+      const msgEl = document.getElementById("toast-message");
+      if (!toast || !msgEl) return;
+      msgEl.innerText = msg;
+      toast.classList.remove("hidden");
+      setTimeout(() => {
+        toast.classList.remove("translate-y-4", "opacity-0");
+        toast.classList.add("translate-y-0", "opacity-100");
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.remove("translate-y-0", "opacity-100");
+        toast.classList.add("translate-y-4", "opacity-0");
+        setTimeout(() => toast.classList.add("hidden"), 300);
+      }, 3000);
+    }
+
+    // Mobile nav toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Run on mount
+    document.addEventListener("DOMContentLoaded", () => {
+      initProfileData();
+      renderHeaderAuth();
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

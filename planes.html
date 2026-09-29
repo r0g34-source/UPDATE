@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planes y Precios — Enkapta</title>
+  <meta name="description" content="Elige el plan ideal para publicar tus propiedades en Enkapta. Planes para propietarios, agentes independientes, agencias y brokers inmobiliarios en Venezuela.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Inter & Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#FF7900',
+              hover: '#E66D00',
+              glow: '#FF9433',
+              light: '#FFF4EB',
+              dark: '#CC6100'
+            },
+            surface: {
+              50: '#F9FAFB',
+              100: '#F3F4F6',
+              200: '#E5E7EB',
+              800: '#1F2937',
+              900: '#111827'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'glow': '0 0 25px -5px rgba(255, 121, 0, 0.4)',
+            'card-hover': '0 20px 30px -10px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            'floating': '0 16px 48px -12px rgba(15, 23, 42, 0.18)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+
+  <!-- Auth Logic -->
+  <script src="assets/auth.js"></script>
+</head>
+<body class="bg-gray-50/60 text-gray-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR / HEADER -->
+  <header class="bg-white sticky top-0 z-50 border-b border-gray-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+      
+      <!-- LEFT: Logo + Nav Items (Calendly Style) -->
+      <div class="flex items-center space-x-7 lg:space-x-9">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 group shrink-0">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shadow-2xs shrink-0 overflow-hidden">
+            <img src="assets/enkapta-logo1.png" alt="Enkapta Logo" class="w-8 h-8 object-contain rounded-lg"/>
+          </div>
+          <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            Enkapta
+          </span>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-6 lg:space-x-7">
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="index.html">Inicio</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="propiedades.html">Propiedades</a>
+          <a class="text-primary font-extrabold transition-colors text-xs sm:text-sm" href="planes.html">Planes</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="quienes-somos.html">Quiénes somos</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="contacto.html">Contacto</a>
+        </nav>
+
+      </div>
+
+      <!-- RIGHT: Calendly Style Auth Buttons -->
+      <div class="hidden md:flex items-center space-x-3">
+        <div id="header-auth-container"></div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center md:hidden">
+        <button id="mobile-menu-btn" class="p-1.5 rounded-lg text-gray-800 hover:text-gray-900 hover:bg-white/60 focus:outline-none">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Nav Flyout -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 mt-2 rounded-2xl mx-4 shadow-lg">
+    <div id="mobile-auth-container"></div>
+    <a href="index.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Inicio</a>
+    <a href="propiedades.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Propiedades</a>
+    <a href="planes.html" class="block px-3 py-2 rounded-lg text-sm font-bold text-primary bg-orange-50">Planes</a>
+    <a href="quienes-somos.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Quiénes somos</a>
+    <a href="contacto.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Contacto</a>
+  </div>
+</header>
+
+  <!-- MAIN PLANES CONTENT -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1 w-full space-y-12">
+
+    <!-- Header Section -->
+    <div class="text-center max-w-3xl mx-auto">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
+        Planes diseñados para <span class="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">crecer contigo</span>
+      </h1>
+    </div>
+
+    <!-- Controls Bar: Audience Shift [ Individual | Equipos ] + Billing Toggle [ Mensual | Anual (-20%) ] -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-5 max-w-4xl mx-auto w-full">
+      
+      <!-- Audience Shift: Individual / Equipos -->
+      <div class="inline-flex p-1 bg-gray-100 rounded-full border border-gray-200/80 shadow-2xs w-full sm:w-auto justify-center">
+        <button 
+          type="button" 
+          id="tab-audience-individual" 
+          onclick="setAudience('individual')" 
+          class="px-5 sm:px-6 py-2.5 rounded-full text-sm font-extrabold transition-all duration-300 bg-white text-gray-900 shadow-sm flex items-center justify-center cursor-pointer w-1/2 sm:w-auto"
+        >
+          <span>Individuales</span>
+        </button>
+        <button 
+          type="button" 
+          id="tab-audience-team" 
+          onclick="setAudience('team')" 
+          class="px-5 sm:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-gray-500 hover:text-gray-900 flex items-center justify-center cursor-pointer w-1/2 sm:w-auto"
+        >
+          <span>Equipos & Agencias</span>
+        </button>
+      </div>
+
+      <!-- Billing Toggle: Mensual / Anual with Save 20% badge -->
+      <div class="flex items-center gap-3">
+        <span id="label-monthly" class="text-sm font-black text-gray-900 cursor-pointer" onclick="setBilling('monthly')">Mensual</span>
+        
+        <!-- Interactive Pill Switch -->
+        <button 
+          type="button" 
+          id="btn-billing-toggle" 
+          onclick="toggleBilling()" 
+          aria-label="Alternar facturación mensual o anual"
+          class="w-14 h-8 bg-gray-200 rounded-full p-1 transition-colors duration-300 relative focus:outline-none cursor-pointer"
+        >
+          <div id="billing-thumb" class="w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 translate-x-0 flex items-center justify-center">
+            <div class="w-2 h-2 rounded-full bg-primary"></div>
+          </div>
+        </button>
+
+        <span id="label-annual" class="text-sm font-bold text-gray-500 cursor-pointer" onclick="setBilling('annual')">
+          Anual
+        </span>
+
+        <!-- Simple Badge: 20% dto. without sparkles icon -->
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-orange-100 text-primary text-xs font-bold">
+          -20% dto.
+        </span>
+      </div>
+
+    </div>
+
+    <!-- 1. GRID PLANES INDIVIDUALES (Solitarios) -->
+    <div id="grid-individual-plans" class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+      
+      <!-- CARD 1: Sin Plan (Gratis) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="space-y-5">
+          <div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-black text-gray-900">Sin plan</h3>
+              <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-gray-100 text-gray-700">Tu plan actual</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">El punto de partida para buscar y explorar inmuebles.</p>
+          </div>
+
+          <!-- Price -->
+          <div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-black text-gray-900 tracking-tight">Gratis</span>
+            </div>
+            <p class="text-xs font-semibold text-gray-400 mt-1">Acceso permanente sin costo</p>
+          </div>
+
+          <!-- Quota -->
+          <div>
+            <p class="text-sm font-extrabold text-gray-900">Búsqueda Ilimitada</p>
+            <p class="text-xs text-gray-500">Perfil de Visitante</p>
+          </div>
+
+          <!-- Features -->
+          <div class="space-y-3 pt-2 border-t border-gray-100">
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Incluye:</p>
+            <ul class="space-y-2.5 text-sm text-gray-600 font-medium">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Búsqueda y filtros ilimitados</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Guardar favoritos y alertas</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Contacto directo con anunciantes</span>
+              </li>
+              <li class="flex items-center gap-2.5 text-gray-400">
+                <i data-lucide="minus" class="w-4 h-4 text-gray-300 shrink-0"></i>
+                <span>Sin cupo para publicar inmuebles</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-6 mt-6 border-t border-gray-100">
+          <button 
+            type="button"
+            disabled
+            class="w-full py-3 px-4 rounded-xl bg-gray-100 text-gray-500 font-bold text-sm cursor-default"
+          >
+            Plan Activo
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 2: Pixel ($8.99 / $7.19) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="space-y-5">
+          <div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-black text-gray-900">Pixel</h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 text-gray-700">Propietarios</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Ideal para dueños que desean vender o alquilar.</p>
+          </div>
+
+          <!-- Price -->
+          <div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-xs font-bold text-gray-500 uppercase">USD</span>
+              <span id="price-pixel" class="text-4xl font-black text-gray-900 tracking-tight">$8.99</span>
+              <span class="strike-price hidden text-sm font-bold text-gray-400 line-through">$8.99</span>
+              <span class="annual-discount-badge hidden px-2 py-0.5 text-[11px] font-black rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">-20%</span>
+            </div>
+            <p class="billing-period-text text-xs font-semibold text-gray-500 mt-1">/mes</p>
+          </div>
+
+          <!-- Quota -->
+          <div>
+            <p class="text-sm font-extrabold text-gray-900">3 Propiedades Activas</p>
+            <p class="text-xs text-gray-500">Perfil de Propietario</p>
+          </div>
+
+          <!-- Features -->
+          <div class="space-y-3 pt-2 border-t border-gray-100">
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Incluye:</p>
+            <ul class="space-y-2.5 text-sm text-gray-600 font-medium">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Publicación de 3 propiedades</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Mensajes directos con potenciales clientes</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Verificación de cédula y rostro</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Soporte por correo electrónico</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-6 mt-6 border-t border-gray-100">
+          <button 
+            type="button"
+            onclick="selectPlan('pixel')"
+            class="w-full py-3 px-4 rounded-xl bg-gray-900 hover:bg-black text-white font-extrabold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+          >
+            Elegir Pixel
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 3: Enfoque ($19.99 / $15.99) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="space-y-5">
+          <div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-black text-gray-900">Enfoque</h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 text-gray-700">Agente</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Para agentes independientes con cartera activa de clientes.</p>
+          </div>
+
+          <!-- Price -->
+          <div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-xs font-bold text-gray-500 uppercase">USD</span>
+              <span id="price-enfoque" class="text-4xl font-black text-gray-900 tracking-tight">$19.99</span>
+              <span class="strike-price hidden text-sm font-bold text-gray-400 line-through">$19.99</span>
+              <span class="annual-discount-badge hidden px-2 py-0.5 text-[11px] font-black rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">-20%</span>
+            </div>
+            <p class="billing-period-text text-xs font-semibold text-gray-500 mt-1">/mes</p>
+          </div>
+
+          <!-- Quota -->
+          <div>
+            <p class="text-sm font-extrabold text-gray-900">15 Propiedades + 5 Videos</p>
+            <p class="text-xs text-gray-500">Perfil de Agente Inmobiliario</p>
+          </div>
+
+          <!-- Features -->
+          <div class="space-y-3 pt-2 border-t border-gray-100">
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Todo en Pixel, más:</p>
+            <ul class="space-y-2.5 text-sm text-gray-700 font-medium">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span class="font-bold text-gray-900">Publicación de 15 propiedades</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Perfil con logo y marca personalizada</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Estadísticas de visitas por propiedad</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Integración de calendario para citas</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>5 videos HD de propiedades</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Soporte preferencial por correo</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-6 mt-6 border-t border-gray-100">
+          <button 
+            type="button"
+            onclick="selectPlan('enfoque')"
+            class="w-full py-3 px-4 rounded-xl bg-gray-900 hover:bg-black text-white font-extrabold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+          >
+            Elegir Enfoque
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 2. GRID PLANES EQUIPOS & AGENCIAS (Alternable con Shift) -->
+    <div id="grid-team-plans" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+      
+      <!-- CARD 1: Prisma ($35.99 / $28.79) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="space-y-5">
+          <div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-black text-gray-900">Prisma</h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 text-gray-700">Inmobiliarias</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Para inmobiliarias y agencias consolidadas.</p>
+          </div>
+
+          <!-- Price -->
+          <div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-xs font-bold text-gray-500 uppercase">USD</span>
+              <span id="price-prisma" class="text-4xl font-black text-gray-900 tracking-tight">$35.99</span>
+              <span class="strike-price hidden text-sm font-bold text-gray-400 line-through">$35.99</span>
+              <span class="annual-discount-badge hidden px-2 py-0.5 text-[11px] font-black rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">-20%</span>
+            </div>
+            <p class="billing-period-text text-xs font-semibold text-gray-500 mt-1">/mes</p>
+          </div>
+
+          <!-- Quota -->
+          <div>
+            <p class="text-sm font-extrabold text-gray-900">50 Propiedades + 10 Videos</p>
+            <p class="text-xs text-gray-500">Perfil de Agencia Inmobiliaria</p>
+          </div>
+
+          <!-- Features -->
+          <div class="space-y-3 pt-2 border-t border-gray-100">
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Incluye:</p>
+            <ul class="space-y-2.5 text-sm text-gray-700 font-medium">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span class="font-bold text-gray-900">Publicación de 50 propiedades</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Perfil de Agencia con logo y banner</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Estadísticas avanzadas por propiedad</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Calendario de visitas del equipo</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>10 videos de inmuebles</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Soporte express en menos de 2 horas</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-6 mt-6 border-t border-gray-100">
+          <button 
+            type="button"
+            onclick="selectPlan('prisma')"
+            class="w-full py-3 px-4 rounded-xl bg-gray-900 hover:bg-black text-white font-extrabold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+          >
+            Elegir Prisma
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 2: Vision ($50.00 / $40.00) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="space-y-5">
+          <div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-black text-gray-900">Vision</h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 text-gray-700">Brokers & Equipos</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Para brokers, franquicias y grandes oficinas inmobiliarias.</p>
+          </div>
+
+          <!-- Price -->
+          <div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-xs font-bold text-gray-500 uppercase">USD</span>
+              <span id="price-vision" class="text-4xl font-black text-gray-900 tracking-tight">$50.00</span>
+              <span class="strike-price hidden text-sm font-bold text-gray-400 line-through">$50.00</span>
+              <span class="annual-discount-badge hidden px-2 py-0.5 text-[11px] font-black rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">-20%</span>
+            </div>
+            <p class="billing-period-text text-xs font-semibold text-gray-500 mt-1">/mes</p>
+          </div>
+
+          <!-- Quota -->
+          <div>
+            <p class="text-sm font-extrabold text-gray-900">100 Propiedades + 4 Agentes</p>
+            <p class="text-xs text-gray-500">Perfil de Broker</p>
+          </div>
+
+          <!-- Features -->
+          <div class="space-y-3 pt-2 border-t border-gray-100">
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Todo en Prisma, más:</p>
+            <ul class="space-y-2.5 text-sm text-gray-600 font-medium">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span class="font-bold text-gray-900">100 propiedades activas</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span class="font-bold text-gray-900">Subcuentas para hasta 4 agentes</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Agenda compartida entre agentes</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>20 videos de inmuebles</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Acceso anticipado a nuevas funciones</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Soporte prioritario VIP 24/7</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-6 mt-6 border-t border-gray-100">
+          <button 
+            type="button"
+            onclick="selectPlan('vision')"
+            class="w-full py-3 px-4 rounded-xl bg-gray-900 hover:bg-black text-white font-extrabold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+          >
+            Elegir Vision
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 3: Enterprise (Personalizado) -->
+      <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+        <div class="space-y-5">
+          <div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-black text-gray-900">Enterprise</h3>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 text-gray-800">A Medida</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-1">Para grandes redes inmobiliarias y franquicias nacionales.</p>
+          </div>
+
+          <!-- Price -->
+          <div>
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-black text-gray-900 tracking-tight">Personalizado</span>
+            </div>
+            <p class="text-xs font-semibold text-gray-500 mt-1">Cotización a la medida de tu red</p>
+          </div>
+
+          <!-- Quota -->
+          <div>
+            <p class="text-sm font-extrabold text-gray-900">Inmuebles y Agentes Ilimitados</p>
+            <p class="text-xs text-gray-500">Múltiples Sedes</p>
+          </div>
+
+          <!-- Features -->
+          <div class="space-y-3 pt-2 border-t border-gray-100">
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">Incluye:</p>
+            <ul class="space-y-2.5 text-sm text-gray-600 font-medium">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span class="font-bold text-gray-900">Propiedades y agentes sin límite</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Integración API & CRM a medida</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Múltiples sucursales bajo una marca</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>Account Manager dedicado en Venezuela</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                <span>SLA de servicio garantizado</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pt-6 mt-6 border-t border-gray-100">
+          <button 
+            type="button"
+            onclick="selectPlan('enterprise')"
+            class="w-full py-3 px-4 rounded-xl bg-gray-900 hover:bg-black text-white font-extrabold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+          >
+            Hablar con Ventas
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3. COMPARATIVA COMPLETA DE CARACTERÍSTICAS (Tabla de Menor a Mayor sin Categorías) -->
+    <div class="pt-10 space-y-6">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+          Comparativa de características
+        </h2>
+        <p class="text-sm sm:text-base text-gray-500">
+          Visualiza de menor a mayor lo que incluye cada nivel y elige con total claridad.
+        </p>
+      </div>
+
+      <!-- Comparison Matrix Table -->
+      <div class="overflow-x-auto rounded-3xl border border-gray-200/90 bg-white shadow-sm">
+        <table class="w-full text-left border-collapse min-w-[760px]">
+          
+          <!-- Table Header -->
+          <thead>
+            <tr class="border-b border-gray-200 bg-gray-50/70">
+              <th class="py-5 px-6 text-sm font-extrabold text-gray-900 w-1/4">Características</th>
+              <th class="py-5 px-4 text-center text-sm font-extrabold text-gray-900">
+                <span>Sin plan</span>
+                <span class="block text-xs font-bold text-gray-400 mt-0.5">Gratis</span>
+              </th>
+              <th class="py-5 px-4 text-center text-sm font-extrabold text-gray-900">
+                <span>Pixel</span>
+                <span class="block text-xs font-bold text-primary mt-0.5">$8.99/mes</span>
+              </th>
+              <th class="py-5 px-4 text-center text-sm font-extrabold text-gray-900">
+                <span>Enfoque</span>
+                <span class="block text-xs font-bold text-primary mt-0.5">$19.99/mes</span>
+              </th>
+              <th class="py-5 px-4 text-center text-sm font-extrabold text-gray-900">
+                <span>Prisma</span>
+                <span class="block text-xs font-bold text-primary mt-0.5">$35.99/mes</span>
+              </th>
+              <th class="py-5 px-4 text-center text-sm font-extrabold text-gray-900">
+                <span>Vision</span>
+                <span class="block text-xs font-bold text-primary mt-0.5">$50.00/mes</span>
+              </th>
+            </tr>
+          </thead>
+
+          <!-- Table Body (Ordered de Menor a Mayor) -->
+          <tbody class="divide-y divide-gray-100 text-sm">
+            
+            <!-- Row 1: Tipo de perfil -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Tipo de cuenta</td>
+              <td class="py-4 px-4 text-center text-gray-600 font-semibold">Visitante</td>
+              <td class="py-4 px-4 text-center text-gray-600 font-semibold">Propietario</td>
+              <td class="py-4 px-4 text-center text-gray-900 font-bold">Agente</td>
+              <td class="py-4 px-4 text-center text-gray-600 font-semibold">Agencia</td>
+              <td class="py-4 px-4 text-center text-gray-900 font-bold">Broker</td>
+            </tr>
+
+            <!-- Row 2: Cupo de propiedades -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Propiedades publicadas</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center text-gray-900 font-extrabold">3</td>
+              <td class="py-4 px-4 text-center text-gray-900 font-extrabold text-base">15</td>
+              <td class="py-4 px-4 text-center text-gray-900 font-extrabold text-base">50</td>
+              <td class="py-4 px-4 text-center text-gray-900 font-black text-lg">100</td>
+            </tr>
+
+            <!-- Row 3: Videos por propiedad -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Videos por propiedad</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center font-bold text-gray-900">5 videos</td>
+              <td class="py-4 px-4 text-center text-gray-800 font-bold">10 videos</td>
+              <td class="py-4 px-4 text-center text-gray-900 font-black">20 videos</td>
+            </tr>
+
+            <!-- Row 4: Subcuentas / Agentes -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Subcuentas para agentes</td>
+              <td class="py-4 px-4 text-center text-gray-600 font-medium">1 usuario</td>
+              <td class="py-4 px-4 text-center text-gray-600 font-medium">1 usuario</td>
+              <td class="py-4 px-4 text-center text-gray-600 font-semibold">1 usuario</td>
+              <td class="py-4 px-4 text-center text-gray-600 font-semibold">1 usuario</td>
+              <td class="py-4 px-4 text-center font-black text-primary">Hasta 4 agentes</td>
+            </tr>
+
+            <!-- Row 5: Perfil con logo y marca -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Perfil con logo y marca propia</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+            </tr>
+
+            <!-- Row 6: Mensajes directos con clientes -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Chat directo con compradores</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-emerald-500 mx-auto"></i>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+            </tr>
+
+            <!-- Row 7: Estadísticas -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Estadísticas de visualizaciones</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center font-bold text-gray-800">Básicas</td>
+              <td class="py-4 px-4 text-center font-bold text-gray-800">Avanzadas</td>
+              <td class="py-4 px-4 text-center font-black text-gray-900">Panel Completo Broker</td>
+            </tr>
+
+            <!-- Row 8: Calendario y citas -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Calendario de citas y visitas</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+              <td class="py-4 px-4 text-center font-bold text-primary">Agenda Compartida</td>
+            </tr>
+
+            <!-- Row 9: Insignia de Verificación -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Insignia de Verificado Enkapta</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center text-gray-400 font-medium">—</td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+              <td class="py-4 px-4 text-center">
+                <i data-lucide="check" class="w-5 h-5 text-primary mx-auto"></i>
+              </td>
+            </tr>
+
+            <!-- Row 10: Soporte -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="py-4 px-6 font-bold text-gray-900">Nivel de soporte</td>
+              <td class="py-4 px-4 text-center text-gray-500 font-medium">Básico</td>
+              <td class="py-4 px-4 text-center text-gray-700 font-medium">Correo</td>
+              <td class="py-4 px-4 text-center font-bold text-gray-900">Preferencial</td>
+              <td class="py-4 px-4 text-center font-bold text-gray-900">&lt; 2 horas</td>
+              <td class="py-4 px-4 text-center font-black text-primary">VIP 24/7</td>
+            </tr>
+
+            <!-- Row 11: Acciones / Botones en tabla -->
+            <tr class="bg-gray-50/60">
+              <td class="py-5 px-6 font-bold text-gray-900">Elegir plan</td>
+              <td class="py-5 px-4 text-center">
+                <span class="text-xs font-bold text-gray-400">Actual</span>
+              </td>
+              <td class="py-5 px-4 text-center">
+                <button type="button" onclick="selectPlan('pixel')" class="px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-black text-white text-xs font-bold transition-all shadow-xs cursor-pointer">
+                  Elegir
+                </button>
+              </td>
+              <td class="py-5 px-4 text-center">
+                <button type="button" onclick="selectPlan('enfoque')" class="px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-black text-white text-xs font-bold transition-all shadow-xs cursor-pointer">
+                  Elegir
+                </button>
+              </td>
+              <td class="py-5 px-4 text-center">
+                <button type="button" onclick="selectPlan('prisma')" class="px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-black text-white text-xs font-bold transition-all shadow-xs cursor-pointer">
+                  Elegir
+                </button>
+              </td>
+              <td class="py-5 px-4 text-center">
+                <button type="button" onclick="selectPlan('vision')" class="px-3.5 py-1.5 rounded-lg bg-gray-900 hover:bg-black text-white text-xs font-bold transition-all shadow-xs cursor-pointer">
+                  Elegir
+                </button>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </main>
+
+    <!-- ========================================================================= -->
+  <!-- FAQ / PREGUNTAS FRECUENTES (COLORES & ESTILO ENKAPTA)                     -->
+  <!-- ========================================================================= -->
+  <section id="faq-section" class="w-full bg-white border-t border-gray-200 py-12 sm:py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Grid Asimétrico: Titular a la Izquierda + Acordeón a la Derecha -->
+      <div class="flex flex-col lg:flex-row justify-between gap-10 lg:gap-16 items-start">
+        
+        <!-- Left Column: Titular Grande con Tipografía y Colores Enkapta -->
+        <div class="w-full lg:w-5/12 space-y-4">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight leading-[1.05]">
+            ¿Tienes <br><span class="text-primary">preguntas?</span>
+          </h2>
+          
+          <p class="text-gray-600 text-sm sm:text-base leading-relaxed max-w-sm font-normal">
+            Todo lo que necesitas saber sobre nuestros planes, métodos de pago en Venezuela y el proceso de auditoría y verificación de inmuebles.
+          </p>
+
+          <div class="pt-2">
+            <a 
+              href="https://wa.me/584248407372?text=Hola%20Enkapta%2C%20tengo%20dudas%20sobre%20los%20planes" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-hover transition-colors group cursor-pointer"
+            >
+              <span>¿Tienes otra consulta? Habla con un asesor</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-primary group-hover:translate-x-1.5 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Acordeón con Icono (+) a la Izquierda y Separadores Sutiles -->
+        <div class="w-full lg:w-7/12 divide-y divide-gray-200 border-t border-b border-gray-200">
+          
+          <!-- Pregunta 1 -->
+          <div class="faq-item">
+            <button 
+              type="button" 
+              onclick="toggleFaq(this)" 
+              class="w-full py-4 sm:py-5 flex items-start gap-4 text-left group cursor-pointer transition-colors"
+            >
+              <span class="faq-icon text-primary font-bold text-xl leading-none shrink-0 transition-transform duration-200 select-none group-hover:scale-110">+</span>
+              <div class="flex-1">
+                <span class="text-base sm:text-[17px] font-bold text-gray-900 group-hover:text-primary transition-colors block">
+                  ¿Puedo cambiar o cancelar mi plan en cualquier momento?
+                </span>
+                <div class="faq-answer hidden pt-2.5 text-sm sm:text-[15px] text-gray-600 leading-relaxed font-normal">
+                  Sí, en Enkapta no existen contratos de permanencia forzada ni penalizaciones. Puedes subir de nivel (upgrade), cambiar a facturación anual con 20% de descuento o pausar tu suscripción mensual en cualquier momento directamente desde tu panel o comunicándote con nuestro equipo.
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Pregunta 2 -->
+          <div class="faq-item">
+            <button 
+              type="button" 
+              onclick="toggleFaq(this)" 
+              class="w-full py-4 sm:py-5 flex items-start gap-4 text-left group cursor-pointer transition-colors"
+            >
+              <span class="faq-icon text-primary font-bold text-xl leading-none shrink-0 transition-transform duration-200 select-none group-hover:scale-110">+</span>
+              <div class="flex-1">
+                <span class="text-base sm:text-[17px] font-bold text-gray-900 group-hover:text-primary transition-colors block">
+                  ¿Qué métodos de pago aceptan en Venezuela?
+                </span>
+                <div class="faq-answer hidden pt-2.5 text-sm sm:text-[15px] text-gray-600 leading-relaxed font-normal">
+                  Aceptamos todas las opciones más utilizadas en el país: Pago Móvil, transferencias bancarias en bolívares (Banesco, Mercantil, BDV), depósitos en divisas en cuentas custodias nacionales, Zelle, Binance Pay (USDT) y tarjetas de crédito internacionales.
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Pregunta 3 -->
+          <div class="faq-item">
+            <button 
+              type="button" 
+              onclick="toggleFaq(this)" 
+              class="w-full py-4 sm:py-5 flex items-start gap-4 text-left group cursor-pointer transition-colors"
+            >
+              <span class="faq-icon text-primary font-bold text-xl leading-none shrink-0 transition-transform duration-200 select-none group-hover:scale-110">+</span>
+              <div class="flex-1">
+                <span class="text-base sm:text-[17px] font-bold text-gray-900 group-hover:text-primary transition-colors block">
+                  ¿Cómo funciona la insignia de Inmueble Verificado?
+                </span>
+                <div class="faq-answer hidden pt-2.5 text-sm sm:text-[15px] text-gray-600 leading-relaxed font-normal">
+                  Cada propiedad que solicita verificación es evaluada por nuestro equipo técnico y legal. Se valida la tradición del documento de propiedad, solvencias municipales al día y el estado de la infraestructura. Esta insignia genera hasta 3 veces más contactos calificados.
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Pregunta 4 -->
+          <div class="faq-item">
+            <button 
+              type="button" 
+              onclick="toggleFaq(this)" 
+              class="w-full py-4 sm:py-5 flex items-start gap-4 text-left group cursor-pointer transition-colors"
+            >
+              <span class="faq-icon text-primary font-bold text-xl leading-none shrink-0 transition-transform duration-200 select-none group-hover:scale-110">+</span>
+              <div class="flex-1">
+                <span class="text-base sm:text-[17px] font-bold text-gray-900 group-hover:text-primary transition-colors block">
+                  ¿Cuántas propiedades puedo publicar con cada plan?
+                </span>
+                <div class="faq-answer hidden pt-2.5 text-sm sm:text-[15px] text-gray-600 leading-relaxed font-normal">
+                  El plan gratuito te permite publicar 1 propiedad activa. Los planes individuales te permiten publicar: Pixel hasta 3 inmuebles, Enfoque hasta 8 inmuebles con destacados, y Prisma hasta 18 inmuebles. El plan Vision / Enterprise para agencias permite publicaciones ilimitadas y gestión de múltiples asesores.
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Pregunta 5 -->
+          <div class="faq-item">
+            <button 
+              type="button" 
+              onclick="toggleFaq(this)" 
+              class="w-full py-4 sm:py-5 flex items-start gap-4 text-left group cursor-pointer transition-colors"
+            >
+              <span class="faq-icon text-primary font-bold text-xl leading-none shrink-0 transition-transform duration-200 select-none group-hover:scale-110">+</span>
+              <div class="flex-1">
+                <span class="text-base sm:text-[17px] font-bold text-gray-900 group-hover:text-primary transition-colors block">
+                  ¿Qué ahorro obtengo al contratar la facturación anual?
+                </span>
+                <div class="faq-answer hidden pt-2.5 text-sm sm:text-[15px] text-gray-600 leading-relaxed font-normal">
+                  Al elegir facturación anual disfrutas de un 20% de descuento directo sobre la tarifa mensual durante los 12 meses, además de prioridad en los resultados de búsqueda de inmuebles y reportes trimestrales de precios de mercado.
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Pregunta 6 -->
+          <div class="faq-item">
+            <button 
+              type="button" 
+              onclick="toggleFaq(this)" 
+              class="w-full py-4 sm:py-5 flex items-start gap-4 text-left group cursor-pointer transition-colors"
+            >
+              <span class="faq-icon text-primary font-bold text-xl leading-none shrink-0 transition-transform duration-200 select-none group-hover:scale-110">+</span>
+              <div class="flex-1">
+                <span class="text-base sm:text-[17px] font-bold text-gray-900 group-hover:text-primary transition-colors block">
+                  ¿Recibo asesoría para optimizar mis anuncios inmobiliarios?
+                </span>
+                <div class="faq-answer hidden pt-2.5 text-sm sm:text-[15px] text-gray-600 leading-relaxed font-normal">
+                  ¡Por supuesto! Cuentas con asesoría especializada por WhatsApp directo (+58 424 840 7372). Te orientamos en la selección de fotografías, redacción de descripciones atractivas y fijación de precios competitivos según la zona.
+                </div>
+              </div>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- NEW FOOTER GRID -->
+      <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
+        
+        <!-- Left Section: 4 Columnas de Navegación de Propiedash -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 flex-1">
+          
+          <!-- 1. EXPLORAR -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Explorar</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="propiedades.html?categoria=Venta" class="hover:text-primary transition-colors">Comprar</a></li>
+              <li><a href="propiedades.html?categoria=Alquiler" class="hover:text-primary transition-colors">Alquilar</a></li>
+              <li><a href="propiedades.html" class="hover:text-primary transition-colors">Propiedades por estado</a></li>
+              <li><a href="precios.html" class="hover:text-primary transition-colors">Directorio de profesionales</a></li>
+            </ul>
+          </div>
+
+          <!-- 2. RECURSOS -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Recursos</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Guías</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Glosario inmobiliario</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Datos de mercado</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Noticias</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. EMPRESA -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Empresa</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="nosotros.html" class="hover:text-primary transition-colors">Sobre nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Trabaja con nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Prensa</a></li>
+              <li><a href="precios.html" class="hover:text-primary transition-colors">Precios</a></li>
+              <li><a href="publicar.html" class="hover:text-primary transition-colors">Publica tu propiedad</a></li>
+              <li><a href="https://wa.me/584248407372" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- 4. LEGAL -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Legal</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Términos y condiciones</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Política de privacidad</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Eliminar cuenta</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Preguntas frecuentes</a></li>
+              <li><a href="https://wa.me/584248407372" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Centro de ayuda</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right Section: Marca, Slogan, Tarjetas Móviles y Redes (Estilo Privy) -->
+        <div class="lg:w-96 flex flex-col items-start lg:items-end text-left lg:text-right shrink-0">
+          
+          <!-- Logo Enkapta en Naranja (sin icono) -->
+          <a href="index.html" class="inline-flex items-center mb-4 group">
+            <span class="text-3xl sm:text-4xl font-black text-primary tracking-tight group-hover:brightness-110 transition-all">Enkapta</span>
+          </a>
+
+          <!-- Slogan / Tagline (Estilo Privy) -->
+          <p class="text-base sm:text-lg font-semibold text-gray-800 lg:text-right max-w-sm mb-6 leading-snug">
+            La plataforma inmobiliaria moderna. Conectamos compradores, inquilinos y agentes.
+          </p>
+
+          <!-- EN TU MÓVIL O TABLET - Tarjetas App Store & Google Play (Propiedash) -->
+          <div class="mb-6 w-full flex flex-col items-start lg:items-end">
+            <span class="text-xs font-black uppercase tracking-wider text-gray-400 mb-3 block">En tu móvil o tablet</span>
+            <div class="flex items-center gap-3 flex-wrap justify-start lg:justify-end">
+              
+              <!-- Tarjeta App Store iOS -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 fill-current shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.15.65-2.84 1.45-.6.7-.99 1.77-.96 2.83 1.08.08 2.18-.56 2.79-1.41z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[10px] text-gray-300 font-normal">Descárgalo en el</div>
+                  <div class="text-xs font-bold text-white tracking-wide">App Store</div>
+                </div>
+              </a>
+
+              <!-- Tarjeta Google Play Android -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M3.61 1.814L13.793 12 3.61 22.186A2.296 2.296 0 0 1 3 20.655V3.345c0-.6.23-1.157.61-1.531z"/>
+                  <path fill="#FBBC04" d="M17.186 8.607L13.793 12l3.393 3.393 3.83-2.189a1.642 1.642 0 0 0 0-2.812l-3.83-2.189z"/>
+                  <path fill="#EA4335" d="M3.61 1.814l10.183 10.186 3.393-3.393L5.474.965A2.327 2.327 0 0 0 3.61 1.814z"/>
+                  <path fill="#34A853" d="M3.61 22.186A2.327 2.327 0 0 0 5.474 23.035l11.712-7.642-3.393-3.393L3.61 22.186z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[9px] uppercase tracking-wider text-gray-300 font-medium">DESCARGAR EN</div>
+                  <div class="text-xs font-bold text-white tracking-wide">Google Play</div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Redes Sociales (Instagram, Facebook, TikTok) -->
+          <div class="flex items-center gap-3 justify-start lg:justify-end mb-4">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Instagram">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Facebook">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="TikTok">
+              <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Copyright (Estilo Privy) -->
+          <div class="text-xs text-gray-400 font-medium lg:text-right">
+            © 2026 Enkapta, C.A. Todos los derechos reservados.
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // FAQ Accordion Toggle (Enkapta brand style)
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      const isHidden = answer.classList.contains('hidden');
+
+      // Close all other items
+      document.querySelectorAll('.faq-item').forEach(other => {
+        other.querySelector('.faq-answer').classList.add('hidden');
+        const otherIcon = other.querySelector('.faq-icon');
+        otherIcon.textContent = '+';
+        otherIcon.classList.remove('text-gray-900');
+        otherIcon.classList.add('text-primary');
+      });
+
+      // If it was hidden, open it
+      if (isHidden) {
+        answer.classList.remove('hidden');
+        icon.textContent = '−';
+        icon.classList.remove('text-primary');
+        icon.classList.add('text-gray-900');
+      }
+    }
+
+
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Audience & Billing State
+    let currentAudience = 'individual';
+    let currentBilling = 'monthly';
+    let selectedPlanId = 'sin-plan';
+
+    const planPrices = {
+      'pixel': { monthly: 8.99, annual: 7.19 },
+      'enfoque': { monthly: 19.99, annual: 15.99 },
+      'prisma': { monthly: 35.99, annual: 28.79 },
+      'vision': { monthly: 50.00, annual: 40.00 }
+    };
+
+    const planNames = {
+      'sin-plan': 'Sin plan (Gratis)',
+      'pixel': 'Pixel',
+      'enfoque': 'Enfoque',
+      'prisma': 'Prisma',
+      'vision': 'Vision',
+      'enterprise': 'Enterprise'
+    };
+
+    function setAudience(audience) {
+      currentAudience = audience;
+      const tabInd = document.getElementById('tab-audience-individual');
+      const tabTeam = document.getElementById('tab-audience-team');
+      const gridInd = document.getElementById('grid-individual-plans');
+      const gridTeam = document.getElementById('grid-team-plans');
+
+      if (audience === 'individual') {
+        tabInd.className = 'px-5 sm:px-6 py-2.5 rounded-full text-sm font-extrabold transition-all duration-300 bg-white text-gray-900 shadow-sm flex items-center justify-center gap-2 cursor-pointer w-1/2 sm:w-auto';
+        tabTeam.className = 'px-5 sm:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-gray-500 hover:text-gray-900 flex items-center justify-center gap-2 cursor-pointer w-1/2 sm:w-auto';
+        gridInd.classList.remove('hidden');
+        gridTeam.classList.add('hidden');
+      } else {
+        tabTeam.className = 'px-5 sm:px-6 py-2.5 rounded-full text-sm font-extrabold transition-all duration-300 bg-white text-gray-900 shadow-sm flex items-center justify-center gap-2 cursor-pointer w-1/2 sm:w-auto';
+        tabInd.className = 'px-5 sm:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-gray-500 hover:text-gray-900 flex items-center justify-center gap-2 cursor-pointer w-1/2 sm:w-auto';
+        gridInd.classList.add('hidden');
+        gridTeam.classList.remove('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    function toggleBilling() {
+      setBilling(currentBilling === 'monthly' ? 'annual' : 'monthly');
+    }
+
+    function setBilling(billing) {
+      currentBilling = billing;
+      const thumb = document.getElementById('billing-thumb');
+      const btn = document.getElementById('btn-billing-toggle');
+      const labelMonthly = document.getElementById('label-monthly');
+      const labelAnnual = document.getElementById('label-annual');
+
+      if (billing === 'annual') {
+        thumb.classList.add('translate-x-6');
+        btn.classList.remove('bg-gray-200');
+        btn.classList.add('bg-primary');
+        labelAnnual.classList.remove('text-gray-500');
+        labelAnnual.classList.add('text-primary', 'font-black');
+        labelMonthly.classList.remove('text-gray-900', 'font-black');
+        labelMonthly.classList.add('text-gray-500');
+
+        // Update pricing cards
+        document.querySelectorAll('.billing-period-text').forEach(el => el.textContent = '/mes, facturado anual');
+        document.querySelectorAll('.annual-discount-badge').forEach(el => el.classList.remove('hidden'));
+        document.querySelectorAll('.strike-price').forEach(el => el.classList.remove('hidden'));
+
+        // Update exact prices
+        const pPixel = document.getElementById('price-pixel');
+        const pEnfoque = document.getElementById('price-enfoque');
+        const pPrisma = document.getElementById('price-prisma');
+        const pVision = document.getElementById('price-vision');
+
+        if (pPixel) pPixel.textContent = `$${planPrices.pixel.annual.toFixed(2)}`;
+        if (pEnfoque) pEnfoque.textContent = `$${planPrices.enfoque.annual.toFixed(2)}`;
+        if (pPrisma) pPrisma.textContent = `$${planPrices.prisma.annual.toFixed(2)}`;
+        if (pVision) pVision.textContent = `$${planPrices.vision.annual.toFixed(2)}`;
+      } else {
+        thumb.classList.remove('translate-x-6');
+        btn.classList.add('bg-gray-200');
+        btn.classList.remove('bg-primary');
+        labelMonthly.classList.add('text-gray-900', 'font-black');
+        labelMonthly.classList.remove('text-gray-500');
+        labelAnnual.classList.add('text-gray-500');
+        labelAnnual.classList.remove('text-primary', 'font-black');
+
+        // Update pricing cards
+        document.querySelectorAll('.billing-period-text').forEach(el => el.textContent = '/mes');
+        document.querySelectorAll('.annual-discount-badge').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.strike-price').forEach(el => el.classList.add('hidden'));
+
+        // Update exact prices
+        const pPixel = document.getElementById('price-pixel');
+        const pEnfoque = document.getElementById('price-enfoque');
+        const pPrisma = document.getElementById('price-prisma');
+        const pVision = document.getElementById('price-vision');
+
+        if (pPixel) pPixel.textContent = `$${planPrices.pixel.monthly.toFixed(2)}`;
+        if (pEnfoque) pEnfoque.textContent = `$${planPrices.enfoque.monthly.toFixed(2)}`;
+        if (pPrisma) pPrisma.textContent = `$${planPrices.prisma.monthly.toFixed(2)}`;
+        if (pVision) pVision.textContent = `$${planPrices.vision.monthly.toFixed(2)}`;
+      }
+    }
+
+    function selectPlan(planId) {
+      selectedPlanId = planId;
+      if (planId === 'enterprise') {
+        window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20información%20sobre%20el%20Plan%20Enterprise%20para%20equipos%20de%20Enkapta', '_blank');
+        return;
+      }
+      alert(`Has seleccionado el plan: ${planNames[planId] || planId} (${currentBilling === 'annual' ? 'Facturación Anual con 20% descuento' : 'Facturación Mensual'}).\nEn esta versión de prueba el cambio es gratuito y sin pasarela de pago.`);
+    }
+  
+</script>
+</body>
+</html>

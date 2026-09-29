@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Enkapta</title>
+  <meta name="description" content="Contáctanos para responder tus preguntas sobre propiedades, servicios inmobiliarios o soporte técnico en Enkapta.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Inter & Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#FF7900',
+              hover: '#E66D00',
+              glow: '#FF9433',
+              light: '#FFF4EB',
+              dark: '#CC6100'
+            },
+            surface: {
+              50: '#F9FAFB',
+              100: '#F3F4F6',
+              200: '#E5E7EB',
+              800: '#1F2937',
+              900: '#111827'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'glow': '0 0 25px -5px rgba(255, 121, 0, 0.4)',
+            'card-hover': '0 20px 30px -10px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            'floating': '0 16px 48px -12px rgba(15, 23, 42, 0.18)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+
+  <!-- Auth Logic -->
+  <script src="assets/auth.js"></script>
+</head>
+<body class="bg-gray-50/60 text-gray-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR / HEADER -->
+  <header class="bg-white sticky top-0 z-50 border-b border-gray-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+      
+      <!-- LEFT: Logo + Nav Items (Calendly Style) -->
+      <div class="flex items-center space-x-7 lg:space-x-9">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 group shrink-0">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shadow-2xs shrink-0 overflow-hidden">
+            <img src="assets/enkapta-logo1.png" alt="Enkapta Logo" class="w-8 h-8 object-contain rounded-lg"/>
+          </div>
+          <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            Enkapta
+          </span>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-6 lg:space-x-7">
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="index.html">Inicio</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="propiedades.html">Propiedades</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="planes.html">Planes</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="quienes-somos.html">Quiénes somos</a>
+          <a class="text-primary font-extrabold transition-colors text-xs sm:text-sm" href="contacto.html">Contacto</a>
+        </nav>
+
+      </div>
+
+      <!-- RIGHT: Calendly Style Auth Buttons -->
+      <div class="hidden md:flex items-center space-x-3">
+        <div id="header-auth-container"></div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center md:hidden">
+        <button id="mobile-menu-btn" class="p-1.5 rounded-lg text-gray-800 hover:text-gray-900 hover:bg-white/60 focus:outline-none">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Nav Flyout -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 mt-2 rounded-2xl mx-4 shadow-lg">
+    <div id="mobile-auth-container"></div>
+    <a href="index.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Inicio</a>
+    <a href="propiedades.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Propiedades</a>
+    <a href="planes.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Planes</a>
+    <a href="quienes-somos.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Quiénes somos</a>
+    <a href="contacto.html" class="block px-3 py-2 rounded-lg text-sm font-bold text-primary bg-orange-50">Contacto</a>
+  </div>
+</header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN EDITORIAL SPLIT-SCREEN CONTACT SECTION (ENKAPTA BRANDED)             -->
+  <!-- ========================================================================= -->
+      <main class="flex-1 w-full bg-[#797D86]">
+    <div class="w-full grid grid-cols-1 lg:grid-cols-2">
+      
+      <!-- ===================================================================== -->
+      <!-- LEFT EDITORIAL COLUMN: METALLIC GREY + TITULAR + SEO + FOTO SILUETA   -->
+      <!-- ===================================================================== -->
+      <div class="relative w-full bg-[#797D86] text-white p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col justify-between overflow-hidden">
+        <!-- Content Overlay -->
+        <div class="relative z-10 flex flex-col justify-between h-full space-y-6 sm:space-y-8">
+          
+          <!-- Top Editorial Title (En español con sentido para Enkapta) -->
+          <div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[0.95]">
+              Tu Hogar<br>Verificado
+            </h1>
+            <!-- Chevron icon -->
+            <div class="mt-3 text-white">
+              <svg class="w-5 h-5 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="square" stroke-linejoin="miter" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Bottom Copy + Buttons + Socials -->
+          <div class="space-y-4 max-w-md">
+            <div>
+              <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight mb-1.5">
+                Auditoría y Confianza Inmobiliaria
+              </h2>
+              <p class="text-white/90 text-xs sm:text-sm font-normal leading-relaxed">
+                En <strong class="text-white font-semibold">Enkapta</strong> auditamos técnica y legalmente cada inmueble en Venezuela. Conectamos directamente a compradores, inquilinos y propietarios con asesores certificados, con total transparencia y seguridad jurídica.
+              </p>
+            </div>
+
+            <!-- CTA WhatsApp Button (sharp rectangle in Enkapta Orange) -->
+            <div>
+              <a 
+                href="https://wa.me/584248407372?text=Hola%20Enkapta%2C%20quisiera%20recibir%20asesor%C3%ADa%20personalizada" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#FF7900] hover:bg-[#E66D00] active:scale-95 text-black font-bold text-xs uppercase tracking-wider rounded-md transition-all duration-150 cursor-pointer shadow-none"
+              >
+                <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.177 1.564 5.927l-1.564 5.729 5.861-1.537c1.705.933 3.662 1.464 5.743 1.464 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12zm0 21.92c-1.892 0-3.66-.525-5.176-1.433l-.37-.221-3.474.911.927-3.387-.242-.385c-1.008-1.606-1.545-3.486-1.545-5.405 0-5.468 4.452-9.92 9.92-9.92 5.467 0 9.92 4.452 9.92 9.92 0 5.468-4.453 9.92-9.92 9.92z"/>
+                </svg>
+                <span>WhatsApp Directo (+58 424 840 7372)</span>
+              </a>
+            </div>
+
+            <!-- Redes Sociales (Mismas del footer, rectangulares / sharp) -->
+            <div class="pt-1 flex items-center gap-2.5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-white/80">Síguenos:</span>
+              <div class="flex items-center gap-1.5">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/enkapta" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-md bg-black/40 hover:bg-black text-white flex items-center justify-center transition-colors" title="Instagram">
+                  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </a>
+                <!-- Facebook -->
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-md bg-black/40 hover:bg-black text-white flex items-center justify-center transition-colors" title="Facebook">
+                  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@enkapta" target="_blank" rel="noopener noreferrer" class="w-7 h-7 rounded-md bg-black/40 hover:bg-black text-white flex items-center justify-center transition-colors" title="TikTok">
+                  <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- RIGHT COLUMN: VIBRANT ENKAPTA ORANGE + FORMULARIO EN ESPAÑOL         -->
+      <!-- ===================================================================== -->
+      <div class="relative w-full bg-[#FF7900] text-black p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col justify-center">
+        
+        <!-- Encabezado del Formulario (En español) -->
+        <div class="mb-4 sm:mb-5">
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-black tracking-tight leading-tight">
+            Contáctanos
+          </h2>
+          <p class="text-black/85 text-xs sm:text-sm font-medium mt-1.5">
+            ¿Interesado en inmuebles verificados? Completa el formulario y te contactaremos.
+          </p>
+        </div>
+
+        <!-- Formulario de Contacto (Sin sugerencias/placeholders, cajas blancas limpias) -->
+        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-3 sm:space-y-3.5">
+          
+          <!-- Fila 1: Nombre & Empresa/Teléfono (2 columnas) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
+            <div>
+              <label for="nombre" class="block text-[11px] sm:text-xs font-bold text-black uppercase tracking-wider mb-1">
+                Nombre completo
+              </label>
+              <input 
+                type="text" 
+                id="nombre" 
+                required 
+                class="w-full h-10 px-3.5 bg-white text-gray-900 text-xs sm:text-sm rounded-md border-0 shadow-none focus:outline-none focus:ring-2 focus:ring-black font-medium"
+              />
+            </div>
+
+            <div>
+              <label for="empresa" class="block text-[11px] sm:text-xs font-bold text-black uppercase tracking-wider mb-1">
+                Empresa / Teléfono
+              </label>
+              <input 
+                type="text" 
+                id="empresa" 
+                required 
+                class="w-full h-10 px-3.5 bg-white text-gray-900 text-xs sm:text-sm rounded-md border-0 shadow-none focus:outline-none focus:ring-2 focus:ring-black font-medium"
+              />
+            </div>
+          </div>
+
+          <!-- Fila 2: Correo & Asunto (2 columnas) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
+            <div>
+              <label for="email" class="block text-[11px] sm:text-xs font-bold text-black uppercase tracking-wider mb-1">
+                Correo electrónico
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                required 
+                class="w-full h-10 px-3.5 bg-white text-gray-900 text-xs sm:text-sm rounded-md border-0 shadow-none focus:outline-none focus:ring-2 focus:ring-black font-medium"
+              />
+            </div>
+
+            <div>
+              <label for="asunto" class="block text-[11px] sm:text-xs font-bold text-black uppercase tracking-wider mb-1">
+                Motivo de consulta
+              </label>
+              <select 
+                id="asunto" 
+                required 
+                class="w-full h-10 px-3.5 bg-white text-gray-900 text-xs sm:text-sm rounded-md border-0 shadow-none focus:outline-none focus:ring-2 focus:ring-black font-medium cursor-pointer"
+              >
+                <option value="" disabled selected></option>
+                <option value="Comprar">Quiero Comprar un Inmueble</option>
+                <option value="Alquilar">Quiero Alquilar un Inmueble</option>
+                <option value="Vender">Quiero Vender / Publicar mi Inmueble</option>
+                <option value="Asesor">Soy Asesor / Agencia Inmobiliaria</option>
+                <option value="Otro">Otra consulta o soporte</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Fila 3: Mensaje -->
+          <div>
+            <label for="mensaje" class="block text-[11px] sm:text-xs font-bold text-black uppercase tracking-wider mb-1">
+              Mensaje
+            </label>
+            <textarea 
+              id="mensaje" 
+              rows="3" 
+              required 
+              class="w-full p-3.5 bg-white text-gray-900 text-xs sm:text-sm rounded-md border-0 shadow-none focus:outline-none focus:ring-2 focus:ring-black font-medium resize-y"
+            ></textarea>
+          </div>
+
+          <!-- Botón Submit (Rectángulo Negro Puro a la Derecha) -->
+          <div class="flex justify-end pt-1">
+            <button 
+              type="submit" 
+              class="w-full sm:w-auto px-8 py-2.5 bg-black hover:bg-neutral-900 active:scale-95 text-white font-bold text-xs uppercase tracking-wider rounded-md shadow-none transition-all duration-150 cursor-pointer inline-flex items-center justify-center gap-2"
+            >
+              <span>Enviar</span>
+            </button>
+          </div>
+
+          <!-- Alerta de Éxito al Enviar -->
+          <div id="contact-success" class="hidden mt-3 p-3 bg-black text-white text-xs font-semibold rounded-md border-l-4 border-white flex items-center gap-2.5">
+            <i data-lucide="check" class="w-4 h-4 text-[#FF7900] shrink-0"></i>
+            <span>¡Mensaje recibido con éxito! Un asesor de Enkapta te contactará en breve.</span>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER (EXACTAMENTE EL MISMO DE QUIÉNES SOMOS)                            -->
+  <!-- ========================================================================= -->
+  <footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- NEW FOOTER GRID -->
+      <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
+        
+        <!-- Left Section: 4 Columnas de Navegación de Propiedash -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 flex-1">
+          
+          <!-- 1. EXPLORAR -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Explorar</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="propiedades.html?categoria=Venta" class="hover:text-primary transition-colors">Comprar</a></li>
+              <li><a href="propiedades.html?categoria=Alquiler" class="hover:text-primary transition-colors">Alquilar</a></li>
+              <li><a href="propiedades.html" class="hover:text-primary transition-colors">Propiedades por estado</a></li>
+              <li><a href="precios.html" class="hover:text-primary transition-colors">Directorio de profesionales</a></li>
+            </ul>
+          </div>
+
+          <!-- 2. RECURSOS -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Recursos</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Guías</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Glosario inmobiliario</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Datos de mercado</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Noticias</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. EMPRESA -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Empresa</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="quienes-somos.html" class="hover:text-primary transition-colors">Sobre nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Trabaja con nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Prensa</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Precios</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Publica tu propiedad</a></li>
+              <li><a href="contacto.html" class="hover:text-primary transition-colors font-bold text-primary">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- 4. LEGAL -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Legal</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Términos y condiciones</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Política de privacidad</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Eliminar cuenta</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Preguntas frecuentes</a></li>
+              <li><a href="https://wa.me/584248407372" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Centro de ayuda</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right Section: Marca, Slogan, Tarjetas Móviles y Redes (Estilo Privy) -->
+        <div class="lg:w-96 flex flex-col items-start lg:items-end text-left lg:text-right shrink-0">
+          
+          <!-- Logo Enkapta en Naranja (sin icono) -->
+          <a href="index.html" class="inline-flex items-center mb-4 group">
+            <span class="text-3xl sm:text-4xl font-black text-primary tracking-tight group-hover:brightness-110 transition-all">Enkapta</span>
+          </a>
+
+          <!-- Slogan / Tagline (Estilo Privy) -->
+          <p class="text-base sm:text-lg font-semibold text-gray-800 lg:text-right max-w-sm mb-6 leading-snug">
+            La plataforma inmobiliaria moderna. Conectamos compradores, inquilinos y agentes.
+          </p>
+
+          <!-- EN TU MÓVIL O TABLET - Tarjetas App Store & Google Play (Propiedash) -->
+          <div class="mb-6 w-full flex flex-col items-start lg:items-end">
+            <span class="text-xs font-black uppercase tracking-wider text-gray-400 mb-3 block">En tu móvil o tablet</span>
+            <div class="flex items-center gap-3 flex-wrap justify-start lg:justify-end">
+              
+              <!-- Tarjeta App Store iOS -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 fill-current shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.15.65-2.84 1.45-.6.7-.99 1.77-.96 2.83 1.08.08 2.18-.56 2.79-1.41z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[10px] text-gray-300 font-normal">Descárgalo en el</div>
+                  <div class="text-xs font-bold text-white tracking-wide">App Store</div>
+                </div>
+              </a>
+
+              <!-- Tarjeta Google Play Android -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M3.61 1.814L13.793 12 3.61 22.186A2.296 2.296 0 0 1 3 20.655V3.345c0-.6.23-1.157.61-1.531z"/>
+                  <path fill="#FBBC04" d="M17.186 8.607L13.793 12l3.393 3.393 3.83-2.189a1.642 1.642 0 0 0 0-2.812l-3.83-2.189z"/>
+                  <path fill="#EA4335" d="M3.61 1.814l10.183 10.186 3.393-3.393L5.474.965A2.327 2.327 0 0 0 3.61 1.814z"/>
+                  <path fill="#34A853" d="M3.61 22.186A2.327 2.327 0 0 0 5.474 23.035l11.712-7.642-3.393-3.393L3.61 22.186z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[9px] uppercase tracking-wider text-gray-300 font-medium">DESCARGAR EN</div>
+                  <div class="text-xs font-bold text-white tracking-wide">Google Play</div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Redes Sociales (Instagram, Facebook, TikTok) -->
+          <div class="flex items-center gap-3 justify-start lg:justify-end mb-4">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Instagram">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Facebook">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="TikTok">
+              <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Copyright (Estilo Privy) -->
+          <div class="text-xs text-gray-400 font-medium lg:text-right">
+            © 2026 Enkapta, C.A. Todos los derechos reservados.
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Contact Form Handler
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const successEl = document.getElementById('contact-success');
+      successEl.classList.remove('hidden');
+      document.getElementById('contact-form').reset();
+      lucide.createIcons();
+      setTimeout(() => {
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  
+</script>
+</body>
+</html>
