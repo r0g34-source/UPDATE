@@ -140,105 +140,118 @@
   <section class="w-full bg-white border-b border-gray-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Fila superior: Avatar a la izquierda superpuesto al banner, Botón Ver perfil a la derecha -->
-      <div class="flex items-end justify-between gap-4">
+      <!-- Fila Principal de Identidad: Avatar, Datos del Usuario y Botones de Acción -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pt-1 sm:pt-0">
         
-        <!-- Avatar circular superpuesto al banner con anillo blanco -->
-        <div class="-mt-16 sm:-mt-20 lg:-mt-24 relative z-10 shrink-0 group/hero-avatar">
-          <div class="w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full ring-4 ring-white shadow-lg overflow-hidden bg-slate-900 relative flex items-center justify-center">
-            <img id="hero-avatar-img" src="" alt="Roger" class="hidden w-full h-full object-cover">
-            <span id="hero-avatar-initial" class="text-3xl sm:text-5xl font-extrabold text-white select-none">R</span>
-            <!-- Botón superpuesto para cambiar foto al pasar el ratón -->
-            <button 
-              type="button" 
-              onclick="openEditProfileModal()" 
-              class="absolute inset-0 bg-black/45 text-white flex flex-col items-center justify-center opacity-0 group-hover/hero-avatar:opacity-100 transition-opacity cursor-pointer" 
-              title="Cambiar foto de perfil"
-            >
-              <i data-lucide="camera" class="w-6 h-6"></i>
-              <span class="text-[10px] font-bold mt-1">Cambiar</span>
-            </button>
+        <!-- Izquierda: Avatar Superpuesto + Nombre y Correo -->
+        <div class="flex flex-col sm:flex-row sm:items-end gap-3.5 sm:gap-6">
+          
+          <!-- Avatar circular superpuesto al banner con anillo blanco -->
+          <div class="-mt-14 sm:-mt-20 lg:-mt-24 relative z-10 shrink-0 group/hero-avatar self-start">
+            <div class="w-24 h-24 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full ring-4 ring-white shadow-lg overflow-hidden bg-slate-900 relative flex items-center justify-center border border-gray-100">
+              <img id="hero-avatar-img" src="" alt="Roger" class="hidden w-full h-full object-cover">
+              <span id="hero-avatar-initial" class="text-3xl sm:text-5xl font-extrabold text-white select-none">R</span>
+              <!-- Botón superpuesto para cambiar foto al pasar el ratón -->
+              <button 
+                type="button" 
+                onclick="openEditProfileModal()" 
+                class="absolute inset-0 bg-black/45 text-white flex flex-col items-center justify-center opacity-0 group-hover/hero-avatar:opacity-100 transition-opacity cursor-pointer" 
+                title="Cambiar foto de perfil"
+              >
+                <i data-lucide="camera" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                <span class="text-[9px] sm:text-[10px] font-bold mt-1">Cambiar</span>
+              </button>
+            </div>
           </div>
+
+          <!-- Nombre, Check y Email / Rol -->
+          <div class="space-y-1 pb-1 sm:pb-3">
+            <div class="flex items-center gap-2">
+              <h1 id="hero-display-name" class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
+                Roger
+              </h1>
+              <!-- Verified Check Badge Oficial -->
+              <span class="inline-flex items-center" title="Identidad Verificada">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-primary text-white shrink-0" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" fill="#FF7900"/>
+                  <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-500 font-medium flex items-center gap-1.5 flex-wrap">
+              <span id="hero-display-role" class="text-gray-700 font-semibold">Plan Visitante</span>
+              <span class="text-gray-300">·</span>
+              <span id="hero-display-email" class="text-gray-500 truncate max-w-[220px] sm:max-w-none">rogeralejandroquijadaavilera@gmail.com</span>
+            </p>
+          </div>
+
         </div>
 
-        <!-- Botones Superiores "Ver perfil público" y "Editar perfil" -->
-        <div class="pb-2 sm:pb-3 flex items-center gap-2.5 flex-wrap">
+        <!-- Botones de Acción (En móvil: 2 columnas completas bajo el nombre; En desktop: alineados a la derecha) -->
+        <div class="grid grid-cols-2 sm:flex sm:items-center gap-2 sm:gap-2.5 pb-2 sm:pb-3 w-full sm:w-auto shrink-0">
           <a 
             id="btn-view-public-profile"
             href="perfil.html?u=me" 
             target="_blank"
-            class="px-4.5 py-2.5 rounded-xl border border-gray-200/90 hover:border-primary/40 bg-white hover:bg-orange-50/40 text-xs sm:text-sm font-semibold text-gray-700 hover:text-primary shadow-2xs hover:shadow-xs transition-all inline-flex items-center gap-2 cursor-pointer whitespace-nowrap group"
+            class="px-3 sm:px-4.5 py-2.5 rounded-xl border border-gray-200/90 hover:border-primary/40 bg-white hover:bg-orange-50/40 text-xs sm:text-sm font-semibold text-gray-700 hover:text-primary shadow-2xs hover:shadow-xs transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer whitespace-nowrap group"
             title="Ver tu vitrina pública tal como la ven tus clientes"
           >
-            <i data-lucide="external-link" class="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors"></i>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 group-hover:text-primary transition-colors"></i>
             <span>Ver perfil público</span>
           </a>
           <button 
             type="button" 
             onclick="openEditProfileModal()" 
-            class="px-4.5 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-semibold shadow-2xs hover:shadow-xs transition-all inline-flex items-center gap-2 cursor-pointer whitespace-nowrap"
+            class="px-3 sm:px-4.5 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-semibold shadow-2xs hover:shadow-xs transition-all flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer whitespace-nowrap"
           >
-            <i data-lucide="edit-3" class="w-4 h-4"></i>
+            <i data-lucide="edit-3" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             <span>Editar perfil</span>
           </button>
         </div>
 
       </div>
 
-      <!-- Nombre y Email (directamente debajo del avatar) -->
-      <div class="mt-4 sm:mt-5 space-y-0.5">
-        <div class="flex items-center gap-2">
-          <h1 id="hero-display-name" class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
-            Roger
-          </h1>
-          <!-- Verified Check Badge -->
-          <span class="inline-flex items-center" title="Identidad Verificada">
-            <svg class="w-6 h-6 fill-primary text-white" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10" fill="#FF7900"/>
-              <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
-          </span>
-        </div>
-      </div>
-
-      <!-- Barra de Estadísticas en 4 Columnas (Limpia y espaciosa, exactamente como en la referencia) -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 sm:pt-8 pb-8 border-t border-gray-100 mt-6 sm:mt-7">
+      <!-- Barra de Estadísticas en 4 Tarjetas Organizadas (Estilo unificado con perfil.html: bordes más definidos y números en gris) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 pt-5 sm:pt-6 pb-6 sm:pb-8 border-t border-gray-100 mt-5 sm:mt-6">
         
         <!-- Stat 1: Plan -->
-        <div>
-          <span class="text-xs font-medium text-gray-400 block mb-1">Plan actual</span>
-          <div class="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
+        <div class="bg-white rounded-2xl border border-gray-200/90 hover:border-gray-300 p-3.5 sm:p-4.5 shadow-2xs transition-all flex flex-col justify-between">
+          <span class="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Plan actual</span>
+          <div class="text-base sm:text-xl font-extrabold text-gray-600 tracking-tight">
             Visitante
           </div>
-          <span class="text-xs text-gray-400 font-normal">Gratis permanente</span>
+          <span class="text-[11px] sm:text-xs text-gray-400 font-medium mt-1">Gratis permanente</span>
         </div>
 
         <!-- Stat 2: Propiedades -->
-        <div>
-          <span class="text-xs font-medium text-gray-400 block mb-1">Propiedades activas</span>
-          <div class="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
+        <div class="bg-white rounded-2xl border border-gray-200/90 hover:border-gray-300 p-3.5 sm:p-4.5 shadow-2xs transition-all flex flex-col justify-between">
+          <span class="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Propiedades activas</span>
+          <div class="text-base sm:text-xl font-extrabold text-gray-600 tracking-tight">
             0 / 0 cupos
           </div>
-          <a href="planes.html" class="text-xs text-primary hover:underline font-medium">Activar cupo para publicar</a>
+          <a href="planes.html" class="text-[11px] sm:text-xs text-primary hover:underline font-semibold mt-1 truncate block" title="Activar cupo para publicar">Activar cupo →</a>
         </div>
 
         <!-- Stat 3: Favoritos -->
-        <div>
-          <span class="text-xs font-medium text-gray-400 block mb-1">Favoritos guardados</span>
-          <div class="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
+        <div class="bg-white rounded-2xl border border-gray-200/90 hover:border-gray-300 p-3.5 sm:p-4.5 shadow-2xs transition-all flex flex-col justify-between">
+          <span class="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Favoritos guardados</span>
+          <div class="text-base sm:text-xl font-extrabold text-gray-600 tracking-tight">
             1 inmueble
           </div>
-          <a href="#mis-favoritos" class="text-xs text-gray-500 hover:text-primary font-medium">Ver en la lista ↓</a>
+          <a href="#mis-favoritos" class="text-[11px] sm:text-xs text-gray-500 hover:text-primary font-medium mt-1 flex items-center gap-1">
+            <span>Ver lista</span>
+            <i data-lucide="arrow-down" class="w-3 h-3"></i>
+          </a>
         </div>
 
         <!-- Stat 4: Registro / Antigüedad -->
-        <div>
-          <span class="text-xs font-medium text-gray-400 block mb-1">Miembro desde</span>
-          <div class="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
-            Septiembre 2025
+        <div class="bg-white rounded-2xl border border-gray-200/90 hover:border-gray-300 p-3.5 sm:p-4.5 shadow-2xs transition-all flex flex-col justify-between">
+          <span class="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Miembro desde</span>
+          <div class="text-xs sm:text-sm md:text-base font-extrabold text-gray-600 tracking-tight truncate" title="Septiembre 2026">
+            Septiembre 2026
           </div>
-          <span class="text-xs text-emerald-600 font-medium flex items-center gap-1">
-            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Verificado
+          <span class="text-[11px] sm:text-xs text-emerald-600 font-semibold flex items-center gap-1 mt-1">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 shrink-0"></i> Verificado
           </span>
         </div>
 
@@ -517,7 +530,7 @@
               Verificado
             </span>
           </div>
-          <p id="settings-display-email" class="text-xs text-gray-500 font-medium leading-relaxed">
+          <p id="settings-display-email" class="text-xs text-gray-500 font-medium leading-relaxed break-all sm:break-normal">
             rogeralejandroquijadaavilera@gmail.com
           </p>
         </div>
@@ -582,12 +595,12 @@
 
       <div class="border-t border-gray-100"></div>
 
-      <!-- Fila 5: Botones Inferiores de Guardar Cambios / Cancelar (Exactos como en la referencia) -->
-      <div class="flex items-center justify-end gap-3 pt-2">
+      <!-- Fila 5: Botones Inferiores de Guardar Cambios / Cancelar (Adaptables y sin desbordes) -->
+      <div class="grid grid-cols-2 gap-2.5 sm:flex sm:items-center sm:justify-end sm:gap-3 pt-2 w-full">
         <button 
           type="button" 
           onclick="resetQuickProfileFields()" 
-          class="px-5 py-2.5 rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-xs sm:text-sm font-semibold text-gray-700 transition-colors cursor-pointer whitespace-nowrap shadow-2xs hover:shadow-xs"
+          class="px-3 sm:px-5 py-2.5 rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-xs sm:text-sm font-semibold text-gray-700 transition-colors cursor-pointer whitespace-nowrap shadow-2xs hover:shadow-xs text-center flex items-center justify-center"
         >
           Cancelar
         </button>
@@ -595,7 +608,7 @@
         <button 
           type="button" 
           onclick="saveQuickProfile()" 
-          class="px-6 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md active:scale-95 transition-all cursor-pointer inline-flex items-center gap-2 whitespace-nowrap"
+          class="px-4 sm:px-6 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md active:scale-95 transition-all cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap text-center"
         >
           <span>Guardar cambios</span>
         </button>
@@ -645,13 +658,13 @@
 
     <!-- SECCIÓN 2: MIS FAVORITOS (Inspirada exactamente en la tarjeta del usuario) -->
     <div id="mis-favoritos" class="space-y-4 pt-4">
-      <div class="flex items-center justify-between">
-        <div>
+      <div class="flex items-center justify-between gap-3">
+        <div class="min-w-0 flex-1">
           <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">Mis favoritos</h2>
-          <p class="text-xs sm:text-sm text-gray-500 mt-0.5">1 propiedad guardada en tu lista de seguimiento.</p>
+          <p class="text-xs sm:text-sm text-gray-500 mt-0.5 truncate sm:whitespace-normal">1 propiedad guardada en tu lista de seguimiento.</p>
         </div>
 
-        <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-primary">
+        <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-primary whitespace-nowrap shrink-0">
           1 guardado
         </span>
       </div>
@@ -1323,8 +1336,10 @@
       const heroEmail = document.getElementById("hero-display-email");
       const heroAvatar = document.getElementById("hero-avatar-initial");
       const settingsEmail = document.getElementById("settings-display-email");
+      const heroRole = document.getElementById("hero-display-role");
       if (heroName) heroName.innerText = displayName;
       if (heroEmail) heroEmail.innerText = displayEmail;
+      if (heroRole) heroRole.innerText = `Plan ${user.role || "Visitante"}`;
       if (heroAvatar) heroAvatar.innerText = displayName.charAt(0).toUpperCase();
       if (settingsEmail) settingsEmail.innerText = displayEmail;
 

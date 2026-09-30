@@ -58,6 +58,14 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    .scrollbar-none::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-none {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
     /* ========================================================================= */
     /* ANIMACIONES DEL HERO (ENTRADA AL CARGAR LA PÁGINA)                        */
     /* ========================================================================= */
@@ -299,7 +307,7 @@
     <!-- ========================================================================= -->
     <!-- 1. HERO SECTION: CARRUSEL DE IMPACTO Y PROPÓSITO (EQUILIBRADO & ELEGANTE)  -->
     <!-- ========================================================================= -->
-    <section id="hero-carousel-section" class="relative w-full h-[500px] sm:h-[550px] lg:h-[600px] overflow-hidden bg-gray-950 text-white select-none flex items-center justify-center">
+    <section id="hero-carousel-section" class="relative w-full h-[520px] sm:h-[560px] lg:h-[600px] overflow-hidden bg-gray-950 text-white select-none flex items-center justify-center">
       
       <!-- CONTENEDOR DE SLIDES (CROSSFADE SUAVE) -->
       <div id="hero-slides-wrapper" class="absolute inset-0 z-0">
@@ -313,17 +321,17 @@
           />
           <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/75 to-gray-950/45"></div>
           
-          <div class="absolute inset-0 flex items-center justify-center pb-8 sm:pb-10">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center pt-6 pb-16 sm:py-10">
+            <div class="max-w-4xl mx-auto">
               
               <!-- Titular -->
-              <h1 class="hero-title-anim text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.18] mb-4 sm:mb-6">
+              <h1 class="hero-title-anim text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] mb-3 sm:mb-5">
                 Un ecosistema <span class="bg-gradient-to-r from-primary via-orange-400 to-amber-300 bg-clip-text text-transparent">100% verificado</span> <br class="hidden sm:inline">
                 y sin intermediarios innecesarios
               </h1>
               
               <!-- Párrafo Descriptivo -->
-              <p class="hero-desc-anim text-base sm:text-lg lg:text-xl text-gray-200 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p class="hero-desc-anim text-sm sm:text-base lg:text-lg text-gray-200 font-normal max-w-xl sm:max-w-2xl mx-auto leading-relaxed">
                 Auditamos técnica y legalmente cada inmueble para proteger tu patrimonio con transparencia, velocidad y certeza jurídica en toda Venezuela.
               </p>
 
@@ -340,13 +348,13 @@
           />
           <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/75 to-gray-950/45"></div>
           
-          <div class="absolute inset-0 flex items-center justify-center pb-8 sm:pb-10">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 class="hero-title-anim text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.18] mb-4 sm:mb-6">
+          <div class="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center pt-6 pb-16 sm:py-10">
+            <div class="max-w-4xl mx-auto">
+              <h2 class="hero-title-anim text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] mb-3 sm:mb-5">
                 Tecnología, seguridad y <br class="hidden sm:inline">
                 <span class="bg-gradient-to-r from-primary via-orange-400 to-amber-300 bg-clip-text text-transparent">confianza real</span> en cada metro cuadrado
               </h2>
-              <p class="hero-desc-anim text-base sm:text-lg lg:text-xl text-gray-200 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p class="hero-desc-anim text-sm sm:text-base lg:text-lg text-gray-200 font-normal max-w-xl sm:max-w-2xl mx-auto leading-relaxed">
                 Conectamos a compradores, vendedores e inquilinos con las mejores propiedades del país, utilizando tecnología de vanguardia para simplificar el proceso.
               </p>
             </div>
@@ -362,13 +370,13 @@
           />
           <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/75 to-gray-950/45"></div>
           
-          <div class="absolute inset-0 flex items-center justify-center pb-8 sm:pb-10">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 class="hero-title-anim text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.18] mb-4 sm:mb-6">
+          <div class="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center pt-6 pb-16 sm:py-10">
+            <div class="max-w-4xl mx-auto">
+              <h2 class="hero-title-anim text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.2] mb-3 sm:mb-5">
                 Facilitando el acceso al <br class="hidden sm:inline">
                 <span class="bg-gradient-to-r from-primary via-orange-400 to-amber-300 bg-clip-text text-transparent">hogar soñado</span> en todo el país
               </h2>
-              <p class="hero-desc-anim text-base sm:text-lg lg:text-xl text-gray-200 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p class="hero-desc-anim text-sm sm:text-base lg:text-lg text-gray-200 font-normal max-w-xl sm:max-w-2xl mx-auto leading-relaxed">
                 Combinamos la eficiencia tecnológica con la cercanía y profesionalismo de las mejores agencias y asesores validados de Venezuela.
               </p>
             </div>
@@ -378,7 +386,7 @@
       </div>
 
       <!-- BASE DEL HERO: PAGINACIÓN (DOTS) -->
-      <div class="absolute bottom-6 sm:bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-2.5">
+      <div class="absolute bottom-5 sm:bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-2.5">
         <button onclick="goToSlide(0)" class="hero-dot active w-3 h-3 rounded-full bg-white/50 hover:bg-white focus:outline-none cursor-pointer" aria-label="Slide 1"></button>
         <button onclick="goToSlide(1)" class="hero-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white focus:outline-none cursor-pointer" aria-label="Slide 2"></button>
         <button onclick="goToSlide(2)" class="hero-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white focus:outline-none cursor-pointer" aria-label="Slide 3"></button>
@@ -387,29 +395,37 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- 2. MISIÓN Y VISIÓN (EDITORIAL, MINIMALISTA Y SIN CUBOS)                   -->
+    <!-- 2. MISIÓN Y VISIÓN (EDITORIAL, MINIMALISTA Y ELEGANTE)                    -->
     <!-- ========================================================================= -->
-    <section id="manifiesto-section" class="py-14 sm:py-20 bg-white border-b border-gray-100">
+    <section id="manifiesto-section" class="py-12 sm:py-20 bg-white border-b border-gray-100">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-start">
           
           <!-- Misión -->
-          <div class="space-y-3">
+          <div class="p-6 sm:p-0 rounded-2xl bg-orange-50/40 sm:bg-transparent border border-orange-100/60 sm:border-0 space-y-3">
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-orange-100/80 text-primary text-[11px] font-extrabold uppercase tracking-wider">
+              <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+              <span>Propósito</span>
+            </div>
             <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
               Nuestra Misión
             </h2>
-            <p class="text-base sm:text-lg text-gray-600 leading-relaxed font-normal">
+            <p class="text-sm sm:text-lg text-gray-600 leading-relaxed font-normal">
               Facilitar el acceso a la vivienda en Venezuela mediante una plataforma ágil, honesta y eficiente que conecte directamente a todos los actores del mercado inmobiliario: compradores, vendedores, arrendatarios y asesores certificados.
             </p>
           </div>
 
           <!-- Visión -->
-          <div class="space-y-3">
+          <div class="p-6 sm:p-0 rounded-2xl bg-gray-50/80 sm:bg-transparent border border-gray-200/60 sm:border-0 space-y-3">
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-gray-200/80 text-gray-700 text-[11px] font-extrabold uppercase tracking-wider">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+              <span>Horizonte</span>
+            </div>
             <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
               Nuestra Visión
             </h2>
-            <p class="text-base sm:text-lg text-gray-600 leading-relaxed font-normal">
+            <p class="text-sm sm:text-lg text-gray-600 leading-relaxed font-normal">
               Ser la plataforma inmobiliaria más confiable y moderna del país, transformando la forma en que las personas encuentran, validan y gestionan sus propiedades con total certeza jurídica y respaldo profesional integral.
             </p>
           </div>
@@ -426,56 +442,50 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Header de Sección -->
-        <div class="max-w-3xl mx-auto text-center space-y-3">
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+        <div class="max-w-3xl mx-auto text-center space-y-2.5 sm:space-y-3">
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
             Los pilares que sostienen nuestro crecimiento
           </h2>
-          <p class="text-sm sm:text-base text-gray-500">
+          <p class="text-xs sm:text-base text-gray-500 max-w-xl mx-auto">
             Descubre cómo combinamos principios éticos inquebrantables, tecnología propietaria y calidez humana.
           </p>
         </div>
 
         <!-- Menú Horizontal de Pestañas con Indicador Deslizante Suave -->
-        <div class="mt-10 sm:mt-12 flex justify-center">
-          <div id="tabs-nav-wrapper" class="relative inline-flex items-center p-1.5 bg-gray-200/80 rounded-2xl border border-gray-300/70 shadow-2xs max-w-full overflow-x-auto">
+        <div class="mt-8 sm:mt-12 flex justify-center px-2 sm:px-0">
+          <div id="tabs-nav-wrapper" class="relative inline-flex items-center p-1 sm:p-1.5 bg-gray-200/80 rounded-2xl border border-gray-300/70 shadow-2xs max-w-full overflow-x-auto scrollbar-none snap-x">
             
-            <!-- Indicador activo deslizante (transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)) -->
-            <div id="tab-sliding-indicator" class="absolute top-1.5 bottom-1.5 rounded-xl bg-white shadow-xs transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] pointer-events-none"></div>
+            <!-- Indicador activo deslizante -->
+            <div id="tab-sliding-indicator" class="absolute top-1 bottom-1 sm:top-1.5 sm:bottom-1.5 rounded-xl bg-white shadow-xs transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] pointer-events-none"></div>
 
             <button 
               type="button" 
               onclick="switchPilar(0, this)" 
-              class="tab-btn relative z-10 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-colors duration-200 text-gray-900 cursor-pointer whitespace-nowrap"
+              class="tab-btn relative z-10 px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-colors duration-200 text-gray-900 cursor-pointer whitespace-nowrap snap-center shrink-0"
             >
               Confianza & Transparencia
             </button>
 
-            <span class="relative z-10 text-gray-400/80 font-light text-sm select-none px-1">|</span>
-
             <button 
               type="button" 
               onclick="switchPilar(1, this)" 
-              class="tab-btn relative z-10 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-200 text-gray-600 hover:text-primary cursor-pointer whitespace-nowrap"
+              class="tab-btn relative z-10 px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-200 text-gray-600 hover:text-primary cursor-pointer whitespace-nowrap snap-center shrink-0"
             >
               Excelencia & Tecnología
             </button>
 
-            <span class="relative z-10 text-gray-400/80 font-light text-sm select-none px-1">|</span>
-
             <button 
               type="button" 
               onclick="switchPilar(2, this)" 
-              class="tab-btn relative z-10 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-200 text-gray-600 hover:text-primary cursor-pointer whitespace-nowrap"
+              class="tab-btn relative z-10 px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-200 text-gray-600 hover:text-primary cursor-pointer whitespace-nowrap snap-center shrink-0"
             >
               Servicio al Cliente
             </button>
 
-            <span class="relative z-10 text-gray-400/80 font-light text-sm select-none px-1">|</span>
-
             <button 
               type="button" 
               onclick="switchPilar(3, this)" 
-              class="tab-btn relative z-10 px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-200 text-gray-600 hover:text-primary cursor-pointer whitespace-nowrap"
+              class="tab-btn relative z-10 px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors duration-200 text-gray-600 hover:text-primary cursor-pointer whitespace-nowrap snap-center shrink-0"
             >
               Nuestra Historia
             </button>
@@ -630,7 +640,7 @@
     <!-- ========================================================================= -->
     <!-- 3. BANNER DE CITA DE EQUIPO (FONDO OSCURO & PARALLAX SUTIL 0.2)           -->
     <!-- ========================================================================= -->
-    <section id="parallax-section" class="relative w-full py-16 sm:py-20 min-h-[320px] sm:min-h-[360px] lg:min-h-[380px] flex items-center justify-center overflow-hidden bg-gray-950">
+    <section id="parallax-section" class="relative w-full py-12 sm:py-20 min-h-[280px] sm:min-h-[360px] lg:min-h-[380px] flex items-center justify-center overflow-hidden bg-gray-950">
       
       <!-- Fondo con efecto Parallax Sutil (Tasa 0.2 respecto al scroll) -->
       <div 
@@ -854,6 +864,29 @@
 
     startCarouselTimer();
 
+    // Touch swipe support for Hero Carousel
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const heroSection = document.getElementById('hero-carousel-section');
+    if (heroSection) {
+      heroSection.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      heroSection.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diffX = touchEndX - touchStartX;
+        if (Math.abs(diffX) > 40) {
+          if (diffX < 0) {
+            nextSlide();
+            resetCarouselTimer();
+          } else {
+            showSlide(currentSlide - 1);
+            resetCarouselTimer();
+          }
+        }
+      }, { passive: true });
+    }
+
     // 2. Toggle del Menú Móvil
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -885,12 +918,8 @@
 
     function updateSlidingIndicator(btn) {
       if (!slidingIndicator || !btn || !navWrapper) return;
-      const btnRect = btn.getBoundingClientRect();
-      const wrapperRect = navWrapper.getBoundingClientRect();
-      
-      const left = btnRect.left - wrapperRect.left;
-      slidingIndicator.style.left = `${left}px`;
-      slidingIndicator.style.width = `${btnRect.width}px`;
+      slidingIndicator.style.left = `${btn.offsetLeft}px`;
+      slidingIndicator.style.width = `${btn.offsetWidth}px`;
     }
 
     function switchPilar(index, clickedBtn) {
@@ -914,6 +943,7 @@
 
       if (clickedBtn) {
         updateSlidingIndicator(clickedBtn);
+        clickedBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
 
       panels.forEach((panel, i) => {
