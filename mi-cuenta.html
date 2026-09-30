@@ -145,9 +145,9 @@
         
         <!-- Avatar circular superpuesto al banner con anillo blanco -->
         <div class="-mt-16 sm:-mt-20 lg:-mt-24 relative z-10 shrink-0 group/hero-avatar">
-          <div class="w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full ring-4 ring-white shadow-lg overflow-hidden bg-white relative">
-            <img id="hero-avatar-img" src="assets/realtors/alejandro.jpg" alt="Roger" class="w-full h-full object-cover">
-            <span id="hero-avatar-initial" class="hidden">R</span>
+          <div class="w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full ring-4 ring-white shadow-lg overflow-hidden bg-slate-900 relative flex items-center justify-center">
+            <img id="hero-avatar-img" src="" alt="Roger" class="hidden w-full h-full object-cover">
+            <span id="hero-avatar-initial" class="text-3xl sm:text-5xl font-extrabold text-white select-none">R</span>
             <!-- Botón superpuesto para cambiar foto al pasar el ratón -->
             <button 
               type="button" 
@@ -161,15 +161,25 @@
           </div>
         </div>
 
-        <!-- Botón Superior "Ver perfil" (Estilo Untitled UI) -->
-        <div class="pb-2 sm:pb-3">
+        <!-- Botones Superiores "Ver perfil público" y "Editar perfil" -->
+        <div class="pb-2 sm:pb-3 flex items-center gap-2.5 flex-wrap">
+          <a 
+            id="btn-view-public-profile"
+            href="perfil.html?u=me" 
+            target="_blank"
+            class="px-4.5 py-2.5 rounded-xl border border-gray-200/90 hover:border-primary/40 bg-white hover:bg-orange-50/40 text-xs sm:text-sm font-semibold text-gray-700 hover:text-primary shadow-2xs hover:shadow-xs transition-all inline-flex items-center gap-2 cursor-pointer whitespace-nowrap group"
+            title="Ver tu vitrina pública tal como la ven tus clientes"
+          >
+            <i data-lucide="external-link" class="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors"></i>
+            <span>Ver perfil público</span>
+          </a>
           <button 
             type="button" 
             onclick="openEditProfileModal()" 
-            class="px-5 py-2.5 rounded-xl border border-gray-200/90 hover:border-gray-300 bg-white hover:bg-gray-50 text-xs sm:text-sm font-semibold text-gray-700 shadow-2xs hover:shadow-xs transition-all inline-flex items-center gap-2 cursor-pointer whitespace-nowrap"
+            class="px-4.5 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-semibold shadow-2xs hover:shadow-xs transition-all inline-flex items-center gap-2 cursor-pointer whitespace-nowrap"
           >
-            <i data-lucide="user" class="w-4 h-4 text-gray-500"></i>
-            <span>Ver perfil</span>
+            <i data-lucide="edit-3" class="w-4 h-4"></i>
+            <span>Editar perfil</span>
           </button>
         </div>
 
@@ -189,10 +199,6 @@
             </svg>
           </span>
         </div>
-
-        <p id="hero-display-email" class="text-xs sm:text-sm text-gray-400 font-normal">
-          rogeralejandroquijadaavilera@gmail.com
-        </p>
       </div>
 
       <!-- Barra de Estadísticas en 4 Columnas (Limpia y espaciosa, exactamente como en la referencia) -->
@@ -242,7 +248,211 @@
   </section>
 
   <!-- MAIN ACCOUNT DASHBOARD (Alineado con el ancho completo max-w-7xl de las otras secciones) -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1 w-full space-y-12">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1 w-full space-y-8 sm:space-y-10">
+
+    <!-- ========================================================================= -->
+    <!-- BARRA / CHECKLIST: COMPLETA TU PERFIL PROFESIONAL (ESTILO LINEAR / STRIPE)  -->
+    <!-- ========================================================================= -->
+    <section id="profile-completion-card" class="bg-white rounded-2xl sm:rounded-3xl border border-gray-200/90 shadow-2xs p-6 sm:p-7 space-y-5 transition-all">
+      
+      <!-- Fila Superior: Encabezado y Métrica de Progreso -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <h2 class="text-base sm:text-lg font-bold text-gray-900 tracking-tight flex items-center gap-2">
+              <span>Completa tu perfil profesional</span>
+            </h2>
+            <span id="completion-percentage-badge" class="px-3 py-0.5 rounded-full text-xs sm:text-sm font-bold bg-gray-900 text-white shadow-2xs transition-all">
+              0%
+            </span>
+          </div>
+          <p id="completion-subtitle" class="text-xs sm:text-sm text-gray-500 font-normal mt-0.5">
+            Configura los datos esenciales de tu vitrina para generar confianza inmediata con tus clientes.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <span id="completion-tasks-counter" class="text-xs font-semibold text-gray-500">
+            0 de 5 tareas
+          </span>
+        </div>
+      </div>
+
+      <!-- Barra de Progreso Minimalista (Slim 6px) -->
+      <div class="w-full bg-gray-100 rounded-full h-1.5 sm:h-2 overflow-hidden">
+        <div 
+          id="completion-progress-bar" 
+          class="bg-gradient-to-r from-primary to-orange-500 h-full rounded-full transition-all duration-700 ease-out" 
+          style="width: 0%"
+        ></div>
+      </div>
+
+      <!-- Grid de 5 Tareas Interactivas -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-1">
+        
+        <!-- Tarea 1: Foto de perfil o logo -->
+        <div 
+          id="task-card-avatar"
+          onclick="openEditProfileWithFocus('avatar')" 
+          class="group p-4 rounded-2xl border border-gray-200/90 hover:border-gray-300 hover:bg-gray-50/50 transition-all cursor-pointer flex flex-col justify-between gap-3 text-left"
+        >
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <div id="task-badge-avatar" class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 font-bold text-[10px] flex items-center justify-center shrink-0">
+                1
+              </div>
+              <span id="task-status-avatar" class="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                Pendiente
+              </span>
+            </div>
+            <div>
+              <h3 class="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">
+                Foto o logotipo
+              </h3>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">
+                Sube tu foto personal o el logo de tu firma.
+              </p>
+            </div>
+          </div>
+          <div id="task-action-avatar" class="pt-1">
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:underline">
+              <span>Subir foto</span>
+              <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Tarea 2: Portada de vitrina -->
+        <div 
+          id="task-card-banner"
+          onclick="openEditProfileWithFocus('banner')" 
+          class="group p-4 rounded-2xl border border-gray-200/90 hover:border-gray-300 hover:bg-gray-50/50 transition-all cursor-pointer flex flex-col justify-between gap-3 text-left"
+        >
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <div id="task-badge-banner" class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 font-bold text-[10px] flex items-center justify-center shrink-0">
+                2
+              </div>
+              <span id="task-status-banner" class="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                Pendiente
+              </span>
+            </div>
+            <div>
+              <h3 class="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">
+                Imagen de portada
+              </h3>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">
+                Personaliza el banner superior de tu vitrina.
+              </p>
+            </div>
+          </div>
+          <div id="task-action-banner" class="pt-1">
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:underline">
+              <span>Subir portada</span>
+              <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Tarea 3: Biografía y zonas -->
+        <div 
+          id="task-card-bio"
+          onclick="openEditProfileWithFocus('bio')" 
+          class="group p-4 rounded-2xl border border-gray-200/90 hover:border-gray-300 hover:bg-gray-50/50 transition-all cursor-pointer flex flex-col justify-between gap-3 text-left"
+        >
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <div id="task-badge-bio" class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 font-bold text-[10px] flex items-center justify-center shrink-0">
+                3
+              </div>
+              <span id="task-status-bio" class="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                Pendiente
+              </span>
+            </div>
+            <div>
+              <h3 class="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">
+                Biografía y zonas
+              </h3>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">
+                Describe tu experiencia y áreas de atención.
+              </p>
+            </div>
+          </div>
+          <div id="task-action-bio" class="pt-1">
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:underline">
+              <span>Añadir bio</span>
+              <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Tarea 4: WhatsApp directo -->
+        <div 
+          id="task-card-phone"
+          onclick="openEditProfileWithFocus('phone')" 
+          class="group p-4 rounded-2xl border border-gray-200/90 hover:border-gray-300 hover:bg-gray-50/50 transition-all cursor-pointer flex flex-col justify-between gap-3 text-left"
+        >
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <div id="task-badge-phone" class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 font-bold text-[10px] flex items-center justify-center shrink-0">
+                4
+              </div>
+              <span id="task-status-phone" class="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                Pendiente
+              </span>
+            </div>
+            <div>
+              <h3 class="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">
+                WhatsApp directo
+              </h3>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">
+                Vincular número para consultas en 1 clic.
+              </p>
+            </div>
+          </div>
+          <div id="task-action-phone" class="pt-1">
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:underline">
+              <span>Vincular número</span>
+              <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- Tarea 5: Primer inmueble -->
+        <div 
+          id="task-card-property"
+          onclick="window.location.href='planes.html'" 
+          class="group p-4 rounded-2xl border border-gray-200/90 hover:border-gray-300 hover:bg-gray-50/50 transition-all cursor-pointer flex flex-col justify-between gap-3 text-left"
+        >
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <div id="task-badge-property" class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 font-bold text-[10px] flex items-center justify-center shrink-0">
+                5
+              </div>
+              <span id="task-status-property" class="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                Pendiente
+              </span>
+            </div>
+            <div>
+              <h3 class="text-xs sm:text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">
+                Primer inmueble
+              </h3>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">
+                Publica tu primera propiedad en el catálogo.
+              </p>
+            </div>
+          </div>
+          <div id="task-action-property" class="pt-1">
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:underline">
+              <span>Publicar</span>
+              <i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"></i>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
 
     <!-- CONFIGURACIÓN RÁPIDA DE PERFIL (Tarjeta limpia estilo Untitled UI con bordes redondeados pequeños) -->
     <div class="bg-white rounded-2xl border border-gray-200/90 shadow-2xs p-6 sm:p-8 space-y-6">
@@ -293,6 +503,34 @@
               </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-100"></div>
+
+      <!-- Fila 2: Correo electrónico de la cuenta (Sutil y minimalista) -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+        <div class="md:col-span-8 space-y-0.5">
+          <div class="flex items-center gap-2">
+            <h3 class="text-sm font-bold text-gray-900">Correo electrónico</h3>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+              Verificado
+            </span>
+          </div>
+          <p id="settings-display-email" class="text-xs text-gray-500 font-medium leading-relaxed">
+            rogeralejandroquijadaavilera@gmail.com
+          </p>
+        </div>
+
+        <div class="md:col-span-4 flex items-center justify-start md:justify-end">
+          <button 
+            type="button" 
+            onclick="openChangeEmailModal()" 
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-xs sm:text-sm font-semibold text-gray-700 transition-all shadow-2xs cursor-pointer whitespace-nowrap"
+          >
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-gray-500"></i>
+            <span>Cambiar correo</span>
+          </button>
         </div>
       </div>
 
@@ -383,12 +621,8 @@
         </button>
       </div>
 
-      <!-- Empty State Moderno y Refinado -->
+      <!-- Empty State Moderno y Refinado (Tipográfico y Minimalista) -->
       <div class="bg-white rounded-2xl border border-gray-200/90 p-8 sm:p-12 text-center shadow-xs">
-        <div class="w-14 h-14 rounded-2xl bg-orange-50 border border-orange-100 text-primary flex items-center justify-center mx-auto mb-3 shadow-2xs">
-          <i data-lucide="home" class="w-7 h-7"></i>
-        </div>
-        
         <h3 class="text-base sm:text-lg font-bold text-gray-900">
           Todavía no publicaste ninguna propiedad.
         </h3>
@@ -624,9 +858,9 @@
             <!-- Fila inferior: Avatar superpuesto + Botones de acción -->
             <div class="px-4 pb-4 pt-0 bg-white flex items-end justify-between gap-3 border-t border-gray-100">
               <div class="flex items-center gap-3 -mt-8 sm:-mt-10">
-                <!-- Avatar Circular -->
-                <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full ring-4 ring-white shadow-md overflow-hidden bg-white shrink-0 group/modal-avatar">
-                  <img id="modal-avatar-preview" src="assets/realtors/alejandro.jpg" alt="Foto de perfil" class="w-full h-full object-cover">
+                <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full ring-4 ring-white shadow-md overflow-hidden bg-slate-900 shrink-0 group/modal-avatar flex items-center justify-center">
+                  <img id="modal-avatar-preview" src="" alt="Foto de perfil" class="hidden w-full h-full object-cover">
+                  <span id="modal-avatar-initial" class="text-xl sm:text-2xl font-black text-white select-none">R</span>
                   <label 
                     for="modal-input-avatar" 
                     class="absolute inset-0 bg-black/45 text-white flex flex-col items-center justify-center opacity-0 group-hover/modal-avatar:opacity-100 transition-opacity cursor-pointer" 
@@ -690,8 +924,81 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-gray-700 mb-1">Teléfono / WhatsApp</label>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Teléfono / WhatsApp Directo</label>
           <input type="text" id="modal-input-phone" placeholder="+58 424 000 0000" class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+        </div>
+
+        <!-- Inmobiliaria y Cargo Profesional -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Inmobiliaria / Agencia</label>
+            <input type="text" id="modal-input-agency" placeholder="Ej: Dueñas Real Estate, C.A." class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Título / Cargo profesional</label>
+            <input type="text" id="modal-input-title" placeholder="Ej: Broker Principal / Asesor Senior" class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+          </div>
+        </div>
+
+        <!-- Zonas de Cobertura -->
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Zonas principales de cobertura</label>
+          <input type="text" id="modal-input-zones" placeholder="Ej: Las Mercedes, Chacao, Altamira, El Hatillo" class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+        </div>
+
+        <!-- Biografía / Descripción -->
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Biografía / Descripción del perfil</label>
+          <textarea id="modal-input-bio" rows="3" placeholder="Describe tu trayectoria, especialidad inmobiliaria y servicios..." class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"></textarea>
+        </div>
+
+        <!-- Redes Sociales Configurables (Como Instagram) -->
+        <div class="pt-3 border-t border-gray-100 space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="block text-xs font-bold text-gray-900">Canales profesionales y redes sociales</label>
+            <span class="text-[11px] text-gray-400 font-medium">Opcional</span>
+          </div>
+          <p class="text-[11px] text-gray-500 leading-tight">
+            Solo se mostrarán en tu perfil los íconos de las redes sociales que completes aquí. Si dejas el campo vacío, el ícono no se mostrará.
+          </p>
+
+          <div class="space-y-2.5">
+            <!-- Instagram -->
+            <div class="flex items-center rounded-lg border border-gray-200 overflow-hidden focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary bg-white">
+              <span class="bg-gray-50 px-3 py-2 text-xs text-gray-600 font-medium border-r border-gray-200 select-none shrink-0 flex items-center gap-1.5 w-28">
+                <svg class="w-3.5 h-3.5 fill-current text-pink-600" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <span>Instagram</span>
+              </span>
+              <input type="text" id="modal-input-instagram" placeholder="https://instagram.com/tu_perfil o @tu_usuario" class="flex-1 min-w-0 px-3 py-2 text-xs sm:text-sm font-medium text-gray-900 focus:outline-none">
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="flex items-center rounded-lg border border-gray-200 overflow-hidden focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary bg-white">
+              <span class="bg-gray-50 px-3 py-2 text-xs text-gray-600 font-medium border-r border-gray-200 select-none shrink-0 flex items-center gap-1.5 w-28">
+                <svg class="w-3.5 h-3.5 fill-current text-[#0A66C2]" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <span>LinkedIn</span>
+              </span>
+              <input type="text" id="modal-input-linkedin" placeholder="https://linkedin.com/in/tu-perfil" class="flex-1 min-w-0 px-3 py-2 text-xs sm:text-sm font-medium text-gray-900 focus:outline-none">
+            </div>
+
+            <!-- Facebook -->
+            <div class="flex items-center rounded-lg border border-gray-200 overflow-hidden focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary bg-white">
+              <span class="bg-gray-50 px-3 py-2 text-xs text-gray-600 font-medium border-r border-gray-200 select-none shrink-0 flex items-center gap-1.5 w-28">
+                <svg class="w-3.5 h-3.5 fill-current text-blue-600" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span>Facebook</span>
+              </span>
+              <input type="text" id="modal-input-facebook" placeholder="https://facebook.com/tu-pagina" class="flex-1 min-w-0 px-3 py-2 text-xs sm:text-sm font-medium text-gray-900 focus:outline-none">
+            </div>
+
+            <!-- Sitio Web -->
+            <div class="flex items-center rounded-lg border border-gray-200 overflow-hidden focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary bg-white">
+              <span class="bg-gray-50 px-3 py-2 text-xs text-gray-600 font-medium border-r border-gray-200 select-none shrink-0 flex items-center gap-1.5 w-28">
+                <i data-lucide="globe" class="w-3.5 h-3.5 text-gray-600"></i>
+                <span>Sitio Web</span>
+              </span>
+              <input type="text" id="modal-input-website" placeholder="https://tuinmobiliaria.com" class="flex-1 min-w-0 px-3 py-2 text-xs sm:text-sm font-medium text-gray-900 focus:outline-none">
+            </div>
+          </div>
         </div>
 
         <div class="pt-3 flex items-center justify-end gap-3 border-t border-gray-100 shrink-0">
@@ -779,6 +1086,73 @@
     </div>
   </div>
 
+  <!-- MODAL: CAMBIAR CORREO ELECTRÓNICO -->
+  <div id="modal-change-email" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-gray-200 shadow-2xl max-w-md w-full overflow-hidden p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-orange-50 text-primary flex items-center justify-center">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+          </div>
+          <h3 class="text-base font-extrabold text-gray-900">Cambiar correo electrónico</h3>
+        </div>
+        <button type="button" onclick="closeChangeEmailModal()" class="w-7 h-7 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 flex items-center justify-center">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Correo actual</label>
+          <input 
+            type="email" 
+            id="modal-input-current-email" 
+            readonly 
+            disabled 
+            value="rogeralejandroquijadaavilera@gmail.com" 
+            class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-sm text-gray-500 font-medium cursor-not-allowed select-none"
+          />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Nuevo correo electrónico</label>
+          <input 
+            type="email" 
+            id="modal-input-new-email" 
+            placeholder="ejemplo@correo.com" 
+            class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-2xs"
+          />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Confirma tu contraseña para autorizar</label>
+          <input 
+            type="password" 
+            id="modal-input-email-confirm-pass" 
+            placeholder="••••••••" 
+            class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-2xs"
+          />
+          <span class="text-[11px] text-gray-400 block mt-1">Por seguridad, te enviaremos una confirmación a tu nueva dirección.</span>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-gray-100 flex items-center justify-end gap-3">
+        <button 
+          type="button" 
+          onclick="closeChangeEmailModal()" 
+          class="px-5 py-2.5 rounded-xl border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 shadow-2xs hover:shadow-xs transition-all cursor-pointer whitespace-nowrap"
+        >
+          Cancelar
+        </button>
+        <button 
+          type="button" 
+          onclick="handleSaveEmail()" 
+          class="px-6 py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+        >
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- FLOATING TOAST FEEDBACK -->
   <div id="toast-notification" class="fixed bottom-6 right-6 z-50 hidden transform transition-all duration-300 translate-y-4 opacity-0">
     <div class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-gray-900 text-white shadow-xl border border-gray-700 text-xs font-bold">
@@ -813,9 +1187,8 @@
           <div>
             <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Recursos</h4>
             <ul class="space-y-3 text-sm text-gray-600 font-medium">
-              <li><a href="#" class="hover:text-primary transition-colors">Guías</a></li>
-              <li><a href="#" class="hover:text-primary transition-colors">Glosario inmobiliario</a></li>
-              <li><a href="#" class="hover:text-primary transition-colors">Datos de mercado</a></li>
+              <li><a href="aspectos-legales.html" class="hover:text-primary transition-colors">Aspectos legales</a></li>
+              <li><a href="glosario.html" class="hover:text-primary transition-colors">Glosario inmobiliario</a></li>
               <li><a href="#" class="hover:text-primary transition-colors">Noticias</a></li>
             </ul>
           </div>
@@ -949,14 +1322,27 @@
       const heroName = document.getElementById("hero-display-name");
       const heroEmail = document.getElementById("hero-display-email");
       const heroAvatar = document.getElementById("hero-avatar-initial");
+      const settingsEmail = document.getElementById("settings-display-email");
       if (heroName) heroName.innerText = displayName;
       if (heroEmail) heroEmail.innerText = displayEmail;
       if (heroAvatar) heroAvatar.innerText = displayName.charAt(0).toUpperCase();
+      if (settingsEmail) settingsEmail.innerText = displayEmail;
 
       // Avatar hero image
       const heroAvatarImg = document.getElementById("hero-avatar-img");
-      if (heroAvatarImg) {
-        heroAvatarImg.src = user.avatar || "assets/realtors/alejandro.jpg";
+      const heroAvatarInitial = document.getElementById("hero-avatar-initial");
+      if (user.avatar && user.avatar.trim() !== "") {
+        if (heroAvatarImg) {
+          heroAvatarImg.src = user.avatar;
+          heroAvatarImg.classList.remove("hidden");
+        }
+        if (heroAvatarInitial) heroAvatarInitial.classList.add("hidden");
+      } else {
+        if (heroAvatarImg) heroAvatarImg.classList.add("hidden");
+        if (heroAvatarInitial) {
+          heroAvatarInitial.textContent = displayName.charAt(0).toUpperCase();
+          heroAvatarInitial.classList.remove("hidden");
+        }
       }
 
       // Banner hero image
@@ -994,6 +1380,134 @@
         currentSupportAccess = !!user.supportAccess;
       }
       updateSupportToggleUI();
+
+      // Sincronizar enlace de Ver Perfil Público
+      const btnViewPublic = document.getElementById("btn-view-public-profile");
+      if (btnViewPublic) {
+        btnViewPublic.href = `perfil.html?u=${encodeURIComponent(displaySlug || 'me')}`;
+      }
+
+      // Actualizar Barra de Progreso y Tareas de Completar Perfil
+      updateProfileCompletion();
+    }
+
+    // =========================================================================
+    // LÓGICA DE BARRA Y TAREAS DE COMPLETAR PERFIL (ESTILO LINEAR / STRIPE)
+    // =========================================================================
+    function openEditProfileWithFocus(field) {
+      openEditProfileModal();
+      setTimeout(() => {
+        if (field === 'avatar') {
+          const input = document.getElementById("modal-input-avatar");
+          if (input) input.click();
+        } else if (field === 'banner') {
+          const input = document.getElementById("modal-input-banner");
+          if (input) input.click();
+        } else if (field === 'bio') {
+          const input = document.getElementById("modal-input-bio");
+          if (input) {
+            input.focus();
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        } else if (field === 'phone') {
+          const input = document.getElementById("modal-input-phone");
+          if (input) {
+            input.focus();
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }, 150);
+    }
+
+    function updateTaskCardUI(id, isDone, stepNum, doneLabel, pendingLabel) {
+      const badge = document.getElementById(`task-badge-${id}`);
+      const status = document.getElementById(`task-status-${id}`);
+      const action = document.getElementById(`task-action-${id}`);
+      const card = document.getElementById(`task-card-${id}`);
+
+      if (isDone) {
+        if (badge) {
+          badge.className = "w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-2xs";
+          badge.innerHTML = '<i data-lucide="check" class="w-3 h-3 stroke-[3]"></i>';
+        }
+        if (status) {
+          status.textContent = "Listo";
+          status.className = "text-[10px] font-bold uppercase tracking-wider text-emerald-600";
+        }
+        if (action) {
+          action.innerHTML = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i><span>${doneLabel || 'Listo'}</span></span>`;
+        }
+        if (card) {
+          card.classList.remove("border-gray-200/90");
+          card.classList.add("border-emerald-200/70", "bg-emerald-50/15");
+        }
+      } else {
+        if (badge) {
+          badge.className = "w-5 h-5 rounded-full bg-gray-100 text-gray-500 font-bold text-[10px] flex items-center justify-center shrink-0";
+          badge.textContent = stepNum;
+        }
+        if (status) {
+          status.textContent = "Pendiente";
+          status.className = "text-[10px] font-bold uppercase tracking-wider text-gray-400";
+        }
+        if (action) {
+          action.innerHTML = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:underline"><span>${pendingLabel}</span><i data-lucide="arrow-right" class="w-3 h-3 group-hover:translate-x-0.5 transition-transform"></i></span>`;
+        }
+        if (card) {
+          card.classList.add("border-gray-200/90");
+          card.classList.remove("border-emerald-200/70", "bg-emerald-50/15");
+        }
+      }
+    }
+
+    function updateProfileCompletion() {
+      const user = getAuthUser() || ROGER_USER;
+      const realtor = (typeof getRealtorProfile === 'function') ? getRealtorProfile("me") : {};
+
+      const hasAvatar = !!(user.avatar && user.avatar.trim() !== "");
+      const hasBanner = !!(user.banner && user.banner.trim() !== "" && user.banner !== "assets/banner-background.jpg");
+      const bioVal = (user.bio || realtor.bio || "").trim();
+      const hasBio = !!(bioVal && bioVal !== "");
+      const phoneVal = (user.phone || realtor.phone || "").trim();
+      const hasPhone = !!(phoneVal && phoneVal !== "");
+      const hasProperty = !!(user.properties && user.properties.length > 0) || (realtor.propertyCount > 0);
+
+      const tasks = [
+        { id: 'avatar', done: hasAvatar, step: 1, doneLabel: 'Foto lista', pendingLabel: 'Subir foto' },
+        { id: 'banner', done: hasBanner, step: 2, doneLabel: 'Portada activa', pendingLabel: 'Subir portada' },
+        { id: 'bio', done: hasBio, step: 3, doneLabel: 'Biografía lista', pendingLabel: 'Añadir bio' },
+        { id: 'phone', done: hasPhone, step: 4, doneLabel: 'Número vinculado', pendingLabel: 'Vincular número' },
+        { id: 'property', done: hasProperty, step: 5, doneLabel: 'Inmueble activo', pendingLabel: 'Publicar' }
+      ];
+
+      tasks.forEach(t => updateTaskCardUI(t.id, t.done, t.step, t.doneLabel, t.pendingLabel));
+
+      const completedCount = tasks.filter(t => t.done).length;
+      const totalCount = tasks.length;
+      const percentage = Math.round((completedCount / totalCount) * 100);
+
+      const bar = document.getElementById("completion-progress-bar");
+      const badge = document.getElementById("completion-percentage-badge");
+      const counter = document.getElementById("completion-tasks-counter");
+      const subtitle = document.getElementById("completion-subtitle");
+
+      if (bar) bar.style.width = `${percentage}%`;
+      if (badge) {
+        badge.textContent = `${percentage}%`;
+        badge.className = "px-3 py-0.5 rounded-full text-xs sm:text-sm font-bold bg-gray-900 text-white shadow-2xs transition-all";
+      }
+      if (counter) {
+        counter.textContent = `${completedCount} de ${totalCount} tareas`;
+      }
+      if (subtitle) {
+        if (percentage === 100) {
+          subtitle.innerHTML = '¡Excelente! Tu vitrina profesional está al <strong class="text-gray-900 font-semibold">100%</strong> para captar clientes.';
+        } else {
+          subtitle.textContent = "Configura los datos esenciales de tu vitrina para generar confianza inmediata con tus clientes.";
+        }
+      }
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
     }
 
     // Toggle switch logic
@@ -1122,7 +1636,12 @@
         compressImage(file, 400, 400, 0.85, (dataUrl) => {
           pendingAvatarData = dataUrl;
           const mAvatarImg = document.getElementById("modal-avatar-preview");
-          if (mAvatarImg) mAvatarImg.src = dataUrl;
+          const mAvatarInitial = document.getElementById("modal-avatar-initial");
+          if (mAvatarImg) {
+            mAvatarImg.src = dataUrl;
+            mAvatarImg.classList.remove("hidden");
+          }
+          if (mAvatarInitial) mAvatarInitial.classList.add("hidden");
           const btnRemove = document.getElementById("btn-remove-avatar");
           if (btnRemove) btnRemove.classList.remove("hidden");
         });
@@ -1132,7 +1651,12 @@
     function handleRemoveAvatar() {
       pendingAvatarData = "remove";
       const mAvatarImg = document.getElementById("modal-avatar-preview");
-      if (mAvatarImg) mAvatarImg.src = "assets/realtors/alejandro.jpg";
+      const mAvatarInitial = document.getElementById("modal-avatar-initial");
+      if (mAvatarImg) {
+        mAvatarImg.src = "";
+        mAvatarImg.classList.add("hidden");
+      }
+      if (mAvatarInitial) mAvatarInitial.classList.remove("hidden");
       const btnRemove = document.getElementById("btn-remove-avatar");
       if (btnRemove) btnRemove.classList.add("hidden");
     }
@@ -1183,13 +1707,25 @@
 
         // Avatar preview
         const mAvatarImg = document.getElementById("modal-avatar-preview");
+        const mAvatarInitial = document.getElementById("modal-avatar-initial");
         const btnRemoveAvatar = document.getElementById("btn-remove-avatar");
-        if (mAvatarImg) {
-          mAvatarImg.src = user.avatar || "assets/realtors/alejandro.jpg";
-        }
-        if (btnRemoveAvatar) {
-          if (user.avatar) btnRemoveAvatar.classList.remove("hidden");
-          else btnRemoveAvatar.classList.add("hidden");
+        if (user.avatar && user.avatar.trim() !== "") {
+          if (mAvatarImg) {
+            mAvatarImg.src = user.avatar;
+            mAvatarImg.classList.remove("hidden");
+          }
+          if (mAvatarInitial) mAvatarInitial.classList.add("hidden");
+          if (btnRemoveAvatar) btnRemoveAvatar.classList.remove("hidden");
+        } else {
+          if (mAvatarImg) {
+            mAvatarImg.src = "";
+            mAvatarImg.classList.add("hidden");
+          }
+          if (mAvatarInitial) {
+            mAvatarInitial.textContent = (user.name || "R").charAt(0).toUpperCase();
+            mAvatarInitial.classList.remove("hidden");
+          }
+          if (btnRemoveAvatar) btnRemoveAvatar.classList.add("hidden");
         }
 
         // Banner preview
@@ -1209,6 +1745,36 @@
           if (btnRemoveBanner) btnRemoveBanner.classList.add("hidden");
         }
 
+        // Prepopulate basic inputs
+        const inName = document.getElementById("modal-input-name");
+        const inEmail = document.getElementById("modal-input-email");
+        const inSlug = document.getElementById("modal-input-slug");
+        const inPhone = document.getElementById("modal-input-phone");
+        if (inName) inName.value = user.name || "Roger";
+        if (inEmail) inEmail.value = user.email || "rogeralejandroquijadaavilera@gmail.com";
+        if (inSlug) inSlug.value = user.slug || "roger";
+        if (inPhone) inPhone.value = user.phone || "";
+
+        // Prepopulate Realtor specific fields
+        const realtor = (typeof getRealtorProfile === "function") ? getRealtorProfile("me") : {};
+        const inAgency = document.getElementById("modal-input-agency");
+        const inTitle = document.getElementById("modal-input-title");
+        const inZones = document.getElementById("modal-input-zones");
+        const inBio = document.getElementById("modal-input-bio");
+        const inIg = document.getElementById("modal-input-instagram");
+        const inLi = document.getElementById("modal-input-linkedin");
+        const inFb = document.getElementById("modal-input-facebook");
+        const inWeb = document.getElementById("modal-input-website");
+
+        if (inAgency) inAgency.value = realtor.agency || "";
+        if (inTitle) inTitle.value = realtor.title || "";
+        if (inZones) inZones.value = realtor.zones || "";
+        if (inBio) inBio.value = realtor.bio || "";
+        if (inIg) inIg.value = (realtor.socials && realtor.socials.instagram) || "";
+        if (inLi) inLi.value = (realtor.socials && realtor.socials.linkedin) || "";
+        if (inFb) inFb.value = (realtor.socials && realtor.socials.facebook) || "";
+        if (inWeb) inWeb.value = (realtor.socials && realtor.socials.website) || "";
+
         modal.classList.remove("hidden");
         if (typeof lucide !== 'undefined') lucide.createIcons();
       }
@@ -1224,6 +1790,15 @@
       const mName = document.getElementById("modal-input-name").value.trim();
       const mSlug = document.getElementById("modal-input-slug").value.trim();
       const mPhone = document.getElementById("modal-input-phone").value.trim();
+
+      const mAgency = document.getElementById("modal-input-agency") ? document.getElementById("modal-input-agency").value.trim() : "";
+      const mTitle = document.getElementById("modal-input-title") ? document.getElementById("modal-input-title").value.trim() : "";
+      const mZones = document.getElementById("modal-input-zones") ? document.getElementById("modal-input-zones").value.trim() : "";
+      const mBio = document.getElementById("modal-input-bio") ? document.getElementById("modal-input-bio").value.trim() : "";
+      const mIg = document.getElementById("modal-input-instagram") ? document.getElementById("modal-input-instagram").value.trim() : "";
+      const mLi = document.getElementById("modal-input-linkedin") ? document.getElementById("modal-input-linkedin").value.trim() : "";
+      const mFb = document.getElementById("modal-input-facebook") ? document.getElementById("modal-input-facebook").value.trim() : "";
+      const mWeb = document.getElementById("modal-input-website") ? document.getElementById("modal-input-website").value.trim() : "";
 
       const existing = getAuthUser() || ROGER_USER;
 
@@ -1246,16 +1821,45 @@
         name: mName || "Roger",
         slug: mSlug || "roger",
         phone: mPhone,
+        agency: mAgency,
+        title: mTitle,
+        zones: mZones,
+        bio: mBio,
         avatar: finalAvatar,
         banner: finalBanner,
         supportAccess: currentSupportAccess
       };
 
+      // Guardar en cuenta de usuario
       localStorage.setItem("enkapta_user_data", JSON.stringify(updated));
+
+      // Sincronizar ficha pública del Realtor (puente con perfil.html)
+      if (typeof saveRealtorProfile === "function") {
+        saveRealtorProfile({
+          name: mName || existing.name || "Roger",
+          slug: mSlug || existing.slug || "roger",
+          agency: mAgency || "",
+          legalAgency: mAgency || "",
+          title: mTitle || "Asesor Inmobiliario",
+          bio: mBio || "",
+          shortBio: mBio ? (mBio.length > 140 ? mBio.slice(0, 140) + "..." : mBio) : "",
+          phone: mPhone,
+          zones: mZones || "",
+          avatar: finalAvatar,
+          banner: finalBanner,
+          socials: {
+            instagram: mIg,
+            linkedin: mLi,
+            facebook: mFb,
+            website: mWeb
+          }
+        });
+      }
+
       initProfileData();
       renderHeaderAuth();
       closeEditProfileModal();
-      showToast("Perfil actualizado con éxito");
+      showToast("Ficha de perfil actualizada y sincronizada");
     }
 
     function openSellerModal() {
@@ -1265,6 +1869,38 @@
     function closeSellerModal() {
       const modal = document.getElementById("modal-seller");
       if (modal) modal.classList.add("hidden");
+    }
+
+    function openChangeEmailModal() {
+      const user = getAuthUser() || ROGER_USER;
+      const curIn = document.getElementById("modal-input-current-email");
+      if (curIn) curIn.value = user.email || "rogeralejandroquijadaavilera@gmail.com";
+      const newIn = document.getElementById("modal-input-new-email");
+      if (newIn) newIn.value = "";
+      const passIn = document.getElementById("modal-input-email-confirm-pass");
+      if (passIn) passIn.value = "";
+      const modal = document.getElementById("modal-change-email");
+      if (modal) modal.classList.remove("hidden");
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+    function closeChangeEmailModal() {
+      const modal = document.getElementById("modal-change-email");
+      if (modal) modal.classList.add("hidden");
+    }
+    function handleSaveEmail() {
+      const newIn = document.getElementById("modal-input-new-email");
+      const val = newIn ? newIn.value.trim() : "";
+      if (!val || !val.includes("@") || !val.includes(".")) {
+        alert("Por favor ingresa un correo electrónico válido");
+        return;
+      }
+      const user = getAuthUser() || ROGER_USER;
+      user.email = val;
+      if (typeof saveAuthUser === 'function') saveAuthUser(user);
+      const settingsEmail = document.getElementById("settings-display-email");
+      if (settingsEmail) settingsEmail.innerText = val;
+      closeChangeEmailModal();
+      showToast("Correo electrónico actualizado con éxito");
     }
 
     function openSecurityModal() {

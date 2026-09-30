@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentación y aspectos legales en Venezuela | Enkapta</title>
+  <meta name="description" content="Guía clara y detallada de los recaudos, solvencias municipales, trámites notariales y registrales para comprar, vender o arrendar propiedades con seguridad jurídica en Venezuela.">
+  <link rel="icon" type="image/png" href="assets/enkapta-logo1.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#FF7900',
+              hover: '#E56D00',
+              light: '#FFF4EB',
+              glow: '#FFA047'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Parallax Image Performance */
+    .parallax-bg {
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.08s ease-out;
+    }
+
+    .header-logo-img {
+      width: 32px !important;
+      height: 32px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+      object-fit: contain;
+    }
+
+    /* Solid Dark Overlay (SIN DEGRADADO) */
+    .hero-solid-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.62);
+      pointer-events: none;
+    }
+  </style>
+
+  <!-- Auth Logic (Sincronización Universal de Sesión de Enkapta) -->
+  <script src="assets/auth.js"></script>
+</head>
+<body class="bg-white text-gray-900 min-h-screen flex flex-col selection:bg-orange-100 selection:text-primary">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE NAVEGACIÓN SUPERIOR ESTÁNDAR GLOBAL DE ENKAPTA                   -->
+  <!-- ========================================================================= -->
+  <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+      
+        <!-- LEFT: Logo + Nav Items -->
+        <div class="flex items-center space-x-7 lg:space-x-9">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center gap-2 group shrink-0">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shadow-2xs shrink-0 overflow-hidden">
+              <img src="assets/enkapta-logo1.png" alt="Enkapta Logo" class="header-logo-img w-8 h-8 object-contain rounded-lg" width="32" height="32" style="width:32px;height:32px;"/>
+            </div>
+            <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+              Enkapta
+            </span>
+          </a>
+
+          <!-- Navigation Links -->
+          <nav class="hidden md:flex items-center space-x-6 lg:space-x-7">
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="index.html">Inicio</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="propiedades.html">Propiedades</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="planes.html">Planes</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="quienes-somos.html">Quiénes somos</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="contacto.html">Contacto</a>
+          </nav>
+        </div>
+
+        <!-- RIGHT: Auth Buttons & User Profile (Sincronizado universalmente con auth.js) -->
+        <div class="hidden md:flex items-center space-x-3">
+          <div id="header-auth-container"></div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center md:hidden">
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-gray-800 hover:text-gray-900 hover:bg-gray-100 focus:outline-none" aria-label="Abrir menú">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Nav Flyout -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 pt-3 pb-6 space-y-2 mx-3 my-2 rounded-2xl shadow-xl border border-gray-100">
+      <div id="mobile-auth-container"></div>
+      <a href="index.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Inicio</a>
+      <a href="propiedades.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Propiedades</a>
+      <a href="planes.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Planes</a>
+      <a href="quienes-somos.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Quiénes somos</a>
+      <a href="contacto.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Contacto</a>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- TÍTULO CON IMAGEN Y EFECTO PARALLAX (SIN DEGRADADO)                       -->
+  <!-- ========================================================================= -->
+  <section class="relative overflow-hidden py-16 sm:py-20 lg:py-24 bg-slate-950 text-white">
+    <!-- Capa de imagen de fondo con parallax fluido -->
+    <div class="absolute inset-0 -top-24 -bottom-24 w-full h-[calc(100%+192px)] overflow-hidden pointer-events-none">
+      <img 
+        id="parallax-title-img" 
+        src="assets/banner-background.jpg" 
+        alt="Documentación y Aspectos Legales Inmobiliarios" 
+        class="parallax-bg w-full h-full object-cover object-center scale-105 filter brightness-[0.38] contrast-105"
+      />
+    </div>
+
+    <!-- Capa de oscurecimiento uniforme sólida (SIN degradado) -->
+    <div class="hero-solid-overlay absolute inset-0 bg-black/60 pointer-events-none"></div>
+
+    <!-- Contenido del Título -->
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+      
+      <!-- Tag / Breadcrumb -->
+      <div class="text-sm font-medium text-slate-300 mb-4">
+        Aprende &nbsp;·&nbsp; ⚖️ Guía Jurídica
+      </div>
+
+      <!-- Título -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.15] mb-4">
+        Documentación y aspectos legales
+      </h1>
+
+      <!-- Descripción -->
+      <p class="text-base sm:text-lg text-slate-200 leading-relaxed font-normal mb-5 max-w-2xl">
+        Requisitos obligatorios, solvencias municipales, trámites notariales y registrales necesarios para comprar, vender o arrendar inmuebles con total seguridad jurídica en Venezuela.
+      </p>
+
+      <!-- Fecha -->
+      <div class="text-xs text-slate-400 font-medium">
+        Última actualización: 25 de mayo de 2026
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENIDO PRINCIPAL: CATEGORÍAS Y TÉRMINOS LEGALES                        -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-24">
+
+      <!-- CATEGORÍAS RÁPIDAS -->
+      <div class="mb-14 pb-8 border-b border-gray-100">
+        <span class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-3.5 select-none">
+          Categorías
+        </span>
+        <div class="flex flex-wrap gap-2.5">
+          <a 
+            href="#documentos-propiedad" 
+            class="px-4 py-2 rounded-full text-xs sm:text-sm font-medium border border-gray-200 text-gray-700 bg-white hover:border-gray-900 hover:text-gray-900 transition-all cursor-pointer"
+          >
+            Títulos y Documentos de Propiedad
+          </a>
+
+          <a 
+            href="#solvencias-municipales" 
+            class="px-4 py-2 rounded-full text-xs sm:text-sm font-medium border border-gray-200 text-gray-700 bg-white hover:border-gray-900 hover:text-gray-900 transition-all cursor-pointer"
+          >
+            Solvencias Municipales y Fiscales
+          </a>
+
+          <a 
+            href="#poderes-sucesiones" 
+            class="px-4 py-2 rounded-full text-xs sm:text-sm font-medium border border-gray-200 text-gray-700 bg-white hover:border-gray-900 hover:text-gray-900 transition-all cursor-pointer"
+          >
+            Poderes y Sucesiones
+          </a>
+
+          <a 
+            href="#cierre-registro" 
+            class="px-4 py-2 rounded-full text-xs sm:text-sm font-medium border border-gray-200 text-gray-700 bg-white hover:border-gray-900 hover:text-gray-900 transition-all cursor-pointer"
+          >
+            Trámites de Registro (SAREN)
+          </a>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- 1. TÍTULOS Y DOCUMENTOS DE PROPIEDAD                                  -->
+      <!-- ===================================================================== -->
+      <section id="documentos-propiedad" class="mb-16 scroll-mt-24">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
+          Títulos y Documentos de Propiedad
+        </h2>
+        <p class="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+          Instrumentos jurídicos que acreditan la titularidad legítima del bien y demuestran su régimen inmobiliario ante terceros.
+        </p>
+
+        <div class="border-t border-gray-100 divide-y divide-gray-100">
+          
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Documento Protocolizado (Título de Propiedad)</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Título público definitivo otorgado e inscrito en la Oficina Inmobiliaria de Registro Público (SAREN) correspondiente a la jurisdicción donde se encuentra el inmueble. Acredita de manera incontestable la titularidad legítima del propietario y surte plenos efectos frente a terceros. Es el único documento que confiere plena propiedad sobre un bien raíz en Venezuela.
+            </p>
+          </div>
+
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Tradición Legal (Cadena Titulativa)</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Estudio y concatenación cronológica de las transmisiones de propiedad que ha tenido el inmueble durante los últimos 10 a 20 años. Los abogados la analizan minuciosamente para constatar que cada comprador previo haya adquirido de un titular legítimo, libre de embargos judiciales, litigios sucesorales o medidas cautelares de prohibición de enajenar y gravar.
+            </p>
+          </div>
+
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Documento de Condominio</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Estatuto legal registrado que rige los edificios o conjuntos residenciales y comerciales bajo el régimen de Propiedad Horizontal. Define con exactitud las áreas privadas, las áreas comunes (escaleras, pasillos, azotea, puestos de estacionamiento asignados), las normas de convivencia y administración, y la alícuota porcentual correspondiente a cada inmueble.
+            </p>
+          </div>
+
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Liberación de Hipoteca</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Acto jurídico y documento protocolizado en el Registro Público mediante el cual una entidad bancaria o un prestamista particular declara saldada en su totalidad la obligación financiera garantizada sobre la propiedad, cancelando el gravamen hipotecario y dejando el bien completamente libre de cargas para su enajenación.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 2. SOLVENCIAS MUNICIPALES Y FISCALES                                  -->
+      <!-- ===================================================================== -->
+      <section id="solvencias-municipales" class="mb-16 scroll-mt-24">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
+          Solvencias Municipales y Fiscales
+        </h2>
+        <p class="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+          Certificaciones obligatorias expedidas por entes públicos municipales que avalan que el inmueble no adeuda tributos locales.
+        </p>
+
+        <div class="border-t border-gray-100 divide-y divide-gray-100">
+          
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Ficha Catastral (Cédula Catastral)</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Documento emitido por la Dirección de Catastro de la Alcaldía correspondiente que describe física, jurídica y valorativamente el inmueble. Contiene sus linderos, superficie de terreno y construcción, código catastral y zonificación municipal. Es un requisito obligatorio e indispensable para cualquier protocolización de compraventa, sucesión o gravamen ante el Registro Público.
+            </p>
+          </div>
+
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Solvencia Municipal (Derecho de Frente y Aseo)</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Certificación tributaria emitida por la Dirección de Hacienda de la Alcaldía donde se encuentra el inmueble. Certifica que la propiedad se encuentra solvente con el impuesto sobre inmuebles urbanos (derecho de frente) y las tasas de aseo domiciliario. Tiene vigencia limitada (habitualmente mensual o trimestral) y es obligatoria para la firma ante el Registrador Público.
+            </p>
+          </div>
+
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Solvencia de Condominio</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Constancia firmada por la Junta de Condominio o la empresa administradora del edificio que acredita que el propietario se encuentra al día con el pago de las cuotas de gastos comunes y fondos de reserva. Aunque no siempre la exige el arancel del SAREN, es un requisito contractual primordial que todo comprador prudente debe exigir antes del cierre.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 3. PODERES Y SUCESIONES                                               -->
+      <!-- ===================================================================== -->
+      <section id="poderes-sucesiones" class="mb-16 scroll-mt-24">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
+          Poderes y Sucesiones
+        </h2>
+        <p class="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+          Procedimientos para la representación legal y la regularización de bienes hereditarios conforme al Código Civil y la normativa fiscal venezolana.
+        </p>
+
+        <div class="border-t border-gray-100 divide-y divide-gray-100">
+          
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Poder Notariado (Mandato Especial de Disposición)</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Mandato legal formalizado ante Notaría Pública mediante el cual una persona apodera a otra para realizar actos jurídicos de disposición en su nombre (como firmar opciones de compra, solicitar solvencias o comparecer al acto de venta ante el Registrador Público). En Venezuela, el poder debe señalar expresamente la facultad para vender y describir el inmueble objeto de la negociación. Si se otorga en el extranjero, debe contar con la debida apostilla de La Haya y traducción jurada si aplica.
+            </p>
+          </div>
+
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Declaración Sucesoral (Certificado de Solvencia SENIAT)</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Trámite fiscal que se efectúa ante el SENIAT tras el fallecimiento de uno de los titulares del inmueble. El certificado de solvencia sucesoral emitido por el SENIAT y el RIF sucesoral son indispensables para que los herederos puedan adjudicarse el bien y posteriormente disponer de él o venderlo legalmente en el Registro Inmobiliario.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 4. TRÁMITES DE REGISTRO (SAREN)                                       -->
+      <!-- ===================================================================== -->
+      <section id="cierre-registro" class="mb-16 scroll-mt-24">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
+          Trámites de Registro (SAREN)
+        </h2>
+        <p class="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+          Formalidades y requisitos finales requeridos durante el acto de protocolización ante la Oficina de Registro Público.
+        </p>
+
+        <div class="border-t border-gray-100 divide-y divide-gray-100">
+          
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Planilla Única Bancaria (PUB) y Aranceles</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Planilla oficial generada a través del sistema digital del SAREN que calcula las tasas y derechos arancelarios de registro correspondientes al valor de la transacción. Debe liquidarse en las entidades bancarias receptoras de fondos públicos antes de fijar la fecha del acto de otorgamiento.
+            </p>
+          </div>
+
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Identificación y Cédulas de Identidad Vigentes</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Es requisito ineludible que todos los comparecientes (vendedores, compradores, apoderados y cónyuges cuando aplique por régimen de comunidad conyugal) presenten cédula de identidad laminada y vigente, junto con el RIF actualizado. En el caso de personas jurídicas, se exige Registro Mercantil, RIF de la empresa y acta de asamblea que faculte al representante legal.
+            </p>
+          </div>
+
+          <div class="py-6">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">Acto de Otorgamiento y Firma</h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Momento solemne en el que las partes leen y firman el documento de compraventa en presencia del Registrador Público o funcionario delegado, estampado de huellas dactilares y fotografía digital. A partir de este acto el documento queda formalmente protocolizado bajo tomo y folio del Registro Inmobiliario.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER GLOBAL ESTÁNDAR DE ENKAPTA                                         -->
+  <!-- ========================================================================= -->
+  <footer class="bg-white border-t border-gray-100 pt-16 pb-12 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row justify-between gap-10 lg:gap-12 pb-12 border-b border-gray-100">
+        
+        <!-- Left Section: 4 Columnas de Enlaces -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 flex-1">
+          
+          <!-- 1. EXPLORAR -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Explorar</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="propiedades.html?categoria=Venta" class="hover:text-primary transition-colors">Comprar</a></li>
+              <li><a href="propiedades.html?categoria=Alquiler" class="hover:text-primary transition-colors">Alquilar</a></li>
+              <li><a href="propiedades.html" class="hover:text-primary transition-colors">Propiedades por estado</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Directorio de profesionales</a></li>
+            </ul>
+          </div>
+
+          <!-- 2. RECURSOS -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Recursos</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="aspectos-legales.html" class="hover:text-primary transition-colors font-bold text-primary">Aspectos legales</a></li>
+              <li><a href="glosario.html" class="hover:text-primary transition-colors">Glosario inmobiliario</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Noticias</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. EMPRESA -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Empresa</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="quienes-somos.html" class="hover:text-primary transition-colors">Sobre nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Trabaja con nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Prensa</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Precios</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Publica tu propiedad</a></li>
+              <li><a href="contacto.html" class="hover:text-primary transition-colors">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- 4. LEGAL -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Legal</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Términos y condiciones</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Política de privacidad</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Eliminar cuenta</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Preguntas frecuentes</a></li>
+              <li><a href="https://wa.me/584248407372" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Centro de ayuda</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right Section: Marca, Slogan, Tarjetas Móviles y Redes (Estilo Enkapta) -->
+        <div class="lg:w-96 flex flex-col items-start lg:items-end text-left lg:text-right shrink-0">
+          
+          <!-- Logo Enkapta en Naranja -->
+          <a href="index.html" class="inline-flex items-center mb-4 group">
+            <span class="text-3xl sm:text-4xl font-black text-primary tracking-tight group-hover:brightness-110 transition-all">Enkapta</span>
+          </a>
+
+          <!-- Slogan / Tagline -->
+          <p class="text-base sm:text-lg font-semibold text-gray-800 lg:text-right max-w-sm mb-6 leading-snug">
+            La plataforma inmobiliaria moderna. Conectamos compradores, inquilinos y agentes.
+          </p>
+
+          <!-- EN TU MÓVIL O TABLET - Tarjetas App Store & Google Play -->
+          <div class="mb-6 w-full flex flex-col items-start lg:items-end">
+            <span class="text-xs font-black uppercase tracking-wider text-gray-400 mb-3 block">En tu móvil o tablet</span>
+            <div class="flex items-center gap-3 flex-wrap justify-start lg:justify-end">
+              
+              <!-- Tarjeta App Store iOS -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 fill-current text-white shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.13.64-2.79 1.42-.58.68-1.07 1.76-1.02 2.81 1.07.08 2.18-.58 2.8-1.36z"/>
+                </svg>
+                <div class="text-left leading-none">
+                  <span class="block text-[9px] text-gray-400 font-medium">Disponible en el</span>
+                  <span class="block text-xs font-bold text-white tracking-wide mt-0.5">App Store</span>
+                </div>
+              </a>
+
+              <!-- Tarjeta Google Play Android -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 fill-current text-white shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path d="M3.609 1.814L13.792 12 3.61 22.186c-.352-.361-.559-.887-.559-1.516V3.33c0-.629.207-1.155.558-1.516zM15.207 13.414l2.42 2.42-12.01 6.883 9.59-9.303zm0-2.828L5.617 1.283l12.01 6.883-2.42 2.42zM18.793 12l2.586-1.482c.828-.474.828-1.246 0-1.72L18.793 12l2.586 3.202c.828-.474.828-1.246 0-1.72L18.793 12z"/>
+                </svg>
+                <div class="text-left leading-none">
+                  <span class="block text-[9px] text-gray-400 font-medium">Disponible en</span>
+                  <span class="block text-xs font-bold text-white tracking-wide mt-0.5">Google Play</span>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Redes Sociales Oficiales -->
+          <div class="flex items-center gap-2.5">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-primary hover:text-white text-gray-600 flex items-center justify-center transition-all">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-primary hover:text-white text-gray-600 flex items-center justify-center transition-all">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-primary hover:text-white text-gray-600 flex items-center justify-center transition-all">
+              <i data-lucide="twitter" class="w-4 h-4"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-primary hover:text-white text-gray-600 flex items-center justify-center transition-all">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Copyright & Orgullo -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-medium">
+        <p>© 2026 Enkapta. Todos los derechos reservados.</p>
+        <p class="flex items-center gap-1.5">
+          <span>Hecho con dedicación en Venezuela</span>
+          <span>🇻🇪</span>
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Smooth Parallax on Title Image
+    const parallaxImg = document.getElementById("parallax-title-img");
+    if (parallaxImg) {
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        if (scrolled < 800) {
+          parallaxImg.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
+        }
+      }, { passive: true });
+    }
+
+    // Toggle Mobile Navigation Menu
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    // Initialize Lucide Icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+
+</body>
+</html>
