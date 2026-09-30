@@ -350,22 +350,22 @@
         <div class="bg-white rounded-2xl sm:rounded-3xl border border-gray-200/80 p-5 sm:p-6 shadow-sm">
           <h2 class="text-base sm:text-lg font-bold text-gray-900 mb-3.5">Publicador</h2>
           
-          <div class="flex items-center gap-3.5 sm:gap-4">
+          <a href="perfil.html" class="flex items-center gap-3.5 sm:gap-4 group/publisher cursor-pointer">
             <!-- Dueñas Agency Logo -->
-            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-black flex items-center justify-center shrink-0 border border-gray-100 shadow-xs">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-black flex items-center justify-center shrink-0 border border-gray-100 shadow-xs group-hover/publisher:ring-2 group-hover/publisher:ring-primary/40 transition-all">
               <img src="assets/duenas-logo.jpg" alt="Dueñas Real Estate" class="w-full h-full object-cover"/>
             </div>
 
             <!-- Broker Info -->
             <div class="min-w-0">
-              <div class="flex items-center gap-1.5 font-bold text-gray-900 text-sm sm:text-base">
+              <div class="flex items-center gap-1.5 font-bold text-gray-900 text-sm sm:text-base group-hover/publisher:text-primary transition-colors">
                 <span>Daniel Dueñas</span>
                 <i data-lucide="badge-check" class="w-4 h-4 text-primary shrink-0" title="Broker Verificado"></i>
               </div>
               <p class="text-xs text-gray-500 mt-0.5">Publicado por: broker</p>
               <p class="text-xs text-gray-500 mt-0.5 truncate">jdb@dre.com.ve</p>
             </div>
-          </div>
+          </a>
 
           <!-- SECCIÓN DE CONTACTO: ¿Te interesó esta propiedad? -->
           <div class="pt-4 mt-4 border-t border-gray-100 space-y-2.5">
@@ -392,10 +392,10 @@
           </button>
 
           <!-- Ver perfil del propietario -->
-          <button class="w-full flex items-center justify-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-white border border-gray-200/90 hover:bg-gray-50 text-gray-700 text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer">
+          <a href="perfil.html" class="w-full flex items-center justify-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-white border border-gray-200/90 hover:bg-gray-50 text-gray-700 text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer">
             <i data-lucide="user" class="w-4 h-4 text-gray-500"></i>
             <span>Ver perfil del propietario</span>
-          </button>
+          </a>
 
           <!-- Compartir propiedad -->
           <button onclick="shareProperty()" class="w-full flex items-center justify-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-white border border-gray-200/90 hover:bg-gray-50 text-gray-700 text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer">

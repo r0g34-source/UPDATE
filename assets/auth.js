@@ -60,7 +60,7 @@ function logout(event = null, redirectUrl = null) {
   } else {
     // If on a private page, redirect to index
     const p = window.location.pathname;
-    if (p.includes("mi-cuenta") || p.includes("cuenta") || p.includes("perfil")) {
+    if (p.includes("mi-cuenta") || p.includes("cuenta.html")) {
       window.location.href = "index.html";
     } else {
       renderHeaderAuth();
@@ -79,7 +79,7 @@ function renderHeaderAuth() {
 
   // Check if on protected account page while logged out
   const p = window.location.pathname;
-  if ((p.includes("mi-cuenta") || p.includes("cuenta") || p.includes("perfil")) && !user) {
+  if ((p.includes("mi-cuenta") || p.includes("cuenta.html")) && !user) {
     window.location.href = "iniciar-sesion.html";
     return;
   }
