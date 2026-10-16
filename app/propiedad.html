@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Oficina en Venta en Plaza Venezuela · Enkapta</title>
+  
+  <link rel="icon" type="image/png" href="assets/replica/logo-enkapta.png">
+
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #111827;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Scrollbars hide */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Responsive Shell: 390px on Desktop, 100% on Mobile */
+    body {
+      background-color: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .app-viewport {
+      width: 390px;
+      height: 844px;
+      max-width: 100%;
+      max-height: 96vh;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      border-radius: 42px;
+      border: 8px solid #1e293b;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      min-width: 0;
+    }
+
+    @media (max-width: 449px) {
+      body {
+        background-color: #ffffff;
+        display: block;
+      }
+      .app-viewport {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+      }
+    }
+
+    /* 1. Android Status Bar (12:49 | Wifi | 13%) */
+    .status-bar {
+      height: 32px;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1f2937;
+      flex-shrink: 0;
+      z-index: 40;
+    }
+
+    .status-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    /* 2. Scrollable Body Content */
+    .scroll-body {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 70px; /* Space for fixed bottom nav */
+    }
+
+    /* Hero Gallery Section */
+    .hero-gallery {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 472 / 370;
+      background-color: #0f172a;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Interactive Hotspot Buttons */
+    .hotspot-btn {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 25;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.12s ease, background-color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hotspot-btn:active {
+      transform: scale(0.92);
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Top Left: Back Arrow */
+    .hotspot-back {
+      top: 19px;
+      left: 17px;
+    }
+
+    /* Top Right: Favorite */
+    .hotspot-fav {
+      top: 19px;
+      right: 76px;
+    }
+
+    /* Top Right: 3 Dots */
+    .hotspot-more {
+      top: 19px;
+      right: 18px;
+    }
+
+    /* Dynamic Red Heart on Favorite Toggle */
+    .fav-overlay-heart {
+      display: none;
+      width: 22px;
+      height: 22px;
+      fill: #ef4444;
+      stroke: #ef4444;
+      filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.4));
+    }
+
+    .hotspot-fav.fav-active {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .hotspot-fav.fav-active .fav-overlay-heart {
+      display: block;
+    }
+
+    /* 3. Property Information Section */
+    .prop-details-container {
+      padding: 18px 18px 0 18px;
+    }
+
+    .prop-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .prop-type-tag {
+      font-size: 15px;
+      font-weight: 700;
+      color: #FF7900;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+
+    .prop-meta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .meta-item svg {
+      flex-shrink: 0;
+    }
+
+    .prop-price {
+      font-size: 28px;
+      font-weight: 900;
+      color: #FF7900;
+      letter-spacing: -0.5px;
+      margin-bottom: 22px;
+    }
+
+    /* Sections */
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.2px;
+      margin-bottom: 10px;
+    }
+
+    .prop-desc-text {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+
+    /* General Specs List */
+    .specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .spec-line {
+      font-size: 14px;
+      color: #334155;
+      display: flex;
+      gap: 6px;
+    }
+
+    .spec-label {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .spec-value {
+      color: #475569;
+      font-weight: 500;
+    }
+
+    /* Características Grid (2 cols) */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      row-gap: 15px;
+      column-gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .feature-icon {
+      color: #FF7900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Dirección exacta */
+    .address-section {
+      margin-bottom: 24px;
+    }
+
+    .address-text {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    /* Publicado por (Agent Card) */
+    .publisher-card {
+      background: #f8fafc;
+      border: 1px solid #f1f5f9;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+    }
+
+    .publisher-header {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+
+    .publisher-ratings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .ratings-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stars-row {
+      display: flex;
+      gap: 3px;
+      color: #cbd5e1;
+    }
+
+    .ratings-label {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .reviews-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .reviews-icon {
+      color: #FF7900;
+    }
+
+    .agent-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .agent-avatar-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      flex-shrink: 0;
+    }
+
+    .agent-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .agent-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.2px;
+    }
+
+    .agent-role {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .agent-chevron {
+      color: #94a3b8;
+    }
+
+    /* 4. CTA BUTTON: Agendar cita (In normal flow at the bottom) */
+    .cta-container {
+      margin-top: 10px;
+      margin-bottom: 25px;
+    }
+
+    .btn-agendar {
+      width: 100%;
+      height: 48px;
+      background: #FF7900;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 800;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(255, 121, 0, 0.4);
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-agendar:active {
+      background: #e66d00;
+      transform: scale(0.98);
+    }
+
+    /* 5. FIXED BOTTOM NAVIGATION BAR */
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #ffffff;
+      border-top: 1px solid #f1f3f5;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 4px 6px 4px;
+      z-index: 40;
+      user-select: none;
+    }
+
+    .nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      background: none;
+      border: none;
+      color: #6b7280;
+      cursor: pointer;
+      padding: 4px 0;
+      text-decoration: none;
+    }
+
+    .nav-item.active {
+      color: #FF7900;
+    }
+
+    .nav-item svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .nav-item span {
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    .nav-item.active span {
+      font-weight: 700;
+    }
+
+    /* Plus Circle Button */
+    .nav-plus-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-plus-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #FF7900;
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(255, 121, 0, 0.4);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .nav-plus-btn:active {
+      transform: scale(0.9);
+      background: #e66d00;
+    }
+
+    /* Android home indicator at bottom */
+    .android-indicator {
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 3px;
+      background: #cbd5e1;
+      border-radius: 9999px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE PHONE VIEWPORT -->
+  <div class="app-viewport">
+
+    <!-- 1. ANDROID STATUS BAR (12:49 | Wifi | 13%) -->
+    <div class="status-bar">
+      <!-- Left: 12:49 + icons -->
+      <div class="status-left">
+        <span>12:49</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="7" y1="12" x2="17" y2="12"></line>
+        </svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#1f2937">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </div>
+
+      <!-- Right: Wifi, Signal, Battery 13% -->
+      <div class="status-right">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+          <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
+        </svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+          <path d="M2 22h20V2z"/>
+        </svg>
+        <div style="display: flex; align-items: center; gap: 1px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+            <path d="M17 5v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span style="font-size: 11px; margin-left: -2px;">13</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SCROLLABLE CONTENT BODY -->
+    <div class="scroll-body no-scrollbar">
+
+      <!-- HERO PHOTO & FLOATING ACTIONS -->
+      <div class="hero-gallery">
+        <img src="assets/replica/hero-propiedad.jpg" alt="Oficina en Venta en Plaza Venezuela" class="hero-img">
+
+        <!-- Interactive Hotspot Overlays (Click targets right over screenshot buttons) -->
+        <a href="javascript:handleBack()" class="hotspot-btn hotspot-back" title="Volver"></a>
+
+        <!-- Favorite Toggle with overlay red heart -->
+        <button type="button" id="btn-fav" class="hotspot-btn hotspot-fav" onclick="toggleFavorite()" title="Favorito">
+          <svg class="fav-overlay-heart" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+
+        <!-- 3 Dots Options / Share -->
+        <button type="button" class="hotspot-btn hotspot-more" onclick="shareProperty()" title="Opciones"></button>
+      </div>
+
+      <!-- DETAILS CONTAINER -->
+      <div class="prop-details-container">
+
+        <!-- Title -->
+        <h1 class="prop-title">Oficina en Venta en Plaza Venezuela</h1>
+
+        <!-- Type -->
+        <div class="prop-type-tag">Venta</div>
+
+        <!-- Meta (Visitas & Ubicación) -->
+        <div class="prop-meta-row">
+          <div class="meta-item">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <span>5 visitas</span>
+          </div>
+          <div class="meta-item">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Distrito Capital</span>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="prop-price">$65,000</div>
+
+        <!-- Descripción -->
+        <h2 class="section-title">Descripción</h2>
+        <p class="prop-desc-text">
+          Ubicada en una torre de arquitectura y diseño moderno en Plaza Venezuela —uno de los nodos de conectividad y alto flujo comercial más estratégicos de Caracas—, se encuentra a la venta esta oficina de 116 m², caracterizada por sus óptimas condiciones de iluminación, acabados de piso y una distribución altamente funcional para la...
+        </p>
+
+        <!-- General Specs -->
+        <div class="specs-list">
+          <div class="spec-line">
+            <span class="spec-label">Fecha de construcción:</span>
+            <span class="spec-value">Año 1994</span>
+          </div>
+          <div class="spec-line">
+            <span class="spec-label">Status:</span>
+            <span class="spec-value">Usado</span>
+          </div>
+          <div class="spec-line">
+            <span class="spec-label">Municipio:</span>
+            <span class="spec-value">Libertador</span>
+          </div>
+          <div class="spec-line">
+            <span class="spec-label">Sector:</span>
+            <span class="spec-value">Caracas</span>
+          </div>
+        </div>
+
+        <!-- Características -->
+        <h2 class="section-title">Características</h2>
+        <div class="features-grid">
+          <!-- Col 1: Habitaciones -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <!-- Bed icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/>
+              </svg>
+            </div>
+            <span>4 Habitaciones</span>
+          </div>
+
+          <!-- Col 2: Baños -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <!-- Bathtub icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 6h6M7 10h14a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-4a1 1 0 0 1 1-1h4zM4 19v2M18 19v2"/>
+              </svg>
+            </div>
+            <span>2 Baños</span>
+          </div>
+
+          <!-- Col 1: Estacionamientos -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <!-- Car icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9C2.1 11.2 2 11.6 2 12v4c0 .6.4 1 1 1h2"/>
+                <circle cx="7" cy="17" r="2"/>
+                <path d="M9 17h6"/>
+                <circle cx="17" cy="17" r="2"/>
+              </svg>
+            </div>
+            <span>10 Estacionamientos</span>
+          </div>
+
+          <!-- Col 2: m2 -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <!-- Ruler / Dimensions icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0l-2.6-2.6c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4Z"/>
+                <path d="m14.5 3.5 2 2M11.5 6.5l2 2M8.5 9.5l2 2M5.5 12.5l2 2"/>
+              </svg>
+            </div>
+            <span>116 m²</span>
+          </div>
+
+          <!-- Col 1: Ascensor -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <!-- Building / Elevator icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+                <line x1="9" y1="22" x2="9" y2="18"/>
+                <line x1="15" y1="22" x2="15" y2="18"/>
+                <rect x="8" y="6" width="2" height="2"/>
+                <rect x="14" y="6" width="2" height="2"/>
+                <rect x="8" y="11" width="2" height="2"/>
+                <rect x="14" y="11" width="2" height="2"/>
+              </svg>
+            </div>
+            <span>Ascensor</span>
+          </div>
+
+          <!-- Col 2: Seguridad 24/7 -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <!-- Shield check icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <span>Seguridad 24/7</span>
+          </div>
+
+          <!-- Col 1: Garaje -->
+          <div class="feature-item">
+            <div class="feature-icon">
+              <!-- Garage / car front icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H7.5a1 1 0 0 0-.8.4L4 11l-5.16.86a1 1 0 0 0-.84.99V16h3"/>
+                <circle cx="6.5" cy="16.5" r="2.5"/>
+                <circle cx="16.5" cy="16.5" r="2.5"/>
+              </svg>
+            </div>
+            <span>Garaje</span>
+          </div>
+        </div>
+
+        <!-- Dirección exacta -->
+        <div class="address-section">
+          <h2 class="section-title">Dirección exacta</h2>
+          <p class="address-text">
+            Blvr. de Sabana Grande, Caracas, Distrito Capital, Venezuela
+          </p>
+        </div>
+
+        <!-- Publicado por -->
+        <div class="publisher-card">
+          <h3 class="publisher-header">Publicado por</h3>
+
+          <!-- Ratings row -->
+          <div class="publisher-ratings-row">
+            <div class="ratings-col">
+              <div class="stars-row">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span class="ratings-label">Sin calificar</span>
+            </div>
+
+            <div class="reviews-col">
+              <div class="reviews-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <span class="ratings-label">0 reseñas</span>
+            </div>
+          </div>
+
+          <!-- Agent Profile Row -->
+          <div class="agent-row" onclick="window.location.href='perfil-realtor.html'" style="cursor: pointer;">
+            <img src="assets/replica/agent-jessica.png" alt="Jessica Dueñas" class="agent-avatar-img">
+            <div class="agent-info">
+              <span class="agent-name">Jessica Dueñas</span>
+              <span class="agent-role">Visitante</span>
+            </div>
+            <div class="agent-chevron">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. CTA BUTTON: Agendar cita -->
+        <div class="cta-container">
+          <button type="button" class="btn-agendar" onclick="agendarCita()">
+            Agendar cita
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 5. FIXED BOTTOM NAVIGATION BAR -->
+    <nav class="bottom-nav">
+      <!-- 1. Home (Active in screenshot) -->
+      <a href="index.html" class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Home</span>
+      </a>
+
+      <!-- 2. Explorar -->
+      <a href="explorar.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+        </svg>
+        <span>Explorar</span>
+      </a>
+
+      <!-- 3. Center Orange Plus -->
+      <div class="nav-plus-wrapper">
+        <button class="nav-plus-btn" title="Publicar propiedad" onclick="handlePlusClick()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 4. Favoritos -->
+      <a href="favoritos.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        <span>Favoritos</span>
+      </a>
+
+      <!-- 5. Cuenta -->
+      <a href="cuenta.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>Cuenta</span>
+      </a>
+
+      <!-- Android bar indicator -->
+      <div class="android-indicator"></div>
+    </nav>
+
+  </div>
+
+  <script>
+    function handleBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    function toggleFavorite() {
+      const btn = document.getElementById('btn-fav');
+      btn.classList.toggle('fav-active');
+      const isFav = btn.classList.contains('fav-active');
+      localStorage.setItem('enkapta_fav_plaza_venezuela', isFav ? '1' : '0');
+    }
+
+    // Init favorite state
+    if (localStorage.getItem('enkapta_fav_plaza_venezuela') === '1') {
+      document.getElementById('btn-fav').classList.add('fav-active');
+    }
+
+    function shareProperty() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Oficina en Venta en Plaza Venezuela',
+          url: window.location.href
+        });
+      } else {
+        alert('Enlace de la propiedad copiado al portapapeles');
+      }
+    }
+
+    function agendarCita() {
+      alert('¡Solicitud de cita enviada a Jessica Dueñas! Te contactará a la brevedad.');
+    }
+
+    function handlePlusClick() {
+      const session = localStorage.getItem('enkapta_session');
+      if (session === 'roger') {
+        window.location.href = 'planes.html';
+      } else {
+        window.location.href = 'cuenta.html';
+      }
+    }
+
+    // Scroll query param support for visual verification
+    if (new URLSearchParams(window.location.search).get('scroll') === 'down') {
+      const body = document.querySelector('.scroll-body');
+      if (body) body.scrollTop = 9999;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Perfil de Usuario · Jessica Dueñas · Enkapta</title>
+  
+  <link rel="icon" type="image/png" href="assets/replica/logo-enkapta.png">
+
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #111827;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Scrollbars hide */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Responsive Shell: 390px on Desktop, 100% on Mobile */
+    body {
+      background-color: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .app-viewport {
+      width: 390px;
+      height: 844px;
+      max-width: 100%;
+      max-height: 96vh;
+      background-color: #f8fafc; /* Subtle light background for cards */
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      border-radius: 42px;
+      border: 8px solid #1e293b;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      min-width: 0;
+    }
+
+    @media (max-width: 449px) {
+      body {
+        background-color: #ffffff;
+        display: block;
+      }
+      .app-viewport {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+      }
+    }
+
+    /* 1. Android Status Bar (1:09 | Wifi | 47%) */
+    .status-bar {
+      height: 32px;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1f2937;
+      flex-shrink: 0;
+      z-index: 40;
+    }
+
+    .status-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    /* 2. Top App Header */
+    .header-bar {
+      height: 52px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid #f1f5f9;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .header-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #1e293b;
+      border-radius: 50%;
+      transition: background-color 0.15s ease;
+    }
+
+    .header-btn:active {
+      opacity: 0.7;
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+      flex: 1;
+      text-align: center;
+      margin-right: 40px; /* Balance the left back arrow */
+    }
+
+    /* 3. Scrollable Content Body */
+    .scroll-body {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px 16px 80px 16px; /* 80px for bottom nav space */
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Common Card Styling */
+    .content-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      padding: 18px;
+    }
+
+    /* USER PROFILE CARD */
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .profile-top-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .avatar-circle {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #ededed;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .avatar-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .profile-name {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+    }
+
+    .profile-role {
+      font-size: 13.5px;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .profile-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .star-icon-orange {
+      color: #FF7900;
+      display: flex;
+      align-items: center;
+    }
+
+    .rating-num {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .rating-count {
+      color: #64748b;
+    }
+
+    /* 3-Column Stats Container */
+    .stats-container {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 14px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border: 1px solid #f1f5f9;
+    }
+
+    .stat-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      position: relative;
+    }
+
+    .stat-col:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: #e2e8f0;
+    }
+
+    .stat-val {
+      font-size: 20px;
+      font-weight: 800;
+      color: #FF7900;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 11.5px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* Location Row */
+    .location-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #475569;
+      padding-top: 2px;
+    }
+
+    .location-row svg {
+      color: #64748b;
+      flex-shrink: 0;
+    }
+
+    /* PROPIEDADES DE BROKER CARD */
+    .broker-props-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card-heading {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.2px;
+    }
+
+    .property-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .broker-prop-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 6px 0;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: background-color 0.12s ease, transform 0.12s ease;
+    }
+
+    .broker-prop-item:active {
+      transform: scale(0.985);
+      opacity: 0.85;
+    }
+
+    .prop-item-thumb {
+      width: 90px;
+      height: 90px;
+      border-radius: 14px;
+      background: #f1f5f9;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .prop-item-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .prop-item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .prop-item-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .prop-item-location {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .prop-item-specs {
+      font-size: 11.5px;
+      color: #64748b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .prop-item-type {
+      font-size: 12px;
+      font-weight: 700;
+      color: #FF7900;
+    }
+
+    .prop-item-price {
+      font-size: 16.5px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+      margin-top: 1px;
+    }
+
+    /* RESEÑAS CARD */
+    .reviews-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .reviews-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .reviews-header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .stars-outline-row {
+      display: flex;
+      gap: 2px;
+      color: #cbd5e1;
+    }
+
+    .reviews-count-subtitle {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* Botón Escribir Reseña */
+    .btn-write-review {
+      width: 100%;
+      height: 48px;
+      background: #FF7900;
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      font-size: 15.5px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(255, 121, 0, 0.35);
+      transition: background-color 0.15s ease, transform 0.12s ease;
+    }
+
+    .btn-write-review:active {
+      background: #e66d00;
+      transform: scale(0.985);
+    }
+
+    /* Empty State */
+    .empty-reviews-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 26px 12px 14px 12px;
+      text-align: center;
+    }
+
+    .empty-star-icon {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .empty-title {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    .empty-subtitle {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* 4. FIXED BOTTOM NAVIGATION BAR */
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #ffffff;
+      border-top: 1px solid #f1f3f5;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 4px 6px 4px;
+      z-index: 40;
+      user-select: none;
+    }
+
+    .nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      background: none;
+      border: none;
+      color: #6b7280;
+      cursor: pointer;
+      padding: 4px 0;
+      text-decoration: none;
+    }
+
+    .nav-item.active {
+      color: #FF7900;
+    }
+
+    .nav-item svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .nav-item span {
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    .nav-item.active span {
+      font-weight: 700;
+    }
+
+    /* Plus Circle Button */
+    .nav-plus-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-plus-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #FF7900;
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(255, 121, 0, 0.4);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .nav-plus-btn:active {
+      transform: scale(0.9);
+      background: #e66d00;
+    }
+
+    /* Android home indicator at bottom */
+    .android-indicator {
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 3px;
+      background: #cbd5e1;
+      border-radius: 9999px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE PHONE VIEWPORT -->
+  <div class="app-viewport">
+
+    <!-- 1. ANDROID STATUS BAR (1:09 | Wifi | 47%) -->
+    <div class="status-bar">
+      <!-- Left: 1:09 + icons -->
+      <div class="status-left">
+        <span>1:09</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="7" y1="12" x2="17" y2="12"></line>
+        </svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#1f2937">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </div>
+
+      <!-- Right: Wifi, Signal, Battery 47% -->
+      <div class="status-right">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+          <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
+        </svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+          <path d="M2 22h20V2z"/>
+        </svg>
+        <div style="display: flex; align-items: center; gap: 1px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+            <path d="M17 5v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span style="font-size: 11px; margin-left: -2px;">47</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. TOP HEADER BAR: Back Arrow + "Perfil de Usuario" -->
+    <header class="header-bar">
+      <button type="button" class="header-btn" onclick="handleBack()" title="Volver">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+      <h1 class="header-title">Perfil de Usuario</h1>
+    </header>
+
+    <!-- 3. SCROLLABLE CONTENT BODY -->
+    <div class="scroll-body no-scrollbar">
+
+      <!-- CARD 1: USER PROFILE HEADER -->
+      <div class="content-card profile-card">
+        
+        <!-- Top Row: Avatar + Name + Role + Star -->
+        <div class="profile-top-row">
+          <div class="avatar-circle">
+            <img src="assets/replica/agent-jessica.png" alt="Jessica Dueñas" onerror="this.style.display='none'">
+          </div>
+          <div class="profile-info">
+            <h2 class="profile-name">Jessica Dueñas</h2>
+            <div class="profile-role">Propietario</div>
+            <div class="profile-rating-row">
+              <span class="star-icon-orange">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#FF7900" stroke="#FF7900" stroke-width="1">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </span>
+              <span class="rating-num">0</span>
+              <span class="rating-count">(42 reseñas)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-Column Stats Container (2 Propiedades | 0 Calificación | 42 Reseñas) -->
+        <div class="stats-container">
+          <div class="stat-col">
+            <span class="stat-val">2</span>
+            <span class="stat-label">Propiedades</span>
+          </div>
+          <div class="stat-col">
+            <span class="stat-val">0</span>
+            <span class="stat-label">Calificación</span>
+          </div>
+          <div class="stat-col">
+            <span class="stat-val">42</span>
+            <span class="stat-label">Reseñas</span>
+          </div>
+        </div>
+
+        <!-- Location Row (Venezuela) -->
+        <div class="location-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Venezuela</span>
+        </div>
+
+      </div>
+
+      <!-- CARD 2: PROPIEDADES DE BROKER -->
+      <div class="content-card broker-props-card">
+        <h3 class="card-heading">Propiedades de broker</h3>
+
+        <div class="property-items-list">
+          
+          <!-- Item 1: Oficina en Venta Plaza Venezuela -->
+          <div class="broker-prop-item" onclick="window.location.href='propiedad.html'">
+            <div class="prop-item-thumb">
+              <img src="assets/replica/prop-plaza-venezuela-thumb.jpg" alt="Oficina en Venta en Plaza Venezuela">
+            </div>
+            <div class="prop-item-info">
+              <div class="prop-item-title">Oficina en Venta en Pla...</div>
+              <div class="prop-item-location">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Distrito Capital</span>
+              </div>
+              <div class="prop-item-specs">4 hab. • 2 baños • 10 est.</div>
+              <div class="prop-item-type">Oficina • Venta</div>
+              <div class="prop-item-price">$65,000</div>
+            </div>
+          </div>
+
+          <!-- Item 2: Oficina En Alquiler El R... -->
+          <div class="broker-prop-item" onclick="window.location.href='propiedad.html'">
+            <div class="prop-item-thumb">
+              <img src="assets/replica/prop-el-rosal.jpg" alt="Oficina En Alquiler El Rosal">
+            </div>
+            <div class="prop-item-info">
+              <div class="prop-item-title">Oficina En Alquiler El R...</div>
+              <div class="prop-item-location">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Miranda</span>
+              </div>
+              <div class="prop-item-specs">2 hab. • 4 baños • 10 est.</div>
+              <div class="prop-item-type">Oficina • Alquiler</div>
+              <div class="prop-item-price">$1,800</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CARD 3: RESEÑAS -->
+      <div class="content-card reviews-card">
+        <!-- Header -->
+        <div class="reviews-header-row">
+          <h3 class="card-heading">Reseñas</h3>
+          <div class="reviews-header-right">
+            <div class="stars-outline-row">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="reviews-count-subtitle">(0 reseñas)</span>
+          </div>
+        </div>
+
+        <!-- Botón Escribir Reseña -->
+        <button type="button" class="btn-write-review" onclick="openReviewModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span>Escribir Reseña</span>
+        </button>
+
+        <!-- Estado Vacío: No hay reseñas -->
+        <div class="empty-reviews-state">
+          <div class="empty-star-icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div class="empty-title">No hay reseñas</div>
+          <div class="empty-subtitle">Este usuario aún no tiene reseñas</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 4. FIXED BOTTOM NAVIGATION BAR -->
+    <nav class="bottom-nav">
+      <!-- 1. Home (Active) -->
+      <a href="index.html" class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Home</span>
+      </a>
+
+      <!-- 2. Explorar -->
+      <a href="explorar.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+        </svg>
+        <span>Explorar</span>
+      </a>
+
+      <!-- 3. Center Orange Plus -->
+      <div class="nav-plus-wrapper">
+        <button class="nav-plus-btn" title="Publicar propiedad" onclick="handlePlusClick()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 4. Favoritos -->
+      <a href="favoritos.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        <span>Favoritos</span>
+      </a>
+
+      <!-- 5. Cuenta -->
+      <a href="cuenta.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>Cuenta</span>
+      </a>
+
+      <!-- Android bar indicator -->
+      <div class="android-indicator"></div>
+    </nav>
+
+  </div>
+
+  <script>
+    function handleBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'propiedad.html';
+      }
+    }
+
+    function openReviewModal() {
+      alert('Función para escribir reseña a Jessica Dueñas');
+    }
+
+    function handlePlusClick() {
+      const session = localStorage.getItem('enkapta_session');
+      if (session === 'roger') {
+        window.location.href = 'planes.html';
+      } else {
+        window.location.href = 'cuenta.html';
+      }
+    }
+
+    // Support instant scroll for visual verification via ?scroll=down
+    if (new URLSearchParams(window.location.search).get('scroll') === 'down') {
+      const body = document.querySelector('.scroll-body');
+      if (body) body.scrollTop = 9999;
+    }
+  </script>
+
+</body>
+</html>

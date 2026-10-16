@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Enkapta App · Favoritos</title>
+  
+  <link rel="icon" type="image/png" href="assets/replica/logo-enkapta.png">
+
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif;
+      color: #111827;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    input {
+      user-select: auto;
+    }
+
+    /* Scrollbars hide */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Responsive Shell: 390px on Desktop, 100% on Mobile */
+    body {
+      background-color: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .app-viewport {
+      width: 390px;
+      height: 844px;
+      max-width: 100%;
+      max-height: 96vh;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      border-radius: 42px;
+      border: 8px solid #1e293b;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      min-width: 0;
+    }
+
+    @media (max-width: 449px) {
+      body {
+        background-color: #ffffff;
+        display: block;
+      }
+      .app-viewport {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+      }
+    }
+
+    /* 1. Android Status Bar (11:46 | Wifi | 23%) */
+    .status-bar {
+      height: 32px;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1f2937;
+      flex-shrink: 0;
+      z-index: 40;
+    }
+
+    .status-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #374151;
+    }
+
+    /* 2. Top App Header */
+    .app-header {
+      height: 52px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .back-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: #1f2937;
+      cursor: pointer;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .search-pill {
+      flex: 1;
+      height: 38px;
+      background: #f1f3f5;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .search-icon {
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 13.5px;
+      color: #111827;
+      min-width: 0;
+    }
+
+    .search-input::placeholder {
+      color: #88909d;
+    }
+
+    .header-bell-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: #111827;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* 3. Subheader: 0 Favoritos + Switcher */
+    .results-bar {
+      height: 48px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      z-index: 20;
+    }
+
+    .results-count {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+    }
+
+    .view-switcher {
+      display: flex;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .view-mode-btn {
+      width: 32px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      border-radius: 6px;
+      color: #64748b;
+      cursor: pointer;
+    }
+
+    .view-mode-btn.active {
+      background: #ffffff;
+      color: #FF7900;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border: 1px solid #fed7aa;
+    }
+
+    /* 4. Empty State Content */
+    .app-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: #ffffff;
+      padding: 20px 24px 84px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .empty-heart-icon {
+      width: 68px;
+      height: 68px;
+      color: #cbd5e1;
+      margin-bottom: 24px;
+    }
+
+    .empty-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #1e293b;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+
+    .empty-description {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #64748b;
+      max-width: 290px;
+      margin-bottom: 28px;
+    }
+
+    .cta-btn {
+      background-color: #FF7900;
+      color: #ffffff;
+      font-size: 14.5px;
+      font-weight: 700;
+      padding: 13px 28px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(255, 121, 0, 0.35);
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      display: inline-block;
+    }
+
+    .cta-btn:active {
+      background-color: #e66d00;
+      transform: scale(0.96);
+    }
+
+    /* 5. Bottom Navigation Bar */
+    .bottom-nav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 64px;
+      background: #ffffff;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 4px 6px 4px;
+      z-index: 50;
+      user-select: none;
+    }
+
+    .nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      background: none;
+      border: none;
+      color: #6b7280;
+      cursor: pointer;
+      padding: 4px 0;
+      text-decoration: none;
+    }
+
+    .nav-item.active {
+      color: #FF7900;
+    }
+
+    .nav-item svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .nav-item span {
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+
+    .nav-item.active span {
+      font-weight: 700;
+    }
+
+    .nav-plus-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-plus-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #FF7900;
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(255, 121, 0, 0.4);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .nav-plus-btn:active {
+      transform: scale(0.9);
+      background: #e66d00;
+    }
+
+    .android-indicator {
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 3px;
+      background: #cbd5e1;
+      border-radius: 9999px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE PHONE VIEWPORT -->
+  <div class="app-viewport">
+
+    <!-- 1. ANDROID STATUS BAR (11:46 | Wifi | 23%) -->
+    <div class="status-bar">
+      <!-- Left: 11:46 + scanner + share -->
+      <div class="status-left">
+        <span>11:46</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="7" y1="12" x2="17" y2="12"></line>
+        </svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#4b5563">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </div>
+
+      <!-- Right: Location, Wifi, Signal, Battery 23% -->
+      <div class="status-right">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#4b5563">
+          <circle cx="12" cy="12" r="8"/>
+        </svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#4b5563">
+          <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
+        </svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#4b5563">
+          <path d="M2 22h20V2z"/>
+        </svg>
+        <div style="display: flex; align-items: center; gap: 1px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#4b5563">
+            <path d="M17 5v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span style="font-size: 11px; margin-left: -2px;">23</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. TOP HEADER: BACK ARROW + BUSCAR EN FAVORITOS + CAMPANA -->
+    <header class="app-header">
+      <a href="index.html" class="back-btn" title="Volver al Home">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </a>
+
+      <div class="search-pill">
+        <div class="search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </div>
+        <input type="text" class="search-input" placeholder="Buscar en favoritos" aria-label="Buscar en favoritos">
+      </div>
+
+      <button class="header-bell-btn" title="Notificaciones">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- 3. SUBHEADER: 0 FAVORITOS + SWITCHER -->
+    <div class="results-bar">
+      <span class="results-count">0 Favoritos</span>
+
+      <div class="view-switcher">
+        <!-- 1. Large Card (Active) -->
+        <button class="view-mode-btn active" title="Tarjeta grande">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+          </svg>
+        </button>
+
+        <!-- 2. Grid 2x2 -->
+        <button class="view-mode-btn" title="Cuadrícula">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+        </button>
+
+        <!-- 3. List -->
+        <button class="view-mode-btn" title="Lista">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 4. EMPTY STATE BODY -->
+    <main class="app-content no-scrollbar">
+      
+      <!-- Big hollow heart -->
+      <svg class="empty-heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+
+      <!-- Title -->
+      <h1 class="empty-title">Tus favoritos viven en tu cuenta</h1>
+
+      <!-- Subtitle -->
+      <p class="empty-description">
+        Creá una cuenta o iniciá sesión para guardar propiedades y encontrarlas desde cualquier teléfono.
+      </p>
+
+      <!-- CTA Button to Login -->
+      <a href="cuenta.html" class="cta-btn">
+        Crear cuenta o entrar
+      </a>
+
+    </main>
+
+    <!-- 5. BOTTOM NAVIGATION BAR (Favoritos active) -->
+    <nav class="bottom-nav">
+      <!-- 1. Home -->
+      <a href="index.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        <span>Home</span>
+      </a>
+
+      <!-- 2. Explorar -->
+      <a href="explorar.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+        </svg>
+        <span>Explorar</span>
+      </a>
+
+      <!-- 3. Botón Central [+] -->
+      <div class="nav-plus-wrapper">
+        <button class="nav-plus-btn" title="Publicar" onclick="handlePlusClick()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 4. Favoritos (ACTIVE) -->
+      <a href="favoritos.html" class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        <span>Favoritos</span>
+      </a>
+
+      <!-- 5. Cuenta -->
+      <a href="cuenta.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>Cuenta</span>
+      </a>
+
+      <!-- Android bar indicator -->
+      <div class="android-indicator"></div>
+    </nav>
+
+  </div>
+
+  <script>
+    function handlePlusClick() {
+      const session = localStorage.getItem('enkapta_session');
+      if (session === 'roger') {
+        window.location.href = 'planes.html';
+      } else {
+        window.location.href = 'cuenta.html';
+      }
+    }
+  </script>
+
+</body>
+</html>
