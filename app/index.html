@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Enkapta App</title>
   
   <link rel="icon" type="image/png" href="assets/replica/logo-enkapta.png">
@@ -31,13 +34,29 @@
       user-select: auto;
     }
 
-    /* Scrollbars hide */
+    /* Hide scrollbars completely on all browsers, iOS Safari and Android */
+    *::-webkit-scrollbar,
+    *::-webkit-scrollbar-thumb,
+    *::-webkit-scrollbar-track,
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar,
+    .app-viewport::-webkit-scrollbar,
+    .scroll-body::-webkit-scrollbar,
     .no-scrollbar::-webkit-scrollbar {
-      display: none;
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+      -webkit-appearance: none !important;
     }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+
+    html, body {
+      overscroll-behavior-y: contain;
     }
 
     /* Layout: Fixed 390px mobile container on desktop, 100% on actual mobile devices */
@@ -110,217 +129,238 @@
       color: #374151;
     }
 
-    /* 2. TOP MODERN HEADER (Perfil con Nombre a la izquierda, Campana a la derecha) */
-    .top-modern-header {
+    /* 2. TOP MODERN BAR (Diseño Referencia con Colores Enkapta) */
+    .top-nav-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 18px 10px 18px;
+      padding: 12px 18px 8px 18px;
       background: #ffffff;
       position: relative;
       z-index: 30;
     }
 
-    /* Perfil de Usuario + Nombre */
-    .header-user-profile {
+    .top-location-wrap {
       display: flex;
       align-items: center;
-      gap: 11px;
-      text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-      cursor: pointer;
-      transition: opacity 0.15s ease;
-      min-width: 0;
+      gap: 9px;
     }
 
-    .header-user-profile:active {
-      opacity: 0.75;
-    }
-
-    .header-avatar-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #f8fafc;
-      border: 1.5px solid #e2e8f0;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      overflow: hidden;
+    .top-location-icon {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.12s ease;
     }
 
-    .header-avatar-circle img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .top-location-icon:active {
+      transform: scale(0.92);
+    }
+
+    .top-brand-house-icon {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
       display: block;
+      border-radius: 9px;
     }
 
-    .header-user-details {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 2px;
-      min-width: 0;
-    }
-
-    .header-user-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: #0f172a;
-      letter-spacing: -0.2px;
-      line-height: 1.15;
-      white-space: nowrap;
-    }
-
-    .header-user-role {
-      font-size: 11.5px;
+    .top-location-pill {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 7px 15px;
+      border-radius: 9999px;
+      font-size: 13px;
       font-weight: 600;
-      color: #64748b;
-      letter-spacing: 0.2px;
-      line-height: 1.15;
-      white-space: nowrap;
+      letter-spacing: -0.2px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid #1e293b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 0.12s ease, opacity 0.15s ease;
     }
 
-    /* Clean Bell Button (Sin círculo, solo la campana limpia con su punto rojo) */
-    .header-bell-btn {
-      width: 40px;
-      height: 40px;
+    .location-dot-orange {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #FF7900;
+      flex-shrink: 0;
+    }
+
+    .top-location-pill:active {
+      transform: scale(0.96);
+      opacity: 0.85;
+    }
+
+    .top-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Campana limpia sin círculo */
+    .action-bell-circle {
+      width: 36px;
+      height: 36px;
       background: transparent;
       border: none;
       box-shadow: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #1e293b;
       cursor: pointer;
       position: relative;
-      flex-shrink: 0;
-      -webkit-tap-highlight-color: transparent;
+      color: #0f172a;
       transition: transform 0.12s ease, opacity 0.15s ease;
       padding: 0;
     }
 
-    .header-bell-btn:active {
+    .action-bell-circle:active {
       transform: scale(0.9);
       opacity: 0.7;
     }
 
-    .bell-badge-dot {
+    .bell-orange-dot {
       position: absolute;
-      top: 6px;
-      right: 7px;
-      width: 8px;
-      height: 8px;
-      background-color: #ef4444; /* Punto rojo */
+      top: 4px;
+      right: 5px;
+      width: 7.5px;
+      height: 7.5px;
+      background-color: #FF7900;
       border: 1.5px solid #ffffff;
       border-radius: 50%;
+      box-shadow: none;
     }
 
-    /* MAPA PROTAGONISTA (Más amplio, bordes más cuadrados y sin coordenadas) */
-    .map-hero-wrapper {
-      padding: 0;
-      position: relative;
-    }
-
-    .map-hero-card {
-      width: 100%;
-      height: 275px;
-      border-radius: 0 0 12px 12px;
+    .action-avatar-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #fff7ed;
+      border: 2px solid #FF7900;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       overflow: hidden;
-      position: relative;
-      background: #f1f5f9;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: transform 0.12s ease;
     }
 
-    .map-hero-img {
+    .action-avatar-circle:active {
+      transform: scale(0.92);
+    }
+
+    .action-avatar-circle img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center bottom;
       display: block;
     }
 
-    /* FLOATING SEARCH BAR (Flotando sobre el borde inferior del mapa con botón IA) */
-    .floating-search-wrapper {
-      position: relative;
-      z-index: 20;
-      padding: 0 16px;
-      margin-top: -12px; /* Bajado un poco para despejar más el mapa */
-      margin-bottom: 14px;
+    /* 3. HERO HEADLINE */
+    .hero-headline-section {
+      padding: 14px 18px 14px 18px;
     }
 
-    .floating-search-pill {
-      height: 58px;
-      background: #ffffff;
+    .hero-headline {
+      font-size: clamp(27px, 7.4vw, 30.5px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: #0f172a;
+      letter-spacing: -0.6px;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .hero-headline-orange {
+      color: #FF7900;
+    }
+
+    /* 4. HERO SEARCH PILL CON BOTÓN IA */
+    .hero-search-section {
+      padding: 0 18px 16px 18px;
+    }
+
+    .hero-search-pill {
+      height: 56px;
+      background: #f8fafc;
       border-radius: 9999px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(0, 0, 0, 0.04);
       display: flex;
       align-items: center;
-      padding: 5px 7px 5px 18px;
+      padding: 4px 6px 4px 16px;
       gap: 10px;
-      transition: box-shadow 0.2s ease, transform 0.15s ease;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
     }
 
-    .floating-search-pill:focus-within {
-      box-shadow: 0 12px 35px rgba(255, 121, 0, 0.2), 0 0 0 1.5px #FF7900;
+    .hero-search-pill:focus-within {
+      background: #ffffff;
+      border-color: #FF7900;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     }
 
-    .search-glass-icon {
+    .hero-search-icon {
+      display: flex;
+      align-items: center;
       color: #64748b;
       flex-shrink: 0;
-      display: flex;
-      align-items: center;
     }
 
-    .floating-input {
+    .hero-search-input {
       flex: 1;
-      border: none;
       background: transparent;
+      border: none;
       outline: none;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 500;
       color: #0f172a;
       min-width: 0;
     }
 
-    .floating-input::placeholder {
+    .hero-search-input::placeholder {
       color: #94a3b8;
+      font-weight: 400;
     }
 
-    .search-action-btns {
+    .hero-search-actions {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       flex-shrink: 0;
     }
 
-    /* Filter button inside search */
-    .search-filter-icon-btn {
-      width: 38px;
-      height: 38px;
+    .hero-filter-btn {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: #f8fafc;
+      background: #f1f5f9;
       border: none;
-      color: #475569;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: background-color 0.15s ease;
+      color: #475569;
+      transition: all 0.15s ease;
     }
 
-    .search-filter-icon-btn:active {
+    .hero-filter-btn:active {
       background: #e2e8f0;
+      transform: scale(0.92);
     }
 
-    /* IA CIRCULAR ORANGE BUTTON (Replaces microphone) */
+    /* BOTÓN CIRCULAR NARANJA IA (Limpio, nítido y sin halo fosforescente) */
     .search-ia-btn {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: #FF7900;
       color: #ffffff;
@@ -328,18 +368,81 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14.5px;
+      font-size: 13.5px;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255, 121, 0, 0.45);
+      box-shadow: none;
       transition: transform 0.12s ease, background-color 0.15s ease;
       letter-spacing: 0.5px;
+      flex-shrink: 0;
     }
 
     .search-ia-btn:active {
       transform: scale(0.92);
       background: #e66d00;
     }
+
+
+    /* MAPA SECTION DEBAJO DE DATA PARTNERS */
+    .map-explore-section {
+      padding: 16px 16px 8px 16px;
+    }
+
+    .map-explore-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .map-explore-card {
+      width: 100%;
+      height: 210px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: #f1f5f9;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+      transition: transform 0.15s ease;
+    }
+
+    .map-explore-card:active {
+      transform: scale(0.98);
+    }
+
+    .map-explore-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .map-explore-overlay {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .map-explore-badge {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
 
     /* Side Drawer Menu */
     .drawer-backdrop {
@@ -452,7 +555,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       background: #ffffff;
-      padding-bottom: 74px; /* Space for bottom nav */
+      padding-bottom: 96px; /* Space for floating bottom nav */
       -webkit-overflow-scrolling: touch;
     }
 
@@ -700,7 +803,7 @@
       padding: 4px 11px;
       border-radius: 9999px;
       letter-spacing: 0.2px;
-      box-shadow: 0 2px 6px rgba(255, 121, 0, 0.35);
+      box-shadow: none;
     }
 
     .card-badge-type {
@@ -903,19 +1006,57 @@
       flex-shrink: 0;
     }
 
-    /* Data Partners */
+    /* Data Partners Marquee (Estilo Web) */
     .partners-section {
-      padding: 18px 14px 6px 14px;
+      padding: 16px 14px 10px 14px;
+      overflow: hidden;
     }
 
-    .partners-row {
+    .partners-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .partners-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .partners-marquee-wrap {
+      width: 100%;
+      overflow: hidden;
+      padding: 6px 0;
+    }
+
+    .marquee-mask {
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    @keyframes marqueeScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .partners-marquee-track {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      padding: 12px 0 4px 0;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      width: max-content;
+      animation: marqueeScroll 22s linear infinite;
+    }
+
+    .partners-marquee-track:hover,
+    .partners-marquee-track:active {
+      animation-play-state: paused;
     }
 
     .partner-logo-item {
@@ -923,12 +1064,126 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 0 16px;
     }
 
     .partner-logo-item img {
-      height: 42px;
+      height: 36px;
       width: auto;
       object-fit: contain;
+      filter: grayscale(1);
+      opacity: 0.85;
+      transition: all 0.25s ease;
+    }
+
+    .partner-svg-logo {
+      height: 28px;
+      width: auto;
+      filter: grayscale(1);
+      opacity: 0.85;
+      transition: all 0.25s ease;
+    }
+
+    .partner-logo-item:hover img,
+    .partner-logo-item:hover .partner-svg-logo,
+    .partner-logo-item:active img,
+    .partner-logo-item:active .partner-svg-logo {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+
+    /* Professionals Directory Card (Debajo de Aliados de Datos) */
+    .professionals-section {
+      padding: 10px 14px 16px 14px;
+    }
+
+    .pro-card {
+      background: #ffffff;
+      border: 1px solid #eef2f6;
+      border-radius: 20px;
+      padding: 22px 18px 20px 18px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pro-card-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.4px;
+      margin: 0 0 8px 0;
+      line-height: 1.25;
+    }
+
+    .pro-card-subtitle {
+      font-size: 13.5px;
+      color: #64748b;
+      line-height: 1.45;
+      margin: 0 0 18px 0;
+    }
+
+    .pro-tags-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .pro-tag-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 16px;
+      border-radius: 9999px;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      color: #1e293b;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .pro-tag-pill:hover,
+    .pro-tag-pill:active {
+      border-color: #FF7900;
+      color: #FF7900;
+      background: #fff8f1;
+      transform: translateY(-1px);
+    }
+
+    .pro-card-btn {
+      width: 100%;
+      height: 48px;
+      border-radius: 12px;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      color: #0f172a;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .pro-card-btn:hover {
+      border-color: #FF7900;
+      color: #FF7900;
+      background: #fff8f1;
+    }
+
+    .pro-card-btn:active {
+      transform: scale(0.98);
+      background: #fff4ea;
     }
 
     /* Favoritos */
@@ -960,35 +1215,44 @@
       text-align: center;
     }
 
-    /* 4. Bottom Navigation Bar */
+    /* 4. Bottom Navigation Bar (Floating Island Design) */
     .bottom-nav {
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 64px;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      height: 66px;
       background: #ffffff;
-      border-top: 1px solid #e5e7eb;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 9999px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
       display: flex;
       align-items: center;
       justify-content: space-around;
-      padding: 0 4px 6px 4px;
+      padding: 0 8px;
       z-index: 50;
       user-select: none;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .nav-item {
+      position: relative;
       flex: 1;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      justify-content: center;
+      gap: 3px;
       background: none;
       border: none;
-      color: #6b7280;
+      color: #64748b;
       cursor: pointer;
-      padding: 4px 0;
+      padding: 0;
       text-decoration: none;
+      transition: color 0.18s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .nav-item.active {
@@ -996,30 +1260,38 @@
     }
 
     .nav-item svg {
-      width: 21px;
-      height: 21px;
+      width: 22px;
+      height: 22px;
+      transition: transform 0.15s ease;
+    }
+
+    .nav-item:active svg {
+      transform: scale(0.92);
     }
 
     .nav-item span {
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 600;
+      letter-spacing: -0.2px;
     }
 
     .nav-item.active span {
       font-weight: 700;
+      color: #FF7900;
     }
 
     /* Plus Circle Button */
     .nav-plus-wrapper {
       flex: 1;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .nav-plus-btn {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: #FF7900;
       color: #ffffff;
@@ -1028,26 +1300,19 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 3px 8px rgba(255, 121, 0, 0.4);
+      box-shadow: none;
       transition: transform 0.15s ease, background-color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .nav-plus-btn:active {
-      transform: scale(0.9);
+      transform: scale(0.92);
       background: #e66d00;
     }
 
     /* Home indicator at bottom */
     .android-indicator {
-      position: absolute;
-      bottom: 2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90px;
-      height: 3px;
-      background: #cbd5e1;
-      border-radius: 9999px;
-      pointer-events: none;
+      display: none !important;
     }
 
     /* Filter Bottom Sheet Modal */
@@ -1132,6 +1397,11 @@
       color: #0f172a;
     }
 
+    .filter-dropdown-wrap {
+      position: relative;
+      width: 100%;
+    }
+
     .filter-dropdown {
       height: 48px;
       background: #f3f4f6;
@@ -1143,10 +1413,33 @@
       font-size: 14px;
       color: #6b7280;
       cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .filter-dropdown.selected {
+      color: #0f172a;
+      font-weight: 600;
     }
 
     .filter-dropdown.disabled {
       color: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    .filter-hidden-select {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 2;
+      font-size: 16px;
+    }
+
+    .filter-hidden-select:disabled {
+      cursor: not-allowed;
     }
 
     .range-display {
@@ -1212,6 +1505,137 @@
       font-weight: 700;
     }
 
+    /* SEGMENTED SLIDING SWITCH (Comprar / Alquilar) */
+    .filter-segmented-wrap {
+      margin-top: 4px;
+      margin-bottom: 2px;
+      flex-shrink: 0;
+    }
+
+    .filter-segmented-control {
+      position: relative;
+      display: flex;
+      height: 48px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 9999px;
+      padding: 4px;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    .segmented-glider {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 4px;
+      width: calc(50% - 4px);
+      background: #FF7900;
+      border-radius: 9999px;
+      box-shadow: none;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1;
+    }
+
+    .filter-segmented-control.rent-active .segmented-glider {
+      transform: translateX(100%);
+    }
+
+    .segmented-btn {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      height: 100%;
+      border: none;
+      background: transparent;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #4b5563;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      transition: color 0.2s ease;
+      font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .segmented-btn.active {
+      color: #ffffff;
+    }
+
+    /* Filter Section Header (Label + Value) */
+    .filter-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Counter Selector Row (Habitaciones & Baños) */
+    .counter-selector-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 2px;
+    }
+
+    .counter-icon-box {
+      width: 28px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .counter-icon-box svg {
+      stroke: #334155;
+    }
+
+    .counter-track {
+      flex: 1;
+      height: 44px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 9999px;
+      padding: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    .counter-btn {
+      flex: 1;
+      height: 100%;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 700;
+      color: #4b5563;
+      border-radius: 9999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.18s ease;
+      font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .counter-btn:hover {
+      color: #0f172a;
+    }
+
+    .counter-btn.active {
+      background: #FF7900;
+      color: #ffffff;
+      box-shadow: none;
+      font-weight: 800;
+    }
+
     .filter-footer {
       padding: 12px 20px 8px 20px;
       display: flex;
@@ -1240,6 +1664,395 @@
     .btn-clear-filter:active, .btn-apply-filter:active {
       background: #e66d00;
       transform: scale(0.98);
+    }
+
+    /* ========================================================
+       ENKI IA ASSISTANT BOTTOM SHEET MODAL (1:1 Design)
+       ======================================================== */
+    .enki-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 105;
+      display: none;
+      align-items: flex-end;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .enki-backdrop.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .enki-sheet {
+      width: 100%;
+      height: 87%;
+      max-height: 87%;
+      background: #ffffff;
+      border-radius: 28px 28px 0 0;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .enki-backdrop.active .enki-sheet {
+      transform: translateY(0);
+    }
+
+    /* Header */
+    .enki-header {
+      padding: 16px 20px 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
+      flex-shrink: 0;
+      background: #ffffff;
+    }
+
+    .enki-header-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .enki-avatar-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ffedd5;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .enki-avatar-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .enki-header-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .enki-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .enki-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1a365d;
+      letter-spacing: -0.4px;
+      line-height: 1.2;
+    }
+
+    .enki-online-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      display: inline-block;
+    }
+
+    .enki-subtitle {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+      margin-top: 1px;
+    }
+
+    .enki-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .enki-action-btn {
+      background: none;
+      border: none;
+      padding: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a365d;
+      border-radius: 50%;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .enki-action-btn:active {
+      background-color: #f1f5f9;
+      transform: scale(0.92);
+    }
+
+    /* Scrollable Body */
+    .enki-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px 13px 16px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Hero Welcome Section */
+    .enki-hero-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 3px;
+    }
+
+    .enki-hero-avatar-wrap {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #fff4ea;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .enki-hero-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .enki-welcome-bubble {
+      flex: 1;
+      background: #eff6ff;
+      border-radius: 20px;
+      padding: 15px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .enki-welcome-title {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #1e3a8a;
+      margin: 0;
+      letter-spacing: -0.2px;
+    }
+
+    .enki-welcome-text {
+      font-size: 13px;
+      color: #334155;
+      line-height: 1.45;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* Suggestions Grid */
+    .enki-suggestions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .enki-suggestion-card {
+      background: #fff8f4;
+      border: 1px solid rgba(255, 121, 0, 0.12);
+      border-radius: 14px;
+      padding: 9px 5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      min-width: 0;
+    }
+
+    .enki-suggestion-card:active {
+      transform: scale(0.96);
+      background-color: #ffedd5;
+    }
+
+    .enki-suggestion-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .enki-suggestion-text {
+      flex: 1;
+      font-size: 10px;
+      font-weight: 700;
+      color: #1e3a8a;
+      line-height: 1.2;
+      letter-spacing: -0.2px;
+      white-space: normal;
+    }
+
+    .enki-suggestion-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ff6b00;
+      flex-shrink: 0;
+    }
+
+    /* Chat Messages Stream */
+    .enki-chat-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .enki-msg {
+      display: flex;
+      gap: 8px;
+      max-width: 88%;
+      animation: enkiMsgFade 0.25s ease-out;
+    }
+
+    @keyframes enkiMsgFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .enki-msg.user {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .enki-msg.assistant {
+      align-self: flex-start;
+    }
+
+    .enki-msg-mini-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .enki-msg-bubble {
+      padding: 11px 14px;
+      border-radius: 16px;
+      font-size: 13.5px;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .enki-msg.user .enki-msg-bubble {
+      background: #ff6600;
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .enki-msg.assistant .enki-msg-bubble {
+      background: #eff6ff;
+      color: #1e3a8a;
+      border-bottom-left-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* Typing Dots */
+    .enki-typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 14px;
+      background: #eff6ff;
+      border-radius: 16px;
+      width: fit-content;
+      border-bottom-left-radius: 4px;
+    }
+
+    .enki-typing-dot {
+      width: 6px;
+      height: 6px;
+      background: #1e3a8a;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: enkiDotPulse 1.2s infinite ease-in-out;
+    }
+
+    .enki-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .enki-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes enkiDotPulse {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-4px); }
+    }
+
+    /* Input Bar */
+    .enki-input-bar {
+      padding: 12px 16px 16px 16px;
+      background: #ffffff;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .enki-input-field {
+      flex: 1;
+      height: 48px;
+      background: #eff6ff;
+      border: none;
+      border-radius: 9999px;
+      padding: 0 20px;
+      font-size: 14px;
+      color: #1e293b;
+      font-family: inherit;
+      outline: none;
+      transition: background-color 0.15s ease;
+    }
+
+    .enki-input-field::placeholder {
+      color: #94a3b8;
+    }
+
+    .enki-input-field:focus {
+      background: #e2eefd;
+    }
+
+    .enki-send-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ff6600;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.1s ease, background-color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: none;
+    }
+
+    .enki-send-btn:active {
+      transform: scale(0.95);
+      background: #e65c00;
     }
   </style>
 </head>
@@ -1285,52 +2098,57 @@
     <!-- 2. CONTENIDO PRINCIPAL CON SCROLL VERTICAL -->
     <main class="app-content no-scrollbar">
 
-      <!-- 2. TOP MODERN HEADER (Perfil con Nombre a la izquierda, Campana a la derecha) -->
-      <header class="top-modern-header">
-        <!-- Perfil de Usuario con Nombre y Rol (Izquierda -> cuenta.html) -->
-        <a href="cuenta.html" class="header-user-profile" title="Mi Cuenta">
-          <div class="header-avatar-circle">
-            <img src="assets/replica/user_avatar_clean.png" alt="Roger Quijada">
+      <!-- 2. NUEVO TOP BAR CON COLORES ENKAPTA -->
+      <header class="top-nav-bar">
+        <!-- Left: Logo Enkapta + Pastilla de Ubicación -->
+        <div class="top-location-wrap">
+          <a href="index.html" class="top-location-icon" title="Enkapta">
+            <img src="assets/enkapta-logo1.png" alt="Enkapta" class="top-brand-house-icon">
+          </a>
+          <div class="top-location-pill" onclick="openFilterModal()" title="Seleccionar ubicación">
+            <span class="location-dot-orange"></span>
+            <span>Lechería, Anzoátegui</span>
           </div>
-          <div class="header-user-details">
-            <span class="header-user-name">Roger Quijada</span>
-            <span class="header-user-role">VISITANTE</span>
-          </div>
-        </a>
+        </div>
 
-        <!-- Campana de Notificaciones (Solo la campana, sin círculo) -->
-        <button type="button" class="header-bell-btn" onclick="openNotifications()" title="Notificaciones">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-          </svg>
-          <span class="bell-badge-dot"></span>
-        </button>
+        <!-- Right: Notification Bell (con punto naranja Enkapta) + Avatar con borde naranja -->
+        <div class="top-actions-right">
+          <button type="button" class="action-bell-circle" onclick="openNotifications()" title="Notificaciones">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="bell-orange-dot"></span>
+          </button>
+          
+          <a href="cuenta.html" class="action-avatar-circle" title="Mi Cuenta">
+            <img src="assets/replica/user_avatar_clean.png" alt="Roger Quijada">
+          </a>
+        </div>
       </header>
 
-      <!-- A. MAPA PROTAGONISTA (100% visible, amplio y con pin) -->
-      <section class="map-hero-wrapper">
-        <div class="map-hero-card" onclick="window.location.href='propiedad.html'" title="Ver propiedad en el mapa">
-          <img src="assets/replica/map-barcelona.png" alt="Mapa Barcelona, Anzoátegui" class="map-hero-img">
-        </div>
+      <!-- 3. TITULAR PRINCIPAL: ENCUENTRA TU ESPACIO IDEAL -->
+      <section class="hero-headline-section">
+        <h1 class="hero-headline">
+          Encuentra tu <span class="hero-headline-orange">espacio ideal</span>
+        </h1>
       </section>
 
-      <!-- 3. FLOATING SEARCH BAR (Flotando sobre la curva del mapa con botón IA) -->
-      <div class="floating-search-wrapper">
-        <div class="floating-search-pill">
-          <div class="search-glass-icon">
+      <!-- 4. BUSCADOR REDONDEADO CON FILTRO Y BOTÓN IA ENKAPTA -->
+      <div class="hero-search-section">
+        <div class="hero-search-pill">
+          <div class="hero-search-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.3-4.3"></path>
             </svg>
           </div>
+          <input type="text" class="hero-search-input" placeholder="Buscar zona, ciudad..." id="appSearchInput" aria-label="Buscar propiedades">
           
-          <input type="text" class="floating-input" placeholder="¿Dónde quieres vivir?" aria-label="Buscar propiedades">
-          
-          <div class="search-action-btns">
-            <!-- Filtro Sliders Button -->
-            <button type="button" class="search-filter-icon-btn" onclick="openFilterModal()" title="Filtros">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <div class="hero-search-actions">
+            <!-- Botón Filtros / Sliders -->
+            <button type="button" class="hero-filter-btn" onclick="openFilterModal()" title="Filtros">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="4" y1="21" x2="4" y2="14"></line>
                 <line x1="4" y1="10" x2="4" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="12"></line>
@@ -1343,7 +2161,7 @@
               </svg>
             </button>
 
-            <!-- Botón Circular Naranja IA (Reemplaza micrófono) -->
+            <!-- Botón Circular Naranja IA de Enkapta -->
             <button type="button" class="search-ia-btn" onclick="openIAModal()" title="Enkapta IA">
               IA
             </button>
@@ -1840,34 +2658,136 @@
         </div>
       </section>
 
-      <!-- D. SECCIÓN "DATA PARTNERS" -->
-      <section class="partners-section">
-        <h2 class="section-title">Data Partners</h2>
-
-        <div class="partners-row no-scrollbar">
-          <!-- Projects Group -->
-          <div class="partner-logo-item">
-            <img src="assets/replica/partner-projects.png" alt="Projects Group">
-          </div>
-
-          <!-- Total Technology -->
-          <div class="partner-logo-item">
-            <img src="assets/replica/partner-total.png" alt="Total Technology">
-          </div>
-
-          <!-- Ávila 1010 -->
-          <div class="partner-logo-item">
-            <img src="assets/replica/partner-avila.png" alt="Ávila 1010">
-          </div>
-
-          <!-- RE/MAX Dominio -->
-          <div class="partner-logo-item">
-            <img src="assets/replica/partner-remax.png" alt="RE/MAX Dominio">
+      <!-- D. SECCIÓN "EXPLORA EN EL MAPA" (Ubicada por encima de Data Partners) -->
+      <section class="map-explore-section">
+        <div class="map-explore-header">
+          <h2 class="section-title">Explora en el Mapa</h2>
+          <a href="propiedad.html" class="view-all-link">
+            <span>Ver mapa</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="map-explore-card" onclick="window.location.href='propiedad.html'" title="Explorar propiedades en el mapa">
+          <img src="assets/replica/map-barcelona.png" alt="Mapa de Propiedades" class="map-explore-img">
+          <div class="map-explore-overlay">
+            <div class="map-explore-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF7900" stroke="#ffffff" stroke-width="1.5">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>+180 propiedades en Anzoátegui</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- E. SECCIÓN "FAVORITOS" -->
+      <!-- E. SECCIÓN "ALIADOS" (Marquee continuo estilo web) -->
+      <section class="partners-section">
+        <h2 class="section-title">Aliados</h2>
+
+        <div class="partners-marquee-wrap marquee-mask">
+          <div class="partners-marquee-track">
+            
+            <!-- SET 1 -->
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-duenas.png" alt="Dueñas Real Estate">
+            </div>
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-projects.png" alt="Projects Group">
+            </div>
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-total.png" alt="Total Technology">
+            </div>
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-avila.png" alt="Ávila 1010">
+            </div>
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-remax.png" alt="RE/MAX Dominio">
+            </div>
+            <div class="partner-logo-item">
+              <svg class="partner-svg-logo" viewBox="0 0 210 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 36L22 8L34 36H26.5L22 25L17.5 36H10Z" fill="#1e293b"/>
+                <path d="M22 17L27 28H17L22 17Z" fill="#475569"/>
+                <rect x="13" y="38" width="18" height="2.5" rx="1.25" fill="#1e293b"/>
+                <text x="44" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="900" fill="#0f172a" letter-spacing="1">CAPITAL</text>
+                <text x="44" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="2.5">INMOBILIARIA</text>
+              </svg>
+            </div>
+            <div class="partner-logo-item">
+              <svg class="partner-svg-logo" viewBox="0 0 190 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 8L36 16V32L22 40L8 32V16L22 8Z" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M22 17L29 21V29L22 33L15 29V21L22 17Z" fill="#334155"/>
+                <circle cx="22" cy="25" r="2.5" fill="#f8fafc"/>
+                <text x="46" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="900" fill="#0f172a" letter-spacing="1.2">NOVA</text>
+                <text x="46" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="2.5">PROPTECH</text>
+              </svg>
+            </div>
+
+            <!-- SET 2 (Duplicado idéntico para loop infinito continuo) -->
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-duenas.png" alt="Dueñas Real Estate">
+            </div>
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-projects.png" alt="Projects Group">
+            </div>
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-total.png" alt="Total Technology">
+            </div>
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-avila.png" alt="Ávila 1010">
+            </div>
+            <div class="partner-logo-item">
+              <img src="assets/replica/partner-remax.png" alt="RE/MAX Dominio">
+            </div>
+            <div class="partner-logo-item">
+              <svg class="partner-svg-logo" viewBox="0 0 210 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 36L22 8L34 36H26.5L22 25L17.5 36H10Z" fill="#1e293b"/>
+                <path d="M22 17L27 28H17L22 17Z" fill="#475569"/>
+                <rect x="13" y="38" width="18" height="2.5" rx="1.25" fill="#1e293b"/>
+                <text x="44" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="900" fill="#0f172a" letter-spacing="1">CAPITAL</text>
+                <text x="44" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="2.5">INMOBILIARIA</text>
+              </svg>
+            </div>
+            <div class="partner-logo-item">
+              <svg class="partner-svg-logo" viewBox="0 0 190 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 8L36 16V32L22 40L8 32V16L22 8Z" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M22 17L29 21V29L22 33L15 29V21L22 17Z" fill="#334155"/>
+                <circle cx="22" cy="25" r="2.5" fill="#f8fafc"/>
+                <text x="46" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="900" fill="#0f172a" letter-spacing="1.2">NOVA</text>
+                <text x="46" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="2.5">PROPTECH</text>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN "DIRECTORIO DE PROFESIONALES" (Debajo de Aliados de Datos) -->
+      <section class="professionals-section">
+        <div class="pro-card">
+          <h2 class="pro-card-title">¿Buscas agencia o agente inmobiliario?</h2>
+          <p class="pro-card-subtitle">
+            Encuentra inmobiliarias y asesores certificados con inventario activo en toda Venezuela.
+          </p>
+
+          <div class="pro-tags-grid">
+            <a href="explorar.html?tab=agents&role=agencia" class="pro-tag-pill" title="Filtrar por Agencias">Agencias</a>
+            <a href="explorar.html?tab=agents&role=broker" class="pro-tag-pill" title="Filtrar por Agentes">Agentes</a>
+          </div>
+
+          <a href="explorar.html?tab=agents" class="pro-card-btn" title="Buscar">
+            <span>Buscar</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- F. SECCIÓN "FAVORITOS" -->
       <section class="favorites-section">
         <h2 class="section-title">Favoritos</h2>
 
@@ -1886,7 +2806,7 @@
       <!-- 1. Home (Activo) -->
       <a href="index.html" class="nav-item active">
         <svg viewBox="0 0 24 24" fill="#FF7900">
-          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          <path d="M3 10.5L12 3l9 7.5V20a2 2 0 0 1-2 2h-4a1 1 0 0 1-1-1v-5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v5a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V10.5z"/>
         </svg>
         <span>Home</span>
       </a>
@@ -1894,8 +2814,8 @@
       <!-- 2. Explorar -->
       <a href="explorar.html" class="nav-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+          <path d="M12 7l3 2.5V13h-2v-2h-2v2H9V9.5L12 7z"/>
         </svg>
         <span>Explorar</span>
       </a>
@@ -1926,10 +2846,10 @@
         </svg>
         <span>Cuenta</span>
       </a>
-
-      <!-- Android bar indicator -->
-      <div class="android-indicator"></div>
     </nav>
+
+    <!-- Android bar indicator -->
+    <div class="android-indicator"></div>
 
     <!-- FILTER BOTTOM SHEET MODAL (Exact 1:1 replica of Filtrar Propiedades) -->
     <div id="filter-backdrop" class="filter-backdrop" onclick="closeFilterModal(event)">
@@ -1949,38 +2869,77 @@
         <!-- Scrollable Body -->
         <div class="filter-body no-scrollbar">
 
+          <!-- SWITCH DESLIZANTE (Comprar / Alquilar) -->
+          <div class="filter-segmented-wrap">
+            <div class="filter-segmented-control" id="filterSegmentedControl">
+              <div class="segmented-glider" id="segmentedGlider"></div>
+              <button type="button" class="segmented-btn active" id="btnModeBuy" onclick="setFilterMode('buy')">
+                Comprar
+              </button>
+              <button type="button" class="segmented-btn" id="btnModeRent" onclick="setFilterMode('rent')">
+                Alquilar
+              </button>
+            </div>
+          </div>
+
           <!-- 1. Estado -->
           <div class="filter-section">
             <label class="filter-label">Estado</label>
-            <div class="filter-dropdown">
-              <span>Selecciona un estado</span>
-              <svg width="10" height="6" viewBox="0 0 10 6" fill="#64748b"><path d="M0 0l5 6 5-6z"/></svg>
+            <div class="filter-dropdown-wrap">
+              <div class="filter-dropdown" id="filter-estado-display">
+                <span id="filter-estado-text">Selecciona un estado</span>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="#64748b"><path d="M0 0l5 6 5-6z"/></svg>
+              </div>
+              <select id="filter-estado-select" class="filter-hidden-select" onchange="onFilterEstadoChange(this.value)">
+                <option value="">Selecciona un estado</option>
+                <option value="Distrito Capital">Distrito Capital</option>
+                <option value="Miranda">Miranda</option>
+                <option value="Carabobo">Carabobo</option>
+                <option value="Zulia">Zulia</option>
+                <option value="Barinas">Barinas</option>
+                <option value="Aragua">Aragua</option>
+                <option value="Lara">Lara</option>
+                <option value="Anzoátegui">Anzoátegui</option>
+                <option value="Nueva Esparta">Nueva Esparta</option>
+                <option value="Bolívar">Bolívar</option>
+                <option value="Táchira">Táchira</option>
+                <option value="Mérida">Mérida</option>
+                <option value="Falcón">Falcón</option>
+                <option value="Monagas">Monagas</option>
+                <option value="Sucre">Sucre</option>
+                <option value="Portuguesa">Portuguesa</option>
+                <option value="Guárico">Guárico</option>
+                <option value="Yaracuy">Yaracuy</option>
+                <option value="Trujillo">Trujillo</option>
+                <option value="Cojedes">Cojedes</option>
+                <option value="Apure">Apure</option>
+                <option value="La Guaira">La Guaira</option>
+                <option value="Amazonas">Amazonas</option>
+                <option value="Delta Amacuro">Delta Amacuro</option>
+              </select>
             </div>
           </div>
 
           <!-- 2. Municipio -->
           <div class="filter-section">
             <label class="filter-label">Municipio</label>
-            <div class="filter-dropdown disabled">
-              <span>Primero selecciona un estado</span>
-              <svg width="10" height="6" viewBox="0 0 10 6" fill="#cbd5e1"><path d="M0 0l5 6 5-6z"/></svg>
+            <div class="filter-dropdown-wrap">
+              <div class="filter-dropdown disabled" id="filter-municipio-display">
+                <span id="filter-municipio-text">Primero selecciona un estado</span>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="#cbd5e1" id="filter-municipio-arrow"><path d="M0 0l5 6 5-6z"/></svg>
+              </div>
+              <select id="filter-municipio-select" class="filter-hidden-select" disabled onchange="onFilterMunicipioChange(this.value)">
+                <option value="">Primero selecciona un estado</option>
+              </select>
             </div>
           </div>
 
-          <!-- 3. Precio (USD) -->
-          <div class="filter-section">
-            <label class="filter-label">Precio (USD)</label>
-            <div class="range-display" id="price-display">$0 - $1,000,000</div>
-            <input type="range" class="orange-slider" min="0" max="1000000" step="50000" value="1000000" oninput="updatePrice(this.value)">
-          </div>
-
-          <!-- 4. Tipo de Propiedad -->
+          <!-- 2. Tipo de Propiedad -->
           <div class="filter-section">
             <label class="filter-label">Tipo de Propiedad</label>
             <div class="pills-grid">
               <button type="button" class="pill-btn" onclick="togglePill(this)">Casa</button>
               <button type="button" class="pill-btn" onclick="togglePill(this)">Apartamento</button>
-              <button type="button" class="pill-btn" onclick="togglePill(this)">Residencia</button>
               <button type="button" class="pill-btn" onclick="togglePill(this)">Townhouse</button>
               <button type="button" class="pill-btn" onclick="togglePill(this)">Villa</button>
               <button type="button" class="pill-btn" onclick="togglePill(this)">Loft</button>
@@ -1991,36 +2950,68 @@
             </div>
           </div>
 
-          <!-- 5. Categorías -->
+          <!-- 3. Precio (USD) -->
           <div class="filter-section">
-            <label class="filter-label">Categorías</label>
-            <div class="pills-grid">
-              <button type="button" class="pill-btn" onclick="togglePill(this)">Venta</button>
-              <button type="button" class="pill-btn" onclick="togglePill(this)">Alquiler</button>
-              <button type="button" class="pill-btn" onclick="togglePill(this)">Comercial</button>
-              <button type="button" class="pill-btn" onclick="togglePill(this)">Luxury</button>
-            </div>
+            <label class="filter-label">Precio (USD)</label>
+            <div class="range-display" id="price-display">$0 - $1,000,000</div>
+            <input type="range" id="price-slider" class="orange-slider" min="0" max="1000000" step="50000" value="1000000" oninput="updatePrice(this.value)">
           </div>
 
-          <!-- 6. Área (m²) -->
+          <!-- 4. Área (m²) -->
           <div class="filter-section">
             <label class="filter-label">Área (m²)</label>
             <div class="range-display" id="area-display">0 - 500 m²</div>
             <input type="range" class="orange-slider" min="0" max="500" step="25" value="500" oninput="updateArea(this.value)">
           </div>
 
-          <!-- 7. Habitaciones -->
+          <!-- 6. Habitaciones -->
           <div class="filter-section">
-            <label class="filter-label">Habitaciones</label>
-            <div class="range-display" id="rooms-display">0 - 10 habitaciones</div>
-            <input type="range" class="orange-slider" min="0" max="10" step="1" value="10" oninput="updateRooms(this.value)">
+            <div class="filter-section-header">
+              <label class="filter-label">Habitaciones</label>
+              <span class="range-display" id="rooms-display">Cualquiera</span>
+            </div>
+            <div class="counter-selector-row">
+              <div class="counter-icon-box" title="Habitaciones">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/>
+                  <path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/>
+                  <path d="M12 4v6"/>
+                  <path d="M2 18h20"/>
+                </svg>
+              </div>
+              <div class="counter-track" id="rooms-track">
+                <button type="button" class="counter-btn" onclick="selectCount('rooms', 1, this)">1</button>
+                <button type="button" class="counter-btn" onclick="selectCount('rooms', 2, this)">2</button>
+                <button type="button" class="counter-btn" onclick="selectCount('rooms', 3, this)">3</button>
+                <button type="button" class="counter-btn" onclick="selectCount('rooms', 4, this)">4</button>
+                <button type="button" class="counter-btn" onclick="selectCount('rooms', '5+', this)">5+</button>
+              </div>
+            </div>
           </div>
 
-          <!-- 8. Baños -->
+          <!-- 7. Baños -->
           <div class="filter-section">
-            <label class="filter-label">Baños</label>
-            <div class="range-display" id="baths-display">0 - 10 baños</div>
-            <input type="range" class="orange-slider" min="0" max="10" step="1" value="10" oninput="updateBaths(this.value)">
+            <div class="filter-section-header">
+              <label class="filter-label">Baños</label>
+              <span class="range-display" id="baths-display">Cualquiera</span>
+            </div>
+            <div class="counter-selector-row">
+              <div class="counter-icon-box" title="Baños">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-1.5C3.7 2 2 3.7 2 5.5V11h14V5.5C16 3.7 14.3 2 12.5 2a1.5 1.5 0 0 0-1 1.5L9 6"/>
+                  <path d="M2 11h20v2a8 8 0 0 1-8 8H10a8 8 0 0 1-8-8v-2Z"/>
+                  <path d="M4 21v1"/>
+                  <path d="M20 21v1"/>
+                </svg>
+              </div>
+              <div class="counter-track" id="baths-track">
+                <button type="button" class="counter-btn" onclick="selectCount('baths', 1, this)">1</button>
+                <button type="button" class="counter-btn" onclick="selectCount('baths', 2, this)">2</button>
+                <button type="button" class="counter-btn" onclick="selectCount('baths', 3, this)">3</button>
+                <button type="button" class="counter-btn" onclick="selectCount('baths', 4, this)">4</button>
+                <button type="button" class="counter-btn" onclick="selectCount('baths', '5+', this)">5+</button>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -2028,9 +3019,128 @@
         <!-- Footer Buttons -->
         <div class="filter-footer">
           <button type="button" class="btn-clear-filter" onclick="resetFilters()">Limpiar Filtros</button>
-          <button type="button" class="btn-apply-filter" onclick="closeFilterModal()">Aplicar Filtros</button>
+          <button type="button" class="btn-apply-filter" onclick="applyFilters()">Aplicar Filtros</button>
         </div>
         <div class="android-indicator" style="position:relative; margin: 4px auto 2px auto; bottom: auto; left: auto; transform: none;"></div>
+
+      </div>
+    </div>
+
+    <!-- ENKI IA ASSISTANT BOTTOM SHEET MODAL (1:1 UI Replica) -->
+    <div id="enki-backdrop" class="enki-backdrop" onclick="closeIAModal(event)">
+      <div id="enki-sheet" class="enki-sheet" onclick="event.stopPropagation()">
+        
+        <!-- Header -->
+        <div class="enki-header">
+          <div class="enki-header-profile">
+            <div class="enki-avatar-circle">
+              <img src="assets/enki-avatar.jpg" alt="Enki Avatar">
+            </div>
+            <div class="enki-header-info">
+              <div class="enki-title-row">
+                <span class="enki-name">Enki</span>
+                <span class="enki-online-dot"></span>
+              </div>
+              <span class="enki-subtitle">Tu asistente inmobiliario</span>
+            </div>
+          </div>
+          <div class="enki-header-actions">
+            <button type="button" class="enki-action-btn" onclick="resetEnkiChat()" title="Reiniciar conversación">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+              </svg>
+            </button>
+            <button type="button" class="enki-action-btn enki-close-btn" onclick="closeIAModal()" title="Cerrar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Scrollable Body -->
+        <div class="enki-body no-scrollbar" id="enki-body">
+          
+          <!-- Hero Section -->
+          <div class="enki-hero-wrap">
+            <div class="enki-hero-avatar-wrap">
+              <img src="assets/enki-welcome.jpg" alt="Enki Saludo">
+            </div>
+            <div class="enki-welcome-bubble">
+              <h4 class="enki-welcome-title">¡Hola! Soy Enki 👋</h4>
+              <p class="enki-welcome-text">Estoy aquí para ayudarte a encontrar tu próximo hogar o resolver tus dudas inmobiliarias.</p>
+            </div>
+          </div>
+
+          <!-- Quick Suggestion Action Cards (3 cards row) -->
+          <div class="enki-suggestions-grid">
+            <!-- 1. Buscar propiedades -->
+            <div class="enki-suggestion-card" onclick="handleEnkiQuickAction('buscar')">
+              <div class="enki-suggestion-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff6b00">
+                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+              </div>
+              <div class="enki-suggestion-text">
+                Buscar<br>propiedades
+              </div>
+              <div class="enki-suggestion-arrow">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 2. Consultar precios -->
+            <div class="enki-suggestion-card" onclick="handleEnkiQuickAction('precios')">
+              <div class="enki-suggestion-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="#ff6b00">
+                  <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/>
+                </svg>
+              </div>
+              <div class="enki-suggestion-text">
+                Consultar<br>precios
+              </div>
+              <div class="enki-suggestion-arrow">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 3. Explorar zonas -->
+            <div class="enki-suggestion-card" onclick="handleEnkiQuickAction('zonas')">
+              <div class="enki-suggestion-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="#ff6b00">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+              </div>
+              <div class="enki-suggestion-text">
+                Explorar<br>zonas
+              </div>
+              <div class="enki-suggestion-arrow">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat Messages Container -->
+          <div class="enki-chat-stream" id="enki-chat-stream"></div>
+
+        </div>
+
+        <!-- Floating Input Bar -->
+        <div class="enki-input-bar">
+          <input type="text" id="enki-input" class="enki-input-field" placeholder="Pregúntale a Enki..." autocomplete="off" onkeydown="if(event.key==='Enter') sendEnkiMessage()">
+          <button type="button" class="enki-send-btn" onclick="sendEnkiMessage()" title="Enviar mensaje">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="#ffffff" style="margin-left: 2px;">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+          </button>
+        </div>
 
       </div>
     </div>
@@ -2038,6 +3148,214 @@
   </div>
 
   <script>
+    let currentFilterMode = 'buy';
+
+    function setFilterMode(mode) {
+      currentFilterMode = mode;
+      const control = document.getElementById('filterSegmentedControl');
+      const btnBuy = document.getElementById('btnModeBuy');
+      const btnRent = document.getElementById('btnModeRent');
+      const priceSlider = document.getElementById('price-slider');
+      const priceDisplay = document.getElementById('price-display');
+
+      if (mode === 'rent') {
+        control.classList.add('rent-active');
+        btnRent.classList.add('active');
+        btnBuy.classList.remove('active');
+        if (priceSlider) {
+          priceSlider.max = 5000;
+          priceSlider.step = 100;
+          priceSlider.value = 5000;
+          priceDisplay.innerText = '$0 - $5,000 / mes';
+        }
+      } else {
+        control.classList.remove('rent-active');
+        btnBuy.classList.add('active');
+        btnRent.classList.remove('active');
+        if (priceSlider) {
+          priceSlider.max = 1000000;
+          priceSlider.step = 50000;
+          priceSlider.value = 1000000;
+          priceDisplay.innerText = '$0 - $1,000,000';
+        }
+      }
+    }
+
+    let selectedRooms = null;
+    let selectedBaths = null;
+
+    function selectCount(type, val, btn) {
+      if (type === 'rooms') {
+        const isCurrent = (selectedRooms === val);
+        document.querySelectorAll('#rooms-track .counter-btn').forEach(b => b.classList.remove('active'));
+        if (isCurrent) {
+          selectedRooms = null;
+          document.getElementById('rooms-display').innerText = 'Cualquiera';
+        } else {
+          selectedRooms = val;
+          btn.classList.add('active');
+          document.getElementById('rooms-display').innerText = val + (val === '5+' ? ' habitaciones' : (val === 1 ? ' habitación' : ' habitaciones'));
+        }
+      } else if (type === 'baths') {
+        const isCurrent = (selectedBaths === val);
+        document.querySelectorAll('#baths-track .counter-btn').forEach(b => b.classList.remove('active'));
+        if (isCurrent) {
+          selectedBaths = null;
+          document.getElementById('baths-display').innerText = 'Cualquiera';
+        } else {
+          selectedBaths = val;
+          btn.classList.add('active');
+          document.getElementById('baths-display').innerText = val + (val === '5+' ? ' baños' : (val === 1 ? ' baño' : ' baños'));
+        }
+      }
+    }
+
+    const FILTER_MUNICIPIOS_POR_ESTADO = {
+      'Distrito Capital': ['Caracas (Libertador)'],
+      'Miranda': ['Chacao', 'Baruta', 'El Hatillo', 'Sucre (Petare)', 'Los Salias (San Antonio)', 'Carrizal', 'Guaicaipuro (Los Teques)', 'Plaza (Guarenas)', 'Zamora (Guatire)', 'Brión (Higuerote)', 'Cristóbal Rojas (Charallave)', 'Urdaneta (Cúa)'],
+      'Carabobo': ['Valencia', 'Naguanagua', 'San Diego', 'Guacara', 'Puerto Cabello', 'Los Guayos', 'Libertador (Tocuyito)', 'San Joaquín'],
+      'Zulia': ['Maracaibo', 'San Francisco', 'Cabimas', 'Lagunillas (Ciudad Ojeda)', 'Machiques de Perijá', 'Santa Rita', 'Colón'],
+      'Barinas': ['Barinas', 'Alto Barinas', 'Bolívar (Barinitas)', 'Pedraza', 'Sucre (Socopó)', 'Ezequiel Zamora (Santa Bárbara)', 'Alberto Arvelo Torrealba'],
+      'Aragua': ['Girardot (Maracay)', 'Mario Briceño Iragorry (El Limón)', 'Santiago Mariño (Turmero)', 'José Félix Ribas (La Victoria)', 'Sucre (Cagua)', 'Colonia Tovar'],
+      'Lara': ['Iribarren (Barquisimeto)', 'Palavecino (Cabudare)', 'Torres (Carora)', 'Morán (El Tocuyo)', 'Jiménez (Quíbor)'],
+      'Anzoátegui': ['Diego Bautista Urbaneja (Lechería)', 'Juan Antonio Sotillo (Puerto La Cruz)', 'Simón Bolívar (Barcelona)', 'Guanta', 'Simón Rodríguez (El Tigre)', 'Anaco'],
+      'Nueva Esparta': ['Maneiro (Pampatar)', 'Mariño (Porlamar)', 'Gómez (Santa Ana)', 'Antolín del Campo (Playa El Agua)', 'Arismendi (La Asunción)'],
+      'Bolívar': ['Caroní (Puerto Ordaz / San Félix)', 'Angostura del Orinoco (Ciudad Bolívar)', 'Piar (Upata)', 'Gran Sabana (Santa Elena de Uairén)'],
+      'Táchira': ['San Cristóbal', 'Cárdenas (Táriba)', 'Bolívar (San Antonio del Táchira)', 'Junín (Rubio)'],
+      'Mérida': ['Libertador (Mérida)', 'Alberto Adriani (El Vigía)', 'Campo Elías (Ejido)', 'Tovar'],
+      'Falcón': ['Miranda (Coro)', 'Carirubana (Punto Fijo)', 'Silva (Tucacas)', 'Monseñor Iturriza (Chichiriviche)'],
+      'Monagas': ['Maturín', 'Ezequiel Zamora (Punta de Mata)', 'Caripe'],
+      'Sucre': ['Sucre (Cumaná)', 'Bermúdez (Carúpano)', 'Montes (Cumanacoa)'],
+      'Portuguesa': ['Páez (Acarigua)', 'Araure', 'Guanare', 'Turén'],
+      'Guárico': ['Juan Germán Roscio (San Juan de los Morros)', 'Francisco de Miranda (Calabozo)', 'Leonardo Infante (Valle de la Pascua)'],
+      'Yaracuy': ['San Felipe', 'Peña (Yaritagua)', 'Bruzual (Chivacoa)'],
+      'Trujillo': ['Valera', 'Trujillo', 'Boconó'],
+      'Cojedes': ['Ezequiel Zamora (San Carlos)', 'Tinaquillo', 'Tinaco'],
+      'Apure': ['San Fernando (San Fernando de Apure)', 'Biruaca', 'Achaguas'],
+      'La Guaira': ['Vargas (La Guaira / Maiquetía / Catia La Mar)'],
+      'Amazonas': ['Atures (Puerto Ayacucho)', 'Autana'],
+      'Delta Amacuro': ['Tucupita', 'Pedernales']
+    };
+
+    let selectedFilterEstado = '';
+    let selectedFilterMunicipio = '';
+
+    function onFilterEstadoChange(estado) {
+      selectedFilterEstado = estado;
+      selectedFilterMunicipio = '';
+      
+      const estadoText = document.getElementById('filter-estado-text');
+      const estadoDisplay = document.getElementById('filter-estado-display');
+      const muniDisplay = document.getElementById('filter-municipio-display');
+      const muniText = document.getElementById('filter-municipio-text');
+      const muniSelect = document.getElementById('filter-municipio-select');
+      const muniArrow = document.getElementById('filter-municipio-arrow');
+
+      if (!estado) {
+        if (estadoText) estadoText.textContent = 'Selecciona un estado';
+        if (estadoDisplay) estadoDisplay.classList.remove('selected');
+        if (muniDisplay) muniDisplay.classList.add('disabled');
+        if (muniText) {
+          muniText.textContent = 'Primero selecciona un estado';
+          muniDisplay?.classList.remove('selected');
+        }
+        if (muniArrow) muniArrow.setAttribute('fill', '#cbd5e1');
+        if (muniSelect) {
+          muniSelect.disabled = true;
+          muniSelect.innerHTML = '<option value="">Primero selecciona un estado</option>';
+        }
+        return;
+      }
+
+      if (estadoText) estadoText.textContent = estado;
+      if (estadoDisplay) estadoDisplay.classList.add('selected');
+
+      // Enable Municipio
+      if (muniDisplay) muniDisplay.classList.remove('disabled');
+      if (muniText) {
+        muniText.textContent = 'Selecciona un municipio';
+        muniDisplay?.classList.remove('selected');
+      }
+      if (muniArrow) muniArrow.setAttribute('fill', '#64748b');
+      if (muniSelect) {
+        muniSelect.disabled = false;
+        const list = FILTER_MUNICIPIOS_POR_ESTADO[estado] || [estado];
+        let opts = '<option value="">Todos los municipios</option>';
+        list.forEach(m => {
+          opts += `<option value="${m}">${m}</option>`;
+        });
+        muniSelect.innerHTML = opts;
+      }
+    }
+
+    function onFilterMunicipioChange(municipio) {
+      selectedFilterMunicipio = municipio;
+      const muniText = document.getElementById('filter-municipio-text');
+      const muniDisplay = document.getElementById('filter-municipio-display');
+      if (muniText) {
+        muniText.textContent = municipio || 'Todos los municipios';
+      }
+      if (muniDisplay) {
+        if (municipio) muniDisplay.classList.add('selected');
+        else muniDisplay.classList.remove('selected');
+      }
+    }
+
+    function applyFilters() {
+      const cards = document.querySelectorAll('.property-card');
+      const targetOp = (currentFilterMode === 'rent') ? 'alquiler' : 'venta';
+      
+      cards.forEach(card => {
+        const opBadge = card.querySelector('.card-badge-op')?.textContent.toLowerCase() || '';
+        let match = opBadge.includes(targetOp);
+
+        if (match && selectedRooms !== null) {
+          const roomText = card.querySelector('.card-specs-row')?.textContent || '';
+          const matchRoom = roomText.match(/hab\.\s*(\d+)/i);
+          if (matchRoom) {
+            const count = parseInt(matchRoom[1]);
+            if (selectedRooms === '5+') {
+              if (count < 5) match = false;
+            } else {
+              if (count !== Number(selectedRooms)) match = false;
+            }
+          }
+        }
+
+        if (match && selectedBaths !== null) {
+          const bathText = card.querySelector('.card-specs-row')?.textContent || '';
+          const matchBath = bathText.match(/baños\s*(\d+)/i);
+          if (matchBath) {
+            const count = parseInt(matchBath[1]);
+            if (selectedBaths === '5+') {
+              if (count < 5) match = false;
+            } else {
+              if (count !== Number(selectedBaths)) match = false;
+            }
+          }
+        }
+
+        if (match && selectedFilterEstado) {
+          const cardText = card.textContent.toLowerCase();
+          const estLower = selectedFilterEstado.toLowerCase();
+          if (!cardText.includes(estLower) && !(estLower.includes('distrito capital') && cardText.includes('caracas'))) {
+            match = false;
+          }
+        }
+
+        if (match && selectedFilterMunicipio) {
+          const cardText = card.textContent.toLowerCase();
+          const muniBase = selectedFilterMunicipio.split('(')[0].trim().toLowerCase();
+          if (!cardText.includes(muniBase)) {
+            match = false;
+          }
+        }
+
+        card.style.display = match ? '' : 'none';
+      });
+      closeFilterModal();
+    }
+
     function openFilterModal() {
       const modal = document.getElementById('filter-backdrop');
       modal.style.display = 'flex';
@@ -2062,47 +3380,95 @@
     }
 
     function updatePrice(val) {
-      document.getElementById('price-display').innerText = '$0 - $' + Number(val).toLocaleString();
+      if (currentFilterMode === 'rent') {
+        document.getElementById('price-display').innerText = '$0 - $' + Number(val).toLocaleString() + ' / mes';
+      } else {
+        document.getElementById('price-display').innerText = '$0 - $' + Number(val).toLocaleString();
+      }
     }
 
     function updateArea(val) {
       document.getElementById('area-display').innerText = '0 - ' + val + ' m²';
     }
 
-    function updateRooms(val) {
-      document.getElementById('rooms-display').innerText = '0 - ' + val + ' habitaciones';
-    }
-
-    function updateBaths(val) {
-      document.getElementById('baths-display').innerText = '0 - ' + val + ' baños';
-    }
-
     function resetFilters() {
+      setFilterMode('buy');
+      selectedRooms = null;
+      selectedBaths = null;
+      selectedFilterEstado = '';
+      selectedFilterMunicipio = '';
+      const estadoSelect = document.getElementById('filter-estado-select');
+      if (estadoSelect) {
+        estadoSelect.value = '';
+        onFilterEstadoChange('');
+      }
+      document.querySelectorAll('.counter-btn').forEach(b => b.classList.remove('active'));
+      const rDisp = document.getElementById('rooms-display');
+      if (rDisp) rDisp.innerText = 'Cualquiera';
+      const bDisp = document.getElementById('baths-display');
+      if (bDisp) bDisp.innerText = 'Cualquiera';
       document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.orange-slider').forEach(slider => {
         slider.value = slider.max;
         slider.dispatchEvent(new Event('input'));
       });
+      document.querySelectorAll('.property-card').forEach(card => card.style.display = '');
     }
 
     function handlePlusClick() {
       const session = localStorage.getItem('enkapta_session');
-      if (session === 'roger') {
-        window.location.href = 'planes.html';
+      const currentPlan = localStorage.getItem('enkapta_user_plan');
+      if (session === 'logged_out') {
+        window.location.href = 'cuenta.html?login=1';
+      } else if (!currentPlan || currentPlan === 'Sin plan' || session === 'carlos_sinplan') {
+        // ¡Al visitante le salen los planes directamente!
+        window.location.href = 'planes.html?view=catalog';
       } else {
-        window.location.href = 'cuenta.html';
+        window.location.href = 'planes.html';
       }
     }
 
     // Auto-open via ?filter=open if needed
     if (new URLSearchParams(window.location.search).get('filter') === 'open') {
+      const modal = document.getElementById('filter-backdrop');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('active');
+        const sheet = document.getElementById('filter-sheet');
+        if (sheet) {
+          sheet.style.transform = 'translateY(0)';
+          sheet.style.transition = 'none';
+        }
+      }
       openFilterModal();
+      if (new URLSearchParams(window.location.search).get('mode') === 'rent') {
+        setFilterMode('rent');
+      }
       if (new URLSearchParams(window.location.search).get('scroll') === 'down') {
         setTimeout(() => {
           const body = document.querySelector('.filter-body');
-          if (body) body.scrollTop = 350;
+          if (body) body.scrollTop = 480;
         }, 150);
       }
+      const roomsParam = new URLSearchParams(window.location.search).get('rooms');
+      if (roomsParam) {
+        setTimeout(() => {
+          const btn = Array.from(document.querySelectorAll('#rooms-track .counter-btn')).find(b => b.innerText.trim() === roomsParam);
+          if (btn) btn.click();
+        }, 100);
+      }
+      const bathsParam = new URLSearchParams(window.location.search).get('baths');
+      if (bathsParam) {
+        setTimeout(() => {
+          const btn = Array.from(document.querySelectorAll('#baths-track .counter-btn')).find(b => b.innerText.trim() === bathsParam);
+          if (btn) btn.click();
+        }, 100);
+      }
+    }
+
+    if (new URLSearchParams(window.location.search).get('scroll') === 'map') {
+      const content = document.querySelector('.app-content');
+      if (content) content.scrollTop = 1350;
     }
 
     // Ensure all property cards navigate to property detail sheet
@@ -2132,12 +3498,195 @@
       }
     }
 
+    /* ========================================================
+       ENKI IA ASSISTANT CONTROLLER
+       ======================================================== */
     function openIAModal() {
-      alert('✨ Enkapta IA Assistant: ¿Qué propiedad estás buscando hoy?');
+      const modal = document.getElementById('enki-backdrop');
+      if (!modal) return;
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        modal.classList.add('active');
+        document.getElementById('enki-input')?.focus();
+      }, 10);
+    }
+
+    function closeIAModal(e) {
+      if (e && e.target !== document.getElementById('enki-backdrop') && !e.target.closest('.enki-close-btn') && !e.target.classList.contains('enki-close-btn')) {
+        return;
+      }
+      const modal = document.getElementById('enki-backdrop');
+      if (!modal) return;
+      modal.classList.remove('active');
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 280);
+    }
+
+    function resetEnkiChat() {
+      const stream = document.getElementById('enki-chat-stream');
+      if (stream) stream.innerHTML = '';
+      const input = document.getElementById('enki-input');
+      if (input) input.value = '';
+    }
+
+    function handleEnkiQuickAction(type) {
+      if (type === 'buscar') {
+        addUserEnkiMessage('Buscar propiedades');
+        showEnkiTyping(() => {
+          addAssistantEnkiMessage('¡Excelente elección! 🏡 En Enkapta disponemos de exclusivas propiedades en Barinas:<br><br>• <b>Casas familiares</b> en Alto Barinas.<br>• <b>Apartamentos modernos</b> listos para habitar.<br>• <b>Locales y terrenos</b> comerciales.<br><br>¿Te gustaría filtrar por <b>Comprar</b> o <b>Alquilar</b>? O dime la cantidad de habitaciones que buscas.');
+        });
+      } else if (type === 'precios') {
+        addUserEnkiMessage('Consultar precios');
+        showEnkiTyping(() => {
+          addAssistantEnkiMessage('📊 <b>Precios estimados en el mercado de Barinas:</b><br><br>• <b>Alquileres:</b> $150 – $650 / mes.<br>• <b>Apartamentos en venta:</b> $22,000 – $68,000.<br>• <b>Casas y Villas:</b> $35,000 – $180,000+.<br><br>¿Cuál es tu rango de presupuesto para recomendarte las mejores opciones?');
+        });
+      } else if (type === 'zonas') {
+        addUserEnkiMessage('Explorar zonas');
+        showEnkiTyping(() => {
+          addAssistantEnkiMessage('📍 <b>Sectores destacados en Barinas:</b><br><br>• <b>Alto Barinas Norte / Sur:</b> Mayor plusvalía, vigilancia privada y cercanía a centros comerciales.<br>• <b>Don Samuel & Los Próceres:</b> Tranquilidad familiar y fácil acceso.<br>• <b>Centro de Barinas:</b> Máxima actividad comercial.<br><br>¿Qué zona se adapta mejor a tu rutina?');
+        });
+      }
+    }
+
+    function addUserEnkiMessage(text) {
+      const stream = document.getElementById('enki-chat-stream');
+      if (!stream) return;
+      const msg = document.createElement('div');
+      msg.className = 'enki-msg user';
+      msg.innerHTML = `<div class="enki-msg-bubble">${escapeHtml(text)}</div>`;
+      stream.appendChild(msg);
+      scrollEnkiBody();
+    }
+
+    function addAssistantEnkiMessage(htmlContent) {
+      const stream = document.getElementById('enki-chat-stream');
+      if (!stream) return;
+      const msg = document.createElement('div');
+      msg.className = 'enki-msg assistant';
+      msg.innerHTML = `
+        <img src="assets/enki-avatar.jpg" alt="Enki" class="enki-msg-mini-avatar">
+        <div class="enki-msg-bubble">${htmlContent}</div>
+      `;
+      stream.appendChild(msg);
+      scrollEnkiBody();
+    }
+
+    function showEnkiTyping(callback) {
+      const stream = document.getElementById('enki-chat-stream');
+      if (!stream) return;
+      const typing = document.createElement('div');
+      typing.className = 'enki-msg assistant enki-typing-holder';
+      typing.innerHTML = `
+        <img src="assets/enki-avatar.jpg" alt="Enki" class="enki-msg-mini-avatar">
+        <div class="enki-typing-indicator">
+          <div class="enki-typing-dot"></div>
+          <div class="enki-typing-dot"></div>
+          <div class="enki-typing-dot"></div>
+        </div>
+      `;
+      stream.appendChild(typing);
+      scrollEnkiBody();
+
+      setTimeout(() => {
+        typing.remove();
+        if (typeof callback === 'function') callback();
+      }, 500);
+    }
+
+    function scrollEnkiBody() {
+      const body = document.getElementById('enki-body');
+      if (body) {
+        body.scrollTop = body.scrollHeight;
+      }
+    }
+
+    function sendEnkiMessage() {
+      const input = document.getElementById('enki-input');
+      if (!input) return;
+      const query = input.value.trim();
+      if (!query) return;
+      
+      addUserEnkiMessage(query);
+      input.value = '';
+
+      showEnkiTyping(() => {
+        const q = query.toLowerCase();
+        let reply = '';
+        if (q.includes('casa') || q.includes('apartamento') || q.includes('propiedad') || q.includes('comprar')) {
+          reply = '🏠 ¡Perfecto! Tenemos varias propiedades destacadas que coinciden con lo que buscas. Puedes ver el catálogo completo en la sección <b>Explorar</b> o activar los <b>Filtros</b> para ajustar habitaciones y rango de precio.';
+        } else if (q.includes('alquiler') || q.includes('alquilar') || q.includes('renta')) {
+          reply = '🔑 Disponemos de opciones de alquiler residencial y comercial en Alto Barinas con servicios incluidos o semi-amobladas. ¿Para cuántas personas la necesitas?';
+        } else if (q.includes('precio') || q.includes('cuanto') || q.includes('cuánto') || q.includes('costo') || q.includes('dolar') || q.includes('$')) {
+          reply = '💰 Los precios varían según la ubicación y dimensiones. En general, disponemos de opciones desde $25,000 para compra y desde $150 mensuales para alquiler en Barinas.';
+        } else if (q.includes('hola') || q.includes('buenos') || q.includes('buenas')) {
+          reply = '¡Hola! Es un gusto saludarte. ¿Cómo te gustaría comenzar la búsqueda de tu próximo inmueble hoy?';
+        } else if (q.includes('gracias')) {
+          reply = '¡Con mucho gusto! Recuerda que estoy siempre aquí para ayudarte a tomar la mejor decisión inmobiliaria. ✨';
+        } else {
+          reply = `Entendido sobre "<i>${escapeHtml(query)}</i>". Con Enkapta puedes filtrar rápidamente por zona, tipo de inmueble y presupuesto para encontrar la mejor opción en Barinas. ¿Deseas que te muestre los inmuebles recomendados del mes?`;
+        }
+        addAssistantEnkiMessage(reply);
+      });
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
     function openNotifications() {
       alert('🔔 Notificaciones: Tienes 1 nueva recomendación de propiedad cerca de ti.');
+    }
+
+    function selectChip(btn, type) {
+      document.querySelectorAll('.hero-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.property-card');
+      if (type === 'alquiler') {
+        cards.forEach(card => card.style.display = '');
+      } else {
+        cards.forEach(card => {
+          const typeBadge = card.querySelector('.card-badge-type')?.textContent.toLowerCase() || '';
+          const opBadge = card.querySelector('.card-badge-op')?.textContent.toLowerCase() || '';
+          if (typeBadge.includes(type.toLowerCase()) || opBadge.includes(type.toLowerCase())) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    }
+
+    const searchInput = document.getElementById('appSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const term = e.target.value.toLowerCase().trim();
+        document.querySelectorAll('.property-card').forEach(card => {
+          const title = card.querySelector('.card-prop-title')?.textContent.toLowerCase() || '';
+          const loc = card.querySelector('.card-location-text')?.textContent.toLowerCase() || '';
+          if (!term || title.includes(term) || loc.includes(term)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    if (new URLSearchParams(window.location.search).get('scroll') === 'partners') {
+      setTimeout(() => {
+        const sec = document.querySelector('.partners-section');
+        if (sec) sec.scrollIntoView();
+      }, 100);
+    }
+
+    if (new URLSearchParams(window.location.search).get('ia') === 'open' || new URLSearchParams(window.location.search).get('modal') === 'ia') {
+      const modal = document.getElementById('enki-backdrop');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('active');
+      }
     }
   </script>
 
@@ -2155,7 +3704,7 @@
       <nav class="drawer-links-list">
         <a href="index.html" class="drawer-link-item">🏠 &nbsp;Inicio</a>
         <a href="explorar.html" class="drawer-link-item">🧭 &nbsp;Explorar Propiedades</a>
-        <a href="planes.html" class="drawer-link-item">💎 &nbsp;Membresías & Planes</a>
+        <a href="planes.html" class="drawer-link-item">💎 &nbsp;Planes</a>
         <a href="favoritos.html" class="drawer-link-item">❤️ &nbsp;Mis Favoritos</a>
         <a href="cuenta.html" class="drawer-link-item">👤 &nbsp;Mi Cuenta</a>
       </nav>

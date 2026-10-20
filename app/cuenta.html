@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Enkapta App · Mi Cuenta</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   
   <link rel="icon" type="image/png" href="assets/replica/logo-enkapta.png">
 
@@ -68,263 +70,297 @@
 
     @media (max-width: 449px) {
       body {
-        background-color: #FF7900;
+        background-color: #f8fafc;
         display: block;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
       }
       .app-viewport {
         width: 100vw;
         height: 100vh;
+        height: 100dvh;
         max-width: 100vw;
         max-height: 100vh;
         border-radius: 0;
         border: none;
         box-shadow: none;
+        background-color: #f8fafc;
+      }
+      .android-indicator {
+        display: none !important;
       }
     }
 
     /* ------------------------------------------------------------- */
-    /* VIEW A: LOGIN SCREEN (When not authenticated)                 */
+    /* VIEW A: LOGIN SCREEN (Enkapta Orange Header & White Card)     */
     /* ------------------------------------------------------------- */
     #view-login {
       display: flex;
       flex-direction: column;
       height: 100%;
       width: 100%;
-      background-color: #FF7900;
-    }
-
-    /* Status Bar on Login (White icons on Orange) */
-    .status-bar-login {
-      height: 32px;
-      background: transparent;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 16px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #ffffff;
-      flex-shrink: 0;
-      z-index: 40;
-    }
-
-    .status-left {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .status-right {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .top-section {
-      background: #FF7900;
-      padding: 6px 20px 24px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .back-btn {
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      background: none;
-      border: none;
-      color: #ffffff;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .greeting-title {
-      font-size: 27px;
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: -0.5px;
-      line-height: 1.1;
-    }
-
-    .greeting-subtitle {
-      font-size: 14.5px;
-      color: rgba(255, 255, 255, 0.95);
-      font-weight: 500;
-    }
-
-    .sheet-body {
-      flex: 1;
-      background: #ffffff;
-      border-radius: 26px 26px 0 0;
-      padding: 24px 20px 20px 20px;
-      display: flex;
-      flex-direction: column;
+      background-color: #FE7201;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       position: relative;
     }
 
-    .social-btn {
+    /* Orange Header with Mascot Illustration Banner (Bold Hero Protagonism) */
+    .login-orange-header {
       width: 100%;
-      height: 48px;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
+      min-height: 260px;
+      background-color: #FE7201;
+      background-image: url('assets/login-header-banner.jpg');
+      background-repeat: no-repeat;
+      background-position: right top;
+      background-size: cover;
+      flex-shrink: 0;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      font-size: 14.5px;
-      font-weight: 700;
-      color: #1e293b;
-      cursor: pointer;
-      margin-bottom: 12px;
-      transition: background-color 0.15s ease, transform 0.1s ease;
-    }
-
-    .social-btn:active {
-      background-color: #f8fafc;
-      transform: scale(0.98);
-    }
-
-    .divider-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 14px 0 16px 0;
+      flex-direction: column;
       position: relative;
     }
 
-    .divider-line {
-      width: 100%;
-      height: 1px;
-      background: #f1f5f9;
+    /* Orange Status Bar (Clean White Hero Icons) */
+    .status-bar-login {
+      height: 28px;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #ffffff;
+      flex-shrink: 0;
+      z-index: 40;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
     }
 
-    .divider-text {
-      position: absolute;
+    .status-bar-login .status-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-bar-login .status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* Top Navigation Row (White Back Button) */
+    .login-top-bar {
+      height: 38px;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      z-index: 40;
+      margin-top: 2px;
+    }
+
+    .login-back-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.1s ease;
+      -webkit-tap-highlight-color: transparent;
+      z-index: 50;
+      filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.25));
+    }
+
+    .login-back-btn:active {
+      transform: scale(0.9);
+    }
+
+    /* Intro Section (Hero Style White Typography with Maximum Protagonism) */
+    .login-intro-section {
+      margin-top: auto;
+      padding: 0 10px 18px 20px;
+      width: 55%;
+      max-width: 220px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .login-intro-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.4px;
+      margin: 0 0 6px 0;
+      line-height: 1.2;
+      white-space: nowrap;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.24);
+    }
+
+    .login-intro-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+      margin: 0;
+      line-height: 1.35;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* White Bottom Sheet Card */
+    .login-sheet-card {
+      flex: 1;
       background: #ffffff;
-      padding: 0 10px;
-      font-size: 12px;
-      color: #94a3b8;
-    }
-
-    .form-group {
+      border-radius: 32px 32px 0 0;
+      box-shadow: 0 -12px 36px rgba(0, 0, 0, 0.08);
+      padding: 20px 20px 24px 20px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 16px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 20;
     }
 
-    .form-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: #334155;
-    }
-
-    .input-wrapper {
-      width: 100%;
-      height: 48px;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
+    /* Pill-shaped Form Inputs */
+    .login-pill-group {
       display: flex;
-      align-items: center;
-      padding: 0 14px;
+      flex-direction: column;
       gap: 10px;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      margin-bottom: 4px;
     }
 
-    .input-wrapper:focus-within {
-      border-color: #FF7900;
-      box-shadow: 0 0 0 2px rgba(255, 121, 0, 0.15);
-    }
-
-    .input-icon {
-      color: #94a3b8;
+    .login-input-pill {
+      height: 48px;
+      background: #F4F4F6;
+      border-radius: 24px;
       display: flex;
       align-items: center;
-      flex-shrink: 0;
+      padding: 0 18px;
+      position: relative;
+      border: 1.5px solid transparent;
+      transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .form-input {
+    .login-input-pill:focus-within {
+      background: #ffffff;
+      border-color: #FF7900;
+      box-shadow: 0 0 0 3.5px rgba(255, 121, 0, 0.16);
+    }
+
+    .login-pill-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9CA3AF;
+      margin-right: 10px;
+      flex-shrink: 0;
+      transition: color 0.15s ease;
+    }
+
+    .login-input-pill:focus-within .login-pill-icon {
+      color: #FF7900;
+    }
+
+    .login-pill-field {
       flex: 1;
+      height: 100%;
       border: none;
       background: transparent;
       outline: none;
-      font-size: 14px;
+      font-size: 14.5px;
+      font-weight: 500;
       color: #0f172a;
+      font-family: inherit;
       min-width: 0;
     }
 
-    .form-input::placeholder {
-      color: #94a3b8;
+    .login-pill-field::placeholder {
+      color: #9CA3AF;
+      font-weight: 500;
     }
 
-    .eye-btn {
+    .login-pill-eye {
       background: none;
       border: none;
-      color: #94a3b8;
-      cursor: pointer;
+      padding: 6px;
       display: flex;
       align-items: center;
-      padding: 2px;
-    }
-
-    .forgot-pass-btn {
-      background: none;
-      border: none;
-      color: #FF7900;
-      font-size: 13.5px;
-      font-weight: 700;
-      text-align: left;
+      justify-content: center;
+      color: #9CA3AF;
       cursor: pointer;
-      margin-top: -4px;
-      margin-bottom: 20px;
-      padding: 0;
-      display: inline-block;
-      text-decoration: none;
+      margin-left: 6px;
+      flex-shrink: 0;
     }
 
-    .submit-btn {
+    /* Forgot Password (Right-aligned) */
+    .login-forgot-wrap {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 6px;
+      margin-bottom: 16px;
+    }
+
+    .login-forgot-btn {
+      font-size: 13px;
+      font-weight: 600;
+      color: #4B5563;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .login-forgot-btn:hover, .login-forgot-btn:active {
+      color: #FF7900;
+      text-decoration: underline;
+    }
+
+    /* Primary Enkapta Orange Pill Action Button */
+    .login-orange-btn {
       width: 100%;
       height: 48px;
-      background-color: #FF7900;
+      background: #FF7900;
       color: #ffffff;
       font-size: 15.5px;
       font-weight: 800;
       border: none;
-      border-radius: 12px;
+      border-radius: 24px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255, 121, 0, 0.35);
+      box-shadow: none;
       transition: background-color 0.15s ease, transform 0.1s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 22px;
+      margin-bottom: 12px;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .submit-btn:active {
-      background-color: #e66d00;
+    .login-orange-btn:active {
+      background: #e66d00;
       transform: scale(0.98);
     }
 
-    .footer-register {
+    /* Footer Register Prompt */
+    .login-footer-row {
       text-align: center;
       font-size: 13.5px;
-      color: #475569;
+      color: #64748b;
       font-weight: 500;
-      margin-top: auto;
-      padding-bottom: 12px;
+      margin-top: 2px;
+      margin-bottom: 16px;
     }
 
-    .register-link {
+    .login-register-link {
       color: #FF7900;
       font-weight: 800;
       text-decoration: none;
@@ -332,8 +368,108 @@
       margin-left: 4px;
     }
 
+    .login-register-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Bottom Social Login Section */
+    .login-bottom-section {
+      margin-top: 14px;
+      padding-top: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Divider "O continúa con" */
+    .login-divider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .login-divider-line {
+      flex: 1;
+      height: 1px;
+      background: #e5e7eb;
+    }
+
+    .login-divider-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: #94a3b8;
+      white-space: nowrap;
+      text-transform: uppercase;
+      padding: 0 4px;
+    }
+
+    /* Social Network Full-Width Stacked Buttons (Matching Reference) */
+    .login-social-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    .social-pill-btn {
+      width: 100%;
+      height: 48px;
+      background: #F1F3F6;
+      border: 1px solid #E5E7EB;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #111827;
+      transition: all 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .social-pill-btn:active {
+      background: #e2e8f0;
+      transform: scale(0.99);
+    }
+
+    .social-pill-btn svg {
+      width: 19px;
+      height: 19px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    /* Bottom Social Media Links (Instagram, Facebook, X) */
+    .login-social-media-footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin-top: 16px;
+      padding-bottom: 4px;
+    }
+
+    .social-media-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      padding: 4px;
+    }
+
+    .social-media-link:active {
+      transform: scale(0.92);
+      opacity: 0.8;
+    }
+
     /* ------------------------------------------------------------- */
     /* VIEW B: AUTHENTICATED PROFILE SCREEN (Roger Quijada)          */
+    /* Inspired by Miranda West layout with Enkapta Brand & Colors   */
     /* ------------------------------------------------------------- */
     #view-profile {
       display: none;
@@ -345,95 +481,162 @@
       overflow: hidden;
     }
 
-    /* Status Bar on Profile (Dark icons on light grey) */
+    /* Status Bar on Profile (White icons overlaid on banner) */
     .status-bar-profile {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      right: 0;
       height: 32px;
-      background: transparent;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 16px;
+      padding: 0 18px;
       font-size: 13px;
       font-weight: 700;
-      color: #1f2937;
-      flex-shrink: 0;
-      z-index: 40;
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      z-index: 35;
+      pointer-events: none;
     }
 
+    .status-bar-profile .status-left,
     .status-bar-profile .status-right {
-      color: #1f2937;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .profile-scroll {
       flex: 1;
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
       overflow-y: auto;
+      overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 70px;
+      padding-bottom: 96px;
     }
 
-    /* Top Right Floating Refresh Button */
-    .profile-header-actions {
+    /* Photographic Hero Banner */
+    .profile-hero-banner {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      min-height: 275px;
       position: relative;
-      padding: 4px 18px 0 18px;
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .refresh-circle-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #ffffff;
-      border: 1px solid #f1f5f9;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FF7900;
-      cursor: pointer;
-      transition: transform 0.25s ease;
-    }
-
-    .refresh-circle-btn:active {
-      transform: rotate(180deg) scale(0.92);
-    }
-
-    /* Centered User Info */
-    .profile-user-info {
+      background-image: url('assets/parallax-edificio.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      margin-top: -8px;
-      margin-bottom: 16px;
+      justify-content: flex-start;
+      padding: 38px 18px 48px 18px;
+      overflow: hidden;
     }
 
-    .profile-avatar-wrapper {
+    .banner-preset-thumb {
+      height: 48px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      border: 2px solid transparent;
       position: relative;
-      width: 82px;
-      height: 82px;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .banner-preset-thumb.active, .banner-preset-thumb:hover {
+      border-color: #FF7900 !important;
+      transform: scale(1.02);
+    }
+
+    .profile-hero-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.04) 35%, rgba(0, 0, 0, 0.18) 100%);
+      z-index: 1;
+    }
+
+    /* Top Action Bar Over Banner */
+    .profile-banner-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+      margin-right: 0;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .banner-glass-btn {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
+      color: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease;
+      position: relative;
+      text-decoration: none;
     }
 
-    .profile-avatar-svg {
-      width: 44px;
-      height: 44px;
-      color: #94a3b8;
+    .banner-glass-btn:active {
+      transform: scale(0.92);
+      background: rgba(255, 255, 255, 0.38);
     }
 
-    .avatar-plus-badge {
+    .banner-badge-dot {
       position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 24px;
-      height: 24px;
+      top: 6px;
+      right: 7px;
+      width: 8px;
+      height: 8px;
+      background-color: #EF4444;
+      border: 1.5px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    /* Floating Avatar */
+    .profile-avatar-circle {
+      position: relative;
+      z-index: 2;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 3.5px solid #ffffff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      margin-bottom: 12px;
+      background: #0f172a;
+      flex-shrink: 0;
+    }
+
+    .profile-avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar-camera-badge {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       background: #FF7900;
       border: 2px solid #ffffff;
@@ -441,45 +644,916 @@
       align-items: center;
       justify-content: center;
       color: #ffffff;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
       cursor: pointer;
+      transition: transform 0.15s ease;
     }
 
-    .profile-name {
-      font-size: 21px;
+    .avatar-camera-badge:active {
+      transform: scale(0.9);
+    }
+
+    .profile-hero-name {
+      position: relative;
+      z-index: 2;
+      font-size: 22px;
       font-weight: 800;
-      color: #0f172a;
+      color: #ffffff;
       letter-spacing: -0.3px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
       margin-bottom: 6px;
+      text-align: center;
     }
 
-    .profile-role-badge {
+    .profile-hero-badge-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .profile-hero-badge {
       background: #FF7900;
       color: #ffffff;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 800;
-      padding: 4px 18px;
+      padding: 3.5px 14px;
       border-radius: 9999px;
       letter-spacing: 0.6px;
       text-transform: uppercase;
-      box-shadow: 0 2px 6px rgba(255, 121, 0, 0.25);
+      box-shadow: none;
     }
 
-    /* Menu Card */
-    .profile-menu-card {
+    .profile-hero-subtitle {
+      position: relative;
+      z-index: 2;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.88);
+      text-align: center;
+      line-height: 1.4;
+      max-width: 290px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Hero Action Buttons (Ver perfil público & Editar perfil) */
+    .profile-hero-actions-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+      width: 100%;
+      padding: 0 8px;
+      box-sizing: border-box;
+    }
+
+    .hero-action-pill-glass {
+      flex: 1;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transition: all 0.18s ease;
+    }
+
+    .hero-action-pill-glass:active {
+      transform: scale(0.97);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .hero-action-pill-solid {
+      flex: 1;
+      height: 38px;
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      transition: all 0.18s ease;
+    }
+
+    .hero-action-pill-solid:active {
+      transform: scale(0.97);
+      background: #000000;
+    }
+
+    /* 1. BARRA DE ESTADÍSTICAS UNIFICADA (Elegante, sin bloques toscos) */
+    .profile-stats-unified {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       background: #ffffff;
-      border-radius: 18px;
-      margin: 14px 16px 20px 16px;
-      border: 1px solid #f1f5f9;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
       overflow: hidden;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .stat-unified-cell {
+      padding: 12px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+      box-sizing: border-box;
+      transition: background-color 0.15s ease;
+      min-width: 0;
+    }
+
+    .stat-unified-cell:nth-child(1) {
+      border-right: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .stat-unified-cell:nth-child(2) {
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .stat-unified-cell:nth-child(3) {
+      border-right: 1px solid #f1f5f9;
+    }
+
+    .stat-unified-cell:active {
+      background-color: #f8fafc;
+    }
+
+    .stat-cell-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255, 121, 0, 0.08);
+      color: #FF7900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .stat-cell-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .stat-cell-title {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .stat-cell-main {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.2px;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .stat-cell-action {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .stat-cell-action.link-orange {
+      color: #FF7900;
+      font-weight: 700;
+    }
+
+    .stat-cell-action.badge-verified {
+      color: #059669;
+      font-weight: 700;
+    }
+
+    /* Completa tu perfil profesional */
+    .completion-card-wrap {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .completion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    .completion-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .completion-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.2px;
+    }
+
+    .completion-badge {
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 9999px;
+    }
+
+    .completion-counter {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .completion-subtitle {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.35;
+      margin-top: -4px;
+    }
+
+    .completion-progress-track {
+      width: 100%;
+      height: 18px;
+      background: #f1f5f9;
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .completion-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #FF7900, #FE5000);
+      border-radius: 9999px;
+      transition: width 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      box-sizing: border-box;
+      min-width: 36px;
+    }
+
+    .completion-bar-percent {
+      font-size: 10.5px;
+      font-weight: 850;
+      color: #ffffff;
+      line-height: 1;
+      letter-spacing: -0.2px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      user-select: none;
+    }
+
+    /* Horizontal swipeable tasks */
+    .completion-tasks-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 6px;
+      margin: 0 -4px;
+      padding-left: 4px;
+      padding-right: 4px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .completion-task-card {
+      flex: 0 0 160px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-sizing: border-box;
+    }
+
+    .completion-task-card:active {
+      transform: scale(0.97);
+      background: #f1f5f9;
+    }
+
+    .completion-task-card.task-done {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .task-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .task-circle-badge {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .task-circle-badge.done {
+      background: #10b981;
+      color: #ffffff;
+    }
+
+    .task-status-tag {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: #94a3b8;
+      letter-spacing: 0.4px;
+    }
+
+    .task-status-tag.done {
+      color: #059669;
+    }
+
+    .task-name {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+    }
+
+    .task-desc {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.3;
+    }
+
+    .task-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .task-cta.pending {
+      color: #FF7900;
+    }
+
+    .task-cta.done {
+      color: #059669;
+    }
+
+    /* Settings Cards */
+    .settings-section-card {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .settings-card-header {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .settings-card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .settings-card-desc {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.35;
+    }
+
+    .settings-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .settings-input-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #475569;
+    }
+
+    .settings-text-input {
+      width: 100%;
+      height: 42px;
+      padding: 0 14px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #0f172a;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .settings-text-input:focus {
+      border-color: #FF7900;
+      box-shadow: 0 0 0 3px rgba(255, 121, 0, 0.15);
+    }
+
+    .settings-url-box {
+      width: 100%;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      overflow: hidden;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .settings-url-box:focus-within {
+      border-color: #FF7900;
+      box-shadow: 0 0 0 3px rgba(255, 121, 0, 0.15);
+    }
+
+    .url-domain {
+      padding: 0 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #94a3b8;
+      background: #f8fafc;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-right: 1px solid #e2e8f0;
+      white-space: nowrap;
+    }
+
+    .url-slug-input {
+      flex: 1;
+      height: 100%;
+      border: none;
+      padding: 0 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0f172a;
+      outline: none;
+      background: transparent;
+      min-width: 0;
+    }
+
+    .btn-copy-url {
+      height: 30px;
+      padding: 0 10px;
+      margin-right: 6px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-copy-url:active {
+      transform: scale(0.95);
+      background: #e2e8f0;
+    }
+
+    .settings-save-row {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 4px;
+    }
+
+    .btn-primary-save {
+      height: 40px;
+      padding: 0 18px;
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary-save:active {
+      transform: scale(0.96);
+      background: #000000;
+    }
+
+    /* Settings Action Rows (Email, Pass, Logout) */
+    .settings-action-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .settings-action-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .action-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .action-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .action-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .badge-emerald-pill {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1.5px 8px;
+      border-radius: 9999px;
+    }
+
+    .action-subtitle {
+      font-size: 11.5px;
+      color: #64748b;
+      line-height: 1.35;
+    }
+
+    .btn-subtle-pill {
+      align-self: flex-start;
+      height: 34px;
+      padding: 0 14px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: all 0.15s ease;
+    }
+
+    .btn-subtle-pill:active {
+      transform: scale(0.96);
+      background: #f8fafc;
+    }
+
+    .settings-action-row .btn-subtle-pill {
+      width: 180px;
+      justify-content: center;
+    }
+
+    .btn-danger-subtle {
+      color: #dc2626;
+      border-color: #fca5a5;
+      background: #fef2f2;
+    }
+
+    .btn-danger-subtle:active {
+      background: #fee2e2;
+    }
+
+    /* Mobile Slide-Up Modal Styles */
+    .app-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .app-modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .app-modal-sheet {
+      width: 100%;
+      max-height: 85%;
+      background: #ffffff;
+      border-radius: 24px 24px 0 0;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+      animation: sheetSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    @keyframes sheetSlideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .app-modal-handle {
+      width: 40px;
+      height: 4px;
+      background: #cbd5e1;
+      border-radius: 9999px;
+      margin: 10px auto 4px auto;
+    }
+
+    .app-modal-header {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .app-modal-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .app-modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      cursor: pointer;
+    }
+
+    .app-modal-body {
+      padding: 18px 20px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-sizing: border-box;
+    }
+
+    .app-modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      gap: 10px;
+      background: #ffffff;
+      box-sizing: border-box;
+    }
+
+    .app-toast-alert {
+      position: absolute;
+      bottom: 86px;
+      left: 20px;
+      right: 20px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      z-index: 120;
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      box-sizing: border-box;
+    }
+
+    .app-toast-alert.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Floating Rounded Card Groups (Miranda West Style) */
+    .profile-cards-container {
+      position: relative;
+      z-index: 10;
+      margin-top: -24px;
+      padding: 0 16px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .profile-card-group {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+      overflow: hidden;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Clean Menu (Reference Style - Unboxed, Line-free, Minimalist) */
+    .profile-clean-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      width: 100%;
+      min-width: 0;
+      padding: 6px 4px 18px 4px;
+      box-sizing: border-box;
+      background: transparent;
+    }
+
+    .clean-menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 12px;
+      background: transparent;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.15s ease, transform 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .clean-menu-item:hover,
+    .clean-menu-item:active {
+      background-color: rgba(15, 23, 42, 0.05);
+      transform: translateX(2px);
+    }
+
+    .clean-item-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .clean-menu-chevron {
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+
+    .clean-menu-item:hover .clean-menu-chevron,
+    .clean-menu-item:active .clean-menu-chevron {
+      transform: translateX(2px);
+    }
+
+    .clean-menu-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #64748b;
+    }
+
+    .clean-menu-icon svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    .clean-menu-text {
+      font-size: 15.5px;
+      font-weight: 500;
+      color: #1e293b;
+      letter-spacing: -0.2px;
+      line-height: 1.2;
+    }
+
+    .clean-menu-item.item-logout-clean:active {
+      background-color: rgba(220, 38, 38, 0.06);
+    }
+
+    .clean-menu-item.item-danger-clean .clean-menu-icon svg {
+      stroke: #dc2626;
+    }
+    .clean-menu-item.item-danger-clean .clean-menu-text {
+      color: #dc2626;
+    }
+    .clean-menu-item.item-danger-clean:hover,
+    .clean-menu-item.item-danger-clean:active {
+      background-color: rgba(220, 38, 38, 0.05);
     }
 
     .profile-menu-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 13.5px 16px;
+      padding: 14px 18px;
       border-bottom: 1px solid #f1f5f9;
       background: #ffffff;
       cursor: pointer;
@@ -498,16 +1572,16 @@
     .item-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .item-icon {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #0f172a;
+      color: #64748b;
       flex-shrink: 0;
     }
 
@@ -529,47 +1603,80 @@
       color: #047857 !important;
     }
 
-    /* Delete Account Styling */
+    /* Danger Item Styling */
     .item-danger .item-text {
       color: #dc2626 !important;
     }
 
-    /* Logout Action Styling */
     .item-logout {
       background: #ffffff;
     }
 
+    /* Social Media / Canales Profesionales Buttons */
+    .social-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: #f1f5f9;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+    .social-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .social-btn:active {
+      transform: scale(0.92);
+      background: #0f172a;
+      color: #ffffff;
+    }
+
     /* ------------------------------------------------------------- */
-    /* FIXED BOTTOM NAVIGATION BAR                                   */
+    /* FLOATING BOTTOM NAVIGATION BAR (Floating Island Design)      */
     /* ------------------------------------------------------------- */
     .bottom-nav {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      height: 66px;
       background: #ffffff;
-      border-top: 1px solid #f1f3f5;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 9999px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
       display: flex;
       align-items: center;
       justify-content: space-around;
-      padding: 0 4px 6px 4px;
+      padding: 0 8px;
       z-index: 50;
       user-select: none;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .nav-item {
+      position: relative;
       flex: 1;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
+      justify-content: center;
+      gap: 3px;
       background: none;
       border: none;
-      color: #6b7280;
+      color: #64748b;
       cursor: pointer;
-      padding: 4px 0;
+      padding: 0;
       text-decoration: none;
+      transition: color 0.18s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .nav-item.active {
@@ -577,30 +1684,38 @@
     }
 
     .nav-item svg {
-      width: 21px;
-      height: 21px;
+      width: 22px;
+      height: 22px;
+      transition: transform 0.15s ease;
+    }
+
+    .nav-item:active svg {
+      transform: scale(0.92);
     }
 
     .nav-item span {
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 600;
+      letter-spacing: -0.2px;
     }
 
     .nav-item.active span {
       font-weight: 700;
+      color: #FF7900;
     }
 
     /* Plus Circle Button */
     .nav-plus-wrapper {
       flex: 1;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .nav-plus-btn {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: #FF7900;
       color: #ffffff;
@@ -609,19 +1724,20 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 3px 8px rgba(255, 121, 0, 0.4);
+      box-shadow: none;
       transition: transform 0.15s ease, background-color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .nav-plus-btn:active {
-      transform: scale(0.9);
+      transform: scale(0.92);
       background: #e66d00;
     }
 
     /* Android home indicator at bottom */
     .android-indicator {
       position: absolute;
-      bottom: 2px;
+      bottom: 3px;
       left: 50%;
       transform: translateX(-50%);
       width: 90px;
@@ -629,6 +1745,7 @@
       background: #cbd5e1;
       border-radius: 9999px;
       pointer-events: none;
+      z-index: 60;
     }
   </style>
 </head>
@@ -638,114 +1755,89 @@
   <div class="app-viewport">
 
     <!-- ========================================================= -->
-    <!-- VIEW A: LOGIN SCREEN (When session is logged_out)        -->
+    <!-- VIEW A: LOGIN SCREEN (Matching Reference Image)           -->
     <!-- ========================================================= -->
     <div id="view-login">
 
-      <!-- 1. ANDROID STATUS BAR (White icons on Orange) -->
-      <div class="status-bar-login">
-        <!-- Left: 11:46 + icons -->
-        <div class="status-left">
-          <span>11:46</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="7" y1="12" x2="17" y2="12"></line>
-          </svg>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-          </svg>
-        </div>
-
-        <!-- Right: Location, Wifi, Signal, Battery 23% -->
-        <div class="status-right">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff">
-            <circle cx="12" cy="12" r="8"/>
-          </svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
-            <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
-          </svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
-            <path d="M2 22h20V2z"/>
-          </svg>
-          <div style="display: flex; align-items: center; gap: 1px;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
-              <path d="M17 5v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2z"/>
+      <!-- 1. ORANGE HEADER WITH MASCOT ILLUSTRATION -->
+      <div class="login-orange-header">
+        <!-- Status Bar (Clean White Hero Icons) -->
+        <div class="status-bar-login">
+          <!-- Left: 11:46 + icons -->
+          <div class="status-left">
+            <span>11:46</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="7" y1="12" x2="17" y2="12"></line>
             </svg>
-            <span style="font-size: 11px; margin-left: -2px;">23</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
           </div>
-        </div>
-      </div>
 
-      <!-- 2. TOP ORANGE HEADER -->
-      <div class="top-section">
-        <!-- Back Arrow -->
-        <a href="index.html" class="back-btn" title="Volver al inicio">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-        </a>
-
-        <!-- Greetings -->
-        <h1 class="greeting-title">Hola de nuevo</h1>
-        <p class="greeting-subtitle">Entrá para seguir donde lo dejaste.</p>
-      </div>
-
-      <!-- 3. WHITE SHEET CONTENT -->
-      <div class="sheet-body no-scrollbar">
-
-        <!-- Continuar con Google -->
-        <button type="button" class="social-btn" onclick="handleLogin()">
-          <svg width="18" height="18" viewBox="0 0 24 24">
-            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-          </svg>
-          <span>Continuar con Google</span>
-        </button>
-
-        <!-- Continuar con Apple -->
-        <button type="button" class="social-btn" onclick="handleLogin()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000">
-            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.66-.82 1.11-1.96.99-3.1-.96.04-2.12.65-2.8 1.45-.6.69-1.12 1.83-.98 2.94 1.07.08 2.15-.55 2.79-1.29z"/>
-          </svg>
-          <span>Continuar con Apple</span>
-        </button>
-
-        <!-- Divider -->
-        <div class="divider-row">
-          <div class="divider-line"></div>
-          <span class="divider-text">o</span>
-        </div>
-
-        <!-- Form: Correo electrónico -->
-        <div class="form-group">
-          <label class="form-label">Correo electrónico</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          <!-- Right: Location, Wifi, Signal, Battery -->
+          <div class="status-right">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff">
+              <circle cx="12" cy="12" r="8"/>
+            </svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
+              <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
+            </svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
+              <path d="M2 22h20V2z"/>
+            </svg>
+            <div style="display: flex; align-items: center; gap: 1px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M17 5v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2z"/>
               </svg>
+              <span style="font-size: 11px; margin-left: -2px; color: #ffffff;">23</span>
             </div>
-            <input type="email" id="email-input" class="form-input" placeholder="ejemplo@correo.com" value="rogeralejandroquijadaavilera@gmail.com">
           </div>
         </div>
 
-        <!-- Form: Contraseña -->
-        <div class="form-group">
-          <label class="form-label">Contraseña</label>
-          <div class="input-wrapper">
-            <div class="input-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        <!-- 2. TOP BAR (White Back button) -->
+        <div class="login-top-bar">
+          <a href="index.html" class="login-back-btn" title="Volver al inicio">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- 3. INTRO SECTION (Left column hero typography) -->
+        <div class="login-intro-section">
+          <h1 class="login-intro-title">Iniciar Sesión</h1>
+          <p class="login-intro-subtitle">Ingresa a tu cuenta para continuar explorando las mejores propiedades.</p>
+        </div>
+      </div>
+
+      <!-- 4. WHITE SHEET CARD (Bottom Sheet Container) -->
+      <div class="login-sheet-card no-scrollbar">
+
+        <!-- Form Inputs (Pill format) -->
+        <div class="login-pill-group">
+          <!-- Username / Email Input -->
+          <div class="login-input-pill">
+            <span class="login-pill-icon">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
               </svg>
-            </div>
-            <input type="password" id="pass-input" class="form-input" placeholder="Mínimo 6 caracteres" value="••••••••">
-            <button type="button" class="eye-btn" onclick="togglePassword()" title="Mostrar contraseña">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            </span>
+            <input type="text" id="email-input" class="login-pill-field" placeholder="Usuario o correo" value="carlos.mendoza@gmail.com" autocomplete="username">
+          </div>
+
+          <!-- Password Input with Toggle Eye -->
+          <div class="login-input-pill">
+            <span class="login-pill-icon">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input type="password" id="pass-input" class="login-pill-field" placeholder="Contraseña" value="••••••••" autocomplete="current-password">
+            <button type="button" class="login-pill-eye" onclick="togglePassword()" title="Mostrar/Ocultar contraseña">
+              <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
                 <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
                 <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
@@ -755,60 +1847,120 @@
           </div>
         </div>
 
-        <!-- Forgot Password -->
-        <a href="#" class="forgot-pass-btn">¿Olvidaste tu contraseña?</a>
-
-        <!-- CTA Iniciar Sesión -->
-        <button type="button" class="submit-btn" onclick="handleLogin()">
-          Iniciar sesión
-        </button>
-
-        <!-- Footer Register -->
-        <div class="footer-register">
-          <span>¿No tenés una cuenta?</span>
-          <a href="registrarse.html" class="register-link">Crear cuenta</a>
+        <!-- Forgot Password (Right-aligned) -->
+        <div class="login-forgot-wrap">
+          <a href="#" class="login-forgot-btn">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <!-- Android Indicator -->
-        <div class="android-indicator" style="position:relative; margin: 8px auto 2px auto; left: auto; transform: none;"></div>
+        <!-- Enkapta Orange Primary Sign In Button -->
+        <button type="button" class="login-orange-btn" onclick="submitCuentaLogin()">
+          Iniciar Sesión
+        </button>
+
+        <!-- Register Link under button -->
+        <div class="login-footer-row">
+          <span>¿No tienes una cuenta?</span>
+          <a href="registrarse.html" class="login-register-link">Crear cuenta</a>
+        </div>
+
+        <!-- Social Network Section (Anchored to the very bottom) -->
+        <div class="login-bottom-section">
+          <!-- Divider -->
+          <div class="login-divider-row">
+            <div class="login-divider-line"></div>
+            <span class="login-divider-text">O</span>
+            <div class="login-divider-line"></div>
+          </div>
+
+          <!-- Social Network Full-Width Buttons (Matching User Screenshot) -->
+          <div class="login-social-stack">
+            <!-- Google Full Button -->
+            <button type="button" class="social-pill-btn" onclick="handleLogin('sinplan')" title="Continúa con Google">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span>Continúa con Google</span>
+            </button>
+
+            <!-- Apple Full Button -->
+            <button type="button" class="social-pill-btn" onclick="handleLogin('sinplan')" title="Continúa con Apple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.66-.82 1.11-1.96.99-3.1-.96.04-2.12.65-2.8 1.45-.6.69-1.12 1.83-.98 2.94 1.07.08 2.15-.55 2.79-1.29z"/>
+              </svg>
+              <span>Continúa con Apple</span>
+            </button>
+          </div>
+
+          <!-- Secondary Social Network Media Links (Instagram, Facebook, X) -->
+          <div class="login-social-media-footer">
+            <!-- Instagram -->
+            <a href="https://instagram.com/enkapta" target="_blank" rel="noopener" class="social-media-link" title="Instagram">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <defs>
+                  <linearGradient id="ig-grad-clean" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#FFD600"/>
+                    <stop offset="20%" stop-color="#FF0069"/>
+                    <stop offset="50%" stop-color="#D300C5"/>
+                    <stop offset="85%" stop-color="#7638FA"/>
+                  </linearGradient>
+                </defs>
+                <rect width="24" height="24" rx="6.5" fill="url(#ig-grad-clean)"/>
+                <rect x="5.25" y="5.25" width="13.5" height="13.5" rx="3.8" stroke="#ffffff" stroke-width="1.6" fill="none"/>
+                <circle cx="12" cy="12" r="3.2" stroke="#ffffff" stroke-width="1.6" fill="none"/>
+                <circle cx="15.8" cy="8.2" r="0.9" fill="#ffffff"/>
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://facebook.com/enkapta" target="_blank" rel="noopener" class="social-media-link" title="Facebook">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="#1877F2">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- X (Twitter) -->
+            <a href="https://x.com/enkapta" target="_blank" rel="noopener" class="social-media-link" title="X">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#000000">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
 
       </div>
 
     </div>
 
     <!-- ========================================================= -->
-    <!-- VIEW B: AUTHENTICATED PROFILE SCREEN (Roger Quijada)     -->
-    <!-- Exact 1:1 replica of user screenshot media_1792037498041   -->
+    <!-- VIEW B: AUTHENTICATED PROFILE SCREEN (Miranda West Layout)-->
+    <!-- Enkapta Branding & Modern Floating Card Groups            -->
     <!-- ========================================================= -->
     <div id="view-profile">
 
-      <!-- 1. ANDROID STATUS BAR (11:57 | Wifi | 20%) -->
+      <!-- 1. ANDROID / IOS STATUS BAR (Overlaid on Photographic Banner) -->
       <div class="status-bar-profile">
-        <!-- Left: 11:57 + icons -->
         <div class="status-left">
-          <span>11:57</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <span>4:21</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="7" y1="12" x2="17" y2="12"></line>
           </svg>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="#1f2937">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-          </svg>
         </div>
-
-        <!-- Right: Wifi, Signal, Battery 20% -->
         <div class="status-right">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
           </svg>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
             <path d="M2 22h20V2z"/>
           </svg>
           <div style="display: flex; align-items: center; gap: 1px;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17 5v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2z"/>
             </svg>
-            <span style="font-size: 11px; margin-left: -2px;">20</span>
+            <span style="font-size: 11px; margin-left: -2px;">98</span>
           </div>
         </div>
       </div>
@@ -816,26 +1968,32 @@
       <!-- Scrollable Profile Content -->
       <div class="profile-scroll no-scrollbar">
 
-        <!-- Top Right Floating Refresh Button -->
-        <div class="profile-header-actions">
-          <button type="button" class="refresh-circle-btn" title="Actualizar" onclick="location.reload()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 2v6h-6"></path>
-              <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
-              <path d="M3 22v-6h6"></path>
-              <path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path>
-            </svg>
-          </button>
-        </div>
+        <!-- 2. PHOTOGRAPHIC HERO BANNER -->
+        <div class="profile-hero-banner" id="hero-banner-cuenta">
 
-        <!-- Centered Avatar, Name and Role -->
-        <div class="profile-user-info">
-          <!-- Avatar with Orange Plus Badge -->
-          <div class="profile-avatar-wrapper">
-            <svg class="profile-avatar-svg" viewBox="0 0 24 24" fill="#94a3b8">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-            </svg>
-            <div class="avatar-plus-badge" title="Cambiar foto">
+          <!-- Top Action Bar (Cover Change & Notifications) -->
+          <div class="profile-banner-top-actions">
+            <!-- Change Cover Photo Button -->
+            <button type="button" class="banner-glass-btn" title="Cambiar imagen de portada" onclick="openEditProfileWithFocus('banner')">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </button>
+            <!-- Notifications with Red Dot -->
+            <button type="button" class="banner-glass-btn" title="Notificaciones" onclick="showToast('No tienes notificaciones pendientes')">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="banner-badge-dot"></span>
+            </button>
+          </div>
+
+          <!-- Centered Circular Avatar with Camera/Plus Badge -->
+          <div class="profile-avatar-circle" onclick="openEditProfileWithFocus('avatar')">
+            <img id="app-hero-avatar-img" src="assets/replica/lead_avatar.png" class="profile-avatar-img" alt="Roger">
+            <div class="avatar-camera-badge" title="Cambiar foto">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -843,219 +2001,816 @@
             </div>
           </div>
 
-          <!-- User Name -->
-          <h2 class="profile-name">Roger Quijada</h2>
+          <!-- User Name with Verified Badge (Matching Web) -->
+          <h2 class="profile-hero-name">
+            <span id="app-hero-name">Roger</span>
+            <span style="display: inline-flex; vertical-align: middle; margin-left: 2px;" title="Identidad Verificada">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#FF7900"/>
+                <path d="M9 12l2 2 4-4" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+          </h2>
 
-          <!-- Role Pill -->
-          <span class="profile-role-badge">VISITANTE</span>
+          <!-- Role & Plan Badge Row -->
+          <div class="profile-hero-badge-wrap">
+            <span id="app-hero-role-pill" class="profile-hero-badge">Plan Visitante</span>
+          </div>
+
+          <!-- Action Buttons: Ver perfil público & Editar perfil -->
+          <div class="profile-hero-actions-row">
+            <a href="perfil.html?u=me" class="hero-action-pill-glass" title="Ver tu vitrina pública tal como la ven tus clientes">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>Ver perfil público</span>
+            </a>
+            <button type="button" class="hero-action-pill-solid" onclick="openEditProfileModal()" title="Editar perfil completo">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+              <span>Editar perfil</span>
+            </button>
+          </div>
+
         </div>
 
-        <!-- Menu Options Card -->
-        <div class="profile-menu-card">
+        <!-- 3. FLOATING ROUNDED CARD GROUPS -->
+        <div class="profile-cards-container">
 
-          <!-- 1. Cuenta verificada (Green) -->
-          <div class="profile-menu-item item-verified">
-            <div class="item-left">
-              <div class="item-icon" style="color: #059669;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#10b981" stroke="#059669" stroke-width="1.2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <polyline points="9 12 11 14 15 10" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <span class="item-text">Cuenta verificada</span>
-            </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 2. Ver Perfil -->
-          <div class="profile-menu-item">
-            <div class="item-left">
-              <div class="item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
-                </svg>
-              </div>
-              <span class="item-text">Ver Perfil</span>
-            </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 3. Historial de Pagos -->
-          <div class="profile-menu-item">
-            <div class="item-left">
-              <div class="item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-                  <path d="M3 3v5h5"/>
-                  <polyline points="12 7 12 12 15 15"/>
-                </svg>
-              </div>
-              <span class="item-text">Historial de Pagos</span>
-            </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 4. Mis Propiedades -->
-          <div class="profile-menu-item">
-            <div class="item-left">
-              <div class="item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#0f172a">
-                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
-                  <circle cx="7" cy="7" r="1.5" fill="#ffffff"/>
-                </svg>
-              </div>
-              <span class="item-text">Mis Propiedades</span>
-            </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 5. Membresias -->
-          <a href="planes.html" class="profile-menu-item">
-            <div class="item-left">
-              <div class="item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 12 20 22 4 22 4 12"/>
-                  <rect x="2" y="7" width="20" height="5"/>
-                  <line x1="12" y1="22" x2="12" y2="7"/>
-                  <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
-                  <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
-                </svg>
-              </div>
-              <span class="item-text">Membresias</span>
-            </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </a>
-
-          <!-- 6. Ayuda & Soporte -->
-          <div class="profile-menu-item">
-            <div class="item-left">
-              <div class="item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-                  <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-                </svg>
-              </div>
-              <span class="item-text">Ayuda & Soporte</span>
-            </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 7. Calendario -->
-          <div class="profile-menu-item">
-            <div class="item-left">
-              <div class="item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8" y1="2" x2="8" y2="6"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
-                </svg>
-              </div>
-              <span class="item-text">Calendario</span>
-            </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 8. Términos y Condiciones -->
-          <div class="profile-menu-item">
-            <div class="item-left">
-              <div class="item-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                  <line x1="16" y1="13" x2="8" y2="13"/>
-                  <line x1="16" y1="17" x2="8" y2="17"/>
-                  <polyline points="10 9 9 9 8 9"/>
-                </svg>
-              </div>
-              <span class="item-text">Términos y Condiciones</span>
-            </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 9. Eliminar cuenta (Red) -->
-          <div class="profile-menu-item item-danger">
-            <div class="item-left">
-              <div class="item-icon" style="color: #dc2626;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="3 6 5 6 21 6"/>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                  <line x1="10" y1="11" x2="10" y2="17"/>
-                  <line x1="14" y1="11" x2="14" y2="17"/>
-                </svg>
-              </div>
-              <span class="item-text">Eliminar cuenta</span>
-            </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 10. Salir (Logout) -->
-          <div class="profile-menu-item item-logout" onclick="handleLogout()" title="Cerrar sesión">
-            <div class="item-left">
-              <div class="item-icon">
+          <!-- 1. BARRA DE ESTADÍSTICAS UNIFICADA (Elegante y moderna con iconos en naranja) -->
+          <div class="profile-stats-unified">
+            <!-- Stat 1: Plan actual -->
+            <div class="stat-unified-cell">
+              <div class="stat-cell-icon-wrap">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                  <polyline points="16 17 21 12 16 7"/>
-                  <line x1="21" y1="12" x2="9" y2="12"/>
+                  <circle cx="12" cy="8" r="6"/>
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
                 </svg>
               </div>
-              <span class="item-text">Salir</span>
+              <div class="stat-cell-content">
+                <span class="stat-cell-title">Plan actual</span>
+                <div class="stat-cell-main" id="app-stat-plan-name">Visitante</div>
+                <span class="stat-cell-action" id="app-stat-plan-desc">Plan gratuito</span>
+              </div>
             </div>
-            <div class="item-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
+
+            <!-- Stat 2: Propiedades activas -->
+            <a href="planes.html" class="stat-unified-cell" title="Activar cupo para publicar">
+              <div class="stat-cell-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <div class="stat-cell-content">
+                <span class="stat-cell-title">Propiedades</span>
+                <div class="stat-cell-main" id="app-stat-props-quota">0 / 0 cupos</div>
+                <span class="stat-cell-action link-orange" id="app-stat-props-action">Activar cupo →</span>
+              </div>
+            </a>
+
+            <!-- Stat 3: Favoritos guardados -->
+            <a href="favoritos.html" class="stat-unified-cell" title="Ver inmuebles favoritos">
+              <div class="stat-cell-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
+              <div class="stat-cell-content">
+                <span class="stat-cell-title">Favoritos</span>
+                <div class="stat-cell-main">1 inmueble</div>
+                <span class="stat-cell-action link-orange">Ver lista →</span>
+              </div>
+            </a>
+
+            <!-- Stat 4: Miembro desde -->
+            <div class="stat-unified-cell">
+              <div class="stat-cell-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <polyline points="9 12 11 14 15 10"/>
+                </svg>
+              </div>
+              <div class="stat-cell-content">
+                <span class="stat-cell-title">Registro</span>
+                <div class="stat-cell-main">Sept. 2026</div>
+                <span class="stat-cell-action badge-verified">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Verificado</span>
+                </span>
+              </div>
             </div>
+          </div>
+
+          <!-- 2. CHECKLIST: COMPLETA TU PERFIL PROFESIONAL (Exacto a la Web) -->
+          <div class="profile-card-group completion-card-wrap">
+            <div class="completion-header">
+              <div class="completion-title-row">
+                <h3 class="completion-title">Completa tu perfil profesional</h3>
+                <span id="app-completion-badge" class="completion-badge">20%</span>
+              </div>
+              <span id="app-completion-counter" class="completion-counter">1 de 5 tareas</span>
+            </div>
+            <p class="completion-subtitle">Configura los datos esenciales de tu vitrina para generar confianza inmediata con tus clientes.</p>
+            
+            <!-- Barra de Progreso con Porcentaje en la Barra -->
+            <div class="completion-progress-track">
+              <div id="app-completion-progress-bar" class="completion-progress-bar" style="width: 20%;">
+                <span id="app-completion-bar-percent" class="completion-bar-percent">20%</span>
+              </div>
+            </div>
+
+            <!-- Grid Horizontal de 5 Tareas Interactivas -->
+            <div class="completion-tasks-scroll no-scrollbar">
+              <!-- Tarea 1: Foto o logotipo (Listo) -->
+              <div class="completion-task-card task-done" onclick="openEditProfileWithFocus('avatar')">
+                <div class="task-top">
+                  <span class="task-circle-badge done">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                  <span class="task-status-tag done">LISTO</span>
+                </div>
+                <div>
+                  <h4 class="task-name">Foto o logotipo</h4>
+                  <p class="task-desc">Sube tu foto personal o el logo de tu firma.</p>
+                </div>
+                <div class="task-cta done">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Foto lista</span>
+                </div>
+              </div>
+
+              <!-- Tarea 2: Imagen de portada -->
+              <div class="completion-task-card" onclick="openEditProfileWithFocus('banner')">
+                <div class="task-top">
+                  <span class="task-circle-badge">2</span>
+                  <span class="task-status-tag">PENDIENTE</span>
+                </div>
+                <div>
+                  <h4 class="task-name">Imagen de portada</h4>
+                  <p class="task-desc">Personaliza el banner superior de tu vitrina.</p>
+                </div>
+                <div class="task-cta pending">
+                  <span>Subir portada</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+
+              <!-- Tarea 3: Biografía y zonas -->
+              <div class="completion-task-card" onclick="openEditProfileWithFocus('bio')">
+                <div class="task-top">
+                  <span class="task-circle-badge">3</span>
+                  <span class="task-status-tag">PENDIENTE</span>
+                </div>
+                <div>
+                  <h4 class="task-name">Biografía y zonas</h4>
+                  <p class="task-desc">Describe tu experiencia y áreas de atención.</p>
+                </div>
+                <div class="task-cta pending">
+                  <span>Añadir bio</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+
+              <!-- Tarea 4: WhatsApp directo -->
+              <div class="completion-task-card" onclick="openEditProfileWithFocus('phone')">
+                <div class="task-top">
+                  <span class="task-circle-badge">4</span>
+                  <span class="task-status-tag">PENDIENTE</span>
+                </div>
+                <div>
+                  <h4 class="task-name">WhatsApp directo</h4>
+                  <p class="task-desc">Vincular número para consultas en 1 clic.</p>
+                </div>
+                <div class="task-cta pending">
+                  <span>Vincular número</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+
+              <!-- Tarea 5: Primer inmueble -->
+              <div class="completion-task-card" onclick="window.location.href='planes.html'">
+                <div class="task-top">
+                  <span class="task-circle-badge">5</span>
+                  <span class="task-status-tag">PENDIENTE</span>
+                </div>
+                <div>
+                  <h4 class="task-name">Primer inmueble</h4>
+                  <p class="task-desc">Publica tu primera propiedad en el catálogo.</p>
+                </div>
+                <div class="task-cta pending">
+                  <span>Publicar</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. CONFIGURACIÓN RÁPIDA: PERFIL PÚBLICO (Exacto a la Web) -->
+          <div class="profile-card-group settings-section-card">
+            <div class="settings-card-header">
+              <h3 class="settings-card-title">Perfil público</h3>
+              <p class="settings-card-desc">Esta información se mostrará en tu perfil y publicaciones dentro de Enkapta.</p>
+            </div>
+            
+            <div class="settings-form-group">
+              <label class="settings-input-label">Nombre completo</label>
+              <input type="text" id="app-input-name" class="settings-text-input" value="Roger" placeholder="Nombre completo">
+            </div>
+
+            <div class="settings-form-group">
+              <label class="settings-input-label">Enlace de tu vitrina</label>
+              <div class="settings-url-box">
+                <span class="url-domain">enkapta.com/u/</span>
+                <input type="text" id="app-input-slug" class="url-slug-input" value="roger" placeholder="usuario">
+                <button type="button" class="btn-copy-url" onclick="copyAppProfileLink()" title="Copiar enlace del perfil">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copiar</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-save-row">
+              <button type="button" class="btn-primary-save" onclick="saveQuickProfileSettings()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Guardar cambios</span>
+              </button>
+            </div>
+          </div>
+
+
+
+          <!-- 4. CORREO, CONTRASEÑA Y SEGURIDAD (Exacto a la Web) -->
+          <div class="profile-card-group settings-section-card">
+            
+            <!-- Fila 1: Correo electrónico -->
+            <div class="settings-action-row">
+              <div class="action-info">
+                <div class="action-title-row">
+                  <span class="action-title">Correo electrónico</span>
+                  <span class="badge-emerald-pill">Verificado</span>
+                </div>
+                <p id="app-display-email" class="action-subtitle">rogeralejandroquijadaavilera@gmail.com</p>
+              </div>
+              <button type="button" class="btn-subtle-pill" onclick="openChangeEmailModal()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>Cambiar correo</span>
+              </button>
+            </div>
+
+            <!-- Fila 2: Contraseña y seguridad -->
+            <div class="settings-action-row">
+              <div class="action-info">
+                <span class="action-title">Contraseña y seguridad</span>
+                <p class="action-subtitle">Actualiza tu contraseña periódicamente para proteger el acceso a tu cuenta.</p>
+              </div>
+              <button type="button" class="btn-subtle-pill" onclick="openSecurityModal()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="m21 2-9.6 9.6"></path><path d="m15.5 7.5 3 3L22 7l-3-3"></path></svg>
+                <span>Cambiar contraseña</span>
+              </button>
+            </div>
+
+            <!-- Fila 3: Cerrar sesión en otros dispositivos -->
+            <div class="settings-action-row">
+              <div class="action-info">
+                <span class="action-title">Cerrar sesión en otros dispositivos</span>
+                <p class="action-subtitle">Cierra todas las demás sesiones activas en otros teléfonos móviles o computadoras además de este.</p>
+              </div>
+              <button type="button" class="btn-subtle-pill btn-danger-subtle" onclick="handleLogoutOtherDevices()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <span>Cerrar sesiones</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- 5. MENÚ DE CUENTA Y AJUSTES (Estilo Limpio y Abierto sin cuadro ni rayas) -->
+          <div class="profile-clean-menu">
+            
+            <!-- 1. Mis Propiedades -->
+            <div class="clean-menu-item" onclick="window.location.href='planes.html'">
+              <div class="clean-item-left">
+                <div class="clean-menu-icon" style="color: #FF7900;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF7900">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                    <circle cx="7" cy="7" r="1.5" fill="#ffffff"/>
+                  </svg>
+                </div>
+                <span class="clean-menu-text">Mis Propiedades</span>
+              </div>
+              <div class="clean-menu-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 2. Planes -->
+            <div class="clean-menu-item" onclick="window.location.href='planes.html'">
+              <div class="clean-item-left">
+                <div class="clean-menu-icon" style="color: #FF7900;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 12 20 22 4 22 4 12"/>
+                    <rect x="2" y="7" width="20" height="5"/>
+                    <line x1="12" y1="22" x2="12" y2="7"/>
+                    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+                    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+                  </svg>
+                </div>
+                <span class="clean-menu-text">Planes</span>
+              </div>
+              <div class="clean-menu-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 3. Facturación -->
+            <div class="clean-menu-item" onclick="openBillingModal()">
+              <div class="clean-item-left">
+                <div class="clean-menu-icon" style="color: #FF7900;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="5" width="20" height="14" rx="2.5"/>
+                    <line x1="2" y1="10" x2="22" y2="10"/>
+                  </svg>
+                </div>
+                <span class="clean-menu-text">Facturación</span>
+              </div>
+              <div class="clean-menu-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 4. Historial de Pagos -->
+            <div class="clean-menu-item" onclick="showToast('No tienes facturas pendientes')">
+              <div class="clean-item-left">
+                <div class="clean-menu-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                    <path d="M3 3v5h5"/>
+                    <polyline points="12 7 12 12 15 15"/>
+                  </svg>
+                </div>
+                <span class="clean-menu-text">Historial de Pagos</span>
+              </div>
+              <div class="clean-menu-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 4. Calendario -->
+            <div class="clean-menu-item" onclick="showToast('Calendario sincronizado')">
+              <div class="clean-item-left">
+                <div class="clean-menu-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                </div>
+                <span class="clean-menu-text">Calendario</span>
+              </div>
+              <div class="clean-menu-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 5. Ayuda & Soporte -->
+            <div class="clean-menu-item" onclick="window.location.href='https://wa.me/584240000000'">
+              <div class="clean-item-left">
+                <div class="clean-menu-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                  </svg>
+                </div>
+                <span class="clean-menu-text">Ayuda & Soporte</span>
+              </div>
+              <div class="clean-menu-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 6. Términos y Condiciones -->
+            <div class="clean-menu-item" onclick="showToast('Mostrando Términos y Condiciones')">
+              <div class="clean-item-left">
+                <div class="clean-menu-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                  </svg>
+                </div>
+                <span class="clean-menu-text">Términos y Condiciones</span>
+              </div>
+              <div class="clean-menu-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 7. Eliminar cuenta -->
+            <div class="clean-menu-item item-danger-clean" onclick="if(confirm('¿Estás seguro de que deseas eliminar tu cuenta permanentemente?')) handleLogout()">
+              <div class="clean-item-left">
+                <div class="clean-menu-icon" style="color: #dc2626;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    <line x1="10" y1="11" x2="10" y2="17"/>
+                    <line x1="14" y1="11" x2="14" y2="17"/>
+                  </svg>
+                </div>
+                <span class="clean-menu-text">Eliminar cuenta</span>
+              </div>
+              <div class="clean-menu-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 8. Salir -->
+            <div class="clean-menu-item item-logout-clean" onclick="handleLogout()" title="Cerrar sesión">
+              <div class="clean-item-left">
+                <div class="clean-menu-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                  </svg>
+                </div>
+                <span class="clean-menu-text">Salir</span>
+              </div>
+              <div class="clean-menu-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
           </div>
 
         </div>
 
       </div>
 
-      <!-- 5. FIXED BOTTOM NAVIGATION BAR -->
+      <!-- MODAL: EDITAR PERFIL COMPLETO (Slide-Up Bottom Sheet) -->
+      <div id="app-modal-edit" class="app-modal-overlay" onclick="if(event.target===this) closeEditProfileModal()">
+        <div class="app-modal-sheet">
+          <div class="app-modal-handle"></div>
+          <div class="app-modal-header">
+            <h3 class="app-modal-title">Editar información de perfil</h3>
+            <button type="button" class="app-modal-close-btn" onclick="closeEditProfileModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <div class="app-modal-body">
+            
+            <!-- FOTOS DE TU PERFIL Y PORTADA -->
+            <div class="settings-form-group" style="padding-bottom: 14px; border-bottom: 1px solid #f1f5f9; margin-bottom: 14px;">
+              <label class="settings-input-label" style="font-weight: 800; color: #0f172a; margin-bottom: 10px; font-size: 11.5px; display: flex; align-items: center; justify-content: space-between;">
+                <span>FOTOS DE PERFIL Y PORTADA</span>
+                <span style="font-size: 10.5px; font-weight: 700; color: #FF7900;">Toca para cambiar</span>
+              </label>
+              
+              <!-- 1. FOTO DE PERFIL (AVATAR) -->
+              <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px; background: #f8fafc; padding: 10px 12px; border-radius: 14px; border: 1px solid #f1f5f9;">
+                <div style="position: relative; width: 62px; height: 62px; border-radius: 50%; border: 2.5px solid #FF7900; overflow: hidden; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;" onclick="document.getElementById('input-file-avatar').click()" title="Toca para cambiar tu foto">
+                  <img id="modal-preview-avatar" src="assets/replica/lead_avatar.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                  <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.28); display: flex; align-items: center; justify-content: center;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                  </div>
+                </div>
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 3px;">
+                  <div style="font-size: 12px; font-weight: 800; color: #0f172a;">Foto de perfil</div>
+                  <div style="font-size: 11px; color: #64748b;">JPG, PNG desde tu dispositivo</div>
+                  <div style="display: flex; gap: 8px; margin-top: 4px;">
+                    <button type="button" class="btn-subtle-pill" style="height: 28px; padding: 0 10px; font-size: 10.5px; background: #ffffff; border: 1px solid #e2e8f0;" onclick="document.getElementById('input-file-avatar').click()">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      <span>Subir foto</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. FOTO DE PORTADA / BANNER -->
+              <div style="display: flex; flex-direction: column; gap: 6px; background: #f8fafc; padding: 10px 12px; border-radius: 14px; border: 1px solid #f1f5f9;">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <span style="font-size: 12px; font-weight: 800; color: #0f172a;">Imagen de portada</span>
+                    <p style="font-size: 11px; color: #64748b; margin: 1px 0 0 0;">Fondo del banner principal</p>
+                  </div>
+                  <button type="button" class="btn-subtle-pill" style="height: 28px; padding: 0 10px; font-size: 10.5px; background: #ffffff; border: 1px solid #e2e8f0;" onclick="document.getElementById('input-file-banner').click()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span>Subir imagen</span>
+                  </button>
+                </div>
+                <!-- Vista previa del banner -->
+                <div id="modal-preview-banner-box" style="width: 100%; height: 78px; border-radius: 10px; overflow: hidden; position: relative; border: 1.5px solid #e2e8f0; background-image: url('assets/parallax-edificio.jpg'); background-size: cover; background-position: center; cursor: pointer; margin-top: 4px;" onclick="document.getElementById('input-file-banner').click()" title="Toca para subir tu propia portada">
+                  <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.5) 100%); display: flex; align-items: flex-end; justify-content: space-between; padding: 6px 10px;">
+                    <span style="color: #ffffff; font-size: 10px; font-weight: 700; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Vista actual</span>
+                    <span style="background: rgba(0,0,0,0.6); color: #ffffff; font-size: 9.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; backdrop-filter: blur(4px);">
+                      📷 Cambiar
+                    </span>
+                  </div>
+                </div>
+                <!-- Portadas destacadas precargadas -->
+                <div style="margin-top: 4px;">
+                  <span style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">O elige un fondo inmobiliario:</span>
+                  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 4px;">
+                    <div class="banner-preset-thumb" onclick="setBannerPreset('assets/parallax-edificio.jpg', this)" style="background-image: url('assets/parallax-edificio.jpg');">
+                      <span style="position: absolute; bottom: 2px; left: 4px; right: 4px; font-size: 8px; font-weight: 800; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">El Mirador</span>
+                    </div>
+                    <div class="banner-preset-thumb" onclick="setBannerPreset('assets/banner-background.jpg', this)" style="background-image: url('assets/banner-background.jpg');">
+                      <span style="position: absolute; bottom: 2px; left: 4px; right: 4px; font-size: 8px; font-weight: 800; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Condominio</span>
+                    </div>
+                    <div class="banner-preset-thumb" onclick="setBannerPreset('assets/hero-quienes-1.jpg', this)" style="background-image: url('assets/hero-quienes-1.jpg');">
+                      <span style="position: absolute; bottom: 2px; left: 4px; right: 4px; font-size: 8px; font-weight: 800; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">El Ávila</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hidden native file inputs for real device gallery upload -->
+              <input type="file" id="input-file-avatar" accept="image/*" style="display: none;" onchange="handleFileInput(event, 'avatar')">
+              <input type="file" id="input-file-banner" accept="image/*" style="display: none;" onchange="handleFileInput(event, 'banner')">
+            </div>
+
+            <div class="settings-form-group">
+              <label class="settings-input-label">Nombre completo</label>
+              <input type="text" id="modal-field-name" class="settings-text-input" value="Roger">
+            </div>
+
+            <div class="settings-form-group">
+              <label class="settings-input-label">Enlace de vitrina (slug)</label>
+              <div class="settings-url-box">
+                <span class="url-domain">enkapta.com/u/</span>
+                <input type="text" id="modal-field-slug" class="url-slug-input" value="roger">
+              </div>
+            </div>
+
+            <div class="settings-form-group">
+              <label class="settings-input-label">Teléfono / WhatsApp</label>
+              <input type="text" id="modal-field-phone" class="settings-text-input" placeholder="+58 424 000 0000" value="+58 424 123 4567">
+            </div>
+
+            <div class="settings-form-group">
+              <label class="settings-input-label">Zonas de atención</label>
+              <input type="text" id="modal-field-zones" class="settings-text-input" placeholder="Ej: Las Mercedes, Chacao, Altamira" value="Caracas, Las Mercedes, Chacao">
+            </div>
+
+            <div class="settings-form-group">
+              <label class="settings-input-label">Biografía profesional</label>
+              <textarea id="modal-field-bio" rows="3" class="settings-text-input" style="height: auto; padding: 10px 14px; resize: none;">Work hard in silence. Let your success be the noise.</textarea>
+            </div>
+
+            <!-- Canales profesionales y redes sociales -->
+            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #f1f5f9;">
+              <label class="settings-input-label" style="margin-bottom: 8px;">Canales profesionales y redes sociales</label>
+              
+              <!-- Instagram -->
+              <div class="settings-form-group" style="margin-bottom: 10px;">
+                <div class="settings-url-box">
+                  <span class="url-domain" style="min-width: 85px; display: flex; align-items: center; gap: 4px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    Instagram
+                  </span>
+                  <input type="text" id="modal-field-instagram" class="url-slug-input" placeholder="@usuario o link" value="@roger_realestate">
+                </div>
+              </div>
+
+              <!-- LinkedIn -->
+              <div class="settings-form-group" style="margin-bottom: 10px;">
+                <div class="settings-url-box">
+                  <span class="url-domain" style="min-width: 85px; display: flex; align-items: center; gap: 4px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    LinkedIn
+                  </span>
+                  <input type="text" id="modal-field-linkedin" class="url-slug-input" placeholder="linkedin.com/in/usuario" value="linkedin.com/in/roger">
+                </div>
+              </div>
+
+              <!-- Facebook -->
+              <div class="settings-form-group" style="margin-bottom: 6px;">
+                <div class="settings-url-box">
+                  <span class="url-domain" style="min-width: 85px; display: flex; align-items: center; gap: 4px;">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Facebook
+                  </span>
+                  <input type="text" id="modal-field-facebook" class="url-slug-input" placeholder="facebook.com/usuario" value="facebook.com/roger">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="app-modal-footer">
+            <button type="button" class="btn-subtle-pill" style="flex: 1; height: 42px; justify-content: center;" onclick="closeEditProfileModal()">
+              Cancelar
+            </button>
+            <button type="button" class="btn-primary-save" style="flex: 1.5; height: 42px; justify-content: center;" onclick="saveFullProfileModal()">
+              Guardar cambios
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL: CAMBIAR CONTRASEÑA -->
+      <div id="app-modal-security" class="app-modal-overlay" onclick="if(event.target===this) closeSecurityModal()">
+        <div class="app-modal-sheet">
+          <div class="app-modal-handle"></div>
+          <div class="app-modal-header">
+            <h3 class="app-modal-title">Cambiar contraseña</h3>
+            <button type="button" class="app-modal-close-btn" onclick="closeSecurityModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <div class="app-modal-body">
+            <div class="settings-form-group">
+              <label class="settings-input-label">Contraseña actual</label>
+              <input type="password" id="modal-sec-curr" class="settings-text-input" placeholder="••••••••">
+            </div>
+            <div class="settings-form-group">
+              <label class="settings-input-label">Nueva contraseña</label>
+              <input type="password" id="modal-sec-new" class="settings-text-input" placeholder="Mínimo 8 caracteres">
+            </div>
+            <div class="settings-form-group">
+              <label class="settings-input-label">Confirmar nueva contraseña</label>
+              <input type="password" id="modal-sec-conf" class="settings-text-input" placeholder="Repite la nueva contraseña">
+            </div>
+          </div>
+          <div class="app-modal-footer">
+            <button type="button" class="btn-subtle-pill" style="flex: 1; height: 42px; justify-content: center;" onclick="closeSecurityModal()">
+              Cancelar
+            </button>
+            <button type="button" class="btn-primary-save" style="flex: 1.5; height: 42px; justify-content: center;" onclick="saveNewPassword()">
+              Actualizar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL: CAMBIAR CORREO -->
+      <div id="app-modal-email" class="app-modal-overlay" onclick="if(event.target===this) closeChangeEmailModal()">
+        <div class="app-modal-sheet">
+          <div class="app-modal-handle"></div>
+          <div class="app-modal-header">
+            <h3 class="app-modal-title">Cambiar correo electrónico</h3>
+            <button type="button" class="app-modal-close-btn" onclick="closeChangeEmailModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <div class="app-modal-body">
+            <div class="settings-form-group">
+              <label class="settings-input-label">Correo actual</label>
+              <input type="email" disabled class="settings-text-input" style="background: #f8fafc; color: #64748b;" value="rogeralejandroquijadaavilera@gmail.com">
+            </div>
+            <div class="settings-form-group">
+              <label class="settings-input-label">Nuevo correo electrónico</label>
+              <input type="email" id="modal-new-email" class="settings-text-input" placeholder="nuevo@ejemplo.com">
+            </div>
+            <div class="settings-form-group">
+              <label class="settings-input-label">Contraseña de confirmación</label>
+              <input type="password" id="modal-email-pass" class="settings-text-input" placeholder="Ingresa tu contraseña actual">
+            </div>
+          </div>
+          <div class="app-modal-footer">
+            <button type="button" class="btn-subtle-pill" style="flex: 1; height: 42px; justify-content: center;" onclick="closeChangeEmailModal()">
+              Cancelar
+            </button>
+            <button type="button" class="btn-primary-save" style="flex: 1.5; height: 42px; justify-content: center;" onclick="saveNewEmail()">
+              Guardar correo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL: FACTURACIÓN Y MÉTODOS DE PAGO -->
+      <div id="app-modal-billing" class="app-modal-overlay" onclick="if(event.target===this) closeBillingModal()">
+        <div class="app-modal-sheet">
+          <div class="app-modal-handle"></div>
+          <div class="app-modal-header">
+            <h3 class="app-modal-title">Facturación y Pagos</h3>
+            <button type="button" class="app-modal-close-btn" onclick="closeBillingModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <div class="app-modal-body no-scrollbar" style="max-height: 72vh; overflow-y: auto;">
+            
+            <!-- TARJETA DE CRÉDITO PRINCIPAL -->
+            <div style="margin-bottom: 18px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 11.5px; font-weight: 800; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase;">MÉTODO PREDETERMINADO</span>
+                <span style="font-size: 11px; font-weight: 700; color: #10b981; background: #ecfdf5; padding: 2px 8px; border-radius: 999px;">✓ Tarjeta activa</span>
+              </div>
+              
+              <!-- Tarjeta Visual Estilizada -->
+              <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: 16px; padding: 18px 20px; color: #ffffff; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25); position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="position: absolute; right: -20px; top: -20px; width: 120px; height: 120px; background: rgba(255, 121, 0, 0.15); border-radius: 50%; pointer-events: none;"></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px;">
+                  <!-- Chip -->
+                  <div style="width: 34px; height: 26px; background: linear-gradient(135deg, #fbbf24, #d97706); border-radius: 6px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);"></div>
+                  <!-- Brand: Visa / Mastercard -->
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="font-size: 16px; font-weight: 900; letter-spacing: 1px; color: #ffffff; font-style: italic;">VISA</span>
+                  </div>
+                </div>
+                <!-- Card Number -->
+                <div style="font-size: 17px; font-weight: 700; letter-spacing: 2.5px; margin-bottom: 18px; font-family: monospace;" id="billing-card-display">
+                  •••• •••• •••• 4242
+                </div>
+                <!-- Card Footer Info -->
+                <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                  <div>
+                    <div style="font-size: 9.5px; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.6px; font-weight: 700;">TITULAR</div>
+                    <div style="font-size: 13px; font-weight: 700; color: #ffffff;" id="billing-name-display">Roger Quijada</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 9.5px; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.6px; font-weight: 700;">VENCE</div>
+                    <div style="font-size: 13px; font-weight: 700; color: #ffffff;">12/28</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DATOS FISCALES -->
+            <div style="background: #f8fafc; border-radius: 14px; border: 1px solid #e2e8f0; padding: 14px; margin-bottom: 16px;">
+              <div style="font-size: 12px; font-weight: 800; color: #0f172a; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.4px;">
+                Datos de facturación
+              </div>
+              
+              <div class="settings-form-group" style="margin-bottom: 10px;">
+                <label class="settings-input-label">Razón Social o Nombre Completo</label>
+                <input type="text" id="billing-input-name" class="settings-text-input" placeholder="Tu nombre o empresa" value="Roger Quijada">
+              </div>
+
+              <div class="settings-form-group" style="margin-bottom: 10px;">
+                <label class="settings-input-label">Identificación Fiscal / RIF / C.I.</label>
+                <input type="text" id="billing-input-rif" class="settings-text-input" placeholder="Ej: J-12345678-9 o V-12345678" value="V-24.891.023">
+              </div>
+
+              <div class="settings-form-group" style="margin-bottom: 6px;">
+                <label class="settings-input-label">Dirección Fiscal</label>
+                <input type="text" id="billing-input-address" class="settings-text-input" placeholder="Dirección completa" value="Av. Francisco de Miranda, Caracas, Venezuela">
+              </div>
+            </div>
+
+            <!-- INFORMACIÓN DEL PLAN ACTIVO -->
+            <div style="background: #fffaf5; border: 1px solid #fed7aa; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 8px; background: #FF7900; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div>
+                  <div style="font-size: 12.5px; font-weight: 800; color: #0f172a;" id="billing-plan-title">Plan activo</div>
+                  <div style="font-size: 11px; color: #64748b;">Facturación mensual recurrente</div>
+                </div>
+              </div>
+              <button type="button" class="btn-subtle-pill" style="height: 28px; padding: 0 10px; font-size: 11px; font-weight: 700; color: #FF7900;" onclick="closeBillingModal(); window.location.href='planes.html';">
+                Cambiar plan
+              </button>
+            </div>
+
+          </div>
+          <div class="app-modal-footer">
+            <button type="button" class="btn-subtle-pill" style="flex: 1; height: 42px; justify-content: center;" onclick="closeBillingModal()">
+              Cancelar
+            </button>
+            <button type="button" class="btn-primary-save" style="flex: 1.5; height: 42px; justify-content: center;" onclick="saveBillingData()">
+              Guardar cambios
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FLOATING TOAST NOTIFICATION -->
+      <div id="app-toast" class="app-toast-alert">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span id="app-toast-text">Acción realizada con éxito</span>
+      </div>
+
+      <!-- 5. FLOATING BOTTOM NAVIGATION BAR (Cuenta active) -->
       <nav class="bottom-nav">
         <!-- 1. Home -->
         <a href="index.html" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            <path d="M3 10.5L12 3l9 7.5V20a2 2 0 0 1-2 2h-4a1 1 0 0 1-1-1v-5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v5a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V10.5z"/>
           </svg>
           <span>Home</span>
         </a>
@@ -1063,16 +2818,16 @@
         <!-- 2. Explorar -->
         <a href="explorar.html" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <path d="M12 7l3 2.5V13h-2v-2h-2v2H9V9.5L12 7z"/>
           </svg>
           <span>Explorar</span>
         </a>
 
-        <!-- 3. Center Orange Plus -->
+        <!-- 3. Botón Central [+] Naranja -->
         <div class="nav-plus-wrapper">
           <button class="nav-plus-btn" title="Publicar propiedad" onclick="handlePlusClick()">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
@@ -1087,18 +2842,18 @@
           <span>Favoritos</span>
         </a>
 
-        <!-- 5. Cuenta (Active) -->
+        <!-- 5. Cuenta (Activo) -->
         <a href="cuenta.html" class="nav-item active">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
           <span>Cuenta</span>
         </a>
-
-        <!-- Android bar indicator -->
-        <div class="android-indicator"></div>
       </nav>
+
+      <!-- Android bar indicator -->
+      <div class="android-indicator"></div>
 
     </div>
 
@@ -1107,17 +2862,438 @@
   <script>
     function togglePassword() {
       const input = document.getElementById('pass-input');
+      const icon = document.getElementById('eye-icon');
       if (input.type === 'password') {
         input.type = 'text';
+        if (icon) {
+          icon.innerHTML = '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle>';
+        }
       } else {
         input.type = 'password';
+        if (icon) {
+          icon.innerHTML = '<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" y1="2" x2="22" y2="22"></line>';
+        }
+      }
+    }
+
+    // Toast Alert notification helper
+    let toastTimeout = null;
+    function showToast(message) {
+      const toast = document.getElementById('app-toast');
+      const text = document.getElementById('app-toast-text');
+      if (!toast || !text) return;
+      text.textContent = message;
+      toast.classList.add('show');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
+
+    // Modal Controls: Edit Profile
+    function openEditProfileModal() {
+      const modal = document.getElementById('app-modal-edit');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeEditProfileModal() {
+      const modal = document.getElementById('app-modal-edit');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    let currentSelectedAvatar = localStorage.getItem('enkapta_profile_avatar') || 'assets/replica/lead_avatar.png';
+    let currentSelectedBanner = localStorage.getItem('enkapta_profile_banner') || 'assets/parallax-edificio.jpg';
+
+    function compressImage(file, maxDimension, callback) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          if (width > maxDimension || height > maxDimension) {
+            if (width > height) {
+              height = Math.round((height * maxDimension) / width);
+              width = maxDimension;
+            } else {
+              width = Math.round((width * maxDimension) / height);
+              height = maxDimension;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+          callback(dataUrl);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleFileInput(event, type) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const maxDim = type === 'avatar' ? 400 : 1200;
+      compressImage(file, maxDim, function(dataUrl) {
+        if (type === 'avatar') {
+          currentSelectedAvatar = dataUrl;
+          const preview = document.getElementById('modal-preview-avatar');
+          if (preview) preview.src = dataUrl;
+          const heroAvatar = document.getElementById('app-hero-avatar-img');
+          if (heroAvatar) heroAvatar.src = dataUrl;
+          localStorage.setItem('enkapta_profile_avatar', dataUrl);
+          showToast('¡Foto de perfil actualizada!');
+        } else if (type === 'banner') {
+          currentSelectedBanner = dataUrl;
+          const previewBox = document.getElementById('modal-preview-banner-box');
+          if (previewBox) previewBox.style.backgroundImage = `url('${dataUrl}')`;
+          const heroBanner = document.getElementById('hero-banner-cuenta');
+          if (heroBanner) heroBanner.style.backgroundImage = `url('${dataUrl}')`;
+          localStorage.setItem('enkapta_profile_banner', dataUrl);
+          showToast('¡Imagen de portada actualizada!');
+        }
+      });
+    }
+
+    function setAvatarPreset(url) {
+      currentSelectedAvatar = url;
+      const preview = document.getElementById('modal-preview-avatar');
+      if (preview) preview.src = url;
+      const heroAvatar = document.getElementById('app-hero-avatar-img');
+      if (heroAvatar) heroAvatar.src = url;
+      localStorage.setItem('enkapta_profile_avatar', url);
+      showToast('Foto de perfil restablecida');
+    }
+
+    function setBannerPreset(url, el) {
+      currentSelectedBanner = url;
+      const previewBox = document.getElementById('modal-preview-banner-box');
+      if (previewBox) previewBox.style.backgroundImage = `url('${url}')`;
+      const heroBanner = document.getElementById('hero-banner-cuenta');
+      if (heroBanner) heroBanner.style.backgroundImage = `url('${url}')`;
+      localStorage.setItem('enkapta_profile_banner', url);
+      
+      document.querySelectorAll('.banner-preset-thumb').forEach(t => t.style.borderColor = 'transparent');
+      if (el) el.style.borderColor = '#FF7900';
+      showToast('¡Portada cambiada!');
+    }
+
+    function openEditProfileWithFocus(field) {
+      openEditProfileModal();
+      setTimeout(() => {
+        if (field === 'avatar') {
+          const avatarInput = document.getElementById('input-file-avatar');
+          if (avatarInput) avatarInput.click();
+        } else if (field === 'banner') {
+          const bannerSection = document.getElementById('modal-preview-banner-box');
+          if (bannerSection) bannerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          let el = null;
+          if (field === 'name') el = document.getElementById('modal-field-name');
+          else if (field === 'slug') el = document.getElementById('modal-field-slug');
+          else if (field === 'phone') el = document.getElementById('modal-field-phone');
+          else if (field === 'bio') el = document.getElementById('modal-field-bio');
+          else if (field === 'zones') el = document.getElementById('modal-field-zones');
+          if (el) {
+            el.focus();
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }, 280);
+    }
+
+    // Modal Controls: Password & Security
+    function openSecurityModal() {
+      const modal = document.getElementById('app-modal-security');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeSecurityModal() {
+      const modal = document.getElementById('app-modal-security');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function saveNewPassword() {
+      const curr = document.getElementById('modal-sec-curr')?.value.trim();
+      const newP = document.getElementById('modal-sec-new')?.value.trim();
+      const conf = document.getElementById('modal-sec-conf')?.value.trim();
+      if (!curr) {
+        showToast('Ingresa tu contraseña actual');
+        return;
+      }
+      if (!newP || newP.length < 8) {
+        showToast('Mínimo 8 caracteres para la nueva contraseña');
+        return;
+      }
+      if (newP !== conf) {
+        showToast('Las contraseñas no coinciden');
+        return;
+      }
+      closeSecurityModal();
+      showToast('¡Contraseña actualizada con éxito!');
+    }
+
+    // Modal Controls: Change Email
+    function openChangeEmailModal() {
+      const modal = document.getElementById('app-modal-email');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeChangeEmailModal() {
+      const modal = document.getElementById('app-modal-email');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function saveNewEmail() {
+      const newEmail = document.getElementById('modal-new-email')?.value.trim();
+      const pass = document.getElementById('modal-email-pass')?.value.trim();
+      if (!newEmail || !newEmail.includes('@')) {
+        showToast('Ingresa un correo electrónico válido');
+        return;
+      }
+      if (!pass) {
+        showToast('Ingresa tu contraseña para confirmar');
+        return;
+      }
+      
+      const emailHero = document.getElementById('app-hero-email');
+      const emailDisplay = document.getElementById('app-display-email');
+      if (emailHero) emailHero.textContent = newEmail;
+      if (emailDisplay) emailDisplay.textContent = newEmail;
+      localStorage.setItem('enkapta_user_email', newEmail);
+      
+      closeChangeEmailModal();
+      showToast('Correo actualizado correctamente');
+    }
+
+    // Modal Controls: Facturación & Pagos
+    function openBillingModal() {
+      const modal = document.getElementById('app-modal-billing');
+      if (modal) {
+        const profileName = localStorage.getItem('enkapta_profile_name') || 'Roger Quijada';
+        const savedRif = localStorage.getItem('enkapta_billing_rif') || 'V-24.891.023';
+        const savedAddress = localStorage.getItem('enkapta_billing_address') || 'Av. Francisco de Miranda, Caracas, Venezuela';
+        const currentPlan = localStorage.getItem('enkapta_user_plan') || 'Pixel';
+
+        const nameInput = document.getElementById('billing-input-name');
+        const nameDisplay = document.getElementById('billing-name-display');
+        const rifInput = document.getElementById('billing-input-rif');
+        const addrInput = document.getElementById('billing-input-address');
+        const planTitle = document.getElementById('billing-plan-title');
+
+        if (nameInput) nameInput.value = localStorage.getItem('enkapta_billing_name') || profileName;
+        if (nameDisplay) nameDisplay.textContent = localStorage.getItem('enkapta_billing_name') || profileName;
+        if (rifInput) rifInput.value = savedRif;
+        if (addrInput) addrInput.value = savedAddress;
+        if (planTitle) planTitle.textContent = (currentPlan === 'Sin plan') ? 'Plan gratuito' : `Plan ${currentPlan}`;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeBillingModal() {
+      const modal = document.getElementById('app-modal-billing');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function saveBillingData() {
+      const name = document.getElementById('billing-input-name')?.value.trim();
+      const rif = document.getElementById('billing-input-rif')?.value.trim();
+      const addr = document.getElementById('billing-input-address')?.value.trim();
+
+      if (name) localStorage.setItem('enkapta_billing_name', name);
+      if (rif) localStorage.setItem('enkapta_billing_rif', rif);
+      if (addr) localStorage.setItem('enkapta_billing_address', addr);
+
+      showToast('¡Datos de facturación guardados!');
+      closeBillingModal();
+    }
+
+    // Copy public link
+    function copyAppProfileLink() {
+      const slugInput = document.getElementById('app-input-slug');
+      const slug = slugInput ? slugInput.value.trim() : 'roger';
+      const fullUrl = 'https://enkapta.com/u/' + slug;
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fullUrl).then(() => {
+          showToast('¡Enlace copiado al portapapeles!');
+        }).catch(() => {
+          fallbackCopyText(fullUrl);
+        });
+      } else {
+        fallbackCopyText(fullUrl);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const temp = document.createElement('input');
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast('¡Enlace copiado al portapapeles!');
+    }
+
+    // Save quick settings card (Perfil público)
+    function saveQuickProfileSettings() {
+      const name = document.getElementById('app-input-name')?.value.trim() || 'Roger';
+      const slug = document.getElementById('app-input-slug')?.value.trim() || 'roger';
+      
+      const heroName = document.getElementById('app-hero-name');
+      if (heroName) heroName.textContent = name;
+      
+      const modalName = document.getElementById('modal-field-name');
+      if (modalName) modalName.value = name;
+      const modalSlug = document.getElementById('modal-field-slug');
+      if (modalSlug) modalSlug.value = slug;
+
+      localStorage.setItem('enkapta_profile_name', name);
+      localStorage.setItem('enkapta_profile_slug', slug);
+
+      showToast('¡Perfil público guardado!');
+    }
+
+    // Save full modal
+    function saveFullProfileModal() {
+      const name = document.getElementById('modal-field-name')?.value.trim() || 'Roger';
+      const slug = document.getElementById('modal-field-slug')?.value.trim() || 'roger';
+      const phone = document.getElementById('modal-field-phone')?.value.trim() || '';
+      const zones = document.getElementById('modal-field-zones')?.value.trim() || '';
+      const bio = document.getElementById('modal-field-bio')?.value.trim() || '';
+
+      const heroName = document.getElementById('app-hero-name');
+      if (heroName) heroName.textContent = name;
+
+      const quickName = document.getElementById('app-input-name');
+      if (quickName) quickName.value = name;
+      const quickSlug = document.getElementById('app-input-slug');
+      if (quickSlug) quickSlug.value = slug;
+
+      const instagram = document.getElementById('modal-field-instagram')?.value.trim() || '';
+      const linkedin = document.getElementById('modal-field-linkedin')?.value.trim() || '';
+      const facebook = document.getElementById('modal-field-facebook')?.value.trim() || '';
+
+      localStorage.setItem('enkapta_profile_name', name);
+      localStorage.setItem('enkapta_profile_slug', slug);
+      localStorage.setItem('enkapta_profile_phone', phone);
+      localStorage.setItem('enkapta_profile_zones', zones);
+      localStorage.setItem('enkapta_profile_bio', bio);
+      localStorage.setItem('enkapta_profile_avatar', currentSelectedAvatar);
+      localStorage.setItem('enkapta_profile_banner', currentSelectedBanner);
+
+      if (instagram) localStorage.setItem('enkapta_profile_instagram', instagram);
+      if (linkedin) localStorage.setItem('enkapta_profile_linkedin', linkedin);
+      if (facebook) localStorage.setItem('enkapta_profile_facebook', facebook);
+
+      updateCuentaSocialLinks();
+
+      closeEditProfileModal();
+      showToast('¡Perfil e imágenes guardados con éxito!');
+    }
+
+    // Actualizar enlaces de canales profesionales en Cuenta
+    function updateCuentaSocialLinks() {
+      const ig = localStorage.getItem('enkapta_profile_instagram') || 'https://instagram.com/roger';
+      const li = localStorage.getItem('enkapta_profile_linkedin') || 'https://linkedin.com/in/roger';
+      const fb = localStorage.getItem('enkapta_profile_facebook') || 'https://facebook.com/roger';
+
+      const igEl = document.getElementById('cuenta-social-ig');
+      if (igEl) {
+        let cleanIg = ig.trim();
+        if (!cleanIg.startsWith('http')) cleanIg = 'https://instagram.com/' + cleanIg.replace(/^@/, '');
+        igEl.href = cleanIg;
+      }
+
+      const liEl = document.getElementById('cuenta-social-li');
+      if (liEl) {
+        let cleanLi = li.trim();
+        if (!cleanLi.startsWith('http')) cleanLi = 'https://' + cleanLi;
+        liEl.href = cleanLi;
+      }
+
+      const fbEl = document.getElementById('cuenta-social-fb');
+      if (fbEl) {
+        let cleanFb = fb.trim();
+        if (!cleanFb.startsWith('http')) cleanFb = 'https://' + cleanFb;
+        fbEl.href = cleanFb;
+      }
+    }
+
+    // Close other sessions
+    function handleLogoutOtherDevices() {
+      if (confirm('¿Deseas cerrar la sesión en todos los demás dispositivos conectados?')) {
+        showToast('Sesiones cerradas en los demás dispositivos');
       }
     }
 
     // Auth & Session Logic
-    function handleLogin() {
-      localStorage.setItem('enkapta_session', 'roger');
+    function handleLogin(profileType) {
+      if (profileType === 'roger') {
+        localStorage.setItem('enkapta_session', 'roger');
+        localStorage.setItem('enkapta_user_plan', 'Pixel');
+        localStorage.setItem('enkapta_user_role', 'Propietario');
+        localStorage.setItem('enkapta_profile_name', 'Roger Quijada');
+        localStorage.setItem('enkapta_user_email', 'rogeralejandroquijadaavilera@gmail.com');
+        localStorage.setItem('enkapta_profile_slug', 'rogerquijada');
+      } else if (profileType === 'sinplan' || profileType === 'carlos' || profileType === 'visitante') {
+        localStorage.setItem('enkapta_session', 'carlos_sinplan');
+        localStorage.setItem('enkapta_user_plan', 'Sin plan');
+        localStorage.setItem('enkapta_user_role', 'Visitante');
+        localStorage.setItem('enkapta_profile_name', 'Carlos Mendoza');
+        localStorage.setItem('enkapta_user_email', 'carlos.mendoza@gmail.com');
+        localStorage.setItem('enkapta_profile_slug', 'carlos.mendoza');
+        localStorage.setItem('enkapta_user_properties', '[]');
+      } else {
+        const session = localStorage.getItem('enkapta_session');
+        if (!session || session === 'logged_out') {
+          localStorage.setItem('enkapta_session', 'carlos_sinplan');
+          localStorage.setItem('enkapta_user_plan', 'Sin plan');
+          localStorage.setItem('enkapta_user_role', 'Visitante');
+          localStorage.setItem('enkapta_profile_name', 'Carlos Mendoza');
+          localStorage.setItem('enkapta_user_email', 'carlos.mendoza@gmail.com');
+          localStorage.setItem('enkapta_profile_slug', 'carlos.mendoza');
+          localStorage.setItem('enkapta_user_properties', '[]');
+        }
+      }
+      initAuth();
       showProfileView();
+    }
+
+    function submitCuentaLogin() {
+      const email = (document.getElementById('email-input').value || '').trim().toLowerCase();
+      if (email.includes('roger')) {
+        handleLogin('roger');
+      } else {
+        handleLogin('sinplan');
+      }
     }
 
     function handleLogout() {
@@ -1127,7 +3303,8 @@
 
     // Aliases for compatibility
     window.logout = handleLogout;
-    window.loginAsRoger = handleLogin;
+    window.loginAsRoger = () => handleLogin('roger');
+    window.loginAsVisitante = () => handleLogin('sinplan');
 
     function showProfileView() {
       document.getElementById('view-login').style.display = 'none';
@@ -1149,36 +3326,157 @@
 
     function handlePlusClick() {
       const session = localStorage.getItem('enkapta_session');
-      if (session === 'roger') {
-        window.location.href = 'planes.html';
-      } else {
+      const currentPlan = localStorage.getItem('enkapta_user_plan');
+      if (session === 'logged_out') {
         showLoginView();
+      } else if (!currentPlan || currentPlan === 'Sin plan') {
+        // ¡Al visitante le salen los planes directamente!
+        window.location.href = 'planes.html?view=catalog';
+      } else {
+        window.location.href = 'planes.html';
       }
     }
 
-    // Auto-detect authentication state on load
-    (function initAuth() {
+    // Auto-detect authentication state on load & hydrate profile
+    function initAuth() {
       const params = new URLSearchParams(window.location.search);
-      const authParam = params.get('auth');
-      
-      if (authParam === 'true' || authParam === '1' || params.get('login') === '1') {
-        handleLogin();
-        return;
-      }
-      
-      if (authParam === 'false' || authParam === '0' || params.get('logout') === '1') {
-        handleLogout();
-        return;
+      const userParam = params.get('user');
+
+      if (userParam === 'sinplan' || userParam === 'carlos') {
+        localStorage.setItem('enkapta_session', 'carlos_sinplan');
+        localStorage.setItem('enkapta_user_plan', 'Sin plan');
+        localStorage.setItem('enkapta_user_role', 'Visitante');
+        localStorage.setItem('enkapta_profile_name', 'Carlos Mendoza');
+        localStorage.setItem('enkapta_user_email', 'carlos.mendoza@gmail.com');
+        localStorage.setItem('enkapta_profile_slug', 'carlos.mendoza');
+        localStorage.setItem('enkapta_user_properties', '[]');
+      } else if (userParam === 'roger') {
+        localStorage.setItem('enkapta_session', 'roger');
+        localStorage.setItem('enkapta_user_plan', 'Pixel');
+        localStorage.setItem('enkapta_user_role', 'Propietario');
+        localStorage.setItem('enkapta_profile_name', 'Roger Quijada');
+        localStorage.setItem('enkapta_user_email', 'rogeralejandroquijadaavilera@gmail.com');
+        localStorage.setItem('enkapta_profile_slug', 'rogerquijada');
       }
 
-      // Check localStorage
-      const session = localStorage.getItem('enkapta_session');
-      if (session === 'roger') {
+      // Hydrate saved data
+      const currentSession = localStorage.getItem('enkapta_session') || 'carlos_sinplan';
+      const isCarlos = (currentSession === 'carlos_sinplan');
+      const defaultName = isCarlos ? 'Carlos Mendoza' : 'Roger Quijada';
+      const defaultEmail = isCarlos ? 'carlos.mendoza@gmail.com' : 'rogeralejandroquijadaavilera@gmail.com';
+      const defaultSlug = isCarlos ? 'carlos.mendoza' : 'rogerquijada';
+
+      const savedName = localStorage.getItem('enkapta_profile_name') || defaultName;
+      if (savedName) {
+        if (document.getElementById('app-hero-name')) document.getElementById('app-hero-name').textContent = savedName;
+        if (document.getElementById('app-input-name')) document.getElementById('app-input-name').value = savedName;
+        if (document.getElementById('modal-field-name')) document.getElementById('modal-field-name').value = savedName;
+      }
+      const savedSlug = localStorage.getItem('enkapta_profile_slug') || defaultSlug;
+      if (savedSlug) {
+        if (document.getElementById('app-input-slug')) document.getElementById('app-input-slug').value = savedSlug;
+        if (document.getElementById('modal-field-slug')) document.getElementById('modal-field-slug').value = savedSlug;
+      }
+      const savedEmail = localStorage.getItem('enkapta_user_email') || defaultEmail;
+      if (savedEmail) {
+        if (document.getElementById('app-hero-email')) document.getElementById('app-hero-email').textContent = savedEmail;
+        if (document.getElementById('app-display-email')) document.getElementById('app-display-email').textContent = savedEmail;
+      }
+      const savedIg = localStorage.getItem('enkapta_profile_instagram');
+      if (savedIg && document.getElementById('modal-field-instagram')) document.getElementById('modal-field-instagram').value = savedIg;
+      const savedLi = localStorage.getItem('enkapta_profile_linkedin');
+      if (savedLi && document.getElementById('modal-field-linkedin')) document.getElementById('modal-field-linkedin').value = savedLi;
+      const savedFb = localStorage.getItem('enkapta_profile_facebook');
+      if (savedFb && document.getElementById('modal-field-facebook')) document.getElementById('modal-field-facebook').value = savedFb;
+      updateCuentaSocialLinks();
+
+      // Hydrate plan and role stats
+      const currentPlan = localStorage.getItem('enkapta_user_plan') || (isCarlos ? 'Sin plan' : 'Pixel');
+      const currentRole = localStorage.getItem('enkapta_user_role') || (isCarlos ? 'Visitante' : 'Propietario');
+      const userProps = JSON.parse(localStorage.getItem('enkapta_user_properties') || '[]');
+      const propCount = userProps.length;
+
+      const rolePill = document.getElementById('app-hero-role-pill');
+      if (rolePill) {
+        if (currentPlan === 'Sin plan') {
+          rolePill.textContent = 'Sin plan · Visitante';
+        } else {
+          rolePill.textContent = `Plan ${currentPlan} · ${currentRole}`;
+        }
+      }
+
+      const statPlanName = document.getElementById('app-stat-plan-name');
+      const statPlanDesc = document.getElementById('app-stat-plan-desc');
+      const statPropsQuota = document.getElementById('app-stat-props-quota');
+
+      if (statPlanName) statPlanName.textContent = currentPlan;
+      if (statPlanDesc) statPlanDesc.textContent = (currentPlan === 'Sin plan') ? 'Plan gratuito' : 'Plan activo';
+      if (statPropsQuota) {
+        if (currentPlan === 'Sin plan') {
+          statPropsQuota.textContent = '0 / 0 cupos';
+        } else if (currentPlan === 'Pixel') {
+          statPropsQuota.textContent = `${propCount} / 10 cupos`;
+        } else {
+          statPropsQuota.textContent = `${propCount} cupos`;
+        }
+      }
+
+      // Hydrate avatar & banner
+      const savedAvatar = localStorage.getItem('enkapta_profile_avatar') || 'assets/replica/lead_avatar.png';
+      const savedBanner = localStorage.getItem('enkapta_profile_banner') || 'assets/parallax-edificio.jpg';
+      currentSelectedAvatar = savedAvatar;
+      currentSelectedBanner = savedBanner;
+
+      const heroAvatar = document.getElementById('app-hero-avatar-img');
+      if (heroAvatar) heroAvatar.src = savedAvatar;
+      const modalAvatar = document.getElementById('modal-preview-avatar');
+      if (modalAvatar) modalAvatar.src = savedAvatar;
+
+      const heroBanner = document.getElementById('hero-banner-cuenta');
+      if (heroBanner) heroBanner.style.backgroundImage = `url('${savedBanner}')`;
+      const modalBanner = document.getElementById('modal-preview-banner-box');
+      if (modalBanner) modalBanner.style.backgroundImage = `url('${savedBanner}')`;
+
+      const authParam = params.get('auth');
+      
+      if (params.get('login') === '1' || authParam === 'false' || authParam === '0' || params.get('logout') === '1') {
+        showLoginView();
+      } else if (authParam === 'true' || authParam === '1') {
         showProfileView();
       } else {
-        showLoginView();
+        // Check localStorage: default to profile view for testing & preview
+        const session = localStorage.getItem('enkapta_session');
+        if (session === 'logged_out') {
+          showLoginView();
+        } else {
+          showProfileView();
+        }
       }
-    })();
+
+      // Scroll helper
+      const scrollParam = params.get('scroll');
+      if (scrollParam) {
+        setTimeout(() => {
+          const sc = document.querySelector('.profile-scroll');
+          if (sc) {
+            if (scrollParam === 'bottom') sc.scrollTop = sc.scrollHeight;
+            else sc.scrollTop = parseInt(scrollParam, 10) || 500;
+          }
+        }, 150);
+      }
+
+      // Auto-open edit modal if requested
+      if (params.get('edit') === '1') {
+        setTimeout(openEditProfileModal, 120);
+      }
+      // Auto-open billing modal if requested
+      if (params.get('billing') === '1') {
+        setTimeout(openBillingModal, 120);
+      }
+    }
+
+    // Initialize on load
+    initAuth();
   </script>
 
 </body>

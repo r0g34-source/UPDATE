@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Oficina en Venta en Plaza Venezuela · Enkapta</title>
   
   <link rel="icon" type="image/png" href="assets/replica/logo-enkapta.png">
@@ -21,24 +24,36 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif;
-      color: #111827;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #0F172A;
+      background-color: #0F172A;
       overflow: hidden;
       user-select: none;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Scrollbars hide */
+    /* Hide scrollbars completely on all browsers, iOS Safari and Android */
+    *::-webkit-scrollbar,
+    *::-webkit-scrollbar-thumb,
+    *::-webkit-scrollbar-track,
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar,
+    .app-viewport::-webkit-scrollbar,
+    .scroll-body::-webkit-scrollbar,
     .no-scrollbar::-webkit-scrollbar {
-      display: none;
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+      -webkit-appearance: none !important;
     }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    * {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
     }
 
     /* Responsive Shell: 390px on Desktop, 100% on Mobile */
     body {
-      background-color: #0f172a;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -49,20 +64,20 @@
       height: 844px;
       max-width: 100%;
       max-height: 96vh;
-      background-color: #ffffff;
+      background-color: #FFFFFF;
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
       border-radius: 42px;
-      border: 8px solid #1e293b;
+      border: 8px solid #1E293B;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
       min-width: 0;
     }
 
     @media (max-width: 449px) {
       body {
-        background-color: #ffffff;
+        background-color: #FFFFFF;
         display: block;
       }
       .app-viewport {
@@ -79,14 +94,14 @@
     /* 1. Android Status Bar (12:49 | Wifi | 13%) */
     .status-bar {
       height: 32px;
-      background: #ffffff;
+      background: #FFFFFF;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0 16px;
       font-size: 13px;
       font-weight: 700;
-      color: #1f2937;
+      color: #1F2937;
       flex-shrink: 0;
       z-index: 40;
     }
@@ -103,7 +118,7 @@
       gap: 6px;
       font-size: 11px;
       font-weight: 700;
-      color: #1f2937;
+      color: #1F2937;
     }
 
     /* 2. Scrollable Body Content */
@@ -111,423 +126,1087 @@
       flex: 1;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 70px; /* Space for fixed bottom nav */
+      padding-bottom: 90px; /* Space for floating bottom nav */
     }
 
-    /* Hero Gallery Section */
-    .hero-gallery {
+    /* =========================================================================
+       PHOTO CAROUSEL (Swipeable Large Hero Gallery)
+       ========================================================================= */
+    .carousel-wrapper {
       position: relative;
       width: 100%;
       aspect-ratio: 472 / 370;
-      background-color: #0f172a;
+      background-color: #0F172A;
       overflow: hidden;
+      touch-action: pan-y;
+      cursor: grab;
+      user-select: none;
     }
 
-    .hero-img {
+    .carousel-wrapper:active {
+      cursor: grabbing;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .carousel-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      pointer-events: none;
     }
 
-    /* Interactive Hotspot Buttons */
-    .hotspot-btn {
-      position: absolute;
-      width: 44px;
-      height: 44px;
+    /* Floating Frosted Glass Action Buttons */
+    .glass-btn {
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 25;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.12s ease, background-color 0.15s ease;
-      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+      z-index: 30;
+      transition: transform 0.12s ease, background 0.15s ease;
+      color: #0F172A;
     }
 
-    .hotspot-btn:active {
+    .glass-btn:active {
       transform: scale(0.92);
-      background: rgba(255, 255, 255, 0.25);
+      background: #FFFFFF;
     }
 
-    /* Top Left: Back Arrow */
-    .hotspot-back {
-      top: 19px;
-      left: 17px;
+    .btn-top-back {
+      position: absolute;
+      top: 16px;
+      left: 16px;
     }
 
-    /* Top Right: Favorite */
-    .hotspot-fav {
-      top: 19px;
-      right: 76px;
-    }
-
-    /* Top Right: 3 Dots */
-    .hotspot-more {
-      top: 19px;
-      right: 18px;
-    }
-
-    /* Dynamic Red Heart on Favorite Toggle */
-    .fav-overlay-heart {
-      display: none;
-      width: 22px;
-      height: 22px;
-      fill: #ef4444;
-      stroke: #ef4444;
-      filter: drop-shadow(0 2px 4px rgba(239, 68, 68, 0.4));
-    }
-
-    .hotspot-fav.fav-active {
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    .hotspot-fav.fav-active .fav-overlay-heart {
-      display: block;
-    }
-
-    /* 3. Property Information Section */
-    .prop-details-container {
-      padding: 18px 18px 0 18px;
-    }
-
-    .prop-title {
-      font-size: 22px;
-      font-weight: 800;
-      color: #0f172a;
-      line-height: 1.25;
-      letter-spacing: -0.3px;
-      margin-bottom: 6px;
-    }
-
-    .prop-type-tag {
-      font-size: 15px;
-      font-weight: 700;
-      color: #FF7900;
-      margin-bottom: 14px;
-      display: inline-block;
-    }
-
-    .prop-meta-row {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #475569;
-    }
-
-    .meta-item svg {
-      flex-shrink: 0;
-    }
-
-    .prop-price {
-      font-size: 28px;
-      font-weight: 900;
-      color: #FF7900;
-      letter-spacing: -0.5px;
-      margin-bottom: 22px;
-    }
-
-    /* Sections */
-    .section-title {
-      font-size: 18px;
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: -0.2px;
-      margin-bottom: 10px;
-    }
-
-    .prop-desc-text {
-      font-size: 14px;
-      color: #475569;
-      line-height: 1.55;
-      margin-bottom: 22px;
-    }
-
-    /* General Specs List */
-    .specs-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 24px;
-    }
-
-    .spec-line {
-      font-size: 14px;
-      color: #334155;
-      display: flex;
-      gap: 6px;
-    }
-
-    .spec-label {
-      font-weight: 700;
-      color: #0f172a;
-    }
-
-    .spec-value {
-      color: #475569;
-      font-weight: 500;
-    }
-
-    /* Características Grid (2 cols) */
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      row-gap: 15px;
-      column-gap: 12px;
-      margin-bottom: 28px;
-    }
-
-    .feature-item {
+    .btn-top-actions {
+      position: absolute;
+      top: 16px;
+      right: 16px;
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: #0f172a;
+      z-index: 30;
     }
 
-    .feature-icon {
+    .fav-heart-icon {
+      transition: fill 0.15s ease, stroke 0.15s ease;
+    }
+
+    .glass-btn.fav-active .fav-heart-icon {
+      fill: #EF4444;
+      stroke: #EF4444;
+    }
+
+    /* Carousel Counter Badge (e.g. 1/7) */
+    .carousel-counter-badge {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.5px;
+      z-index: 25;
+      pointer-events: none;
+    }
+
+    /* Carousel Pagination Dots */
+    .carousel-dots {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 25;
+    }
+
+    .carousel-dots .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.55);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .carousel-dots .dot.active {
+      width: 20px;
+      background: #FF7900;
+    }
+
+    /* Click zones for desktop navigation */
+    .carousel-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(6px);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0F172A;
+      cursor: pointer;
+      z-index: 25;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.12s ease;
+    }
+
+    .carousel-wrapper:hover .carousel-nav-arrow {
+      opacity: 1;
+    }
+
+    .carousel-nav-arrow:active {
+      transform: translateY(-50%) scale(0.9);
+    }
+
+    .carousel-arrow-prev {
+      left: 10px;
+    }
+
+    .carousel-arrow-next {
+      right: 10px;
+    }
+
+    /* =========================================================================
+       PROPERTY DETAILS CONTAINER
+       ========================================================================= */
+    .prop-details-container {
+      padding: 20px 18px 0 18px;
+    }
+
+    /* Title & Rating Row */
+    .prop-header-info {
+      margin-bottom: 18px;
+    }
+
+    .prop-title-rating-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .prop-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.25;
+      letter-spacing: -0.3px;
+      flex: 1;
+    }
+
+    .prop-rating-tag {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0F172A;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .prop-rating-tag svg {
+      width: 14px;
+      height: 14px;
+      fill: #F59E0B;
+    }
+
+    .prop-rating-count {
+      color: #64748B;
+      font-weight: 500;
+      font-size: 12.5px;
+    }
+
+    /* Price Row */
+    .prop-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .prop-price-val {
+      font-size: 23px;
+      font-weight: 800;
+      color: #FF7900;
+      letter-spacing: -0.5px;
+    }
+
+    .prop-price-period {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    /* Location Row (Clean, no visits) */
+    .prop-location-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #64748B;
+    }
+
+    .prop-location-row svg {
+      color: #FF7900;
+      flex-shrink: 0;
+    }
+
+    /* 4 Characteristics Cards */
+    .features-row-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .feature-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 12px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 4px;
+    }
+
+    .feature-card-icon {
       color: #FF7900;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      height: 24px;
     }
 
-    /* Dirección exacta */
-    .address-section {
+    .feature-card-icon svg {
+      color: #FF7900;
+      stroke: #FF7900;
+    }
+
+    .feature-card-val {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.1;
+    }
+
+    .feature-card-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: #64748B;
+      letter-spacing: -0.2px;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.2px;
+      margin-bottom: 8px;
+    }
+
+    /* Description with "Leer más" */
+    .prop-desc-section {
+      margin-bottom: 22px;
+    }
+
+    .prop-desc-text {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .btn-read-more {
+      background: none;
+      border: none;
+      color: #FF7900;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0;
+      margin: 0 0 0 4px;
+      display: inline;
+      vertical-align: baseline;
+      outline: none;
+    }
+
+    .btn-read-more:hover {
+      text-decoration: underline;
+    }
+
+    /* Detalles Generales (Specs) */
+    .specs-section {
       margin-bottom: 24px;
     }
 
-    .address-text {
-      font-size: 14px;
-      color: #475569;
+    .specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .spec-line {
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .spec-line:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .spec-label {
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    .spec-val {
+      font-weight: 700;
+      color: #0F172A;
+    }
+
+    /* =========================================================================
+       UBICACIÓN / MAPA (Below Description & Specs)
+       ========================================================================= */
+    .location-section {
+      margin-bottom: 24px;
+    }
+
+    .location-address-text {
+      font-size: 13px;
+      color: #64748B;
       line-height: 1.45;
-    }
-
-    /* Publicado por (Agent Card) */
-    .publisher-card {
-      background: #f8fafc;
-      border: 1px solid #f1f5f9;
-      border-radius: 16px;
-      padding: 16px 18px;
-      margin-bottom: 20px;
-    }
-
-    .publisher-header {
-      font-size: 16px;
-      font-weight: 800;
-      color: #0f172a;
       margin-bottom: 12px;
     }
 
-    .publisher-ratings-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 16px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid #eef2f6;
+    .map-preview-card {
+      position: relative;
+      width: 100%;
+      height: 160px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #E2E8F0;
     }
 
-    .ratings-col {
+    .map-img-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 54%;
+      transform: scale(1.15);
+      display: block;
+      filter: saturate(1.1) brightness(0.98);
+    }
+
+    /* Clean Center Pin */
+    .map-pin-anchor {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      align-items: center;
+      pointer-events: none;
+      z-index: 10;
     }
 
-    .stars-row {
+    .map-pin-teardrop {
+      width: 32px;
+      height: 32px;
+      border-radius: 50% 50% 50% 0;
+      background: #FF7900;
+      transform: rotate(-45deg);
       display: flex;
-      gap: 3px;
-      color: #cbd5e1;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      border: 2px solid #FFFFFF;
     }
 
-    .ratings-label {
-      font-size: 12px;
-      color: #64748b;
-      font-weight: 600;
+    .map-pin-teardrop svg {
+      transform: rotate(45deg);
+      fill: #FFFFFF;
+      width: 16px;
+      height: 16px;
     }
 
-    .reviews-col {
+    .map-pin-label {
+      margin-top: 6px;
+      background: #FFFFFF;
+      padding: 3px 9px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0F172A;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      white-space: nowrap;
+    }
+
+    .map-open-link {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid #E2E8F0;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0F172A;
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
+      align-items: center;
       gap: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      z-index: 15;
     }
 
-    .reviews-icon {
-      color: #FF7900;
+    /* =========================================================================
+       FICHA DEL REALTOR (Directly Below the Map as requested)
+       ========================================================================= */
+    .realtor-section {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 24px;
     }
 
-    .agent-row {
+    .realtor-profile-row {
       display: flex;
       align-items: center;
       gap: 12px;
       cursor: pointer;
-      text-decoration: none;
     }
 
-    .agent-avatar-img {
-      width: 50px;
-      height: 50px;
+    .realtor-avatar-img {
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       object-fit: cover;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      border: 2px solid #FFFFFF;
       flex-shrink: 0;
     }
 
-    .agent-info {
+    .realtor-info-col {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 2px;
     }
 
-    .agent-name {
+    .realtor-name-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .realtor-name {
       font-size: 15px;
       font-weight: 800;
-      color: #0f172a;
+      color: #0F172A;
       letter-spacing: -0.2px;
     }
 
-    .agent-role {
-      font-size: 13px;
-      color: #64748b;
+    .realtor-verified {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .realtor-handle {
+      font-size: 12px;
+      color: #64748B;
       font-weight: 500;
     }
 
-    .agent-chevron {
-      color: #94a3b8;
+    .realtor-role-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #475569;
     }
 
-    /* 4. CTA BUTTON: Agendar cita (In normal flow at the bottom) */
-    .cta-container {
-      margin-top: 10px;
-      margin-bottom: 25px;
+    .realtor-chevron {
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
     }
 
-    .btn-agendar {
+    /* Botón Ver Teléfono (Estilo Propiedash) */
+    .btn-view-phone {
       width: 100%;
-      height: 48px;
-      background: #FF7900;
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: 800;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
+      height: 44px;
+      margin-top: 14px;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px rgba(255, 121, 0, 0.4);
-      transition: background-color 0.15s ease, transform 0.1s ease;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F172A;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .btn-agendar:active {
-      background: #e66d00;
+    .btn-view-phone:hover {
+      background: #F8FAFC;
+      border-color: #94A3B8;
+    }
+
+    .btn-view-phone:active {
+      background: #F1F5F9;
       transform: scale(0.98);
     }
 
-    /* 5. FIXED BOTTOM NAVIGATION BAR */
-    .bottom-nav {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: #ffffff;
-      border-top: 1px solid #f1f3f5;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding: 0 4px 6px 4px;
-      z-index: 40;
-      user-select: none;
+    /* =========================================================================
+       PROPIEDADES SIMILARES SECTION & CARDS
+       ========================================================================= */
+    .similar-props-section {
+      margin-top: 26px;
+      margin-bottom: 8px;
     }
 
-    .nav-item {
-      flex: 1;
+    .similar-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .similar-view-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #FF7900;
+      text-decoration: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .similar-view-all:active {
+      opacity: 0.75;
+    }
+
+    .similar-props-scroll {
+      display: flex;
+      gap: 16px;
+      margin-left: -16px;
+      margin-right: -16px;
+      padding: 4px 16px 12px 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+
+    .property-card {
+      width: 325px;
+      flex-shrink: 0;
+      background: #FFFFFF;
+      border-radius: 22px;
+      border: 1px solid #E2E8F0;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      background: none;
-      border: none;
-      color: #6b7280;
       cursor: pointer;
-      padding: 4px 0;
-      text-decoration: none;
+      scroll-snap-align: start;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .nav-item.active {
-      color: #FF7900;
+    .property-card:active {
+      transform: scale(0.985);
     }
 
-    .nav-item svg {
-      width: 21px;
-      height: 21px;
+    .card-thumb {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: #F1F5F9;
+      overflow: hidden;
     }
 
-    .nav-item span {
-      font-size: 10.5px;
-      font-weight: 600;
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
     }
 
-    .nav-item.active span {
-      font-weight: 700;
+    .property-card:hover .card-thumb img {
+      transform: scale(1.03);
     }
 
-    /* Plus Circle Button */
-    .nav-plus-wrapper {
-      flex: 1;
+    .card-badges {
+      position: absolute;
+      top: 10px;
+      left: 10px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      gap: 6px;
+      z-index: 2;
     }
 
-    .nav-plus-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
+    .card-badge-op {
       background: #FF7900;
-      color: #ffffff;
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.2px;
+      box-shadow: none;
+    }
+
+    .card-badge-type {
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.2px;
+    }
+
+    .card-fav-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 3px 8px rgba(255, 121, 0, 0.4);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      z-index: 2;
       transition: transform 0.15s ease, background-color 0.15s ease;
     }
 
-    .nav-plus-btn:active {
+    .card-fav-btn:active {
       transform: scale(0.9);
-      background: #e66d00;
+    }
+
+    .card-fav-btn svg {
+      transition: fill 0.2s ease, stroke 0.2s ease;
+    }
+
+    .card-fav-btn.active svg {
+      fill: #ef4444;
+      stroke: #ef4444;
+    }
+
+    .card-body {
+      padding: 13px 14px 14px 14px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-prop-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #FF7900;
+      line-height: 1.25;
+      margin-bottom: 9px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.2px;
+    }
+
+    .card-realtor-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 9px;
+    }
+
+    .card-realtor-left {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .card-realtor-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid rgba(255, 121, 0, 0.25);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      flex-shrink: 0;
+      background: #F1F5F9;
+    }
+
+    .card-realtor-info {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .card-realtor-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: #FF7900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.2px;
+    }
+
+    .card-verified-icon {
+      flex-shrink: 0;
+      display: inline-flex;
+    }
+
+    .card-msg-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748B;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .card-msg-btn:hover {
+      background: #FFF7ED;
+      border-color: #FDBA74;
+      color: #FF7900;
+    }
+
+    .card-msg-btn:active {
+      transform: scale(0.92);
+    }
+
+    .card-location-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #64748B;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 9px;
+    }
+
+    .card-location-row svg {
+      flex-shrink: 0;
+    }
+
+    .card-location-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-price-val {
+      font-size: 19px;
+      font-weight: 800;
+      color: #FF7900;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .card-specs-row {
+      border-top: 1px solid #F1F5F9;
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .card-spec-item {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #334155;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .card-spec-item svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    /* =========================================================================
+       PROPERTY DETAIL BOTTOM ACTION BAR (Estilo Propiedash / Nativo)
+       ========================================================================= */
+    .property-bottom-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #FFFFFF;
+      border-top: 1px solid #E2E8F0;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+      padding: 12px 18px 24px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 50;
+      box-sizing: border-box;
+    }
+
+    .prop-bar-price-col {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    .prop-bar-price {
+      font-size: 20px;
+      font-weight: 850;
+      color: #0F172A;
+      line-height: 1.1;
+      letter-spacing: -0.4px;
+    }
+
+    .prop-bar-sub {
+      display: none !important;
+    }
+
+    .prop-bar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
+    /* 1. Botón Teléfono Cuadrado Outlined */
+    .prop-bar-btn-phone {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid #CBD5E1;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0F172A;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .prop-bar-btn-phone:hover {
+      background: #F8FAFC;
+      border-color: #94A3B8;
+    }
+
+    .prop-bar-btn-phone:active {
+      transform: scale(0.95);
+      background: #F1F5F9;
+    }
+
+    /* 2. Botón Enviar Mensaje (Rectangular Naranja Enkapta) */
+    .prop-bar-btn-msg {
+      height: 44px;
+      padding: 0 18px;
+      border-radius: 12px;
+      background: #FF7900;
+      color: #FFFFFF;
+      border: none;
+      font-size: 14.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .prop-bar-btn-msg:hover {
+      background: #E66D00;
+      box-shadow: none;
+    }
+
+    .prop-bar-btn-msg:active {
+      transform: scale(0.95);
+      background: #D96600;
+    }
+
+    .prop-bar-btn-msg.is-owner-edit {
+      background: #FF7900;
+      color: #FFFFFF;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-view-phone.is-owner-edit {
+      background: #0F172A;
+      color: #FFFFFF;
+      border-color: #0F172A;
+      font-weight: 800;
+      box-shadow: none;
+    }
+
+    .btn-view-phone.is-owner-edit:hover {
+      background: #1E293B;
+      border-color: #1E293B;
+    }
+
+    @media (max-width: 374px) {
+      .property-bottom-bar {
+        padding: 10px 14px 20px 14px;
+        gap: 8px;
+      }
+      .prop-bar-price {
+        font-size: 18px;
+      }
+      .prop-bar-sub {
+        font-size: 10px;
+      }
+      .prop-bar-btn-phone {
+        width: 40px;
+        height: 40px;
+      }
+      .prop-bar-btn-msg {
+        height: 40px;
+        padding: 0 14px;
+        font-size: 13.5px;
+      }
     }
 
     /* Android home indicator at bottom */
     .android-indicator {
+      display: none !important;
+    }
+
+    /* Floating Toast */
+    .toast-popup {
       position: absolute;
-      bottom: 2px;
+      bottom: 90px;
       left: 50%;
-      transform: translateX(-50%);
-      width: 90px;
-      height: 3px;
-      background: #cbd5e1;
+      transform: translateX(-50%) translateY(20px);
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 10px 18px;
       border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      opacity: 0;
       pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+      white-space: nowrap;
+    }
+
+    .toast-popup.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Amenities Chips in Ficha */
+    .prop-amenities-section {
+      margin-top: 22px;
+      margin-bottom: 22px;
+    }
+
+    .ficha-amenities-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .ficha-amenity-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 9999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .ficha-amenity-chip svg {
+      color: #FF7900;
+      flex-shrink: 0;
     }
   </style>
 </head>
@@ -541,25 +1220,25 @@
       <!-- Left: 12:49 + icons -->
       <div class="status-left">
         <span>12:49</span>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1F2937" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
           <line x1="7" y1="12" x2="17" y2="12"></line>
         </svg>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="#1f2937">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#1F2937">
           <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
         </svg>
       </div>
 
       <!-- Right: Wifi, Signal, Battery 13% -->
       <div class="status-right">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1F2937">
           <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
         </svg>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#1F2937">
           <path d="M2 22h20V2z"/>
         </svg>
         <div style="display: flex; align-items: center; gap: 1px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#1f2937">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#1F2937">
             <path d="M17 5v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2z"/>
           </svg>
           <span style="font-size: 11px; margin-left: -2px;">13</span>
@@ -570,289 +1249,1132 @@
     <!-- 2. SCROLLABLE CONTENT BODY -->
     <div class="scroll-body no-scrollbar">
 
-      <!-- HERO PHOTO & FLOATING ACTIONS -->
-      <div class="hero-gallery">
-        <img src="assets/replica/hero-propiedad.jpg" alt="Oficina en Venta en Plaza Venezuela" class="hero-img">
+      <!-- ===================================================================
+           PHOTO CAROUSEL (Real Touch-Swipeable Gallery)
+           =================================================================== -->
+      <div class="carousel-wrapper" id="prop-carousel">
+        
+        <!-- Track of 7 real property photos -->
+        <div class="carousel-track" id="carousel-track">
+          <!-- Slide 1: Fachada Torre Lincoln / Plaza Venezuela -->
+          <div class="carousel-slide">
+            <img src="assets/replica/gallery/oficina-1.jpg" alt="Oficina en Plaza Venezuela - Fachada Torre Lincoln">
+          </div>
+          <!-- Slide 2: Área de Oficinas y Ventanales -->
+          <div class="carousel-slide">
+            <img src="assets/replica/gallery/oficina-2.jpg" alt="Área de Oficinas e Iluminación Natural">
+          </div>
+          <!-- Slide 3: Sala de Juntas Corporativa -->
+          <div class="carousel-slide">
+            <img src="assets/replica/gallery/oficina-3.jpg" alt="Sala de Juntas">
+          </div>
+          <!-- Slide 4: Recepción / Entrada -->
+          <div class="carousel-slide">
+            <img src="assets/replica/gallery/oficina-4.jpg" alt="Recepción Corporativa">
+          </div>
+          <!-- Slide 5: Estaciones de Trabajo / Cubículos -->
+          <div class="carousel-slide">
+            <img src="assets/replica/gallery/oficina-5.jpg" alt="Estaciones de Trabajo">
+          </div>
+          <!-- Slide 6: Vista Panorámica -->
+          <div class="carousel-slide">
+            <img src="assets/replica/gallery/oficina-6.jpg" alt="Vista Panorámica Caracas">
+          </div>
+          <!-- Slide 7: Baños y Acabados de Piso -->
+          <div class="carousel-slide">
+            <img src="assets/replica/gallery/oficina-7.jpg" alt="Baños y Distribución Funcional">
+          </div>
+        </div>
 
-        <!-- Interactive Hotspot Overlays (Click targets right over screenshot buttons) -->
-        <a href="javascript:handleBack()" class="hotspot-btn hotspot-back" title="Volver"></a>
-
-        <!-- Favorite Toggle with overlay red heart -->
-        <button type="button" id="btn-fav" class="hotspot-btn hotspot-fav" onclick="toggleFavorite()" title="Favorito">
-          <svg class="fav-overlay-heart" viewBox="0 0 24 24">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        <!-- Top Left: Clean Frosted Glass Back Button -->
+        <button type="button" class="glass-btn btn-top-back" onclick="handleBack()" title="Volver">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
         </button>
 
-        <!-- 3 Dots Options / Share -->
-        <button type="button" class="hotspot-btn hotspot-more" onclick="shareProperty()" title="Opciones"></button>
+        <!-- Top Right: Favorite & Share Glass Buttons -->
+        <div class="btn-top-actions">
+          <button type="button" id="btn-fav" class="glass-btn" onclick="toggleFavorite()" title="Favorito">
+            <svg class="fav-heart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </button>
+          <button type="button" class="glass-btn" onclick="shareProperty()" title="Compartir">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Desktop Navigation Arrows (Hover) -->
+        <button type="button" class="carousel-nav-arrow carousel-arrow-prev" onclick="prevSlide()" title="Foto anterior">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button type="button" class="carousel-nav-arrow carousel-arrow-next" onclick="nextSlide()" title="Siguiente foto">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <!-- Bottom Left: Counter Badge (1/7) -->
+        <div class="carousel-counter-badge" id="carousel-counter">1/7</div>
+
+        <!-- Bottom Center: Pagination Dots -->
+        <div class="carousel-dots" id="carousel-dots">
+          <span class="dot active" onclick="goToSlide(0)"></span>
+          <span class="dot" onclick="goToSlide(1)"></span>
+          <span class="dot" onclick="goToSlide(2)"></span>
+          <span class="dot" onclick="goToSlide(3)"></span>
+          <span class="dot" onclick="goToSlide(4)"></span>
+          <span class="dot" onclick="goToSlide(5)"></span>
+          <span class="dot" onclick="goToSlide(6)"></span>
+        </div>
       </div>
 
-      <!-- DETAILS CONTAINER -->
+      <!-- ===================================================================
+           PROPERTY DETAILS CONTAINER
+           =================================================================== -->
       <div class="prop-details-container">
 
-        <!-- Title -->
-        <h1 class="prop-title">Oficina en Venta en Plaza Venezuela</h1>
-
-        <!-- Type -->
-        <div class="prop-type-tag">Venta</div>
-
-        <!-- Meta (Visitas & Ubicación) -->
-        <div class="prop-meta-row">
-          <div class="meta-item">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-            <span>5 visitas</span>
+        <!-- Title, Rating, Price & Location -->
+        <div class="prop-header-info">
+          <!-- Title & Rating Row -->
+          <div class="prop-title-rating-row">
+            <h1 class="prop-title">Oficina en Plaza Venezuela</h1>
+            <div class="prop-rating-tag">
+              <svg viewBox="0 0 24 24">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <span>4.8 <span class="prop-rating-count">(12)</span></span>
+            </div>
           </div>
-          <div class="meta-item">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+          <!-- Price Row -->
+          <div class="prop-price-row">
+            <span class="prop-price-val">$65,000</span>
+            <span class="prop-price-period">/ Venta</span>
+          </div>
+
+          <!-- Location Row (Clean, no visits) -->
+          <div class="prop-location-row">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
-            <span>Distrito Capital</span>
+            <span>Blvr. de Sabana Grande, Plaza Venezuela, Caracas</span>
           </div>
         </div>
 
-        <!-- Price -->
-        <div class="prop-price">$65,000</div>
+        <!-- 4 Characteristics Cards -->
+        <div class="features-row-cards">
+          <!-- Card 1: Ambientes / Habitaciones -->
+          <div class="feature-card">
+            <div class="feature-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/>
+              </svg>
+            </div>
+            <span class="feature-card-val" id="spec-val-rooms">4</span>
+            <span class="feature-card-label" id="spec-label-rooms">Ambientes</span>
+          </div>
 
-        <!-- Descripción -->
-        <h2 class="section-title">Descripción</h2>
-        <p class="prop-desc-text">
-          Ubicada en una torre de arquitectura y diseño moderno en Plaza Venezuela —uno de los nodos de conectividad y alto flujo comercial más estratégicos de Caracas—, se encuentra a la venta esta oficina de 116 m², caracterizada por sus óptimas condiciones de iluminación, acabados de piso y una distribución altamente funcional para la...
-        </p>
+          <!-- Card 2: Baños -->
+          <div class="feature-card">
+            <div class="feature-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-1.5C3.7 2 2 3.7 2 5.5V11h14V5.5C16 3.7 14.3 2 12.5 2a1.5 1.5 0 0 0-1 1.5L9 6"/><path d="M2 11h20v2a8 8 0 0 1-8 8H10a8 8 0 0 1-8-8v-2Z"/><path d="M4 21v1"/><path d="M20 21v1"/>
+              </svg>
+            </div>
+            <span class="feature-card-val" id="spec-val-baths">2</span>
+            <span class="feature-card-label">Baños</span>
+          </div>
 
-        <!-- General Specs -->
-        <div class="specs-list">
-          <div class="spec-line">
-            <span class="spec-label">Fecha de construcción:</span>
-            <span class="spec-value">Año 1994</span>
+          <!-- Card 3: Estacionamientos -->
+          <div class="feature-card">
+            <div class="feature-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h10"/>
+              </svg>
+            </div>
+            <span class="feature-card-val" id="spec-val-parking">10</span>
+            <span class="feature-card-label">Estac.</span>
           </div>
-          <div class="spec-line">
-            <span class="spec-label">Status:</span>
-            <span class="spec-value">Usado</span>
-          </div>
-          <div class="spec-line">
-            <span class="spec-label">Municipio:</span>
-            <span class="spec-value">Libertador</span>
-          </div>
-          <div class="spec-line">
-            <span class="spec-label">Sector:</span>
-            <span class="spec-value">Caracas</span>
+
+          <!-- Card 4: Superficie Totales -->
+          <div class="feature-card">
+            <div class="feature-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="10" rx="2.5"/>
+                <line x1="6" y1="7" x2="6" y2="12"/>
+                <line x1="10" y1="7" x2="10" y2="10"/>
+                <line x1="14" y1="7" x2="14" y2="12"/>
+                <line x1="18" y1="7" x2="18" y2="10"/>
+              </svg>
+            </div>
+            <span class="feature-card-val" id="spec-val-area">116</span>
+            <span class="feature-card-label">m² Totales</span>
           </div>
         </div>
 
-        <!-- Características -->
-        <h2 class="section-title">Características</h2>
-        <div class="features-grid">
-          <!-- Col 1: Habitaciones -->
-          <div class="feature-item">
-            <div class="feature-icon">
-              <!-- Bed icon -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/>
-              </svg>
-            </div>
-            <span>4 Habitaciones</span>
-          </div>
-
-          <!-- Col 2: Baños -->
-          <div class="feature-item">
-            <div class="feature-icon">
-              <!-- Bathtub icon -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 6h6M7 10h14a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-4a1 1 0 0 1 1-1h4zM4 19v2M18 19v2"/>
-              </svg>
-            </div>
-            <span>2 Baños</span>
-          </div>
-
-          <!-- Col 1: Estacionamientos -->
-          <div class="feature-item">
-            <div class="feature-icon">
-              <!-- Car icon -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9C2.1 11.2 2 11.6 2 12v4c0 .6.4 1 1 1h2"/>
-                <circle cx="7" cy="17" r="2"/>
-                <path d="M9 17h6"/>
-                <circle cx="17" cy="17" r="2"/>
-              </svg>
-            </div>
-            <span>10 Estacionamientos</span>
-          </div>
-
-          <!-- Col 2: m2 -->
-          <div class="feature-item">
-            <div class="feature-icon">
-              <!-- Ruler / Dimensions icon -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0l-2.6-2.6c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4Z"/>
-                <path d="m14.5 3.5 2 2M11.5 6.5l2 2M8.5 9.5l2 2M5.5 12.5l2 2"/>
-              </svg>
-            </div>
-            <span>116 m²</span>
-          </div>
-
-          <!-- Col 1: Ascensor -->
-          <div class="feature-item">
-            <div class="feature-icon">
-              <!-- Building / Elevator icon -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
-                <line x1="9" y1="22" x2="9" y2="18"/>
-                <line x1="15" y1="22" x2="15" y2="18"/>
-                <rect x="8" y="6" width="2" height="2"/>
-                <rect x="14" y="6" width="2" height="2"/>
-                <rect x="8" y="11" width="2" height="2"/>
-                <rect x="14" y="11" width="2" height="2"/>
-              </svg>
-            </div>
-            <span>Ascensor</span>
-          </div>
-
-          <!-- Col 2: Seguridad 24/7 -->
-          <div class="feature-item">
-            <div class="feature-icon">
-              <!-- Shield check icon -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <span>Seguridad 24/7</span>
-          </div>
-
-          <!-- Col 1: Garaje -->
-          <div class="feature-item">
-            <div class="feature-icon">
-              <!-- Garage / car front icon -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H7.5a1 1 0 0 0-.8.4L4 11l-5.16.86a1 1 0 0 0-.84.99V16h3"/>
-                <circle cx="6.5" cy="16.5" r="2.5"/>
-                <circle cx="16.5" cy="16.5" r="2.5"/>
-              </svg>
-            </div>
-            <span>Garaje</span>
-          </div>
-        </div>
-
-        <!-- Dirección exacta -->
-        <div class="address-section">
-          <h2 class="section-title">Dirección exacta</h2>
-          <p class="address-text">
-            Blvr. de Sabana Grande, Caracas, Distrito Capital, Venezuela
+        <!-- Descripción with inline "Leer más" -->
+        <div class="prop-desc-section">
+          <h2 class="section-title">Descripción</h2>
+          <p class="prop-desc-text">
+            Ubicada en una torre de arquitectura y diseño moderno en Plaza Venezuela —uno de los nodos de conectividad y alto flujo comercial más estratégicos de Caracas—, se encuentra a la venta esta oficina de 116 m²<span id="desc-dots">...</span><span id="desc-more" style="display: none;">, caracterizada por sus óptimas condiciones de iluminación, acabados de piso y una distribución altamente funcional para la operación corporativa inmediata. Dispone de divisiones modulares para áreas gerenciales, sala de reuniones, estaciones de trabajo operativas y acceso directo a servicios principales de la torre.</span> <button type="button" id="btn-read-more" class="btn-read-more" onclick="toggleReadMore()">Leer más</button>
           </p>
         </div>
 
-        <!-- Publicado por -->
-        <div class="publisher-card">
-          <h3 class="publisher-header">Publicado por</h3>
-
-          <!-- Ratings row -->
-          <div class="publisher-ratings-row">
-            <div class="ratings-col">
-              <div class="stars-row">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              </div>
-              <span class="ratings-label">Sin calificar</span>
+        <!-- Tour 3D Banner (if available) -->
+        <div id="ficha-3d-card" style="display: none; margin-bottom: 20px; background: #fffaf5; border: 1.5px solid #fed7aa; border-radius: 16px; padding: 14px 16px; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 40px; height: 40px; border-radius: 12px; background: #FF7900; color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
             </div>
-
-            <div class="reviews-col">
-              <div class="reviews-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                </svg>
-              </div>
-              <span class="ratings-label">0 reseñas</span>
+            <div>
+              <div style="font-size: 13.5px; font-weight: 700; color: #7c2d12;">Recorrido Virtual 3D</div>
+              <div id="ficha-3d-subtitle" style="font-size: 11.5px; color: #9a3412;">Explora los espacios en 3D interactivo</div>
             </div>
           </div>
+          <button type="button" id="btn-open-3d-tour" onclick="open3DTour()" style="padding: 7px 14px; background: #FF7900; color: #fff; border: none; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; box-shadow: none;">Ver Tour</button>
+        </div>
 
-          <!-- Agent Profile Row -->
-          <div class="agent-row" onclick="window.location.href='perfil-realtor.html'" style="cursor: pointer;">
-            <img src="assets/replica/agent-jessica.png" alt="Jessica Dueñas" class="agent-avatar-img">
-            <div class="agent-info">
-              <span class="agent-name">Jessica Dueñas</span>
-              <span class="agent-role">Visitante</span>
+        <!-- Amenidades -->
+        <div class="prop-amenities-section" id="ficha-amenities-section">
+          <h2 class="section-title">Amenidades</h2>
+          <div class="ficha-amenities-grid" id="ficha-amenities-grid">
+            <span class="ficha-amenity-chip">✓ Aire Acondicionado</span>
+            <span class="ficha-amenity-chip">✓ Seguridad 24/7</span>
+            <span class="ficha-amenity-chip">✓ Ascensor</span>
+            <span class="ficha-amenity-chip">✓ Garaje</span>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             FICHA DEL REALTOR (ESTILO PROPIEDASH / NATIVO)
+             =================================================================== -->
+        <div class="realtor-section">
+          <div class="realtor-profile-row" id="realtor-profile-link" onclick="window.location.href='perfil-realtor.html'">
+            <img src="assets/replica/agent-jessica.png" alt="Jessica Dueñas" class="realtor-avatar-img" id="realtor-avatar">
+            <div class="realtor-info-col">
+              <div class="realtor-name-row">
+                <span class="realtor-name" id="realtor-display-name">Jessica Dueñas</span>
+                <svg class="realtor-verified" id="realtor-verified-badge" viewBox="0 0 24 24" fill="#0284C7">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.2 14.2l-3.5-3.5 1.4-1.4 2.1 2.1 5.6-5.6 1.4 1.4-7 7z"/>
+                </svg>
+              </div>
+              <span class="realtor-handle" id="realtor-handle">@jessicaduenas</span>
+              <span class="realtor-role-label" id="realtor-role">Agente inmobiliario</span>
             </div>
-            <div class="agent-chevron">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <div class="realtor-chevron">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
             </div>
           </div>
+
+          <!-- Botón Ofertar / Editar -->
+          <button type="button" class="btn-view-phone" id="realtor-action-btn" onclick="handleRealtorCardAction(this)" title="Hacer una oferta por WhatsApp">
+            <svg id="realtor-action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+            <span id="phone-btn-text">Ofertar</span>
+          </button>
         </div>
 
-        <!-- 4. CTA BUTTON: Agendar cita -->
-        <div class="cta-container">
-          <button type="button" class="btn-agendar" onclick="agendarCita()">
-            Agendar cita
-          </button>
+        <!-- ===================================================================
+             UBICACIÓN / MAPA
+             =================================================================== -->
+        <div class="location-section">
+          <h2 class="section-title">Ubicación</h2>
+          <p class="location-address-text">
+            Blvr. de Sabana Grande, Caracas, Distrito Capital, Venezuela
+          </p>
+
+          <div class="map-preview-card">
+            <img src="assets/replica/map-caracas-clusters.png" alt="Ubicación Plaza Venezuela" class="map-img-bg">
+
+            <!-- Clean Center Pin -->
+            <div class="map-pin-anchor">
+              <div class="map-pin-teardrop">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+              </div>
+              <div class="map-pin-label">Torre Lincoln · Plaza Venezuela</div>
+            </div>
+
+            <!-- Open / Explore Link -->
+            <a href="explorar.html" class="map-open-link">
+              <span>Explorar</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             DETALLES GENERALES (POR ABAJO DE UBICACIÓN)
+             =================================================================== -->
+        <div class="specs-section">
+          <h2 class="section-title">Detalles generales</h2>
+          <div class="specs-list" id="ficha-specs-list">
+            <div class="spec-line">
+              <span class="spec-label">Fecha de construcción</span>
+              <span class="spec-val" id="spec-detail-year">Año 1994</span>
+            </div>
+            <div class="spec-line">
+              <span class="spec-label">Status</span>
+              <span class="spec-val" id="spec-detail-status">Usado</span>
+            </div>
+            <div class="spec-line">
+              <span class="spec-label">Municipio</span>
+              <span class="spec-val" id="spec-detail-muni">Libertador</span>
+            </div>
+            <div class="spec-line">
+              <span class="spec-label">Sector</span>
+              <span class="spec-val" id="spec-detail-sector">Caracas</span>
+            </div>
+            <div class="spec-line" id="spec-detail-built-area-row">
+              <span class="spec-label">Área Construida</span>
+              <span class="spec-val" id="spec-detail-built-area">110 m²</span>
+            </div>
+            <div class="spec-line" id="spec-detail-type-row">
+              <span class="spec-label">Tipo de Inmueble</span>
+              <span class="spec-val" id="spec-detail-type">Oficina</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             PROPIEDADES SIMILARES (DEBAJO DE DETALLES GENERALES)
+             =================================================================== -->
+        <div class="similar-props-section">
+          <div class="similar-header-row">
+            <h2 class="section-title" style="margin-bottom: 0;">Propiedades similares</h2>
+            <a href="explorar.html" class="similar-view-all">
+              <span>Ver más</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="similar-props-scroll no-scrollbar">
+
+            <!-- Tarjeta 1: Oficina en venta El Recreo OSVI -->
+            <div class="property-card" onclick="if (!event.target.closest('button')) window.location.href='propiedad.html'">
+              <div class="card-thumb">
+                <img src="assets/properties/prop-3.jpg" alt="Oficina en venta El Recreo OSVI">
+                <div class="card-badges">
+                  <span class="card-badge-op">Venta</span>
+                  <span class="card-badge-type">Oficina</span>
+                </div>
+                <button type="button" class="card-fav-btn" onclick="event.stopPropagation(); toggleSimilarFav(this, 'Oficina El Recreo');" title="Guardar en favoritos">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3 class="card-prop-title">Oficina en venta El Recreo OSVI</h3>
+                
+                <!-- Realtor Row -->
+                <div class="card-realtor-row">
+                  <div class="card-realtor-left">
+                    <img src="assets/realtors/alejandro.jpg" alt="Alejandro Gómez" class="card-realtor-avatar">
+                    <div class="card-realtor-info">
+                      <span class="card-realtor-name">Alejandro Gómez</span>
+                      <span class="card-verified-icon" title="Realtor Verificado">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1 0-6.76Z"/>
+                          <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Oficina%20en%20venta%20El%20Recreo%20OSVI', '_blank')" title="Contactar por WhatsApp">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Location -->
+                <div class="card-location-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <span class="card-location-text">Distrito Capital, Caracas</span>
+                </div>
+
+                <!-- Price -->
+                <div class="card-price-val">USD 65.000</div>
+
+                <!-- Specs -->
+                <div class="card-specs-row">
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/>
+                    </svg>
+                    <span>amb. 2</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-1.5C3.7 2 2 3.7 2 5.5V11h14V5.5C16 3.7 14.3 2 12.5 2a1.5 1.5 0 0 0-1 1.5L9 6"/><path d="M2 11h20v2a8 8 0 0 1-8 8H10a8 8 0 0 1-8-8v-2Z"/><path d="M4 21v1"/><path d="M20 21v1"/>
+                    </svg>
+                    <span>baños 1</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h10"/>
+                    </svg>
+                    <span>estac. 1</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m21.3 15.3-4.6-4.6 1.4-1.4a2 2 0 0 0 0-2.8l-3.2-3.2a2 2 0 0 0 2.8 0L10.7 4.7 6.1.1a2 2 0 0 0-2.8 0L.6 2.8a2 2 0 0 0 0 2.8l4.6 4.6-1.4 1.4a2 2 0 0 0 0 2.8l3.2 3.2a2 2 0 0 0 2.8 0l1.4-1.4 4.6 4.6a2 2 0 0 0 2.8 0l2.7-2.7a2 2 0 0 0 0-2.8Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m5.5 3.5 2-2"/>
+                    </svg>
+                    <span>área 85 m²</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta 2: Oficina Torre Las Mercedes -->
+            <div class="property-card" onclick="if (!event.target.closest('button')) window.location.href='propiedad.html'">
+              <div class="card-thumb">
+                <img src="assets/replica/prop-mercedes.png" alt="Oficina Torre Las Mercedes">
+                <div class="card-badges">
+                  <span class="card-badge-op">Venta</span>
+                  <span class="card-badge-type">Oficina</span>
+                </div>
+                <button type="button" class="card-fav-btn" onclick="event.stopPropagation(); toggleSimilarFav(this, 'Oficina Las Mercedes');" title="Guardar en favoritos">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3 class="card-prop-title">Oficina Torre Las Mercedes</h3>
+                
+                <!-- Realtor Row -->
+                <div class="card-realtor-row">
+                  <div class="card-realtor-left">
+                    <img src="assets/replica/agent-jessica.png" alt="Jessica Dueñas" class="card-realtor-avatar">
+                    <div class="card-realtor-info">
+                      <span class="card-realtor-name">Jessica Dueñas</span>
+                      <span class="card-verified-icon" title="Realtor Verificado">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1 0-6.76Z"/>
+                          <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584120000000?text=Hola,%20quisiera%20consultar%20sobre:%20Oficina%20Torre%20Las%20Mercedes', '_blank')" title="Contactar por WhatsApp">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Location -->
+                <div class="card-location-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <span class="card-location-text">Miranda, Las Mercedes</span>
+                </div>
+
+                <!-- Price -->
+                <div class="card-price-val">USD 85.000</div>
+
+                <!-- Specs -->
+                <div class="card-specs-row">
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/>
+                    </svg>
+                    <span>amb. 4</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-1.5C3.7 2 2 3.7 2 5.5V11h14V5.5C16 3.7 14.3 2 12.5 2a1.5 1.5 0 0 0-1 1.5L9 6"/><path d="M2 11h20v2a8 8 0 0 1-8 8H10a8 8 0 0 1-8-8v-2Z"/><path d="M4 21v1"/><path d="M20 21v1"/>
+                    </svg>
+                    <span>baños 2</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h10"/>
+                    </svg>
+                    <span>estac. 2</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m21.3 15.3-4.6-4.6 1.4-1.4a2 2 0 0 0 0-2.8l-3.2-3.2a2 2 0 0 0 2.8 0L10.7 4.7 6.1.1a2 2 0 0 0-2.8 0L.6 2.8a2 2 0 0 0 0 2.8l4.6 4.6-1.4 1.4a2 2 0 0 0 0 2.8l3.2 3.2a2 2 0 0 0 2.8 0l1.4-1.4 4.6 4.6a2 2 0 0 0 2.8 0l2.7-2.7a2 2 0 0 0 0-2.8Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m5.5 3.5 2-2"/>
+                    </svg>
+                    <span>área 120 m²</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta 3: Oficina Corporativa El Rosal -->
+            <div class="property-card" onclick="if (!event.target.closest('button')) window.location.href='propiedad.html'">
+              <div class="card-thumb">
+                <img src="assets/replica/prop-el-rosal.jpg" alt="Oficina Corporativa El Rosal">
+                <div class="card-badges">
+                  <span class="card-badge-op">Alquiler</span>
+                  <span class="card-badge-type">Oficina</span>
+                </div>
+                <button type="button" class="card-fav-btn" onclick="event.stopPropagation(); toggleSimilarFav(this, 'Oficina El Rosal');" title="Guardar en favoritos">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3 class="card-prop-title">Oficina Corporativa El Rosal</h3>
+                
+                <!-- Realtor Row -->
+                <div class="card-realtor-row">
+                  <div class="card-realtor-left">
+                    <img src="assets/realtors/carlos.jpg" alt="Lic. Carlos Mendoza" class="card-realtor-avatar">
+                    <div class="card-realtor-info">
+                      <span class="card-realtor-name">Lic. Carlos Mendoza</span>
+                      <span class="card-verified-icon" title="Realtor Verificado">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1 0-6.76Z"/>
+                          <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Oficina%20El%20Rosal', '_blank')" title="Contactar por WhatsApp">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Location -->
+                <div class="card-location-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <span class="card-location-text">Chacao, El Rosal</span>
+                </div>
+
+                <!-- Price -->
+                <div class="card-price-val">USD 1.200 <span style="font-size: 13px; font-weight: 600; color: #64748b;">/ mes</span></div>
+
+                <!-- Specs -->
+                <div class="card-specs-row">
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/>
+                    </svg>
+                    <span>amb. 3</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-1.5C3.7 2 2 3.7 2 5.5V11h14V5.5C16 3.7 14.3 2 12.5 2a1.5 1.5 0 0 0-1 1.5L9 6"/><path d="M2 11h20v2a8 8 0 0 1-8 8H10a8 8 0 0 1-8-8v-2Z"/><path d="M4 21v1"/><path d="M20 21v1"/>
+                    </svg>
+                    <span>baños 2</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h10"/>
+                    </svg>
+                    <span>estac. 2</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m21.3 15.3-4.6-4.6 1.4-1.4a2 2 0 0 0 0-2.8l-3.2-3.2a2 2 0 0 0 2.8 0L10.7 4.7 6.1.1a2 2 0 0 0-2.8 0L.6 2.8a2 2 0 0 0 0 2.8l4.6 4.6-1.4 1.4a2 2 0 0 0 0 2.8l3.2 3.2a2 2 0 0 0 2.8 0l1.4-1.4 4.6 4.6a2 2 0 0 0 2.8 0l2.7-2.7a2 2 0 0 0 0-2.8Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m5.5 3.5 2-2"/>
+                    </svg>
+                    <span>área 95 m²</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta 4: CR OASIS LECHERIA -->
+            <div class="property-card" onclick="if (!event.target.closest('button')) window.location.href='propiedad.html'">
+              <div class="card-thumb">
+                <img src="assets/replica/prop-oasis.png" alt="CR OASIS LECHERIA">
+                <div class="card-badges">
+                  <span class="card-badge-op">Alquiler</span>
+                  <span class="card-badge-type">Apartamento</span>
+                </div>
+                <button type="button" class="card-fav-btn" onclick="event.stopPropagation(); toggleSimilarFav(this, 'CR OASIS LECHERIA');" title="Guardar en favoritos">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <h3 class="card-prop-title">CR OASIS LECHERIA</h3>
+                
+                <!-- Realtor Row -->
+                <div class="card-realtor-row">
+                  <div class="card-realtor-left">
+                    <img src="assets/replica/agent-jessica.png" alt="Jessica Dueñas" class="card-realtor-avatar">
+                    <div class="card-realtor-info">
+                      <span class="card-realtor-name">Jessica Dueñas</span>
+                      <span class="card-verified-icon" title="Realtor Verificado">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1 0-6.76Z"/>
+                          <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584120000000?text=Hola,%20quisiera%20consultar%20sobre:%20CR%20OASIS%20LECHERIA', '_blank')" title="Contactar por WhatsApp">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Location -->
+                <div class="card-location-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <span class="card-location-text">Anzoátegui, Lechería</span>
+                </div>
+
+                <!-- Price -->
+                <div class="card-price-val">USD 1.800</div>
+
+                <!-- Specs -->
+                <div class="card-specs-row">
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/>
+                    </svg>
+                    <span>hab. 3</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-1.5C3.7 2 2 3.7 2 5.5V11h14V5.5C16 3.7 14.3 2 12.5 2a1.5 1.5 0 0 0-1 1.5L9 6"/><path d="M2 11h20v2a8 8 0 0 1-8 8H10a8 8 0 0 1-8-8v-2Z"/><path d="M4 21v1"/><path d="M20 21v1"/>
+                    </svg>
+                    <span>baños 2</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h10"/>
+                    </svg>
+                    <span>estac. 2</span>
+                  </div>
+                  <div class="card-spec-item">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m21.3 15.3-4.6-4.6 1.4-1.4a2 2 0 0 0 0-2.8l-3.2-3.2a2 2 0 0 0 2.8 0L10.7 4.7 6.1.1a2 2 0 0 0-2.8 0L.6 2.8a2 2 0 0 0 0 2.8l4.6 4.6-1.4 1.4a2 2 0 0 0 0 2.8l3.2 3.2a2 2 0 0 0 2.8 0l1.4-1.4 4.6 4.6a2 2 0 0 0 2.8 0l2.7-2.7a2 2 0 0 0 0-2.8Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m5.5 3.5 2-2"/>
+                    </svg>
+                    <span>área 116 m²</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>
 
     </div>
 
-    <!-- 5. FIXED BOTTOM NAVIGATION BAR -->
-    <nav class="bottom-nav">
-      <!-- 1. Home (Active in screenshot) -->
-      <a href="index.html" class="nav-item active">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-          <polyline points="9 22 9 12 15 12 15 22"></polyline>
-        </svg>
-        <span>Home</span>
-      </a>
-
-      <!-- 2. Explorar -->
-      <a href="explorar.html" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-        </svg>
-        <span>Explorar</span>
-      </a>
-
-      <!-- 3. Center Orange Plus -->
-      <div class="nav-plus-wrapper">
-        <button class="nav-plus-btn" title="Publicar propiedad" onclick="handlePlusClick()">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-        </button>
+    <!-- 10. PROPERTY DETAIL BOTTOM ACTION BAR (Submenú con Precio, Agendar y Contactar) -->
+    <!-- 10. PROPERTY DETAIL BOTTOM ACTION BAR (ESTILO PROPIEDASH / NATIVO) -->
+    <div class="property-bottom-bar">
+      <!-- Columna Precio -->
+      <div class="prop-bar-price-col">
+        <span class="prop-bar-price">$65,000</span>
       </div>
 
-      <!-- 4. Favoritos -->
-      <a href="favoritos.html" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-        </svg>
-        <span>Favoritos</span>
-      </a>
+      <!-- Acciones: Teléfono + Enviar Mensaje / Editar -->
+      <div class="prop-bar-actions">
+        <!-- 1. Botón Llamar Cuadrado -->
+        <button type="button" class="prop-bar-btn-phone" id="prop-bar-phone-btn" onclick="llamarAgente()" title="Llamar al agente">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </button>
 
-      <!-- 5. Cuenta -->
-      <a href="cuenta.html" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-        <span>Cuenta</span>
-      </a>
+        <!-- 2. Botón Enviar Mensaje Rectangular Naranja / Editar -->
+        <button type="button" class="prop-bar-btn-msg" id="prop-bar-main-btn" onclick="handleBottomMainAction()" title="Enviar mensaje por WhatsApp">
+          <svg id="prop-bar-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+          </svg>
+          <span id="prop-bar-btn-text">Enviar mensaje</span>
+        </button>
+      </div>
+    </div>
 
-      <!-- Android bar indicator -->
-      <div class="android-indicator"></div>
-    </nav>
+    <!-- Android bar indicator -->
+    <div class="android-indicator"></div>
+
+    <!-- Floating Feedback Toast -->
+    <div id="toast" class="toast-popup">¡Mensaje enviado con éxito!</div>
 
   </div>
 
   <script>
+    // =========================================================================
+    // SLIDER / CAROUSEL LOGIC (Touch Swipes + Click + Dots)
+    // =========================================================================
+    let currentSlide = 0;
+    let totalSlides = 7;
+    const track = document.getElementById('carousel-track');
+    const counter = document.getElementById('carousel-counter');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const carouselWrapper = document.getElementById('prop-carousel');
+
+    function updateCarousel() {
+      if (!track) return;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      if (counter) counter.textContent = `${currentSlide + 1}/${totalSlides}`;
+      const allDots = document.querySelectorAll('.carousel-dots .dot');
+      allDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      if (totalSlides <= 1) return;
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      if (totalSlides <= 1) return;
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      if (index >= 0 && index < totalSlides) {
+        currentSlide = index;
+        updateCarousel();
+      }
+    }
+
+    function rebuildCarousel(images) {
+      const carouselTrack = document.getElementById('carousel-track');
+      const dotsWrap = document.getElementById('carousel-dots');
+      const counterEl = document.getElementById('carousel-counter');
+      if (!carouselTrack || !images || images.length === 0) return;
+
+      carouselTrack.innerHTML = '';
+      if (dotsWrap) dotsWrap.innerHTML = '';
+      totalSlides = images.length;
+      currentSlide = 0;
+
+      images.forEach((imgSrc, idx) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        slide.innerHTML = `<img src="${imgSrc}" alt="Foto ${idx + 1}" style="width:100%; height:100%; object-fit:cover;">`;
+        carouselTrack.appendChild(slide);
+
+        if (dotsWrap) {
+          const dot = document.createElement('span');
+          dot.className = 'dot' + (idx === 0 ? ' active' : '');
+          dot.onclick = () => goToSlide(idx);
+          dotsWrap.appendChild(dot);
+        }
+      });
+
+      if (counterEl) counterEl.textContent = `1/${totalSlides}`;
+      updateCarousel();
+    }
+
+    // Touch Swipe Gesture Support
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchDeltaX = 0;
+    let isSwiping = false;
+
+    if (carouselWrapper) {
+      carouselWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchDeltaX = 0;
+        isSwiping = true;
+      }, { passive: true });
+
+      carouselWrapper.addEventListener('touchmove', (e) => {
+        if (!isSwiping) return;
+        touchDeltaX = e.touches[0].clientX - touchStartX;
+      }, { passive: true });
+
+      carouselWrapper.addEventListener('touchend', () => {
+        if (!isSwiping) return;
+        isSwiping = false;
+        const threshold = 35; // minimum px for swipe
+        if (touchDeltaX < -threshold) {
+          nextSlide();
+        } else if (touchDeltaX > threshold) {
+          prevSlide();
+        }
+      });
+
+      // Mouse Drag Support (Desktop)
+      let mouseStartX = 0;
+      let isMouseDown = false;
+
+      carouselWrapper.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.glass-btn') || e.target.closest('.carousel-nav-arrow') || e.target.closest('.dot')) return;
+        isMouseDown = true;
+        mouseStartX = e.clientX;
+      });
+
+      window.addEventListener('mouseup', (e) => {
+        if (!isMouseDown) return;
+        isMouseDown = false;
+        const deltaX = e.clientX - mouseStartX;
+        const threshold = 35;
+        if (deltaX < -threshold) {
+          nextSlide();
+        } else if (deltaX > threshold) {
+          prevSlide();
+        }
+      });
+    }
+
+    // =========================================================================
+    // DESCRIPTION "LEER MÁS" EXPAND / COLLAPSE
+    // =========================================================================
+    function toggleReadMore() {
+      const dotsEl = document.getElementById('desc-dots');
+      const moreText = document.getElementById('desc-more');
+      const btn = document.getElementById('btn-read-more');
+
+      if (!moreText) return;
+
+      if (moreText.style.display === 'none' || moreText.style.display === '') {
+        if (dotsEl) dotsEl.style.display = 'none';
+        moreText.style.display = 'inline';
+        if (btn) btn.textContent = 'Leer menos';
+      } else {
+        if (dotsEl) dotsEl.style.display = 'inline';
+        moreText.style.display = 'none';
+        if (btn) btn.textContent = 'Leer más';
+      }
+    }
+
+    // =========================================================================
+    // DYNAMIC PROPERTY DATA LOADER & OWNERSHIP CONTROLLER
+    // =========================================================================
+    let activeLoadedProperty = null;
+    let isCurrentPropertyOwner = false;
+
+    function checkOwnership(propId) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromPlanes = urlParams.get('from') === 'planes';
+      const isPublished = urlParams.get('published') === '1';
+      const userProps = JSON.parse(localStorage.getItem('enkapta_user_properties') || '[]');
+
+      if (propId === 'latest' || fromPlanes || isPublished) {
+        return true;
+      }
+      if (propId && userProps.some(p => p.id === propId)) {
+        return true;
+      }
+      return false;
+    }
+
+    function setupOwnershipUI(isOwner) {
+      isCurrentPropertyOwner = isOwner;
+      const bottomMainBtn = document.getElementById('prop-bar-main-btn');
+      const bottomBtnText = document.getElementById('prop-bar-btn-text');
+      const bottomBtnIcon = document.getElementById('prop-bar-btn-icon');
+      const bottomPhoneBtn = document.getElementById('prop-bar-phone-btn');
+      
+      const realtorBtn = document.getElementById('realtor-action-btn');
+      const realtorBtnText = document.getElementById('phone-btn-text');
+      const realtorBtnIcon = document.getElementById('realtor-action-icon');
+      const realtorAvatar = document.getElementById('realtor-avatar');
+      const realtorName = document.getElementById('realtor-display-name');
+      const realtorHandle = document.getElementById('realtor-handle');
+      const realtorRole = document.getElementById('realtor-role');
+      const realtorProfileLink = document.getElementById('realtor-profile-link');
+
+      if (isOwner) {
+        // 1. Bottom Main Button: "Editar"
+        if (bottomPhoneBtn) {
+          bottomPhoneBtn.style.display = 'none';
+        }
+        if (bottomMainBtn) {
+          bottomMainBtn.title = 'Editar esta propiedad';
+          bottomMainBtn.style.flex = '1';
+          bottomMainBtn.classList.add('is-owner-edit');
+        }
+        if (bottomBtnText) {
+          bottomBtnText.textContent = 'Editar';
+        }
+        if (bottomBtnIcon) {
+          bottomBtnIcon.innerHTML = '<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path><path d="M15 5l4 4"></path>';
+          bottomBtnIcon.setAttribute('stroke', '#FFFFFF');
+          bottomBtnIcon.setAttribute('fill', 'none');
+        }
+
+        // 2. Realtor Card Button: "Editar propiedad"
+        if (realtorBtn) {
+          realtorBtn.title = 'Editar propiedad';
+          realtorBtn.classList.add('is-owner-edit');
+        }
+        if (realtorBtnText) {
+          realtorBtnText.textContent = 'Editar propiedad';
+        }
+        if (realtorBtnIcon) {
+          realtorBtnIcon.innerHTML = '<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path><path d="M15 5l4 4"></path>';
+        }
+
+        // 3. Realtor card info - User's own card
+        const profileAvatar = localStorage.getItem('enkapta_profile_avatar') || 'assets/replica/lead_avatar.png';
+        const profileName = localStorage.getItem('enkapta_profile_name') || 'Roger Quijada';
+        if (realtorAvatar) realtorAvatar.src = profileAvatar;
+        if (realtorName) realtorName.textContent = profileName;
+        if (realtorHandle) realtorHandle.textContent = '@roger';
+        if (realtorRole) realtorRole.textContent = 'Propietario / Asesor';
+        if (realtorProfileLink) {
+          realtorProfileLink.onclick = () => window.location.href = 'cuenta.html';
+        }
+      } else {
+        // Reset to normal visitor / buyer view
+        if (bottomPhoneBtn) {
+          bottomPhoneBtn.style.display = 'flex';
+        }
+        if (bottomMainBtn) {
+          bottomMainBtn.title = 'Enviar mensaje por WhatsApp';
+          bottomMainBtn.style.flex = '';
+          bottomMainBtn.classList.remove('is-owner-edit');
+        }
+        if (bottomBtnText) {
+          bottomBtnText.textContent = 'Enviar mensaje';
+        }
+        if (bottomBtnIcon) {
+          bottomBtnIcon.innerHTML = '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>';
+          bottomBtnIcon.setAttribute('stroke', 'currentColor');
+          bottomBtnIcon.setAttribute('fill', 'none');
+        }
+        if (realtorBtn) {
+          realtorBtn.title = 'Hacer una oferta por WhatsApp';
+          realtorBtn.classList.remove('is-owner-edit');
+        }
+        if (realtorBtnText) {
+          realtorBtnText.textContent = 'Ofertar';
+        }
+        if (realtorBtnIcon) {
+          realtorBtnIcon.innerHTML = '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>';
+        }
+      }
+    }
+
+    function editarMiPropiedad() {
+      const urlParams = new URLSearchParams(window.location.search);
+      let id = urlParams.get('id');
+      const userProps = JSON.parse(localStorage.getItem('enkapta_user_properties') || '[]');
+      if (!id || id === 'latest') {
+        id = (activeLoadedProperty && activeLoadedProperty.id) || (userProps[0] ? userProps[0].id : 'latest');
+      }
+      window.location.href = `planes.html?action=edit&id=${encodeURIComponent(id)}`;
+    }
+
+    function handleBottomMainAction() {
+      if (isCurrentPropertyOwner) {
+        editarMiPropiedad();
+      } else {
+        contactarAgente();
+      }
+    }
+
+    function handleRealtorCardAction(btn) {
+      if (isCurrentPropertyOwner) {
+        editarMiPropiedad();
+      } else {
+        ofertarAgente();
+      }
+    }
+
+    function loadDynamicProperty() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const propId = urlParams.get('id');
+      const isPublished = urlParams.get('published') === '1';
+
+      if (isPublished) {
+        setTimeout(() => showToast('✓ ¡Propiedad publicada con éxito!'), 400);
+      }
+
+      const userProps = JSON.parse(localStorage.getItem('enkapta_user_properties') || '[]');
+      const isOwner = checkOwnership(propId);
+      setupOwnershipUI(isOwner);
+
+      if (!propId) {
+        if (isPublished && userProps.length > 0) {
+          populateFichaWithData(userProps[0]);
+        }
+        return;
+      }
+
+      let prop = null;
+      if (propId === 'latest') {
+        prop = userProps[0];
+      } else {
+        prop = userProps.find(p => p.id === propId);
+      }
+
+      if (prop) {
+        populateFichaWithData(prop);
+      }
+    }
+
+    function populateFichaWithData(prop) {
+      activeLoadedProperty = prop;
+
+      // 1. Title & Page Title
+      const titleEl = document.querySelector('.prop-title');
+      if (titleEl) titleEl.textContent = prop.title;
+      document.title = `${prop.title} · Enkapta`;
+
+      // 2. Price
+      const formattedPrice = '$' + Number(prop.price).toLocaleString('en-US');
+      const priceVal = document.querySelector('.prop-price-val');
+      if (priceVal) priceVal.textContent = formattedPrice;
+      const barPrice = document.querySelector('.prop-bar-price');
+      if (barPrice) barPrice.textContent = formattedPrice;
+
+      const period = document.querySelector('.prop-price-period');
+      if (period) {
+        period.textContent = prop.negocio === 'Alquiler' ? '/ Alquiler' : '/ Venta';
+      }
+
+      // 3. Location
+      const locSpans = document.querySelectorAll('.prop-location-row span');
+      if (locSpans.length > 0) locSpans[0].textContent = prop.location || `${prop.municipio}, ${prop.estado}`;
+      const locAddr = document.querySelector('.location-address-text');
+      if (locAddr) locAddr.textContent = prop.location ? `${prop.location}, Venezuela` : `${prop.municipio}, ${prop.estado}, Venezuela`;
+      const mapPinLabel = document.querySelector('.map-pin-label');
+      if (mapPinLabel) mapPinLabel.textContent = prop.sector ? `${prop.sector} · ${prop.municipio}` : (prop.municipio || prop.location);
+
+      // 4. 4 Feature Cards
+      const roomsVal = document.getElementById('spec-val-rooms');
+      const roomsLabel = document.getElementById('spec-label-rooms');
+      if (roomsVal) roomsVal.textContent = prop.rooms || '1';
+      if (roomsLabel) {
+        const isOffice = (prop.category || '').toLowerCase().includes('oficina');
+        roomsLabel.textContent = isOffice ? 'Ambientes' : 'Habitaciones';
+      }
+
+      const bathsVal = document.getElementById('spec-val-baths');
+      if (bathsVal) bathsVal.textContent = prop.baths || '1';
+
+      const parkVal = document.getElementById('spec-val-parking');
+      if (parkVal) parkVal.textContent = prop.parking || '1';
+
+      const areaVal = document.getElementById('spec-val-area');
+      if (areaVal) areaVal.textContent = prop.area || '100';
+
+      // 5. Description
+      const descContainer = document.querySelector('.prop-desc-text');
+      const fullDesc = prop.description || `Excelente inmueble ubicado en ${prop.location}. Dispone de ${prop.area} m² de superficie, acabados de primera calidad, iluminación natural y una distribución funcional en ${prop.municipio}, ${prop.estado}.`;
+      
+      if (descContainer) {
+        if (fullDesc.length > 180) {
+          const cut = fullDesc.lastIndexOf(' ', 150);
+          const shortPart = fullDesc.substring(0, cut > 0 ? cut : 150);
+          const morePart = fullDesc.substring(cut > 0 ? cut : 150);
+          descContainer.innerHTML = `
+            <span>${shortPart}</span><span id="desc-dots">...</span><span id="desc-more" style="display: none;">${morePart}</span> <button type="button" id="btn-read-more" class="btn-read-more" onclick="toggleReadMore()">Leer más</button>
+          `;
+        } else {
+          descContainer.textContent = fullDesc;
+        }
+      }
+
+      // 6. General Specs List
+      const specYear = document.getElementById('spec-detail-year');
+      if (specYear) specYear.textContent = `Año ${prop.year || '2022'}`;
+
+      const specStatus = document.getElementById('spec-detail-status');
+      if (specStatus) specStatus.textContent = prop.negocio || 'Venta';
+
+      const specMuni = document.getElementById('spec-detail-muni');
+      if (specMuni) specMuni.textContent = prop.municipio || '-';
+
+      const specSector = document.getElementById('spec-detail-sector');
+      if (specSector) specSector.textContent = prop.sector || '-';
+
+      const specBuilt = document.getElementById('spec-detail-built-area');
+      if (specBuilt) specBuilt.textContent = `${prop.builtArea || prop.area || '100'} m²`;
+
+      const specType = document.getElementById('spec-detail-type');
+      if (specType) specType.textContent = prop.category || 'Inmueble';
+
+      // 7. Amenities
+      const amenGrid = document.getElementById('ficha-amenities-grid');
+      const amenSection = document.getElementById('ficha-amenities-section');
+      if (amenGrid && amenSection) {
+        const list = prop.amenities && prop.amenities.length > 0 ? prop.amenities : ['Piscina', 'Seguridad', 'Aire Acondicionado', 'Wifi', 'Amueblado'];
+        amenGrid.innerHTML = '';
+        list.forEach(amen => {
+          const chip = document.createElement('span');
+          chip.className = 'ficha-amenity-chip';
+          chip.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>${amen}</span>
+          `;
+          amenGrid.appendChild(chip);
+        });
+        amenSection.style.display = 'block';
+      }
+
+      // 8. 3D Tour Card
+      const tourCard = document.getElementById('ficha-3d-card');
+      const tourSub = document.getElementById('ficha-3d-subtitle');
+      if (tourCard) {
+        if (prop.tour3dUrl || prop.tour3dFile) {
+          tourCard.style.display = 'flex';
+          if (tourSub) {
+            tourSub.textContent = prop.tour3dUrl ? 'Tour virtual Matterport / 360 interactivo' : `Modelo 3D (${prop.tour3dFile})`;
+          }
+        } else {
+          tourCard.style.display = 'none';
+        }
+      }
+
+      // 9. Photos Carousel
+      let images = [];
+      if (prop.cover) images.push(prop.cover);
+      if (prop.gallery && Array.isArray(prop.gallery)) {
+        prop.gallery.forEach(img => {
+          if (img && !images.includes(img)) images.push(img);
+        });
+      }
+      if (images.length === 0) {
+        images = ['assets/properties/prop-1.jpg'];
+      }
+      rebuildCarousel(images);
+    }
+
+    function open3DTour() {
+      if (activeLoadedProperty && activeLoadedProperty.tour3dUrl) {
+        window.open(activeLoadedProperty.tour3dUrl, '_blank');
+      } else {
+        showToast('🕶️ Recorrido virtual 3D interactivo listo');
+      }
+    }
+
+    // =========================================================================
+    // ACTIONS & NOTIFICATIONS
+    // =========================================================================
     function handleBack() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('from') === 'planes' || urlParams.get('published') === '1' || urlParams.get('id')) {
+        window.location.href = 'planes.html';
+        return;
+      }
       if (window.history.length > 1) {
         window.history.back();
       } else {
@@ -865,42 +2387,150 @@
       btn.classList.toggle('fav-active');
       const isFav = btn.classList.contains('fav-active');
       localStorage.setItem('enkapta_fav_plaza_venezuela', isFav ? '1' : '0');
+      showToast(isFav ? '❤️ Guardado en favoritos' : 'Eliminado de favoritos');
     }
 
-    // Init favorite state
     if (localStorage.getItem('enkapta_fav_plaza_venezuela') === '1') {
-      document.getElementById('btn-fav').classList.add('fav-active');
+      const btn = document.getElementById('btn-fav');
+      if (btn) btn.classList.add('fav-active');
     }
 
     function shareProperty() {
+      const title = document.querySelector('.prop-title') ? document.querySelector('.prop-title').textContent : 'Propiedad en Enkapta';
       if (navigator.share) {
         navigator.share({
-          title: 'Oficina en Venta en Plaza Venezuela',
+          title: title,
           url: window.location.href
-        });
+        }).catch(() => {});
       } else {
-        alert('Enlace de la propiedad copiado al portapapeles');
+        showToast('🔗 Enlace copiado al portapapeles');
       }
     }
 
-    function agendarCita() {
-      alert('¡Solicitud de cita enviada a Jessica Dueñas! Te contactará a la brevedad.');
+    // Session / Auth Helper
+    function isUserLoggedIn() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const authParam = urlParams.get('auth');
+      if (authParam === 'false' || authParam === '0' || urlParams.get('logged_out') === '1') {
+        return false;
+      }
+      if (authParam === 'true' || authParam === '1') {
+        return true;
+      }
+      const session = localStorage.getItem('enkapta_session');
+      return !!session && session !== 'logged_out';
+    }
+
+    function redirectToLogin() {
+      try {
+        sessionStorage.setItem('enkapta_return_url', window.location.href);
+      } catch (e) {}
+      window.location.href = 'cuenta.html?login=1';
+    }
+
+    // 1. Botón Enviar Mensaje (WhatsApp)
+    function contactarAgente() {
+      if (!isUserLoggedIn()) {
+        redirectToLogin();
+        return;
+      }
+      const title = document.querySelector('.prop-title') ? document.querySelector('.prop-title').textContent : 'Inmueble';
+      const price = document.querySelector('.prop-price-val') ? document.querySelector('.prop-price-val').textContent : '';
+      const msg = encodeURIComponent(`¡Hola! Me interesa la propiedad: ${title} (${price}) que vi en Enkapta.`);
+      window.open(`https://wa.me/584120000000?text=${msg}`, '_blank');
+      showToast('💬 Abriendo chat por WhatsApp...');
+    }
+
+    // 2. Botón Ofertar de la fichita del Realtor (WhatsApp con mensaje de oferta)
+    function ofertarAgente() {
+      if (!isUserLoggedIn()) {
+        redirectToLogin();
+        return;
+      }
+      const title = document.querySelector('.prop-title') ? document.querySelector('.prop-title').textContent : 'Inmueble';
+      const price = document.querySelector('.prop-price-val') ? document.querySelector('.prop-price-val').textContent : '';
+      const msg = encodeURIComponent(`¡Hola! Me interesa hacer una oferta formal por la propiedad: ${title} (${price}) en Enkapta.`);
+      window.open(`https://wa.me/584120000000?text=${msg}`, '_blank');
+      showToast('💬 Abriendo WhatsApp para ofertar...');
+    }
+
+    // 3. Botón Llamar
+    function llamarAgente() {
+      if (!isUserLoggedIn()) {
+        redirectToLogin();
+        return;
+      }
+      showToast('📞 Conectando llamada...');
+      setTimeout(() => {
+        window.location.href = 'tel:+584120000000';
+      }, 400);
+    }
+
+    function agendarVisita() {
+      if (!isUserLoggedIn()) {
+        redirectToLogin();
+        return;
+      }
+      showToast('📅 ¡Solicitud de visita enviada!');
+    }
+
+    // Backward compatibility alias
+    function verTelefono(btn) {
+      ofertarAgente();
     }
 
     function handlePlusClick() {
       const session = localStorage.getItem('enkapta_session');
-      if (session === 'roger') {
-        window.location.href = 'planes.html';
+      const currentPlan = localStorage.getItem('enkapta_user_plan');
+      if (session === 'logged_out') {
+        window.location.href = 'cuenta.html?login=1';
+      } else if (!currentPlan || currentPlan === 'Sin plan' || session === 'carlos_sinplan') {
+        // ¡Al visitante le salen los planes directamente!
+        window.location.href = 'planes.html?view=catalog';
       } else {
-        window.location.href = 'cuenta.html';
+        window.location.href = 'planes.html';
       }
     }
 
-    // Scroll query param support for visual verification
-    if (new URLSearchParams(window.location.search).get('scroll') === 'down') {
-      const body = document.querySelector('.scroll-body');
-      if (body) body.scrollTop = 9999;
+    function toggleSimilarFav(btn, title) {
+      btn.classList.toggle('active');
+      const isFav = btn.classList.contains('active');
+      showToast(isFav ? `❤️ Guardado en favoritos: ${title}` : 'Eliminado de favoritos');
     }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // URL verification query params & Initial Dynamic Loader
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDynamicProperty();
+
+      const scrollParam = new URLSearchParams(window.location.search).get('scroll');
+      if (scrollParam) {
+        const body = document.querySelector('.scroll-body');
+        if (body) {
+          if (scrollParam === 'down') body.scrollTop = 9999;
+          else if (scrollParam === 'mid') body.scrollTop = 380;
+          else if (!isNaN(scrollParam)) body.scrollTop = parseInt(scrollParam, 10);
+        }
+      }
+
+      const photoParam = new URLSearchParams(window.location.search).get('photo');
+      if (photoParam && !isNaN(photoParam)) {
+        goToSlide(parseInt(photoParam, 10));
+      }
+
+      if (new URLSearchParams(window.location.search).get('expanded') === 'true') {
+        toggleReadMore();
+      }
+    });
   </script>
 
 </body>

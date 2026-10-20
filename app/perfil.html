@@ -1,0 +1,2626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Perfil del Asesor · Enkapta</title>
+  
+  <link rel="icon" type="image/png" href="assets/replica/logo-enkapta.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #0f172a;
+      overflow: hidden;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Hide scrollbars completely on all browsers, iOS Safari and Android */
+    *::-webkit-scrollbar,
+    *::-webkit-scrollbar-thumb,
+    *::-webkit-scrollbar-track,
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar,
+    .app-viewport::-webkit-scrollbar,
+    .app-scroll-body::-webkit-scrollbar,
+    .no-scrollbar::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+      -webkit-appearance: none !important;
+    }
+    * {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+    }
+
+    /* Responsive Shell: 390px on Desktop, 100% on Mobile */
+    body {
+      background-color: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .app-viewport {
+      width: 390px;
+      height: 844px;
+      max-width: 100%;
+      max-height: 96vh;
+      background-color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      border-radius: 42px;
+      border: 8px solid #1e293b;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      min-width: 0;
+    }
+
+    @media (max-width: 449px) {
+      body {
+        background-color: #f8fafc;
+        display: block;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .app-viewport {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+      }
+      .android-indicator {
+        display: none !important;
+      }
+    }
+
+    /* 1. Android / iOS Status Bar */
+    .status-bar {
+      height: 32px;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      flex-shrink: 0;
+      z-index: 40;
+      border-bottom: 1px solid rgba(241, 245, 249, 0.6);
+    }
+
+    .status-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* 2. Top Header Navigation */
+    .app-header {
+      height: 50px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid #f1f5f9;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .header-icon-btn {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: 50%;
+      color: #0f172a;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      text-decoration: none;
+    }
+
+    .header-icon-btn:active {
+      transform: scale(0.92);
+      background-color: #f1f5f9;
+    }
+
+    .header-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+      flex: 1;
+      text-align: center;
+    }
+
+    /* Switcher Banner Bar (Para alternar entre Roger y Dueñas) */
+    .preview-mode-bar {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      flex-shrink: 0;
+      z-index: 25;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .preview-mode-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #94a3b8;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+    }
+
+    .preview-mode-tag strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .preview-mode-pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      flex-shrink: 0;
+      animation: pulseGreen 2s infinite;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .preview-toggle-btns {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .preview-btn {
+      padding: 3.5px 10px;
+      border-radius: 8px;
+      font-size: 10.5px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+
+    .preview-btn.active {
+      background: #FF7900;
+      color: #ffffff;
+      box-shadow: none;
+    }
+
+    .preview-btn:not(.active) {
+      background: #1e293b;
+      color: #94a3b8;
+    }
+
+    .preview-btn:not(.active):hover {
+      color: #ffffff;
+    }
+
+    /* 3. Scrollable Body */
+    .app-scroll-body {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 96px; /* space for floating bottom nav */
+      background: #f8fafc;
+    }
+
+    /* PHOTOGRAPHIC HERO BANNER (MATCHING APP/CUENTA.HTML DESIGN) */
+    .profile-hero-banner {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      min-height: 275px;
+      position: relative;
+      background-image: url('assets/parallax-edificio.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 24px 18px 40px 18px;
+      overflow: hidden;
+    }
+
+    .profile-hero-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.04) 35%, rgba(0, 0, 0, 0.25) 100%);
+      z-index: 1;
+    }
+
+    /* Floating Centered Avatar */
+    .profile-avatar-circle {
+      position: relative;
+      z-index: 2;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 3.5px solid #ffffff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      margin-bottom: 12px;
+      background: #0f172a;
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-avatar-initial {
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      display: none;
+    }
+
+    /* Centered Name */
+    .profile-hero-name {
+      position: relative;
+      z-index: 2;
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      margin-bottom: 6px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    /* Role Pill Badge */
+    .profile-hero-badge-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .profile-hero-badge {
+      background: #FF7900;
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 3.5px 14px;
+      border-radius: 9999px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      box-shadow: none;
+    }
+
+    /* Subtitle (Hidden per user request - email already in details) */
+    .profile-hero-subtitle {
+      display: none !important;
+    }
+
+    /* Action Buttons Row Inside Banner */
+    .profile-hero-actions-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+      width: 100%;
+      max-width: 350px;
+      padding: 0 8px;
+      box-sizing: border-box;
+    }
+
+    .hero-action-pill-orange {
+      flex: 1.2;
+      height: 38px;
+      background: #FF7900;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: none;
+      transition: all 0.18s ease;
+      border: none;
+    }
+
+    .hero-action-pill-orange:active {
+      transform: scale(0.97);
+      background: #e66d00;
+    }
+
+    .hero-action-pill-glass {
+      flex: 1;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transition: all 0.18s ease;
+    }
+
+    .hero-action-pill-glass:active {
+      transform: scale(0.97);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .hero-action-icon-glass {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transition: all 0.18s ease;
+      flex-shrink: 0;
+    }
+
+    .hero-action-icon-glass:active {
+      transform: scale(0.92);
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    /* BIO CONTAINER BELOW BANNER */
+    .profile-bio-card {
+      background: #ffffff;
+      margin: 0 12px 14px 12px;
+      border-radius: 16px;
+      padding: 14px 16px;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+    }
+
+    .identity-bio {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: #475569;
+      margin: 0;
+      text-align: center;
+    }
+
+    .identity-bio.empty {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    /* TRUST METRICS (4 CARDS OVERLAPPING HERO BANNER) */
+    .trust-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: -22px 12px 14px 12px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .metric-card {
+      background: #ffffff;
+      border: 1px solid #f1f5f9;
+      border-radius: 16px;
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .metric-val {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.1;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .metric-star {
+      color: #f59e0b;
+      font-size: 15px;
+    }
+
+    .metric-lbl {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    /* TABS FILTER */
+    .portfolio-tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px;
+      background: #e2e8f0;
+      border-radius: 14px;
+      margin: 0 12px 14px 12px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 7px 4px;
+      font-size: 11.5px;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: transparent;
+      color: #64748b;
+      transition: all 0.15s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    /* PROPERTIES LIST */
+    .properties-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0 12px 16px 12px;
+    }
+
+    .app-property-card {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #f1f5f9;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .app-property-card:active {
+      transform: scale(0.985);
+    }
+
+    .card-thumb-wrap {
+      position: relative;
+      width: 100%;
+      height: 160px;
+      background: #0f172a;
+      overflow: hidden;
+    }
+
+    .card-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-badges-top {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      z-index: 2;
+    }
+
+    .card-pill-tag {
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 10px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.2px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .tag-orange {
+      background: #FF7900;
+    }
+
+    .tag-dark {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .card-fav-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(6px);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+      transition: transform 0.12s ease;
+    }
+
+    .card-fav-btn:active {
+      transform: scale(0.9);
+    }
+
+    .card-fav-btn.is-fav {
+      color: #ef4444;
+    }
+
+    .card-content {
+      padding: 12px 14px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-prop-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-prop-location {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-prop-location svg {
+      color: #FF7900;
+      flex-shrink: 0;
+    }
+
+    .card-prop-price {
+      font-size: 18px;
+      font-weight: 900;
+      color: #FF7900;
+      letter-spacing: -0.3px;
+      margin-top: 2px;
+    }
+
+    .card-prop-price small {
+      font-size: 11px;
+      font-weight: 500;
+      color: #94a3b8;
+    }
+
+    .card-footer-specs {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 10px;
+      margin-top: 4px;
+    }
+
+    .specs-list {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+    }
+
+    .btn-card-wa {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: #FFF4EB;
+      color: #FF7900;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-card-wa:active {
+      background: #FF7900;
+      color: #ffffff;
+      transform: scale(0.92);
+    }
+
+    /* EMPTY STATE (Roger 0 Inmuebles) */
+    .empty-portfolio-card {
+      background: #ffffff;
+      border: 1px solid #f1f5f9;
+      border-radius: 24px;
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .empty-state-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: #FFF4EB;
+      color: #FF7900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .empty-state-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.2px;
+    }
+
+    .empty-state-desc {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.45;
+      max-width: 280px;
+    }
+
+    .empty-state-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .btn-publish-first {
+      height: 40px;
+      border-radius: 12px;
+      background: #FF7900;
+      color: #ffffff;
+      font-size: 12.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      box-shadow: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-publish-first:active {
+      transform: scale(0.97);
+      background: #e66d00;
+    }
+
+    .btn-explore-catalog {
+      height: 40px;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      font-size: 12.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-explore-catalog:active {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .empty-hint-text {
+      font-size: 10.5px;
+      color: #94a3b8;
+      line-height: 1.35;
+      margin-top: 4px;
+    }
+
+    /* "INFORMACIÓN DEL ASESOR" CARD */
+    .realtor-info-card {
+      background: #ffffff;
+      border: 1px solid #f1f5f9;
+      border-radius: 24px;
+      padding: 18px 16px;
+      margin: 0 12px 20px 12px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .info-card-header {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card-header svg {
+      color: #FF7900;
+    }
+
+    .info-bio-text {
+      font-size: 12.5px;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .info-bio-text.empty {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    .info-divider {
+      height: 1px;
+      background: #f1f5f9;
+      width: 100%;
+    }
+
+    .info-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-item-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .info-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #f1f5f9;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-item-icon.verified {
+      background: #ecfdf5;
+      color: #059669;
+    }
+
+    .info-item-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .info-item-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+    }
+
+    .info-item-val {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #0f172a;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+
+    .info-item-val.empty {
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .info-item-val.verified-badge {
+      color: #059669;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Professional Channels / Social Media */
+    .social-channels-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .social-channels-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .social-icons-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: #f1f5f9;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .social-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .social-btn:active {
+      transform: scale(0.92);
+      background: #0f172a;
+      color: #ffffff;
+    }
+
+    /* FLOATING BOTTOM NAVIGATION (Floating Island Design) */
+    .bottom-nav {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      height: 66px;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 9999px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 8px;
+      z-index: 50;
+      user-select: none;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 700;
+      gap: 3px;
+      width: 48px;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .nav-item svg {
+      width: 22px;
+      height: 22px;
+      transition: transform 0.15s ease;
+    }
+
+    .nav-item.active {
+      color: #FF7900;
+    }
+
+    .nav-item.active svg {
+      transform: scale(1.08);
+      stroke: #FF7900;
+    }
+
+    .nav-plus-wrapper {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-plus-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #FF7900;
+      border: 2px solid #ffffff;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .nav-plus-btn:active {
+      transform: scale(0.92);
+      background: #e66d00;
+    }
+
+    /* Android bar indicator */
+    .android-indicator {
+      display: none !important;
+    }
+
+    /* TOAST NOTIFICATION */
+    .app-toast {
+      position: absolute;
+      bottom: 88px;
+      left: 20px;
+      right: 20px;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 60;
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .app-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* AVATAR CAMERA BADGE */
+    .avatar-camera-badge {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #FF7900;
+      border: 2px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+      z-index: 10;
+    }
+    .avatar-camera-badge:active {
+      transform: scale(0.9);
+    }
+
+    /* TOP ACTION BUTTON OVER BANNER */
+    .banner-glass-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease;
+      position: relative;
+      text-decoration: none;
+    }
+    .banner-glass-btn:active {
+      transform: scale(0.92);
+      background: rgba(255, 255, 255, 0.38);
+    }
+
+    /* BANNER PRESETS */
+    .banner-preset-thumb {
+      height: 48px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      position: relative;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .banner-preset-thumb.active, .banner-preset-thumb:hover {
+      border-color: #FF7900 !important;
+      transform: scale(1.02);
+    }
+
+    /* MODAL OVERLAY & BOTTOM SHEET */
+    .app-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .app-modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .app-modal-sheet {
+      width: 100%;
+      max-height: 85%;
+      background: #ffffff;
+      border-radius: 24px 24px 0 0;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+      animation: sheetSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    @keyframes sheetSlideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    .app-modal-handle {
+      width: 40px;
+      height: 4px;
+      background: #cbd5e1;
+      border-radius: 9999px;
+      margin: 10px auto 4px auto;
+    }
+    .app-modal-header {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .app-modal-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .app-modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      cursor: pointer;
+    }
+    .app-modal-body {
+      padding: 18px 20px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-sizing: border-box;
+    }
+    .app-modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      gap: 10px;
+      background: #ffffff;
+      box-sizing: border-box;
+    }
+    .settings-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .settings-input-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #475569;
+    }
+    .settings-text-input {
+      width: 100%;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 0 12px;
+      font-size: 13px;
+      color: #0f172a;
+      background: #ffffff;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .settings-text-input:focus {
+      border-color: #FF7900;
+    }
+    .settings-url-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+    .settings-url-box:focus-within {
+      border-color: #FF7900;
+    }
+    .url-domain {
+      padding: 0 10px;
+      font-size: 11.5px;
+      color: #64748b;
+      background: #f8fafc;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      border-right: 1px solid #e2e8f0;
+      white-space: nowrap;
+    }
+    .url-slug-input {
+      flex: 1;
+      height: 40px;
+      border: none;
+      padding: 0 12px;
+      font-size: 13px;
+      color: #0f172a;
+      outline: none;
+      min-width: 0;
+    }
+    .btn-primary-save {
+      height: 42px;
+      background: #FF7900;
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: none;
+    }
+    .btn-subtle-pill {
+      height: 42px;
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-viewport">
+
+    <!-- 1. ANDROID / IOS STATUS BAR -->
+    <div class="status-bar">
+      <div class="status-left">
+        <span>9:41</span>
+      </div>
+      <div class="status-right">
+        <!-- Signal -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V4"/>
+        </svg>
+        <!-- Wifi -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>
+        </svg>
+        <!-- Battery -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="16" height="10" rx="2" ry="2"/><line x1="22" y1="11" x2="22" y2="13"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 2. TOP HEADER BAR -->
+    <header class="app-header">
+      <a href="javascript:handleBackNavigation()" class="header-icon-btn" title="Volver">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6"/>
+        </svg>
+      </a>
+      <h1 class="header-title" id="header-page-title">Perfil Público</h1>
+      <button type="button" class="header-icon-btn" id="header-btn-camera" onclick="openPerfilEditModal('banner')" title="Cambiar fotos y portada">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- 3. SCROLLABLE BODY -->
+    <div class="app-scroll-body no-scrollbar">
+
+      <!-- PHOTOGRAPHIC HERO BANNER (MATCHING APP/CUENTA.HTML DESIGN) -->
+      <div class="profile-hero-banner" id="hero-banner-container">
+
+        <!-- Centered Circular Avatar -->
+        <div class="profile-avatar-circle" id="avatar-container" onclick="openPerfilEditModal('avatar')" style="cursor: pointer;" title="Cambiar foto de perfil">
+          <img id="avatar-img" src="assets/replica/lead_avatar.png" class="profile-avatar-img" alt="Foto de perfil">
+          <span id="avatar-initial" class="profile-avatar-initial">R</span>
+          <div class="avatar-camera-badge" id="avatar-camera-badge" title="Cambiar foto">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </div>
+        </div>
+
+        <!-- User Name with Verified Badge (Matching Web & Cuenta) -->
+        <h2 class="profile-hero-name">
+          <span id="realtor-name">Roger</span>
+          <span id="realtor-verified-wrap" style="display: inline-flex; vertical-align: middle; margin-left: 2px;" title="Identidad Verificada">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#FF7900"/>
+              <path d="M9 12l2 2 4-4" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </span>
+        </h2>
+
+        <!-- Role Pill Badge (Matching Cuenta) -->
+        <div class="profile-hero-badge-wrap">
+          <span id="realtor-hero-badge" class="profile-hero-badge">PLAN VISITANTE</span>
+        </div>
+
+        <!-- Action Buttons Inside Banner -->
+        <div class="profile-hero-actions-row">
+          <a id="btn-hero-contact" href="https://wa.me/584248407372" target="_blank" class="hero-action-pill-orange" title="Contactar por WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Contactar</span>
+          </a>
+          <button type="button" class="hero-action-pill-glass" onclick="shareRealtorProfile()" title="Compartir perfil público">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span>Compartir</span>
+          </button>
+          <a id="btn-hero-email" href="mailto:rogeralejandroquijadaavilera@gmail.com" class="hero-action-icon-glass" title="Enviar correo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- 4 TRUST METRICS GRID -->
+      <div class="trust-metrics-grid">
+        <div class="metric-card">
+          <div class="metric-val" id="metric-prop-count">14</div>
+          <div class="metric-lbl">Inmuebles activos</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val" id="metric-response-time">&lt; 5 min</div>
+          <div class="metric-lbl">Tiempo de respuesta</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val" id="metric-experience">10+ años</div>
+          <div class="metric-lbl">En el sector</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">
+            <span id="metric-rating">5.0</span>
+            <span class="metric-star" id="metric-rating-star">★</span>
+          </div>
+          <div class="metric-lbl" id="metric-reviews">48 reseñas</div>
+        </div>
+      </div>
+
+      <!-- BIO CARD (IF AGENT HAS BIO DESCRIPTION) -->
+      <div class="profile-bio-card" id="realtor-bio-card" style="display: none;">
+        <p class="identity-bio" id="realtor-short-bio"></p>
+      </div>
+
+      <!-- PORTFOLIO OPERATION TABS -->
+      <div class="portfolio-tabs-bar">
+        <button type="button" class="tab-btn active" id="tab-todos" onclick="filterMobileProperties('todos', this)">Todas (6)</button>
+        <button type="button" class="tab-btn" id="tab-venta" onclick="filterMobileProperties('venta', this)">En Venta (4)</button>
+        <button type="button" class="tab-btn" id="tab-alquiler" onclick="filterMobileProperties('alquiler', this)">En Alquiler (2)</button>
+      </div>
+
+      <!-- PROPERTIES PORTFOLIO LIST (Dueñas Mode) -->
+      <div class="properties-container" id="properties-list">
+
+        <!-- Propiedad 1: Oficina en Alquiler -->
+        <div class="app-property-card" data-tipo="alquiler" onclick="handleCardClick('propiedad.html')">
+          <div class="card-thumb-wrap">
+            <img src="assets/properties/gallery/oficina-1.jpg" alt="Oficina Cámara de Comercio" class="card-thumb-img">
+            <div class="card-badges-top">
+              <span class="card-pill-tag tag-orange">Alquiler</span>
+              <span class="card-pill-tag tag-dark">Oficina</span>
+            </div>
+            <button type="button" class="card-fav-btn" onclick="toggleFav(this, event)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <h3 class="card-prop-title">Excelente, Oficina de 135 m² en Cámara de Comercio</h3>
+            <div class="card-prop-location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Distrito Capital · Los Caobos</span>
+            </div>
+            <div class="card-prop-price">
+              USD 860 <small>/mes</small>
+            </div>
+            <div class="card-footer-specs">
+              <div class="specs-list">
+                <span>6 hab</span>
+                <span>•</span>
+                <span>2 baños</span>
+                <span>•</span>
+                <span>135 m²</span>
+              </div>
+              <a href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20la%20Oficina%20en%20C%C3%A1mara%20de%20Comercio" target="_blank" class="btn-card-wa" onclick="event.stopPropagation()" title="Consultar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Propiedad 2: Apartamento en Las Mercedes -->
+        <div class="app-property-card" data-tipo="venta" onclick="handleCardClick('propiedad.html')">
+          <div class="card-thumb-wrap">
+            <img src="assets/properties/prop-1.jpg" alt="Apartamento en Las Mercedes" class="card-thumb-img">
+            <div class="card-badges-top">
+              <span class="card-pill-tag tag-orange">Venta</span>
+              <span class="card-pill-tag tag-dark">Apartamento</span>
+            </div>
+            <button type="button" class="card-fav-btn" onclick="toggleFav(this, event)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <h3 class="card-prop-title">Apartamento moderno remodelado con terraza</h3>
+            <div class="card-prop-location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Miranda, Baruta · Las Mercedes</span>
+            </div>
+            <div class="card-prop-price">
+              USD 185.000
+            </div>
+            <div class="card-footer-specs">
+              <div class="specs-list">
+                <span>3 hab</span>
+                <span>•</span>
+                <span>2 baños</span>
+                <span>•</span>
+                <span>120 m²</span>
+              </div>
+              <a href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20el%20Apto%20en%20Las%20Mercedes" target="_blank" class="btn-card-wa" onclick="event.stopPropagation()" title="Consultar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Propiedad 3: Penthouse en Altamira -->
+        <div class="app-property-card" data-tipo="venta" onclick="handleCardClick('propiedad.html')">
+          <div class="card-thumb-wrap">
+            <img src="assets/properties/prop-2.png" alt="Penthouse en Altamira" class="card-thumb-img">
+            <div class="card-badges-top">
+              <span class="card-pill-tag tag-orange">Venta</span>
+              <span class="card-pill-tag tag-dark">Penthouse</span>
+            </div>
+            <button type="button" class="card-fav-btn" onclick="toggleFav(this, event)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <h3 class="card-prop-title">Exclusivo Penthouse con vista 360° al Ávila</h3>
+            <div class="card-prop-location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Miranda, Chacao · Altamira</span>
+            </div>
+            <div class="card-prop-price">
+              USD 340.000
+            </div>
+            <div class="card-footer-specs">
+              <div class="specs-list">
+                <span>4 hab</span>
+                <span>•</span>
+                <span>4 baños</span>
+                <span>•</span>
+                <span>280 m²</span>
+              </div>
+              <a href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20el%20Penthouse%20en%20Altamira" target="_blank" class="btn-card-wa" onclick="event.stopPropagation()" title="Consultar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Propiedad 4: Quinta en La Lagunita -->
+        <div class="app-property-card" data-tipo="venta" onclick="handleCardClick('propiedad.html')">
+          <div class="card-thumb-wrap">
+            <img src="assets/properties/prop-3.jpg" alt="Quinta en La Lagunita" class="card-thumb-img">
+            <div class="card-badges-top">
+              <span class="card-pill-tag tag-orange">Venta</span>
+              <span class="card-pill-tag tag-dark">Casa</span>
+            </div>
+            <button type="button" class="card-fav-btn" onclick="toggleFav(this, event)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <h3 class="card-prop-title">Residencia unifamiliar con amplio jardín privado</h3>
+            <div class="card-prop-location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Miranda, El Hatillo · La Lagunita</span>
+            </div>
+            <div class="card-prop-price">
+              USD 450.000
+            </div>
+            <div class="card-footer-specs">
+              <div class="specs-list">
+                <span>5 hab</span>
+                <span>•</span>
+                <span>5 baños</span>
+                <span>•</span>
+                <span>650 m²</span>
+              </div>
+              <a href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20la%20Quinta%20en%20La%20Lagunita" target="_blank" class="btn-card-wa" onclick="event.stopPropagation()" title="Consultar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Propiedad 5: Local Comercial en Chacao -->
+        <div class="app-property-card" data-tipo="alquiler" onclick="handleCardClick('propiedad.html')">
+          <div class="card-thumb-wrap">
+            <img src="assets/properties/gallery/oficina-3.jpg" alt="Local en Chacao" class="card-thumb-img">
+            <div class="card-badges-top">
+              <span class="card-pill-tag tag-orange">Alquiler</span>
+              <span class="card-pill-tag tag-dark">Local</span>
+            </div>
+            <button type="button" class="card-fav-btn" onclick="toggleFav(this, event)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <h3 class="card-prop-title">Local comercial a pie de calle en zona de alto tráfico</h3>
+            <div class="card-prop-location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Miranda, Chacao · Casco Central</span>
+            </div>
+            <div class="card-prop-price">
+              USD 1.200 <small>/mes</small>
+            </div>
+            <div class="card-footer-specs">
+              <div class="specs-list">
+                <span>2 baños</span>
+                <span>•</span>
+                <span>3 estac</span>
+                <span>•</span>
+                <span>95 m²</span>
+              </div>
+              <a href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20el%20Local%20en%20Chacao" target="_blank" class="btn-card-wa" onclick="event.stopPropagation()" title="Consultar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Propiedad 6: Townhouse en Los Palos Grandes -->
+        <div class="app-property-card" data-tipo="venta" onclick="handleCardClick('propiedad.html')">
+          <div class="card-thumb-wrap">
+            <img src="assets/properties/fav-apto.jpg" alt="Townhouse Los Palos Grandes" class="card-thumb-img">
+            <div class="card-badges-top">
+              <span class="card-pill-tag tag-orange">Venta</span>
+              <span class="card-pill-tag tag-dark">Townhouse</span>
+            </div>
+            <button type="button" class="card-fav-btn" onclick="toggleFav(this, event)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <h3 class="card-prop-title">Townhouse de diseño moderno en calle cerrada</h3>
+            <div class="card-prop-location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Miranda, Chacao · Los Palos Grandes</span>
+            </div>
+            <div class="card-prop-price">
+              USD 290.000
+            </div>
+            <div class="card-footer-specs">
+              <div class="specs-list">
+                <span>3 hab</span>
+                <span>•</span>
+                <span>3 baños</span>
+                <span>•</span>
+                <span>190 m²</span>
+              </div>
+              <a href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20el%20Townhouse%20en%20Los%20Palos%20Grandes" target="_blank" class="btn-card-wa" onclick="event.stopPropagation()" title="Consultar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- EMPTY STATE (Roger / 0 Inmuebles) -->
+      <div class="empty-portfolio-card" id="empty-portfolio-state" style="display: none; margin: 0 12px 16px 12px;">
+        <div class="empty-state-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m3 9 18 0"/><path d="m9 21 0-12"/></svg>
+        </div>
+        <h3 class="empty-state-title" id="empty-state-heading">Aún no hay inmuebles en esta vitrina</h3>
+        <p class="empty-state-desc" id="empty-state-subheading">
+          Las propiedades en venta o alquiler que publique este asesor aparecerán aquí organizadas con fotos de alta resolución y contacto directo.
+        </p>
+        <div class="empty-state-actions">
+          <a href="planes.html" class="btn-publish-first">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>Publicar primer inmueble</span>
+          </a>
+          <a href="explorar.html" class="btn-explore-catalog">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <span>Explorar propiedades</span>
+          </a>
+        </div>
+        <div class="empty-hint-text">
+          ¿Eres el titular de esta cuenta? Activa un cupo desde tu panel para comenzar a publicar.
+        </div>
+      </div>
+
+      <!-- "INFORMACIÓN DEL ASESOR" CARD -->
+      <div class="realtor-info-card">
+        <h3 class="info-card-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+          <span>Información del Asesor</span>
+        </h3>
+
+        <p class="info-bio-text" id="info-full-bio">
+          Broker fundador de Dueñas Real Estate. Especializado en transacciones comerciales y residenciales de alto perfil en Caracas. Validación legal previa en cada cierre para garantizar total seguridad jurídica.
+        </p>
+
+        <div class="info-divider"></div>
+
+        <div class="info-items-list">
+          <!-- WhatsApp Directo -->
+          <div class="info-item-row">
+            <div class="info-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="info-item-meta">
+              <span class="info-item-label">WhatsApp Directo</span>
+              <a href="https://wa.me/584248407372" target="_blank" class="info-item-val" id="info-val-phone">+58 424 840 7372</a>
+            </div>
+          </div>
+
+          <!-- Correo Corporativo -->
+          <div class="info-item-row">
+            <div class="info-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div class="info-item-meta">
+              <span class="info-item-label">Correo Corporativo</span>
+              <a href="mailto:jdb@dre.com.ve" class="info-item-val" id="info-val-email">jdb@dre.com.ve</a>
+            </div>
+          </div>
+
+          <!-- Inmobiliaria / Agencia -->
+          <div class="info-item-row">
+            <div class="info-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div class="info-item-meta">
+              <span class="info-item-label">Inmobiliaria</span>
+              <span class="info-item-val" id="info-val-agency">Dueñas Real Estate, C.A.</span>
+            </div>
+          </div>
+
+          <!-- Zonas de Cobertura -->
+          <div class="info-item-row">
+            <div class="info-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="info-item-meta">
+              <span class="info-item-label">Zonas Principales</span>
+              <span class="info-item-val" id="info-val-zones">Las Mercedes, Chacao, Altamira, El Hatillo</span>
+            </div>
+          </div>
+
+          <!-- Verificación -->
+          <div class="info-item-row">
+            <div class="info-item-icon verified" id="info-audit-icon-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <div class="info-item-meta">
+              <span class="info-item-label">Verificación</span>
+              <span class="info-item-val verified-badge" id="info-val-audit">Verificado por Enkapta</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-divider"></div>
+
+        <!-- Social Media / Canales Profesionales -->
+        <div class="social-channels-wrap" id="social-channels-wrap">
+          <span class="social-channels-label">CANALES PROFESIONALES</span>
+          <div class="social-icons-row" id="social-icons-container">
+            <!-- Renderizado dinámicamente -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MODAL: EDITAR FOTOS Y PERFIL (Slide-Up Bottom Sheet) -->
+    <div id="app-modal-edit" class="app-modal-overlay" onclick="if(event.target===this) closePerfilEditModal()">
+      <div class="app-modal-sheet">
+        <div class="app-modal-handle"></div>
+        <div class="app-modal-header">
+          <h3 class="app-modal-title">Editar información y fotos</h3>
+          <button type="button" class="app-modal-close-btn" onclick="closePerfilEditModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div class="app-modal-body">
+          
+          <!-- FOTOS DE TU PERFIL Y PORTADA -->
+          <div class="settings-form-group" style="padding-bottom: 14px; border-bottom: 1px solid #f1f5f9; margin-bottom: 14px;">
+            <label class="settings-input-label" style="font-weight: 800; color: #0f172a; margin-bottom: 10px; font-size: 11.5px; display: flex; align-items: center; justify-content: space-between;">
+              <span>FOTOS DE PERFIL Y PORTADA</span>
+              <span style="font-size: 10.5px; font-weight: 700; color: #FF7900;">Toca para cambiar</span>
+            </label>
+            
+            <!-- 1. FOTO DE PERFIL (AVATAR) -->
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px; background: #f8fafc; padding: 10px 12px; border-radius: 14px; border: 1px solid #f1f5f9;">
+              <div style="position: relative; width: 62px; height: 62px; border-radius: 50%; border: 2.5px solid #FF7900; overflow: hidden; flex-shrink: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;" onclick="document.getElementById('input-file-avatar-perfil').click()" title="Toca para cambiar tu foto">
+                <img id="modal-preview-avatar" src="assets/replica/lead_avatar.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.28); display: flex; align-items: center; justify-content: center;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </div>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 3px;">
+                <div style="font-size: 12px; font-weight: 800; color: #0f172a;">Foto de perfil</div>
+                <div style="font-size: 11px; color: #64748b;">JPG, PNG desde tu dispositivo</div>
+                <div style="display: flex; gap: 8px; margin-top: 4px;">
+                  <button type="button" class="btn-subtle-pill" style="height: 28px; padding: 0 10px; font-size: 10.5px; background: #ffffff; border: 1px solid #e2e8f0;" onclick="document.getElementById('input-file-avatar-perfil').click()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span>Subir foto</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. FOTO DE PORTADA / BANNER -->
+            <div style="display: flex; flex-direction: column; gap: 6px; background: #f8fafc; padding: 10px 12px; border-radius: 14px; border: 1px solid #f1f5f9;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                  <span style="font-size: 12px; font-weight: 800; color: #0f172a;">Imagen de portada</span>
+                  <p style="font-size: 11px; color: #64748b; margin: 1px 0 0 0;">Fondo del banner principal</p>
+                </div>
+                <button type="button" class="btn-subtle-pill" style="height: 28px; padding: 0 10px; font-size: 10.5px; background: #ffffff; border: 1px solid #e2e8f0;" onclick="document.getElementById('input-file-banner-perfil').click()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <span>Subir imagen</span>
+                </button>
+              </div>
+              <!-- Vista previa del banner -->
+              <div id="modal-preview-banner-box" style="width: 100%; height: 78px; border-radius: 10px; overflow: hidden; position: relative; border: 1.5px solid #e2e8f0; background-image: url('assets/parallax-edificio.jpg'); background-size: cover; background-position: center; cursor: pointer; margin-top: 4px;" onclick="document.getElementById('input-file-banner-perfil').click()" title="Toca para subir tu propia portada">
+                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.5) 100%); display: flex; align-items: flex-end; justify-content: space-between; padding: 6px 10px;">
+                  <span style="color: #ffffff; font-size: 10px; font-weight: 700; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Vista actual</span>
+                  <span style="background: rgba(0,0,0,0.6); color: #ffffff; font-size: 9.5px; font-weight: 700; padding: 2px 7px; border-radius: 6px; backdrop-filter: blur(4px);">
+                    📷 Cambiar
+                  </span>
+                </div>
+              </div>
+              <!-- Portadas destacadas precargadas -->
+              <div style="margin-top: 4px;">
+                <span style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">O elige un fondo inmobiliario:</span>
+                <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-top: 4px;">
+                  <div class="banner-preset-thumb" onclick="setBannerPresetPerfil('assets/parallax-edificio.jpg', this)" style="background-image: url('assets/parallax-edificio.jpg');">
+                    <span style="position: absolute; bottom: 2px; left: 4px; right: 4px; font-size: 8px; font-weight: 800; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">El Mirador</span>
+                  </div>
+                  <div class="banner-preset-thumb" onclick="setBannerPresetPerfil('assets/banner-background.jpg', this)" style="background-image: url('assets/banner-background.jpg');">
+                    <span style="position: absolute; bottom: 2px; left: 4px; right: 4px; font-size: 8px; font-weight: 800; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Condominio</span>
+                  </div>
+                  <div class="banner-preset-thumb" onclick="setBannerPresetPerfil('assets/hero-quienes-1.jpg', this)" style="background-image: url('assets/hero-quienes-1.jpg');">
+                    <span style="position: absolute; bottom: 2px; left: 4px; right: 4px; font-size: 8px; font-weight: 800; color: #ffffff; text-shadow: 0 1px 3px rgba(0,0,0,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">El Ávila</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hidden file inputs -->
+            <input type="file" id="input-file-avatar-perfil" accept="image/*" style="display: none;" onchange="handlePerfilFileInput(event, 'avatar')">
+            <input type="file" id="input-file-banner-perfil" accept="image/*" style="display: none;" onchange="handlePerfilFileInput(event, 'banner')">
+          </div>
+
+          <div class="settings-form-group">
+            <label class="settings-input-label">Nombre del asesor</label>
+            <input type="text" id="modal-field-name-perfil" class="settings-text-input" value="Roger">
+          </div>
+
+          <div class="settings-form-group">
+            <label class="settings-input-label">Teléfono / WhatsApp</label>
+            <input type="text" id="modal-field-phone-perfil" class="settings-text-input" placeholder="+58 424 000 0000" value="+58 424 123 4567">
+          </div>
+
+          <div class="settings-form-group">
+            <label class="settings-input-label">Biografía profesional</label>
+            <textarea id="modal-field-bio-perfil" rows="3" class="settings-text-input" style="height: auto; padding: 10px 14px; resize: none;"></textarea>
+          </div>
+
+        </div>
+        <div class="app-modal-footer">
+          <button type="button" class="btn-subtle-pill" style="flex: 1; height: 42px; justify-content: center;" onclick="closePerfilEditModal()">
+            Cancelar
+          </button>
+          <button type="button" class="btn-primary-save" style="flex: 1.5; height: 42px; justify-content: center;" onclick="savePerfilModalData()">
+            Guardar cambios
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. FLOATING TOAST NOTIFICATION -->
+    <div id="app-toast" class="app-toast">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="app-toast-text">¡Enlace del perfil copiado al portapapeles!</span>
+    </div>
+
+    <!-- 6. FLOATING BOTTOM NAVIGATION BAR -->
+    <nav class="bottom-nav">
+      <!-- 1. Home -->
+      <a href="index.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10.5L12 3l9 7.5V20a2 2 0 0 1-2 2h-4a1 1 0 0 1-1-1v-5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v5a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V10.5z"/>
+        </svg>
+        <span>Home</span>
+      </a>
+
+      <!-- 2. Explorar -->
+      <a href="explorar.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+          <path d="M12 7l3 2.5V13h-2v-2h-2v2H9V9.5L12 7z"/>
+        </svg>
+        <span>Explorar</span>
+      </a>
+
+      <!-- 3. Botón Central [+] Naranja -->
+      <div class="nav-plus-wrapper">
+        <button class="nav-plus-btn" title="Publicar propiedad" onclick="window.location.href='planes.html'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 4. Favoritos -->
+      <a href="favoritos.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        <span>Favoritos</span>
+      </a>
+
+      <!-- 5. Cuenta -->
+      <a href="cuenta.html" class="nav-item" id="nav-item-cuenta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span>Cuenta</span>
+      </a>
+    </nav>
+
+    <!-- Android home indicator -->
+    <div class="android-indicator"></div>
+
+  </div>
+
+  <script>
+    // Perfiles base oficiales (Sincronizados con auth.js y web/perfil.html)
+    const DUENAS_PROFILE = {
+      name: "Daniel Dueñas",
+      slug: "duenas",
+      agency: "Dueñas Real Estate",
+      legalAgency: "Dueñas Real Estate, C.A.",
+      title: "Director & Broker Principal",
+      shortBio: "Especialista en inmuebles corporativos, oficinas comerciales y residencias exclusivas en el Distrito Capital y Miranda.",
+      bio: "Broker fundador de Dueñas Real Estate. Especializado en transacciones comerciales y residenciales de alto perfil en Caracas. Validación legal previa en cada cierre para garantizar total seguridad jurídica.",
+      phone: "+58 424 840 7372",
+      email: "jdb@dre.com.ve",
+      zones: "Las Mercedes, Chacao, Altamira, El Hatillo",
+      avatar: "assets/duenas-logo.jpg",
+      banner: "assets/parallax-edificio.jpg",
+      isVerified: true,
+      isCertified: true,
+      propertyCount: 6,
+      stats: {
+        properties: "14",
+        responseTime: "< 5 min",
+        experience: "10+ años",
+        rating: "5.0",
+        reviewsCount: "48 reseñas auditadas"
+      },
+      socials: {
+        instagram: "https://instagram.com/duenasrealestate",
+        facebook: "https://facebook.com/duenasrealestate",
+        linkedin: "https://linkedin.com/in/danielduenas",
+        website: ""
+      }
+    };
+
+    function getRogerProfile() {
+      const savedName = localStorage.getItem('enkapta_profile_name') || 'Roger';
+      const savedSlug = localStorage.getItem('enkapta_profile_slug') || 'roger';
+      const savedEmail = localStorage.getItem('enkapta_user_email') || 'rogeralejandroquijadaavilera@gmail.com';
+      const savedPhone = localStorage.getItem('enkapta_profile_phone') || '';
+      const savedZones = localStorage.getItem('enkapta_profile_zones') || '';
+      const savedBio = localStorage.getItem('enkapta_profile_bio') || '';
+      const savedAvatar = localStorage.getItem('enkapta_profile_avatar') || 'assets/replica/lead_avatar.png';
+      const savedBanner = localStorage.getItem('enkapta_profile_banner') || 'assets/parallax-edificio.jpg';
+
+      return {
+        name: savedName,
+        slug: savedSlug,
+        agency: "",
+        legalAgency: "",
+        title: "Plan Visitante",
+        shortBio: savedBio || "",
+        bio: savedBio || "",
+        phone: savedPhone,
+        email: savedEmail,
+        zones: savedZones,
+        avatar: savedAvatar,
+        banner: savedBanner,
+        isVerified: true,
+        isCertified: false,
+        propertyCount: 0,
+        stats: {
+          properties: "0",
+          responseTime: "—",
+          experience: "Nuevo asesor",
+          rating: "—",
+          reviewsCount: "Sin calificaciones"
+        },
+        socials: {
+          instagram: localStorage.getItem('enkapta_profile_instagram') || "https://instagram.com/roger",
+          linkedin: localStorage.getItem('enkapta_profile_linkedin') || "https://linkedin.com/in/roger",
+          facebook: localStorage.getItem('enkapta_profile_facebook') || "https://facebook.com/roger",
+          website: localStorage.getItem('enkapta_profile_website') || ""
+        }
+      };
+    }
+
+    // Toggle Vista entre Roger y Dueñas
+    function switchProfileView(target) {
+      if (history.replaceState) {
+        const newUrl = window.location.pathname + (target === 'duenas' ? '?u=duenas' : '?u=me');
+        history.replaceState(null, '', newUrl);
+      }
+      renderProfilePage(target);
+    }
+
+    // Handle Back navigation cleanly
+    function handleBackNavigation() {
+      if (document.referrer && document.referrer.includes(window.location.host)) {
+        window.history.back();
+      } else {
+        window.location.href = 'cuenta.html';
+      }
+    }
+
+    // Renderizado dinámico
+    function renderProfilePage(forcedTarget = null) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const userParam = forcedTarget || urlParams.get("u") || urlParams.get("user") || urlParams.get("slug");
+
+      const isRoger = userParam === "me" || userParam === "roger" || userParam === "self" || userParam === "mi-perfil";
+      const isDuenas = !isRoger;
+      const profile = isRoger ? getRogerProfile() : DUENAS_PROFILE;
+
+      // Actualizar Título
+      document.title = `${profile.name} — ${profile.title} | Enkapta`;
+      const headerTitle = document.getElementById("header-page-title");
+      if (headerTitle) {
+        headerTitle.textContent = isDuenas ? "Perfil del Broker" : "Mi Perfil Público";
+      }
+
+      // Actualizar Barra de Previsualización
+      const previewTagText = document.getElementById("preview-tag-text");
+      const btnToggleRoger = document.getElementById("btn-toggle-roger");
+      const btnToggleDuenas = document.getElementById("btn-toggle-duenas");
+
+      if (previewTagText) {
+        previewTagText.innerHTML = isDuenas
+          ? 'Vista: <strong>Daniel Dueñas</strong>'
+          : `Vista: <strong>${profile.name} (0)</strong>`;
+      }
+
+      if (btnToggleRoger && btnToggleDuenas) {
+        if (isDuenas) {
+          btnToggleDuenas.classList.add("active");
+          btnToggleRoger.classList.remove("active");
+        } else {
+          btnToggleRoger.classList.add("active");
+          btnToggleDuenas.classList.remove("active");
+        }
+      }
+
+      // 1. Hero Cover Banner
+      const heroBanner = document.getElementById("hero-banner-container");
+      if (heroBanner) {
+        const bannerUrl = profile.banner || "assets/parallax-edificio.jpg";
+        heroBanner.style.backgroundImage = `url('${bannerUrl}')`;
+      }
+
+      // 2. Avatar
+      const avatarImg = document.getElementById("avatar-img");
+      const avatarInitial = document.getElementById("avatar-initial");
+      if (profile.avatar && profile.avatar.trim()) {
+        if (avatarImg) {
+          avatarImg.src = profile.avatar;
+          avatarImg.style.display = "block";
+        }
+        if (avatarInitial) avatarInitial.style.display = "none";
+      } else {
+        if (avatarImg) avatarImg.style.display = "none";
+        if (avatarInitial) {
+          avatarInitial.textContent = (profile.name || "R").charAt(0).toUpperCase();
+          avatarInitial.style.display = "block";
+        }
+      }
+
+      // 3. Nombre y Palomita Verificada
+      const nameEl = document.getElementById("realtor-name");
+      if (nameEl) nameEl.textContent = profile.name;
+
+      const verifiedWrap = document.getElementById("realtor-verified-wrap");
+      if (verifiedWrap) {
+        verifiedWrap.style.display = profile.isVerified ? "inline-flex" : "none";
+      }
+
+      // 4. Hero Role Badge
+      const heroBadge = document.getElementById("realtor-hero-badge");
+      if (heroBadge) {
+        if (isRoger) {
+          heroBadge.textContent = "PLAN VISITANTE";
+        } else {
+          heroBadge.textContent = (profile.title || "DIRECTOR & BROKER PRINCIPAL").toUpperCase();
+        }
+      }
+
+      // 5. Hero Subtitle
+      const subtitleEl = document.getElementById("realtor-hero-subtitle");
+      if (subtitleEl) {
+        subtitleEl.style.display = 'none';
+      }
+
+      // 6. Botones de Acción
+      const cleanPhone = (profile.phone || "").replace(/\D/g, "");
+      const waUrl = cleanPhone
+        ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hola ' + profile.name + ', vi tu perfil en Enkapta y quisiera consultar sobre tus propiedades disponibles')}`
+        : (profile.email ? `mailto:${profile.email}` : '#');
+
+      const contactBtn = document.getElementById("btn-hero-contact");
+      if (contactBtn) {
+        if (isRoger) {
+          contactBtn.removeAttribute("href");
+          contactBtn.removeAttribute("target");
+          contactBtn.onclick = (e) => { e.preventDefault(); openPerfilEditModal(); };
+          contactBtn.innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span>Editar perfil</span>
+          `;
+        } else {
+          contactBtn.setAttribute("href", waUrl);
+          contactBtn.setAttribute("target", "_blank");
+          contactBtn.onclick = null;
+          contactBtn.innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Contactar</span>
+          `;
+        }
+      }
+
+      const emailBtn = document.getElementById("btn-hero-email");
+      if (emailBtn) {
+        emailBtn.href = profile.email ? `mailto:${profile.email}?subject=${encodeURIComponent('Consulta Inmobiliaria vía Enkapta')}` : '#';
+        emailBtn.style.display = profile.email ? "flex" : "none";
+      }
+
+      // Visibilidad de controles de portada y avatar solo para Roger
+      const headerBtnCamera = document.getElementById('header-btn-camera');
+      const avatarCameraBadge = document.getElementById('avatar-camera-badge');
+      if (headerBtnCamera) headerBtnCamera.style.display = isRoger ? 'flex' : 'none';
+      if (avatarCameraBadge) avatarCameraBadge.style.display = isRoger ? 'flex' : 'none';
+
+      // 7. Bio Card
+      const bioCard = document.getElementById("realtor-bio-card");
+      const shortBioEl = document.getElementById("realtor-short-bio");
+      if (shortBioEl && bioCard) {
+        if (profile.shortBio && profile.shortBio.trim()) {
+          shortBioEl.textContent = profile.shortBio;
+          shortBioEl.classList.remove("empty");
+          bioCard.style.display = "block";
+        } else {
+          bioCard.style.display = "none";
+        }
+      }
+
+      // 7. Trust Metrics
+      const stats = profile.stats || {};
+      const propCount = profile.propertyCount !== undefined ? profile.propertyCount : (isDuenas ? 14 : 0);
+
+      const metricPropEl = document.getElementById("metric-prop-count");
+      if (metricPropEl) metricPropEl.textContent = stats.properties !== undefined ? stats.properties : propCount;
+
+      const metricRespEl = document.getElementById("metric-response-time");
+      if (metricRespEl) metricRespEl.textContent = stats.responseTime || (isDuenas ? "< 5 min" : "—");
+
+      const metricExpEl = document.getElementById("metric-experience");
+      if (metricExpEl) metricExpEl.textContent = stats.experience || (isDuenas ? "10+ años" : "Nuevo asesor");
+
+      const metricRatingEl = document.getElementById("metric-rating");
+      const metricStarEl = document.getElementById("metric-rating-star");
+      const hasRating = isDuenas || (stats.rating && stats.rating !== "—" && stats.rating !== "");
+      if (metricRatingEl) metricRatingEl.textContent = hasRating ? (stats.rating || "5.0") : "—";
+      if (metricStarEl) metricStarEl.style.display = hasRating ? "inline" : "none";
+
+      const metricReviewsEl = document.getElementById("metric-reviews");
+      if (metricReviewsEl) metricReviewsEl.textContent = stats.reviewsCount || (isDuenas ? "48 reseñas" : "Sin calificaciones");
+
+      // 8. Pestañas y Cartera vs Estado Vacío
+      const propsList = document.getElementById("properties-list");
+      const emptyCard = document.getElementById("empty-portfolio-state");
+      const tabTodos = document.getElementById("tab-todos");
+      const tabVenta = document.getElementById("tab-venta");
+      const tabAlquiler = document.getElementById("tab-alquiler");
+
+      if (propCount === 0) {
+        // ROGER / 0 INMUEBLES (ESTADO VACÍO)
+        if (propsList) propsList.style.display = "none";
+        if (emptyCard) emptyCard.style.display = "flex";
+
+        if (tabTodos) tabTodos.textContent = "Todas (0)";
+        if (tabVenta) tabVenta.textContent = "En Venta (0)";
+        if (tabAlquiler) tabAlquiler.textContent = "En Alquiler (0)";
+
+        const emptyTitle = document.getElementById("empty-state-heading");
+        const emptyDesc = document.getElementById("empty-state-subheading");
+        if (emptyTitle) {
+          emptyTitle.textContent = isDuenas
+            ? "Aún no hay inmuebles en esta vitrina"
+            : "Aún no tienes inmuebles publicados en tu vitrina";
+        }
+        if (emptyDesc) {
+          emptyDesc.textContent = isDuenas
+            ? "Las propiedades en venta o alquiler que publique este asesor aparecerán aquí organizadas con fotos y contacto directo."
+            : "Tu vitrina inmobiliaria está lista. Al publicar tus propiedades en venta o alquiler, aparecerán aquí organizadas con fotos de alta resolución y contacto directo.";
+        }
+      } else {
+        // DANIEL DUEÑAS (6 INMUEBLES)
+        if (propsList) propsList.style.display = "flex";
+        if (emptyCard) emptyCard.style.display = "none";
+
+        if (tabTodos) tabTodos.textContent = "Todas (6)";
+        if (tabVenta) tabVenta.textContent = "En Venta (4)";
+        if (tabAlquiler) tabAlquiler.textContent = "En Alquiler (2)";
+      }
+
+      // 9. Card "Información del Asesor"
+      const fullBioEl = document.getElementById("info-full-bio");
+      if (fullBioEl) {
+        if (profile.bio && profile.bio.trim()) {
+          fullBioEl.textContent = profile.bio;
+          fullBioEl.classList.remove("empty");
+        } else {
+          fullBioEl.textContent = "Aún no se ha añadido una presentación o biografía detallada para este perfil.";
+          fullBioEl.classList.add("empty");
+        }
+      }
+
+      const valPhone = document.getElementById("info-val-phone");
+      if (valPhone) {
+        if (profile.phone && profile.phone.trim()) {
+          valPhone.textContent = profile.phone;
+          valPhone.href = waUrl;
+          valPhone.classList.remove("empty");
+        } else {
+          valPhone.textContent = "No registrado";
+          valPhone.href = "javascript:void(0)";
+          valPhone.classList.add("empty");
+        }
+      }
+
+      const valEmail = document.getElementById("info-val-email");
+      if (valEmail) {
+        valEmail.textContent = profile.email || "No registrado";
+        valEmail.href = profile.email ? `mailto:${profile.email}` : "javascript:void(0)";
+      }
+
+      const valAgency = document.getElementById("info-val-agency");
+      if (valAgency) {
+        if (profile.agency && profile.agency.trim()) {
+          valAgency.textContent = profile.legalAgency || profile.agency;
+          valAgency.classList.remove("empty");
+        } else {
+          valAgency.textContent = "No especificada";
+          valAgency.classList.add("empty");
+        }
+      }
+
+      const valZones = document.getElementById("info-val-zones");
+      if (valZones) {
+        if (profile.zones && profile.zones.trim()) {
+          valZones.textContent = profile.zones;
+          valZones.classList.remove("empty");
+        } else {
+          valZones.textContent = "No especificadas";
+          valZones.classList.add("empty");
+        }
+      }
+
+      const valAudit = document.getElementById("info-val-audit");
+      const iconAuditWrap = document.getElementById("info-audit-icon-wrap");
+      if (valAudit && iconAuditWrap) {
+        if (profile.isVerified || profile.isCertified) {
+          valAudit.innerHTML = 'Verificado por Enkapta';
+          valAudit.className = "info-item-val verified-badge";
+          iconAuditWrap.className = "info-item-icon verified";
+        } else {
+          valAudit.innerHTML = 'En proceso de verificación';
+          valAudit.className = "info-item-val empty";
+          iconAuditWrap.className = "info-item-icon";
+        }
+      }
+
+      // Canales Profesionales
+      const socialContainer = document.getElementById("social-icons-container");
+      const socialWrap = document.getElementById("social-channels-wrap");
+      if (socialContainer && socialWrap) {
+        const socials = profile.socials || {};
+        let html = '';
+
+        // 1. Instagram
+        const igVal = socials.instagram || (isRoger ? "https://instagram.com/roger" : "https://instagram.com/duenasrealestate");
+        if (igVal && igVal.trim()) {
+          let ig = igVal.trim();
+          if (!ig.startsWith("http")) ig = "https://instagram.com/" + ig.replace(/^@/, "");
+          html += `
+            <a href="${ig}" target="_blank" class="social-btn" title="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          `;
+        }
+
+        // 2. LinkedIn
+        const liVal = socials.linkedin || (isRoger ? "https://linkedin.com/in/roger" : "https://linkedin.com/in/danielduenas");
+        if (liVal && liVal.trim()) {
+          let li = liVal.trim();
+          if (!li.startsWith("http")) li = "https://" + li;
+          html += `
+            <a href="${li}" target="_blank" class="social-btn" title="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          `;
+        }
+
+        // 3. Facebook
+        const fbVal = socials.facebook || (isRoger ? "https://facebook.com/roger" : "https://facebook.com/duenasrealestate");
+        if (fbVal && fbVal.trim()) {
+          let fb = fbVal.trim();
+          if (!fb.startsWith("http")) fb = "https://" + fb;
+          html += `
+            <a href="${fb}" target="_blank" class="social-btn" title="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          `;
+        }
+
+        // 4. Sitio Web (opcional)
+        if (socials.website && socials.website.trim()) {
+          let web = socials.website.trim();
+          if (!web.startsWith("http")) web = "https://" + web;
+          html += `
+            <a href="${web}" target="_blank" class="social-btn" title="Sitio Web">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </a>
+          `;
+        }
+
+        socialContainer.innerHTML = html;
+        socialWrap.style.display = "flex";
+      }
+
+      // 10. Actualizar Tab activo en Bottom Navigation
+      const navItemCuenta = document.getElementById("nav-item-cuenta");
+      if (navItemCuenta) {
+        if (isRoger) {
+          navItemCuenta.classList.add("active");
+        } else {
+          navItemCuenta.classList.remove("active");
+        }
+      }
+
+      // 11. Helper para scroll programático
+      const scrollParam = urlParams.get("scroll");
+      if (scrollParam) {
+        setTimeout(() => {
+          const scrollBody = document.querySelector('.app-scroll-body');
+          if (scrollBody) {
+            if (scrollParam === 'bottom') scrollBody.scrollTop = scrollBody.scrollHeight;
+            else scrollBody.scrollTop = parseInt(scrollParam, 10) || 500;
+          }
+        }, 150);
+      }
+
+      // 12. Helper para auto-abrir modal de edición
+      const editParam = urlParams.get("edit");
+      if (editParam === "1" || editParam === "true") {
+        setTimeout(openPerfilEditModal, 150);
+      }
+    }
+
+    // Filtrar Pestañas
+    function filterMobileProperties(tipo, clickedBtn) {
+      const allTabs = document.querySelectorAll('.tab-btn');
+      allTabs.forEach(t => t.classList.remove('active'));
+      clickedBtn.classList.add('active');
+
+      const cards = document.querySelectorAll('#properties-list .app-property-card');
+      cards.forEach(card => {
+        const cardTipo = card.getAttribute('data-tipo');
+        if (tipo === 'todos' || cardTipo === tipo) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Toggle Favorito
+    function toggleFav(btn, e) {
+      e.stopPropagation();
+      btn.classList.toggle('is-fav');
+      const svg = btn.querySelector('svg');
+      if (btn.classList.contains('is-fav')) {
+        svg.setAttribute('fill', '#ef4444');
+        svg.setAttribute('stroke', '#ef4444');
+        showAppToast('Propiedad agregada a Favoritos');
+      } else {
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+        showAppToast('Propiedad eliminada de Favoritos');
+      }
+    }
+
+    // Click en Tarjeta
+    function handleCardClick(url) {
+      window.location.href = url;
+    }
+
+    // Compartir Perfil
+    function shareRealtorProfile() {
+      const fullUrl = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(fullUrl).then(() => {
+          showAppToast('¡Enlace del perfil copiado al portapapeles!');
+        }).catch(() => {
+          showAppToast('¡Enlace del perfil copiado al portapapeles!');
+        });
+      } else {
+        showAppToast('¡Enlace del perfil copiado al portapapeles!');
+      }
+    }
+
+    // Mostrar Toast flotante
+    let toastTimeout = null;
+    function showAppToast(msg) {
+      const toast = document.getElementById('app-toast');
+      const toastText = document.getElementById('app-toast-text');
+      if (!toast) return;
+
+      if (toastText) toastText.textContent = msg;
+      toast.classList.add('show');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // ==========================================
+    // MODAL EDIT PROFILE & IMAGES LOGIC
+    // ==========================================
+    let currentSelectedAvatarPerfil = localStorage.getItem('enkapta_profile_avatar') || 'assets/replica/lead_avatar.png';
+    let currentSelectedBannerPerfil = localStorage.getItem('enkapta_profile_banner') || 'assets/parallax-edificio.jpg';
+
+    function openPerfilEditModal(focusField) {
+      const modal = document.getElementById('app-modal-edit');
+      if (!modal) return;
+
+      const name = localStorage.getItem('enkapta_profile_name') || 'Roger';
+      const phone = localStorage.getItem('enkapta_profile_phone') || '+58 424 123 4567';
+      const bio = localStorage.getItem('enkapta_profile_bio') || '';
+      currentSelectedAvatarPerfil = localStorage.getItem('enkapta_profile_avatar') || 'assets/replica/lead_avatar.png';
+      currentSelectedBannerPerfil = localStorage.getItem('enkapta_profile_banner') || 'assets/parallax-edificio.jpg';
+
+      const nameInput = document.getElementById('modal-field-name-perfil');
+      if (nameInput) nameInput.value = name;
+      const phoneInput = document.getElementById('modal-field-phone-perfil');
+      if (phoneInput) phoneInput.value = phone;
+      const bioInput = document.getElementById('modal-field-bio-perfil');
+      if (bioInput) bioInput.value = bio;
+
+      const modalAvatar = document.getElementById('modal-preview-avatar');
+      if (modalAvatar) modalAvatar.src = currentSelectedAvatarPerfil;
+      const modalBanner = document.getElementById('modal-preview-banner-box');
+      if (modalBanner) modalBanner.style.backgroundImage = `url('${currentSelectedBannerPerfil}')`;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      if (focusField === 'avatar') {
+        setTimeout(() => {
+          const avatarInput = document.getElementById('input-file-avatar-perfil');
+          if (avatarInput) avatarInput.click();
+        }, 280);
+      } else if (focusField === 'banner') {
+        setTimeout(() => {
+          const bannerInput = document.getElementById('input-file-banner-perfil');
+          if (bannerInput) bannerInput.click();
+        }, 280);
+      }
+    }
+
+    function closePerfilEditModal() {
+      const modal = document.getElementById('app-modal-edit');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function compressPerfilImage(file, maxDimension, callback) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          if (width > maxDimension || height > maxDimension) {
+            if (width > height) {
+              height = Math.round((height * maxDimension) / width);
+              width = maxDimension;
+            } else {
+              width = Math.round((width * maxDimension) / height);
+              height = maxDimension;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+          callback(dataUrl);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handlePerfilFileInput(event, type) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const maxDim = type === 'avatar' ? 400 : 1200;
+      compressPerfilImage(file, maxDim, function(dataUrl) {
+        if (type === 'avatar') {
+          currentSelectedAvatarPerfil = dataUrl;
+          const preview = document.getElementById('modal-preview-avatar');
+          if (preview) preview.src = dataUrl;
+          const heroAvatar = document.getElementById('avatar-img');
+          if (heroAvatar) heroAvatar.src = dataUrl;
+          localStorage.setItem('enkapta_profile_avatar', dataUrl);
+          showAppToast('¡Foto de perfil actualizada!');
+        } else if (type === 'banner') {
+          currentSelectedBannerPerfil = dataUrl;
+          const previewBox = document.getElementById('modal-preview-banner-box');
+          if (previewBox) previewBox.style.backgroundImage = `url('${dataUrl}')`;
+          const heroBanner = document.getElementById('hero-banner-container');
+          if (heroBanner) heroBanner.style.backgroundImage = `url('${dataUrl}')`;
+          localStorage.setItem('enkapta_profile_banner', dataUrl);
+          showAppToast('¡Imagen de portada actualizada!');
+        }
+      });
+    }
+
+    function setAvatarPresetPerfil(url) {
+      currentSelectedAvatarPerfil = url;
+      const preview = document.getElementById('modal-preview-avatar');
+      if (preview) preview.src = url;
+      const heroAvatar = document.getElementById('avatar-img');
+      if (heroAvatar) heroAvatar.src = url;
+      localStorage.setItem('enkapta_profile_avatar', url);
+      showAppToast('Foto de perfil restablecida');
+    }
+
+    function setBannerPresetPerfil(url, el) {
+      currentSelectedBannerPerfil = url;
+      const previewBox = document.getElementById('modal-preview-banner-box');
+      if (previewBox) previewBox.style.backgroundImage = `url('${url}')`;
+      const heroBanner = document.getElementById('hero-banner-container');
+      if (heroBanner) heroBanner.style.backgroundImage = `url('${url}')`;
+      localStorage.setItem('enkapta_profile_banner', url);
+
+      document.querySelectorAll('.banner-preset-thumb').forEach(t => t.style.borderColor = 'transparent');
+      if (el) el.style.borderColor = '#FF7900';
+      showAppToast('¡Portada cambiada!');
+    }
+
+    function savePerfilModalData() {
+      const name = document.getElementById('modal-field-name-perfil')?.value.trim() || 'Roger';
+      const phone = document.getElementById('modal-field-phone-perfil')?.value.trim() || '';
+      const bio = document.getElementById('modal-field-bio-perfil')?.value.trim() || '';
+
+      localStorage.setItem('enkapta_profile_name', name);
+      localStorage.setItem('enkapta_profile_phone', phone);
+      localStorage.setItem('enkapta_profile_bio', bio);
+      localStorage.setItem('enkapta_profile_avatar', currentSelectedAvatarPerfil);
+      localStorage.setItem('enkapta_profile_banner', currentSelectedBannerPerfil);
+
+      closePerfilEditModal();
+      renderProfilePage('me');
+      showAppToast('¡Perfil e imágenes guardados con éxito!');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderProfilePage();
+    });
+  </script>
+</body>
+</html>

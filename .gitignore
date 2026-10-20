@@ -1,2 +1,8 @@
 .DS_Store
 subir-a-github.sh
+server.py
+*.bak
+*.bak.*
+*.backup.*
+*.old.*
+scratch/

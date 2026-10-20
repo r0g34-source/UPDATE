@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Enkapta App · Crear cuenta</title>
+  <title>Enkapta · Registro y Selección de Rol</title>
   
   <link rel="icon" type="image/png" href="assets/replica/logo-enkapta.png">
 
@@ -21,13 +21,14 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #111827;
       overflow: hidden;
       user-select: none;
+      background-color: #0f172a;
     }
 
-    input {
+    input, select {
       user-select: auto;
     }
 
@@ -42,7 +43,6 @@
 
     /* Responsive Shell: 390px on Desktop, 100% on Mobile */
     body {
-      background-color: #0f172a;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -53,7 +53,7 @@
       height: 844px;
       max-width: 100%;
       max-height: 96vh;
-      background-color: #FF7900;
+      background-color: #ffffff;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -66,7 +66,7 @@
 
     @media (max-width: 449px) {
       body {
-        background-color: #FF7900;
+        background-color: #ffffff;
         display: block;
       }
       .app-viewport {
@@ -80,17 +80,17 @@
       }
     }
 
-    /* 1. Android Status Bar (White icons on Orange) */
+    /* 1. Android Status Bar (Clean dark icons on white) */
     .status-bar {
-      height: 32px;
-      background: #FF7900;
+      height: 28px;
+      background: #ffffff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 16px;
-      font-size: 13px;
+      padding: 0 20px;
+      font-size: 12.5px;
       font-weight: 700;
-      color: #ffffff;
+      color: #111827;
       flex-shrink: 0;
       z-index: 40;
     }
@@ -107,281 +107,877 @@
       gap: 6px;
       font-size: 11px;
       font-weight: 700;
-      color: #ffffff;
+      color: #111827;
     }
 
-    /* 2. Top Header */
-    .top-header {
-      height: 52px;
-      background: #FF7900;
+    /* 2. Top Navigation Bar (Back Arrow) */
+    .register-top-bar {
+      height: 42px;
+      padding: 0 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 16px;
       flex-shrink: 0;
-      position: relative;
+      z-index: 40;
     }
 
-    .back-btn {
+    .register-back-btn {
       width: 36px;
       height: 36px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      background: none;
+      background: transparent;
       border: none;
-      color: #ffffff;
+      color: #111827;
       cursor: pointer;
       text-decoration: none;
+      transition: transform 0.1s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .header-title {
-      font-size: 19px;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.3px;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+    .register-back-btn:active {
+      transform: scale(0.9);
     }
 
-    .step-badge {
-      background: rgba(255, 255, 255, 0.22);
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      letter-spacing: 0.3px;
-    }
-
-    /* 3. White Sheet Body */
-    .sheet-body {
+    /* Views System */
+    .register-view {
+      display: none;
       flex: 1;
-      background: #ffffff;
-      border-radius: 26px 26px 0 0;
-      padding: 22px 20px 88px 20px; /* 88px bottom padding for sticky button */
-      display: flex;
-      flex-direction: column;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      flex-direction: column;
+    }
+
+    .register-view.active-view {
+      display: flex;
+    }
+
+    /* ==========================================================================
+       VIEW 1: ROLE SELECTION SCREEN (Exact Design Match)
+       ========================================================================== */
+    .role-scroll-area {
+      padding: 4px 22px 28px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    /* Header with Enki on right */
+    .role-header-intro {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 4px;
+      margin-bottom: 22px;
       position: relative;
     }
 
-    .subtitle-text {
-      text-align: center;
-      font-size: 13.5px;
-      color: #475569;
-      line-height: 1.45;
-      margin-bottom: 20px;
+    .role-intro-left {
+      flex: 1;
+      min-width: 0;
+      padding-top: 6px;
     }
 
-    /* Social Auth Buttons */
-    .social-btn {
-      width: 100%;
-      height: 48px;
-      min-height: 48px;
+    .role-intro-tag {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #64748B;
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    .role-intro-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0B1E3F;
+      line-height: 1.15;
+      letter-spacing: -0.6px;
+      margin-bottom: 8px;
+    }
+
+    .role-intro-desc {
+      font-size: 12.8px;
+      font-weight: 500;
+      color: #64748B;
+      line-height: 1.45;
+      padding-right: 4px;
+    }
+
+    .role-mascot-wrap {
+      width: 125px;
       flex-shrink: 0;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      margin-right: 0px;
+      margin-top: -10px;
+    }
+
+    .role-mascot-img {
+      width: 100%;
+      height: auto;
+      max-height: 145px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.05));
+    }
+
+    /* Role Cards */
+    .role-cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
+    .role-card {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      font-size: 14.5px;
-      font-weight: 700;
-      color: #1e293b;
+      gap: 14px;
+      padding: 16px 15px;
+      border-radius: 20px;
+      background: #ffffff;
       cursor: pointer;
-      margin-bottom: 12px;
-      transition: background-color 0.15s ease, transform 0.1s ease;
+      transition: transform 0.12s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
-    .social-btn:active {
-      background-color: #f8fafc;
+    .role-card:active {
       transform: scale(0.98);
     }
 
-    /* Divider "o" */
-    .divider-row {
+    .role-card-user {
+      border: 1.8px solid #93C5FD;
+      background: #F8FAFC;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.04);
+    }
+
+    .role-card-user:hover {
+      border-color: #2563EB;
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.12);
+    }
+
+    .role-card-realtor {
+      border: 1.5px solid #E2E8F0;
+      background: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+    }
+
+    .role-card-realtor:hover {
+      border-color: #FF7900;
+      box-shadow: 0 6px 20px rgba(255, 121, 0, 0.12);
+    }
+
+    .role-card-avatar {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .role-card-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .role-card-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0B1E3F;
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+
+    .role-card-desc {
+      font-size: 12px;
+      font-weight: 500;
+      color: #64748B;
+      line-height: 1.4;
+    }
+
+    .role-card-chevron {
+      width: 26px;
+      height: 26px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 12px 0 16px 0;
-      position: relative;
       flex-shrink: 0;
     }
 
-    .divider-line {
-      width: 100%;
+    .chevron-blue {
+      color: #2563EB;
+    }
+
+    .chevron-gray {
+      color: #64748B;
+    }
+
+    /* Trust & Security Shield */
+    .role-trust-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      padding: 0 16px;
+    }
+
+    .role-trust-line {
+      flex: 1;
       height: 1px;
-      background: #f1f5f9;
+      background: #E2E8F0;
     }
 
-    .divider-text {
-      position: absolute;
-      background: #ffffff;
+    .role-trust-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94A3B8;
+    }
+
+    .role-trust-text {
+      text-align: center;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #94A3B8;
+      margin-bottom: 18px;
+    }
+
+    /* Common Footer Link */
+    .register-footer-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      font-size: 13.5px;
+      color: #4B5563;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .register-signin-link {
+      color: #FF7900;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .register-signin-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       FORMS COMMON STYLES (User & Realtor)
+       ========================================================================== */
+    .form-scroll-area {
+      padding: 0 24px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .register-header-intro {
+      text-align: center;
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+
+    .register-role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: #FFF7ED;
+      color: #EA580C;
+      font-size: 11.5px;
+      font-weight: 700;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      border: 1px solid #FFEDD5;
+    }
+
+    .register-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: -0.5px;
+      margin-bottom: 5px;
+    }
+
+    .register-subtitle {
+      font-size: 13px;
+      font-weight: 500;
+      color: #6B7280;
+      line-height: 1.4;
       padding: 0 10px;
-      font-size: 12px;
-      color: #94a3b8;
     }
 
-    /* Form Fields */
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 15px;
-      flex-shrink: 0;
+      margin-bottom: 14px;
     }
 
     .form-label {
       font-size: 13px;
-      font-weight: 700;
-      color: #334155;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .form-label-optional {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: #9CA3AF;
     }
 
     .input-field {
       width: 100%;
       height: 48px;
-      background: #fcfdfe;
-      border: 1px solid #e2e8f0;
+      background: #F3F4F6;
+      border: 1.5px solid transparent;
       border-radius: 12px;
       padding: 0 16px;
-      font-size: 14px;
-      color: #0f172a;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #111827;
       outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
     }
 
     .input-field:focus {
+      background: #ffffff;
       border-color: #FF7900;
-      box-shadow: 0 0 0 2px rgba(255, 121, 0, 0.15);
+      box-shadow: 0 0 0 3px rgba(255, 121, 0, 0.12);
     }
 
     .input-field::placeholder {
-      color: #94a3b8;
+      color: #9CA3AF;
+      font-weight: 400;
     }
 
-    /* Dropdown field */
-    .dropdown-field {
+    .select-wrap {
+      position: relative;
       width: 100%;
-      height: 48px;
-      background: #fcfdfe;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 0 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
-      color: #94a3b8;
+    }
+
+    .select-wrap select {
+      appearance: none;
+      -webkit-appearance: none;
       cursor: pointer;
-      transition: border-color 0.15s ease;
+      padding-right: 40px;
     }
 
-    .dropdown-field:active {
-      border-color: #FF7900;
-    }
-
-    /* Password field with eye */
-    .password-wrapper {
-      width: 100%;
-      height: 48px;
-      background: #fcfdfe;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      padding: 0 14px 0 16px;
-      gap: 10px;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .password-wrapper:focus-within {
-      border-color: #FF7900;
-      box-shadow: 0 0 0 2px rgba(255, 121, 0, 0.15);
-    }
-
-    .password-input {
-      flex: 1;
-      border: none;
-      background: transparent;
-      outline: none;
-      font-size: 14px;
-      color: #0f172a;
-      min-width: 0;
-    }
-
-    .password-input::placeholder {
-      color: #94a3b8;
-    }
-
-    .eye-btn {
-      background: none;
-      border: none;
-      color: #475569;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      padding: 2px;
-    }
-
-    /* Forgot Password */
-    .forgot-pass-link {
-      color: #c25700;
-      font-size: 13.5px;
-      font-weight: 700;
-      text-align: center;
-      text-decoration: none;
-      margin: 14px 0 20px 0;
-      display: block;
-      cursor: pointer;
-    }
-
-    /* 4. Sticky Bottom Action Bar */
-    .bottom-action-bar {
+    .select-chevron {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #ffffff;
-      padding: 10px 18px 8px 18px;
-      border-top: 1px solid #f8fafc;
-      z-index: 50;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      align-items: center;
+      justify-content: center;
     }
 
-    .btn-submit {
+    .password-input-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .field-inner {
       width: 100%;
       height: 48px;
-      background: #FF7900;
-      color: #ffffff;
-      font-size: 15.5px;
-      font-weight: 800;
+      background: #F3F4F6;
+      border: 1.5px solid transparent;
+      border-radius: 12px;
+      padding: 0 46px 0 16px;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #111827;
+      outline: none;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .field-inner:focus {
+      background: #ffffff;
+      border-color: #FF7900;
+      box-shadow: 0 0 0 3px rgba(255, 121, 0, 0.12);
+    }
+
+    .pass-field-masked {
+      -webkit-text-security: disc !important;
+    }
+
+    .eye-toggle-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
       border: none;
-      border-radius: 14px;
+      color: #9CA3AF;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(255, 121, 0, 0.35);
-      transition: background-color 0.15s ease, transform 0.1s ease;
+      padding: 4px;
     }
 
-    .btn-submit:active {
-      background: #e66d00;
+    .terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 10px 0 18px 0;
+      cursor: pointer;
+    }
+
+    .custom-checkbox {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .checkbox-box {
+      width: 19px;
+      height: 19px;
+      border-radius: 6px;
+      border: 1.8px solid #D1D5DB;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.15s ease;
+    }
+
+    .custom-checkbox:checked + .checkbox-box {
+      background: #FF7900;
+      border-color: #FF7900;
+    }
+
+    .terms-label {
+      font-size: 12.5px;
+      color: #4B5563;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .terms-link {
+      color: #FF7900;
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    .register-btn {
+      width: 100%;
+      height: 50px;
+      background: #FF7900;
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 15.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: none;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .register-btn:active {
+      transform: scale(0.98);
+      filter: brightness(0.95);
+    }
+
+    .register-divider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .register-divider-line {
+      flex: 1;
+      height: 1px;
+      background: #E5E7EB;
+    }
+
+    .register-divider-text {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #9CA3AF;
+    }
+
+    .register-social-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .social-pill-btn {
+      width: 100%;
+      height: 48px;
+      background: #ffffff;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1F2937;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .social-pill-btn:hover {
+      background: #F9FAFB;
+      border-color: #D1D5DB;
+    }
+
+    /* ==========================================================================
+       REALTOR SPECIFIC STYLES & IDENTITY VERIFICATION (KYC)
+       ========================================================================== */
+    .realtor-type-selector {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      background: #F3F4F6;
+      padding: 4px;
+      border-radius: 12px;
+    }
+
+    .realtor-type-btn {
+      flex: 1;
+      padding: 9px 4px;
+      background: transparent;
+      border: none;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+
+    .realtor-type-btn.active {
+      background: #FFFFFF;
+      color: #0F1E36;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Ultra-clean KYC Button */
+    .kyc-clean-btn-wrap {
+      margin: 6px 0 16px 0;
+    }
+
+    .kyc-clean-btn {
+      width: 100%;
+      height: 48px;
+      background: #FFFFFF;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F1E36;
+      cursor: pointer;
+      padding: 0 16px;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .kyc-clean-btn:hover {
+      border-color: #FF7900;
+      color: #FF7900;
+      background: #FFFBF7;
+    }
+
+    .kyc-clean-btn:active {
       transform: scale(0.98);
     }
 
-    .android-indicator {
-      width: 90px;
+    .kyc-clean-btn.verified {
+      border-color: #86EFAC;
+      background: #F0FDF4;
+      color: #15803D;
+    }
+
+    /* Dedicated KYC Modal / System Screens */
+    .kyc-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: flex-end;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .kyc-modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .kyc-modal-sheet {
+      width: 100%;
+      height: 92%;
+      max-height: 760px;
+      background: #FFFFFF;
+      border-radius: 28px 28px 0 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(100%);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
+    }
+
+    .kyc-modal-overlay.active .kyc-modal-sheet {
+      transform: translateY(0);
+    }
+
+    .kyc-sheet-header {
+      padding: 16px 20px 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #F1F5F9;
+      flex-shrink: 0;
+    }
+
+    .kyc-sheet-title-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kyc-sheet-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0F1E36;
+      letter-spacing: -0.3px;
+    }
+
+    .kyc-sheet-step-badge {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #FF7900;
+      margin-top: 1px;
+    }
+
+    .kyc-sheet-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #F1F5F9;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748B;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .kyc-sheet-close-btn:active {
+      background: #E2E8F0;
+    }
+
+    .kyc-progress-track {
+      width: 100%;
       height: 3px;
-      background: #cbd5e1;
-      border-radius: 9999px;
-      margin: 2px auto 0 auto;
+      background: #E2E8F0;
+      flex-shrink: 0;
+    }
+
+    .kyc-progress-fill {
+      height: 100%;
+      background: #FF7900;
+      transition: width 0.3s ease;
+      width: 33.33%;
+    }
+
+    .kyc-sheet-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 22px 24px 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kyc-step-screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      text-align: center;
+    }
+
+    .kyc-step-screen.active {
+      display: flex;
+    }
+
+    .kyc-step-header {
+      margin-bottom: 16px;
+    }
+
+    .kyc-step-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0F1E36;
+      margin-bottom: 6px;
+    }
+
+    .kyc-step-desc {
+      font-size: 12.5px;
+      color: #64748B;
+      line-height: 1.45;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .kyc-doc-frame {
+      width: 100%;
+      max-width: 280px;
+      height: 180px;
+      margin: 12px auto 20px auto;
+      border: 2px dashed #CBD5E1;
+      border-radius: 16px;
+      background: #F8FAFC;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .kyc-doc-frame.captured {
+      border: 2.5px solid #10B981;
+      background: #ECFDF5;
+    }
+
+    .kyc-doc-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .kyc-face-frame {
+      width: 190px;
+      height: 190px;
+      margin: 12px auto 20px auto;
+      border-radius: 50%;
+      border: 2.5px dashed #CBD5E1;
+      background: #F8FAFC;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .kyc-face-frame.captured {
+      border: 2.5px solid #10B981;
+      background: #ECFDF5;
+    }
+
+    .kyc-face-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .kyc-action-btn-main {
+      width: 100%;
+      height: 48px;
+      background: #FF7900;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      font-size: 14.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      margin-top: auto;
+      box-shadow: none;
+      transition: all 0.15s ease;
+    }
+
+    .kyc-action-btn-main:active {
+      transform: scale(0.98);
+    }
+
+    .kyc-success-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #DCFCE7;
+      color: #16A34A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 30px auto 20px auto;
+      box-shadow: 0 10px 25px rgba(22, 163, 74, 0.2);
+    }
+
+    /* Modal Feedback Toast */
+    .app-toast {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #0F172A;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 86%;
+      max-width: 330px;
+    }
+
+    .app-toast.active {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
@@ -390,175 +986,840 @@
   <!-- MOBILE PHONE VIEWPORT -->
   <div class="app-viewport">
 
-    <!-- 1. ANDROID STATUS BAR (12:29 | Wifi | 13%) -->
+    <!-- 1. ANDROID STATUS BAR (Clean dark on white) -->
     <div class="status-bar">
-      <!-- Left: 12:29 + icons -->
+      <!-- Left: 11:46 + icons -->
       <div class="status-left">
-        <span>12:29</span>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <span>11:46</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
           <line x1="7" y1="12" x2="17" y2="12"></line>
         </svg>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#111827">
           <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
         </svg>
       </div>
 
-      <!-- Right: Wifi, Signal, Battery 13% -->
+      <!-- Right: Wifi, Signal, Battery -->
       <div class="status-right">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#111827">
+          <circle cx="12" cy="12" r="8"/>
+        </svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#111827">
           <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
         </svg>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#111827">
           <path d="M2 22h20V2z"/>
         </svg>
         <div style="display: flex; align-items: center; gap: 1px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#111827">
             <path d="M17 5v14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2z"/>
           </svg>
-          <span style="font-size: 11px; margin-left: -2px;">13</span>
+          <span style="font-size: 11px; margin-left: -2px; color: #111827;">23</span>
         </div>
       </div>
     </div>
 
-    <!-- 2. TOP HEADER -->
-    <div class="top-header">
-      <a href="cuenta.html" class="back-btn" title="Volver">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
+    <!-- 2. TOP NAVIGATION ROW (Dynamic Back Button) -->
+    <div class="register-top-bar">
+      <button type="button" class="register-back-btn" id="app-back-btn" onclick="handleBackNavigation()" title="Volver">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
-      </a>
-
-      <h1 class="header-title">Crear cuenta</h1>
-
-      <span class="step-badge">1 de 2</span>
+      </button>
+      <div style="width: 36px;"></div>
     </div>
 
-    <!-- 3. WHITE SHEET CONTENT -->
-    <div class="sheet-body no-scrollbar">
 
-      <p class="subtitle-text">
-        Entrá a ver propiedades. Para publicar vas a necesitar verificar tu identidad, y eso lo hacés cuando quieras.
-      </p>
+    <!-- ========================================================================
+         VIEW 1: ¿CÓMO QUIERES REGISTRARTE? (ROLE SELECTION)
+         ======================================================================== -->
+    <div class="register-view active-view no-scrollbar" id="view-role-select">
+      <div class="role-scroll-area">
 
-      <!-- Google Button -->
-      <button type="button" class="social-btn" onclick="handleRegister()">
-        <svg width="18" height="18" viewBox="0 0 24 24">
-          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-        </svg>
-        <span>Continuar con Google</span>
-      </button>
-
-      <!-- Apple Button -->
-      <button type="button" class="social-btn" onclick="handleRegister()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#000000">
-          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.66-.82 1.11-1.96.99-3.1-.96.04-2.12.65-2.8 1.45-.6.69-1.12 1.83-.98 2.94 1.07.08 2.15-.55 2.79-1.29z"/>
-        </svg>
-        <span>Continuar con Apple</span>
-      </button>
-
-      <!-- Divider -->
-      <div class="divider-row">
-        <div class="divider-line"></div>
-        <span class="divider-text">o</span>
-      </div>
-
-      <!-- 1. Nombre completo -->
-      <div class="form-group">
-        <label class="form-label">Nombre completo</label>
-        <input type="text" id="name-input" class="input-field" placeholder="Juan Pérez">
-      </div>
-
-      <!-- 2. Correo electrónico -->
-      <div class="form-group">
-        <label class="form-label">Correo electrónico</label>
-        <input type="email" id="email-input" class="input-field" placeholder="ejemplo@correo.com">
-      </div>
-
-      <!-- 3. Teléfono -->
-      <div class="form-group">
-        <label class="form-label">Teléfono</label>
-        <input type="tel" id="phone-input" class="input-field" placeholder="0412-123-4567">
-      </div>
-
-      <!-- 4. Estado -->
-      <div class="form-group">
-        <label class="form-label">Estado</label>
-        <div class="dropdown-field">
-          <span>Seleccionar Estado</span>
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="#64748b"><path d="M0 0l5 6 5-6z"/></svg>
+        <!-- Top Header with Enki -->
+        <div class="role-header-intro">
+          <div class="role-intro-left">
+            <div class="role-intro-tag">¡Bienvenido a Enkapta!</div>
+            <h1 class="role-intro-title">¿Cómo quieres<br>registrarte?</h1>
+            <p class="role-intro-desc">Elige el tipo de cuenta que mejor se adapta a ti. Así podremos ofrecerte la mejor experiencia.</p>
+          </div>
+          <div class="role-mascot-wrap">
+            <img src="assets/enki-register-intro.png" alt="Enki Enkapta" class="role-mascot-img">
+          </div>
         </div>
-      </div>
 
-      <!-- 5. Contraseña -->
-      <div class="form-group">
-        <label class="form-label">Contraseña</label>
-        <div class="password-wrapper">
-          <input type="password" id="pass-1" class="password-input" placeholder="Mínimo 6 caracteres">
-          <button type="button" class="eye-btn" onclick="togglePass('pass-1')" title="Ver contraseña">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
-              <circle cx="12" cy="12" r="3"/>
+        <!-- Role Option Cards Stack -->
+        <div class="role-cards-container">
+          
+          <!-- Card 1: Soy un usuario -->
+          <div class="role-card role-card-user" onclick="selectRole('user')" role="button" tabindex="0">
+            <img src="assets/role-usuario.png" alt="Soy un usuario" class="role-card-avatar">
+            <div class="role-card-body">
+              <h2 class="role-card-title">Soy un usuario</h2>
+              <p class="role-card-desc">Solo quiero buscar propiedades, ver detalles, guardar mis favoritas y contactar.</p>
+            </div>
+            <div class="role-card-chevron chevron-blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Card 2: Realtor o agencia -->
+          <div class="role-card role-card-realtor" onclick="selectRole('realtor')" role="button" tabindex="0">
+            <img src="assets/role-realtor.jpg" alt="Realtor o agencia" class="role-card-avatar">
+            <div class="role-card-body">
+              <h2 class="role-card-title">Realtor o agencia</h2>
+              <p class="role-card-desc">Si te dedicas al rubro inmobiliario, regístrate aquí. Necesitaremos verificar tu identidad y tu negocio para brindarte acceso completo.</p>
+            </div>
+            <div class="role-card-chevron chevron-gray">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Security & Trust Divider -->
+        <div class="role-trust-row">
+          <div class="role-trust-line"></div>
+          <div class="role-trust-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <div class="role-trust-line"></div>
+        </div>
+        <div class="role-trust-text">Tu información está segura con nosotros.</div>
+
+        <!-- Bottom Link to Login -->
+        <div class="register-footer-row">
+          <span>¿Ya tienes una cuenta?</span>
+          <a href="cuenta.html?login=1" class="register-signin-link">Iniciar Sesión</a>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ========================================================================
+         VIEW 2: FORMULARIO DE USUARIO (SE QUEDA IGUAL)
+         ======================================================================== -->
+    <div class="register-view no-scrollbar" id="view-user-form">
+      <div class="form-scroll-area">
+
+        <!-- Header -->
+        <div class="register-header-intro">
+          <h1 class="register-title">Crea tu cuenta</h1>
+          <p class="register-subtitle">Completa tus datos o regístrate rápido con Google o Apple.</p>
+        </div>
+
+        <!-- User Form -->
+        <form id="user-register-form" autocomplete="off" onsubmit="event.preventDefault(); submitUserRegister();">
+          
+          <!-- 1. Nombre completo -->
+          <div class="form-group">
+            <label class="form-label" for="user-name-input">Nombre completo</label>
+            <input type="text" id="user-name-input" class="input-field" placeholder="Ej. Juan Pérez" autocomplete="off" required>
+          </div>
+
+          <!-- 2. Correo electrónico -->
+          <div class="form-group">
+            <label class="form-label" for="user-email-input">Correo electrónico</label>
+            <input type="email" id="user-email-input" class="input-field" placeholder="ejemplo@gmail.com" autocomplete="off" required>
+          </div>
+
+          <!-- 3. Teléfono -->
+          <div class="form-group">
+            <label class="form-label" for="user-phone-input">Teléfono</label>
+            <input type="tel" id="user-phone-input" class="input-field" placeholder="0412 123 4567" autocomplete="off">
+          </div>
+
+          <!-- 4. Estado -->
+          <div class="form-group">
+            <label class="form-label" for="user-state-select">Estado</label>
+            <div class="select-wrap">
+              <select id="user-state-select" class="input-field">
+                <option value="" disabled selected>Selecciona tu estado</option>
+                <option value="Distrito Capital">Distrito Capital</option>
+                <option value="Miranda">Miranda</option>
+                <option value="Carabobo">Carabobo</option>
+                <option value="Zulia">Zulia</option>
+                <option value="Aragua">Aragua</option>
+                <option value="Lara">Lara</option>
+                <option value="Anzoátegui">Anzoátegui</option>
+                <option value="Nueva Esparta">Nueva Esparta</option>
+                <option value="Bolívar">Bolívar</option>
+                <option value="Táchira">Táchira</option>
+                <option value="Mérida">Mérida</option>
+                <option value="Monagas">Monagas</option>
+                <option value="Falcón">Falcón</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <div class="select-chevron">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 1.5L6 6.5L11 1.5"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Contraseña -->
+          <div class="form-group">
+            <label class="form-label" for="user-pass-1">Contraseña</label>
+            <div class="password-input-wrap">
+              <input type="text" id="user-pass-1" class="field-inner pass-field-masked" placeholder="••••••••••••" required>
+              <button type="button" class="eye-toggle-btn" onclick="togglePassword('user-pass-1', 'eye-user-1')">
+                <svg id="eye-user-1" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+                  <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+                  <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                  <line x1="2" y1="2" x2="22" y2="22"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 6. Confirmar Contraseña -->
+          <div class="form-group">
+            <label class="form-label" for="user-pass-2">Confirmar contraseña</label>
+            <div class="password-input-wrap">
+              <input type="text" id="user-pass-2" class="field-inner pass-field-masked" placeholder="••••••••••••" required>
+              <button type="button" class="eye-toggle-btn" onclick="togglePassword('user-pass-2', 'eye-user-2')">
+                <svg id="eye-user-2" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+                  <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+                  <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                  <line x1="2" y1="2" x2="22" y2="22"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 7. Terms -->
+          <label class="terms-row">
+            <input type="checkbox" id="user-terms-check" class="custom-checkbox" required>
+            <span class="checkbox-box">
+              <svg width="12" height="10" viewBox="0 0 12 10" fill="none" stroke="#ffffff" stroke-width="2.2">
+                <polyline points="1.5 5 4.5 8 10.5 1.5"></polyline>
+              </svg>
+            </span>
+            <span class="terms-label">Acepto los <a href="#" class="terms-link">Términos y Condiciones</a></span>
+          </label>
+
+          <!-- 8. Submit -->
+          <button type="submit" class="register-btn">
+            Registrarse
+          </button>
+
+        </form>
+
+        <!-- Divider O -->
+        <div class="register-divider-row">
+          <div class="register-divider-line"></div>
+          <span class="register-divider-text">O</span>
+          <div class="register-divider-line"></div>
+        </div>
+
+        <!-- Social Buttons -->
+        <div class="register-social-stack">
+          <button type="button" class="social-pill-btn" onclick="submitUserRegister('google')">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span>Continúa con Google</span>
+          </button>
+
+          <button type="button" class="social-pill-btn" onclick="submitUserRegister('apple')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.66-.82 1.11-1.96.99-3.1-.96.04-2.12.65-2.8 1.45-.6.69-1.12 1.83-.98 2.94 1.07.08 2.15-.55 2.79-1.29z"/>
+            </svg>
+            <span>Continúa con Apple</span>
+          </button>
+        </div>
+
+        <div class="register-footer-row">
+          <span>¿Ya tienes una cuenta?</span>
+          <a href="cuenta.html?login=1" class="register-signin-link">Iniciar Sesión</a>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ========================================================================
+         VIEW 3: FORMULARIO REALTOR / AGENCIA (CON VERIFICACIÓN KYC)
+         ======================================================================== -->
+    <div class="register-view no-scrollbar" id="view-realtor-form">
+      <div class="form-scroll-area">
+
+        <!-- Header -->
+        <div class="register-header-intro">
+          <h1 class="register-title">Registro Profesional</h1>
+          <p class="register-subtitle">Publica tus propiedades y verifica tu identidad para activar tu vitrina.</p>
+        </div>
+
+        <!-- Realtor Form -->
+        <form id="realtor-register-form" autocomplete="off" onsubmit="event.preventDefault(); submitRealtorRegister();">
+          
+          <!-- Tipo de Perfil: Realtor Independiente vs Agencia -->
+          <div class="realtor-type-selector">
+            <button type="button" class="realtor-type-btn active" id="type-btn-indep" onclick="setRealtorType('indep')">
+              Realtor Independiente
+            </button>
+            <button type="button" class="realtor-type-btn" id="type-btn-agency" onclick="setRealtorType('agency')">
+              Agencia / Inmobiliaria
+            </button>
+          </div>
+
+          <!-- 1. Nombre completo del titular / asesor -->
+          <div class="form-group">
+            <label class="form-label" for="realtor-name-input">Nombre y apellido del titular</label>
+            <input type="text" id="realtor-name-input" class="input-field" placeholder="Ej. Roger Quijada" required>
+          </div>
+
+          <!-- 2. Razón Social / Marca Comercial -->
+          <div class="form-group">
+            <label class="form-label" for="realtor-brand-input">
+              <span>Nombre de inmobiliaria / Marca comercial</span>
+              <span class="form-label-optional">(Opcional)</span>
+            </label>
+            <input type="text" id="realtor-brand-input" class="input-field" placeholder="Ej. Inversiones Inmobiliarias C.A.">
+          </div>
+
+          <!-- 3. Correo profesional -->
+          <div class="form-group">
+            <label class="form-label" for="realtor-email-input">Correo electrónico profesional</label>
+            <input type="email" id="realtor-email-input" class="input-field" placeholder="contacto@tuagencia.com" required>
+          </div>
+
+          <!-- 4. Teléfono / WhatsApp -->
+          <div class="form-group">
+            <label class="form-label" for="realtor-phone-input">Teléfono / WhatsApp de contacto</label>
+            <input type="tel" id="realtor-phone-input" class="input-field" placeholder="0414 123 4567" required>
+          </div>
+
+          <!-- 5. Estado / Región -->
+          <div class="form-group">
+            <label class="form-label" for="realtor-state-select">Estado principal de operaciones</label>
+            <div class="select-wrap">
+              <select id="realtor-state-select" class="input-field">
+                <option value="Distrito Capital" selected>Distrito Capital (Caracas)</option>
+                <option value="Miranda">Miranda</option>
+                <option value="Carabobo">Carabobo</option>
+                <option value="Zulia">Zulia</option>
+                <option value="Aragua">Aragua</option>
+                <option value="Anzoátegui">Anzoátegui</option>
+                <option value="Nueva Esparta">Nueva Esparta</option>
+                <option value="Lara">Lara</option>
+                <option value="Bolívar">Bolívar</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <div class="select-chevron">
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="#9CA3AF" stroke-width="2">
+                  <path d="M1 1.5L6 6.5L11 1.5"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Contraseña -->
+          <div class="form-group">
+            <label class="form-label" for="realtor-pass-1">Contraseña</label>
+            <div class="password-input-wrap">
+              <input type="text" id="realtor-pass-1" class="field-inner pass-field-masked" placeholder="••••••••••••" required>
+              <button type="button" class="eye-toggle-btn" onclick="togglePassword('realtor-pass-1', 'eye-realtor-1')">
+                <svg id="eye-realtor-1" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+                  <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+                  <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                  <line x1="2" y1="2" x2="22" y2="22"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ==============================================================
+               INICIAR VERIFICACIÓN DE IDENTIDAD (KYC)
+               ============================================================== -->
+          <div class="kyc-clean-btn-wrap">
+            <button type="button" class="kyc-clean-btn" id="kyc-launch-btn" onclick="openKycModal()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+              <span id="kyc-launch-text">Iniciar verificación</span>
+            </button>
+          </div>
+
+          <!-- Términos Profesionales -->
+          <label class="terms-row">
+            <input type="checkbox" id="realtor-terms-check" class="custom-checkbox" required>
+            <span class="checkbox-box">
+              <svg width="12" height="10" viewBox="0 0 12 10" fill="none" stroke="#ffffff" stroke-width="2.2">
+                <polyline points="1.5 5 4.5 8 10.5 1.5"></polyline>
+              </svg>
+            </span>
+            <span class="terms-label">Acepto los <a href="#" class="terms-link">Términos y Políticas de Verificación</a> de Enkapta.</span>
+          </label>
+
+          <!-- Submit Button -->
+          <button type="submit" class="register-btn">
+            Registrarse
+          </button>
+
+        </form>
+
+        <div class="register-footer-row" style="margin-top: 20px;">
+          <span>¿Ya tienes una cuenta?</span>
+          <a href="cuenta.html?login=1" class="register-signin-link">Iniciar Sesión</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         DEDICATED KYC IDENTITY VERIFICATION SYSTEM (MODAL / SCREENS)
+         ======================================================================== -->
+    <div class="kyc-modal-overlay" id="kyc-modal-overlay">
+      <div class="kyc-modal-sheet">
+        
+        <!-- Header -->
+        <div class="kyc-sheet-header">
+          <div class="kyc-sheet-title-box">
+            <span class="kyc-sheet-title">Verificación de Identidad</span>
+            <span class="kyc-sheet-step-badge" id="kyc-sheet-step-badge">Paso 1 de 2 · Cédula</span>
+          </div>
+          <button type="button" class="kyc-sheet-close-btn" onclick="closeKycModal()" title="Cerrar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         </div>
-      </div>
 
-      <!-- 6. Confirmar contraseña -->
-      <div class="form-group">
-        <label class="form-label">Confirmar contraseña</label>
-        <div class="password-wrapper">
-          <input type="password" id="pass-2" class="password-input" placeholder="Repite tu contraseña">
-          <button type="button" class="eye-btn" onclick="togglePass('pass-2')" title="Ver contraseña">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-          </button>
+        <!-- Progress track -->
+        <div class="kyc-progress-track">
+          <div class="kyc-progress-fill" id="kyc-progress-fill"></div>
         </div>
+
+        <!-- Body with 3 Screens -->
+        <div class="kyc-sheet-body">
+          
+          <!-- Screen 1: Documento / Cédula -->
+          <div class="kyc-step-screen active" id="kyc-screen-1">
+            <div class="kyc-step-header">
+              <h2 class="kyc-step-title">Foto de tu Cédula o RIF</h2>
+              <p class="kyc-step-desc">Toma una foto clara del frente de tu documento oficial original.</p>
+            </div>
+
+            <div class="kyc-doc-frame" id="kyc-doc-frame">
+              <div id="kyc-doc-placeholder" style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.8">
+                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                  <circle cx="8.5" cy="10" r="2"></circle>
+                  <line x1="13.5" y1="9" x2="17.5" y2="9"></line>
+                  <line x1="13.5" y1="13" x2="17.5" y2="13"></line>
+                  <line x1="6.5" y1="16" x2="17.5" y2="16"></line>
+                </svg>
+                <span style="font-size:12px; color:#64748B; font-weight:600;">Ubica la cédula dentro del marco</span>
+              </div>
+              <img id="kyc-doc-preview-img" class="kyc-doc-preview-img" alt="Cédula Preview">
+            </div>
+
+            <input type="file" id="kyc-doc-input" accept="image/*" style="display:none;" onchange="handleKycDocUpload(event)">
+            
+            <button type="button" class="kyc-action-btn-main" id="kyc-doc-action-btn" onclick="triggerKycDocUpload()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              <span id="kyc-doc-btn-text">Capturar o subir cédula</span>
+            </button>
+          </div>
+
+          <!-- Screen 2: Reconocimiento Facial / Selfie -->
+          <div class="kyc-step-screen" id="kyc-screen-2">
+            <div class="kyc-step-header">
+              <h2 class="kyc-step-title">Prueba de Vida Facial</h2>
+              <p class="kyc-step-desc">Centra tu rostro dentro del círculo con buena luz y sin accesorios.</p>
+            </div>
+
+            <div class="kyc-face-frame" id="kyc-face-frame">
+              <div id="kyc-face-placeholder" style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <circle cx="12" cy="10" r="3"></circle>
+                  <path d="M6.168 18.849a4 4 0 0 1 3.832-2.849h4a4 4 0 0 1 3.832 2.849"></path>
+                </svg>
+                <span style="font-size:11.5px; color:#64748B; font-weight:600;">Centra tu rostro</span>
+              </div>
+              <img id="kyc-face-preview-img" class="kyc-face-preview-img" alt="Selfie Preview">
+            </div>
+
+            <input type="file" id="kyc-face-input" accept="image/*" style="display:none;" onchange="handleKycFaceUpload(event)">
+            
+            <button type="button" class="kyc-action-btn-main" id="kyc-face-action-btn" onclick="triggerKycFaceUpload()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg>
+              <span id="kyc-face-btn-text">Tomar selfie facial</span>
+            </button>
+          </div>
+
+          <!-- Screen 3: Verificación Exitosa -->
+          <div class="kyc-step-screen" id="kyc-screen-3">
+            <div class="kyc-success-circle">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            
+            <div class="kyc-step-header">
+              <h2 class="kyc-step-title">¡Identidad Verificada!</h2>
+              <p class="kyc-step-desc">Tu documento y biometría han sido procesados y validados correctamente en el sistema KYC de Enkapta.</p>
+            </div>
+
+            <button type="button" class="kyc-action-btn-main" style="background:#10B981;" onclick="finishKycProcess()">
+              <span>Volver al formulario</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+
+        </div>
+
       </div>
-
-      <!-- Forgot Password link -->
-      <a href="#" class="forgot-pass-link">¿Olvidaste tu contraseña?</a>
-
     </div>
 
-    <!-- 4. STICKY BOTTOM ACTION BAR -->
-    <div class="bottom-action-bar">
-      <button type="button" class="btn-submit" onclick="handleRegister()">
-        Siguiente
-      </button>
-      <div class="android-indicator"></div>
+    <!-- Notification Toast -->
+    <div class="app-toast" id="app-toast">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="app-toast-msg">Documento cargado correctamente</span>
     </div>
 
   </div>
 
   <script>
-    function togglePass(id) {
-      const input = document.getElementById(id);
-      if (input.type === 'password') {
-        input.type = 'text';
-      } else {
-        input.type = 'password';
+    // State
+    let currentActiveView = 'role'; // 'role', 'user', 'realtor'
+    let currentRealtorType = 'indep';
+    let isKycCompleted = false;
+    let kycCurrentStep = 1;
+    let hasKycDocCaptured = false;
+    let hasKycFaceCaptured = false;
+
+    // View Switching
+    function showView(viewName) {
+      currentActiveView = viewName;
+      document.querySelectorAll('.register-view').forEach(v => v.classList.remove('active-view'));
+
+      if (viewName === 'role') {
+        document.getElementById('view-role-select').classList.add('active-view');
+        history.replaceState(null, '', 'registrarse.html');
+      } else if (viewName === 'user') {
+        document.getElementById('view-user-form').classList.add('active-view');
+        history.replaceState(null, '', 'registrarse.html?role=user');
+        window.scrollTo(0, 0);
+      } else if (viewName === 'realtor') {
+        document.getElementById('view-realtor-form').classList.add('active-view');
+        history.replaceState(null, '', 'registrarse.html?role=realtor');
+        window.scrollTo(0, 0);
       }
     }
 
-    function handleRegister() {
-      // Register / Create account -> sets session to roger and redirects to profile
-      localStorage.setItem('enkapta_session', 'roger');
-      window.location.href = 'cuenta.html?auth=true';
+    // Role selection triggers from cards
+    function selectRole(role) {
+      if (role === 'user') {
+        showView('user');
+      } else if (role === 'realtor') {
+        showView('realtor');
+      }
     }
 
-    // Scroll query param support for testing
-    if (new URLSearchParams(window.location.search).get('scroll') === 'down') {
+    // Dynamic Back Navigation
+    function handleBackNavigation() {
+      if (currentActiveView === 'user' || currentActiveView === 'realtor') {
+        showView('role');
+      } else {
+        window.location.href = 'cuenta.html?login=1';
+      }
+    }
+
+    // Toggle Realtor Sub-type (Independiente / Agencia)
+    function setRealtorType(type) {
+      currentRealtorType = type;
+      const btnIndep = document.getElementById('type-btn-indep');
+      const btnAgency = document.getElementById('type-btn-agency');
+      const brandInput = document.getElementById('realtor-brand-input');
+
+      if (type === 'indep') {
+        btnIndep.classList.add('active');
+        btnAgency.classList.remove('active');
+        if (brandInput) brandInput.placeholder = 'Ej. Tu Marca Personal (Opcional)';
+      } else {
+        btnAgency.classList.add('active');
+        btnIndep.classList.remove('active');
+        if (brandInput) brandInput.placeholder = 'Ej. Inmobiliaria Caracas Premium C.A.';
+      }
+    }
+
+    // Toast Helper
+    function showToast(msg) {
+      const toast = document.getElementById('app-toast');
+      const toastMsg = document.getElementById('app-toast-msg');
+      if (!toast || !toastMsg) return;
+      toastMsg.textContent = msg;
+      toast.classList.add('active');
       setTimeout(() => {
-        const body = document.querySelector('.sheet-body');
-        if (body) body.scrollTop = 500;
-      }, 150);
+        toast.classList.remove('active');
+      }, 2600);
+    }
+
+    // Dedicated KYC Modal Functions
+    function openKycModal() {
+      const modal = document.getElementById('kyc-modal-overlay');
+      if (!modal) return;
+      modal.classList.add('active');
+      goToKycStep(isKycCompleted ? 3 : (hasKycDocCaptured ? 2 : 1));
+    }
+
+    function closeKycModal() {
+      const modal = document.getElementById('kyc-modal-overlay');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function goToKycStep(step) {
+      kycCurrentStep = step;
+      document.querySelectorAll('.kyc-step-screen').forEach(s => s.classList.remove('active'));
+      const targetScreen = document.getElementById(`kyc-screen-${step}`);
+      if (targetScreen) targetScreen.classList.add('active');
+
+      const badge = document.getElementById('kyc-sheet-step-badge');
+      const fill = document.getElementById('kyc-progress-fill');
+
+      if (step === 1) {
+        if (badge) badge.textContent = 'Paso 1 de 2 · Cédula';
+        if (fill) fill.style.width = '33.33%';
+      } else if (step === 2) {
+        if (badge) badge.textContent = 'Paso 2 de 2 · Reconocimiento Facial';
+        if (fill) fill.style.width = '66.66%';
+      } else if (step === 3) {
+        if (badge) badge.textContent = 'Verificación completada';
+        if (fill) fill.style.width = '100%';
+      }
+    }
+
+    function triggerKycDocUpload() {
+      if (hasKycDocCaptured) {
+        goToKycStep(2);
+        return;
+      }
+      const input = document.getElementById('kyc-doc-input');
+      if (input) {
+        input.value = '';
+        input.click();
+      }
+    }
+
+    function handleKycDocUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        setKycDocCaptured(evt.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function setKycDocCaptured(src) {
+      const frame = document.getElementById('kyc-doc-frame');
+      const placeholder = document.getElementById('kyc-doc-placeholder');
+      const img = document.getElementById('kyc-doc-preview-img');
+      const btnText = document.getElementById('kyc-doc-btn-text');
+
+      if (placeholder) placeholder.style.display = 'none';
+      if (img) {
+        img.src = src;
+        img.style.display = 'block';
+      }
+      if (frame) frame.classList.add('captured');
+      if (btnText) btnText.textContent = 'Continuar a verificación facial →';
+      hasKycDocCaptured = true;
+      showToast('Documento registrado con éxito');
+    }
+
+    function triggerKycFaceUpload() {
+      if (hasKycFaceCaptured) {
+        goToKycStep(3);
+        return;
+      }
+      const input = document.getElementById('kyc-face-input');
+      if (input) {
+        input.value = '';
+        input.click();
+      }
+    }
+
+    function handleKycFaceUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        setKycFaceCaptured(evt.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function setKycFaceCaptured(src) {
+      const frame = document.getElementById('kyc-face-frame');
+      const placeholder = document.getElementById('kyc-face-placeholder');
+      const img = document.getElementById('kyc-face-preview-img');
+      const btnText = document.getElementById('kyc-face-btn-text');
+
+      if (placeholder) placeholder.style.display = 'none';
+      if (img) {
+        img.src = src;
+        img.style.display = 'block';
+      }
+      if (frame) frame.classList.add('captured');
+      if (btnText) btnText.textContent = 'Finalizar verificación →';
+      hasKycFaceCaptured = true;
+      showToast('Biometría facial confirmada');
+    }
+
+    function finishKycProcess() {
+      isKycCompleted = true;
+      closeKycModal();
+
+      const launchBtn = document.getElementById('kyc-launch-btn');
+      const launchText = document.getElementById('kyc-launch-text');
+
+      if (launchBtn) launchBtn.classList.add('verified');
+      if (launchText) launchText.textContent = '✓ Verificación completada';
+
+      showToast('¡Verificación KYC completada!');
+    }
+
+    // Toggle Password Visibility
+    function togglePassword(inputId, iconId) {
+      const field = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      if (!field || !icon) return;
+
+      const isMasked = field.classList.contains('pass-field-masked');
+      if (isMasked) {
+        field.classList.remove('pass-field-masked');
+        icon.innerHTML = `
+          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        `;
+      } else {
+        field.classList.add('pass-field-masked');
+        icon.innerHTML = `
+          <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+          <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+          <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+          <line x1="2" y1="2" x2="22" y2="22"></line>
+        `;
+      }
+    }
+
+    // Submit User Registration
+    function submitUserRegister(socialProvider) {
+      const termsCheck = document.getElementById('user-terms-check');
+      if (!socialProvider && termsCheck && !termsCheck.checked) {
+        alert('Debes aceptar los Términos y Condiciones para registrarte.');
+        termsCheck.focus();
+        return;
+      }
+
+      const nameVal = document.getElementById('user-name-input')?.value || 'Carlos Mendoza';
+      const emailVal = document.getElementById('user-email-input')?.value || 'carlos.mendoza@gmail.com';
+
+      // Save user session as standard user
+      localStorage.setItem('enkapta_session', 'sinplan');
+      localStorage.setItem('enkapta_user_role', 'Visitante');
+      localStorage.setItem('enkapta_plan', 'Sin plan');
+      localStorage.setItem('enkapta_user_name', nameVal);
+      localStorage.setItem('enkapta_user_email', emailVal);
+
+      showToast('¡Cuenta de usuario creada con éxito!');
+      setTimeout(() => {
+        window.location.href = 'cuenta.html?auth=true';
+      }, 600);
+    }
+
+    // Submit Realtor / Agency Registration
+    function submitRealtorRegister() {
+      const termsCheck = document.getElementById('realtor-terms-check');
+      if (termsCheck && !termsCheck.checked) {
+        alert('Debes aceptar los Términos y Políticas de Verificación Profesional.');
+        termsCheck.focus();
+        return;
+      }
+
+      if (!isKycCompleted) {
+        const confirmUpload = confirm('Tu verificación de identidad está pendiente. ¿Deseas iniciar la verificación ahora para activar tus publicaciones de inmediato?');
+        if (confirmUpload) {
+          openKycModal();
+          return;
+        }
+      }
+
+      const nameVal = document.getElementById('realtor-name-input')?.value || 'Roger Quijada';
+      const emailVal = document.getElementById('realtor-email-input')?.value || 'contacto@inmobiliaria.com';
+      const brandVal = document.getElementById('realtor-brand-input')?.value || 'Enkapta Real Estate';
+      const phoneVal = document.getElementById('realtor-phone-input')?.value || '0414 123 4567';
+
+      // Save user session as Realtor
+      localStorage.setItem('enkapta_session', 'roger');
+      localStorage.setItem('enkapta_user_role', 'Realtor');
+      localStorage.setItem('enkapta_plan', 'Pixel');
+      localStorage.setItem('enkapta_user_name', nameVal);
+      localStorage.setItem('enkapta_user_email', emailVal);
+      localStorage.setItem('enkapta_realtor_brand', brandVal);
+      localStorage.setItem('enkapta_realtor_phone', phoneVal);
+      localStorage.setItem('enkapta_realtor_verified', isKycCompleted ? 'true' : 'pending');
+
+      showToast('¡Registro profesional completado!');
+      setTimeout(() => {
+        window.location.href = 'cuenta.html?auth=true';
+      }, 700);
+    }
+
+    // Initialize from URL params
+    const initialParams = new URLSearchParams(window.location.search);
+    const roleParam = initialParams.get('role');
+    if (roleParam === 'user' || roleParam === 'usuario') {
+      showView('user');
+    } else if (roleParam === 'realtor' || roleParam === 'agencia') {
+      showView('realtor');
+    } else {
+      showView('role');
+    }
+
+    // Auto-open KYC modal if requested
+    if (initialParams.get('kyc') === '1') {
+      showView('realtor');
+      setTimeout(openKycModal, 150);
+    }
+
+    // Scroll helper for testing and screenshots
+    const scrollParam = initialParams.get('scroll');
+    if (scrollParam) {
+      setTimeout(() => {
+        const activeContainer = document.querySelector('.register-view.active-view');
+        if (activeContainer) {
+          if (scrollParam === 'bottom' || scrollParam === 'kyc') {
+            activeContainer.scrollTop = activeContainer.scrollHeight;
+          } else {
+            activeContainer.scrollTop = parseInt(scrollParam, 10) || 450;
+          }
+        }
+      }, 120);
     }
   </script>
 
