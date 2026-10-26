@@ -3081,11 +3081,42 @@
             </div>
           </div>
 
-          <!-- Recorrido Virtual 3D / Tour 3D -->
+          <!-- Plano de la propiedad (Plano 2D / Arquitectónico - Opcional) -->
+          <div style="margin-top: 22px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <div class="section-label-sub" style="margin-bottom: 0;">Plano de la propiedad <span style="font-weight: 500; color: #94a3b8; font-size: 12px;">(Opcional)</span></div>
+              <span style="font-size: 11px; font-weight: 600; color: #64748b; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 2px 8px; border-radius: 6px;">Opcional</span>
+            </div>
+
+            <div class="tour3d-upload-card" onclick="document.getElementById('plano-file-input').click()">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18"/>
+                <path d="M9 21V9"/>
+                <path d="M15 9v6"/>
+                <path d="M9 15h6"/>
+              </svg>
+              <span id="plano-upload-label" style="font-size: 14px; font-weight: 700; color: #475569; margin-top: 8px;">Cargar plano del inmueble (JPG, PNG, PDF, SVG)</span>
+              <span style="font-size: 12px; color: #94a3b8; margin-top: 2px;">Distribución o plano arquitectónico hasta 25MB</span>
+              <input type="file" id="plano-file-input" accept="image/*,.pdf,.svg" style="display: none;" onchange="handlePlanoFile(this)">
+            </div>
+
+            <div id="plano-uploaded-preview" style="display: none; margin-top: 10px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF7900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>
+                </svg>
+                <span id="plano-filename" style="font-size: 13px; font-weight: 600; color: #0f172a;">plano_inmueble.png</span>
+              </div>
+              <button type="button" onclick="removeUploadedPlano()" style="background: #fee2e2; border: none; color: #ef4444; border-radius: 6px; padding: 4px 8px; font-size: 12px; font-weight: 700; cursor: pointer;">Eliminar</button>
+            </div>
+          </div>
+
+          <!-- Tour Propiedad (Opcional) -->
           <div style="margin-top: 22px; margin-bottom: 24px;">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-              <div class="section-label-sub" style="margin-bottom: 0;">Recorrido Virtual 3D</div>
-              <span style="font-size: 11px; font-weight: 700; color: #FF7900; background: #fff7ed; border: 1px solid #fed7aa; padding: 2px 8px; border-radius: 6px;">Tour 3D</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <div class="section-label-sub" style="margin-bottom: 0;">Tour Propiedad <span style="font-weight: 500; color: #94a3b8; font-size: 12px;">(Opcional)</span></div>
+              <span style="font-size: 11px; font-weight: 600; color: #64748b; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 2px 8px; border-radius: 6px;">Opcional</span>
             </div>
 
             <div class="tour3d-upload-card" onclick="document.getElementById('tour3d-file-input').click()">
@@ -3094,8 +3125,8 @@
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
                 <line x1="12" y1="22.08" x2="12" y2="12"></line>
               </svg>
-              <span id="tour3d-upload-label" style="font-size: 14px; font-weight: 700; color: #475569; margin-top: 8px;">Cargar modelo 3D del inmueble (GLB, GLTF, OBJ)</span>
-              <span style="font-size: 12px; color: #94a3b8; margin-top: 2px;">Formatos 3D interactivos o escaneo hasta 100MB</span>
+              <span id="tour3d-upload-label" style="font-size: 14px; font-weight: 700; color: #475569; margin-top: 8px;">Cargar Tour Propiedad / Modelo 3D (GLB, GLTF, OBJ)</span>
+              <span style="font-size: 12px; color: #94a3b8; margin-top: 2px;">Formatos de tour interactivo o escaneo hasta 100MB</span>
               <input type="file" id="tour3d-file-input" accept=".glb,.gltf,.obj,.zip" style="display: none;" onchange="handle3DFile(this)">
             </div>
 
@@ -3876,6 +3907,7 @@
       selectedCoverData = null;
       uploadedGalleryImages = [];
       uploadedVideo = null;
+      uploadedPlanoFile = null;
       uploaded3DFile = null;
       const coverWrap = document.getElementById('cover-preview-wrap');
       const coverPrompt = document.getElementById('cover-upload-prompt');
@@ -3883,6 +3915,8 @@
       if (coverPrompt) coverPrompt.style.display = 'flex';
       const vidWrap = document.getElementById('video-uploaded-preview');
       if (vidWrap) vidWrap.style.display = 'none';
+      const planoWrap = document.getElementById('plano-uploaded-preview');
+      if (planoWrap) planoWrap.style.display = 'none';
       const t3dWrap = document.getElementById('tour3d-uploaded-preview');
       if (t3dWrap) t3dWrap.style.display = 'none';
     }
@@ -4800,6 +4834,30 @@
       if (fileInput) fileInput.value = '';
     }
 
+    /* Plano 2D Handlers */
+    let uploadedPlanoFile = null;
+
+    function handlePlanoFile(input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        uploadedPlanoFile = file.name;
+        const previewWrap = document.getElementById('plano-uploaded-preview');
+        const filenameEl = document.getElementById('plano-filename');
+        if (previewWrap && filenameEl) {
+          filenameEl.textContent = file.name;
+          previewWrap.style.display = 'flex';
+        }
+      }
+    }
+
+    function removeUploadedPlano() {
+      uploadedPlanoFile = null;
+      const previewWrap = document.getElementById('plano-uploaded-preview');
+      const fileInput = document.getElementById('plano-file-input');
+      if (previewWrap) previewWrap.style.display = 'none';
+      if (fileInput) fileInput.value = '';
+    }
+
     /* 3D Virtual Tour Handlers */
     let uploaded3DFile = null;
 
@@ -4861,6 +4919,7 @@
         cover: selectedCoverData,
         gallery: [...uploadedGalleryImages],
         video: uploadedVideo,
+        planoFile: uploadedPlanoFile,
         tour3dFile: uploaded3DFile,
         tour3dUrl: tour3dUrl,
         location: locText,

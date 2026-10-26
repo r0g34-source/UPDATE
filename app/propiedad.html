@@ -135,7 +135,7 @@
     .carousel-wrapper {
       position: relative;
       width: 100%;
-      aspect-ratio: 472 / 370;
+      aspect-ratio: 400 / 410;
       background-color: #0F172A;
       overflow: hidden;
       touch-action: pan-y;
@@ -219,73 +219,535 @@
       stroke: #EF4444;
     }
 
-    /* Carousel Counter Badge (e.g. 1/7) */
+    /* Carousel Counter Badge (e.g. 1 / 7) */
     .carousel-counter-badge {
       position: absolute;
-      bottom: 16px;
-      left: 16px;
-      background: rgba(15, 23, 42, 0.72);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      bottom: 14px;
+      left: 12px;
+      background: rgba(24, 28, 34, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: #FFFFFF;
       font-size: 12px;
       font-weight: 700;
-      padding: 4px 10px;
+      padding: 6px 11px;
       border-radius: 9999px;
-      letter-spacing: 0.5px;
-      z-index: 25;
+      letter-spacing: 0.3px;
+      z-index: 28;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
       pointer-events: none;
     }
 
-    /* Carousel Pagination Dots */
-    .carousel-dots {
+    /* Floating Media Pill Switcher (Fotos | Plano | Tour Propiedad) */
+    .hero-media-pill-bar {
       position: absolute;
-      bottom: 18px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
+      background: rgba(27, 31, 38, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 3.5px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      z-index: 29;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-media-pill-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5.5px 9.5px;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .hero-media-pill-btn svg {
+      width: 13.5px;
+      height: 13.5px;
+      flex-shrink: 0;
+    }
+
+    .hero-media-pill-btn.active {
+      background: #FFFFFF;
+      color: #0F172A;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Inline Hero Stages for Plano & Tour Propiedad */
+    .hero-inline-stage {
+      position: absolute;
+      inset: 0;
+      background: #0F172A;
+      z-index: 20;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 58px 14px 56px 14px;
+    }
+
+    .hero-inline-stage.active {
+      display: flex;
+    }
+
+    /* Fullscreen Media Viewer Modal */
+    .app-fs-modal {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      max-width: 100vw;
+      overflow: hidden;
+      background: #0F172A;
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #FFFFFF;
+      user-select: none;
+    }
+
+    .app-fs-modal.active {
+      display: flex;
+    }
+
+    .app-fs-topbar {
+      position: relative;
+      height: 58px;
+      background: #0F172A;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .app-fs-back-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .app-fs-seg-pill {
+      background: #1E293B;
+      padding: 3px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      z-index: 32;
+    }
+
+    .app-fs-seg-btn {
+      padding: 5.5px 10px;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      color: #E2E8F0;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .app-fs-seg-btn.active {
+      background: #FFFFFF;
+      color: #0F172A;
+      font-weight: 800;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .app-fs-right-actions {
       display: flex;
       align-items: center;
       gap: 6px;
-      z-index: 25;
+      flex-shrink: 0;
     }
 
-    .carousel-dots .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.55);
-      transition: all 0.25s ease;
+    .app-fs-action-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
       cursor: pointer;
     }
 
-    .carousel-dots .dot.active {
-      width: 20px;
-      background: #FF7900;
+    .app-fs-stage {
+      flex: 1;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      position: relative;
+      background: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      min-height: 0;
     }
 
-    /* Click zones for desktop navigation */
+    .app-fs-ambient-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(28px) saturate(1.3) brightness(0.42);
+      transform: scale(1.18);
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.25s ease;
+    }
+
+    .app-fs-ambient-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.65) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .app-fs-photo-viewport {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      touch-action: none;
+      cursor: zoom-in;
+    }
+
+    .app-fs-photo-viewport.is-zoomed {
+      cursor: grab;
+    }
+
+    .app-fs-photo-viewport.is-zoomed:active {
+      cursor: grabbing;
+    }
+
+    .app-fs-main-photo {
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.65);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: center center;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .app-fs-controls-row {
+      position: relative;
+      z-index: 15;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      padding: 6px 14px 4px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+
+    .app-fs-pill-badge {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px 13px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      letter-spacing: 0.02em;
+    }
+
+    .app-fs-zoom-btn {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .app-fs-zoom-btn.active {
+      background: #FFFFFF;
+      color: #0F172A;
+      border-color: #FFFFFF;
+    }
+
+    .app-fs-thumbs-dock {
+      position: relative;
+      z-index: 15;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      padding: 6px 12px 12px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      flex-shrink: 0;
+      scroll-behavior: smooth;
+      box-sizing: border-box;
+    }
+
+    .app-fs-thumb-item {
+      width: 58px;
+      height: 44px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      opacity: 0.58;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      background: #1E293B;
+      padding: 0;
+    }
+
+    .app-fs-thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .app-fs-thumb-item.active {
+      opacity: 1;
+      border-color: #FFFFFF;
+      transform: scale(1.06);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+    }
+
+    .app-fs-arrow {
+      position: absolute;
+      top: 46%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.62);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 25;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .app-fs-arrow:active {
+      transform: translateY(-50%) scale(0.92);
+      background: rgba(15, 23, 42, 0.82);
+    }
+
+    /* Bottom Realtor Bar with Avatar + Ofertar & Contactar Buttons */
+    .app-fs-bottombar {
+      background: #0F172A;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .app-fs-realtor-info {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+      flex: 1;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .app-fs-realtor-info img,
+    .app-fs-realtor-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      flex-shrink: 0;
+    }
+
+    .app-fs-realtor-text,
+    .app-fs-realtor-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+      overflow: hidden;
+      gap: 2px;
+    }
+
+    .app-fs-realtor-label,
+    .app-fs-realtor-role {
+      font-size: 9.5px;
+      color: #94A3B8;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .app-fs-realtor-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      line-height: 1.2;
+    }
+
+    .app-fs-realtor-btns {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .app-fs-btn-offer {
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .app-fs-btn-offer:active {
+      transform: scale(0.96);
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .app-fs-btn-contact {
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 10px;
+      background: #EA580C;
+      border: none;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .app-fs-btn-contact:active {
+      transform: scale(0.96);
+    }
+
+    /* Carousel Pagination Dots (hidden in favor of Fotos | Plano | 3D pill) */
+    .carousel-dots {
+      display: none;
+    }
+
+    /* Centered Photo Navigation Arrows (Dark Translucent Glass, visible only on Fotos view & smart direction) */
     .carousel-nav-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(6px);
-      border: none;
+      background: rgba(15, 23, 42, 0.58);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #0F172A;
+      color: #FFFFFF;
       cursor: pointer;
       z-index: 25;
-      opacity: 0;
-      transition: opacity 0.2s ease, transform 0.12s ease;
+      opacity: 1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      transition: opacity 0.2s ease, transform 0.12s ease, background 0.15s ease;
     }
 
-    .carousel-wrapper:hover .carousel-nav-arrow {
-      opacity: 1;
+    .carousel-nav-arrow:hover {
+      background: rgba(15, 23, 42, 0.78);
     }
 
     .carousel-nav-arrow:active {
@@ -293,11 +755,303 @@
     }
 
     .carousel-arrow-prev {
-      left: 10px;
+      left: 12px;
     }
 
     .carousel-arrow-next {
-      right: 10px;
+      right: 12px;
+    }
+
+    /* =========================================================================
+       ENKAPTA OFFER MODAL (ALQUILER & COMPRA - ULTRA CLEAN MINIMALIST DESIGN)
+       ========================================================================= */
+    .offer-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 10050;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .offer-modal-backdrop.active {
+      display: flex;
+      animation: offerFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes offerFadeIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .offer-modal-card {
+      width: 100%;
+      max-width: 356px;
+      max-height: 86vh;
+      background: #FFFFFF;
+      border-radius: 26px;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.14);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      color: #0F172A;
+    }
+
+    .offer-modal-header {
+      padding: 18px 20px 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .offer-realtor-mini {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .offer-realtor-mini img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #E2E8F0;
+      flex-shrink: 0;
+    }
+
+    .offer-realtor-mini-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .offer-modal-kicker {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    .offer-modal-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .offer-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #F8FAFC;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .offer-close-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .offer-mode-tabs-wrap {
+      padding: 0 20px 8px 20px;
+      flex-shrink: 0;
+    }
+
+    .offer-mode-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #F8FAFC;
+      border: 1px solid #EDF2F7;
+      padding: 4px;
+      border-radius: 14px;
+      gap: 4px;
+    }
+
+    .offer-mode-tab {
+      padding: 8.5px 10px;
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+      color: #64748B;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .offer-mode-tab.active {
+      background: #FFFFFF;
+      color: #0F172A;
+      font-weight: 800;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+    }
+
+    .offer-modal-body {
+      padding: 10px 20px 18px 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .offer-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .offer-field-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .offer-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      letter-spacing: -0.1px;
+    }
+
+    .offer-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .offer-input-prefix {
+      position: absolute;
+      left: 13px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #94A3B8;
+      pointer-events: none;
+    }
+
+    .offer-input,
+    .offer-select,
+    .offer-textarea {
+      width: 100%;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 10.5px 13px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0F172A;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .offer-select {
+      -webkit-appearance: none;
+      appearance: none;
+      padding-right: 30px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 11px center;
+    }
+
+    .offer-input::placeholder,
+    .offer-textarea::placeholder {
+      color: #94A3B8;
+      font-weight: 500;
+    }
+
+    .offer-input.has-prefix {
+      padding-left: 28px;
+    }
+
+    .offer-input:focus,
+    .offer-select:focus,
+    .offer-textarea:focus {
+      border-color: #FF7900;
+      box-shadow: 0 0 0 3px rgba(255, 121, 0, 0.10);
+    }
+
+    .offer-textarea {
+      resize: none;
+      min-height: 62px;
+      line-height: 1.45;
+    }
+
+    .offer-person-pills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .offer-person-pill {
+      padding: 9.5px 10px;
+      border-radius: 12px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #64748B;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+
+    .offer-person-pill.active {
+      border-color: #FF7900;
+      background: #FFF7ED;
+      color: #EA580C;
+      font-weight: 700;
+    }
+
+    .offer-modal-footer {
+      padding: 12px 20px 18px 20px;
+      background: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .offer-submit-btn {
+      width: 100%;
+      height: 46px;
+      border-radius: 14px;
+      border: none;
+      background: #FF7900;
+      color: #FFFFFF;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.12s ease;
+    }
+
+    .offer-submit-btn:hover {
+      background: #EA580C;
+    }
+
+    .offer-submit-btn:active {
+      transform: scale(0.98);
     }
 
     /* =========================================================================
@@ -1252,7 +2006,7 @@
       <!-- ===================================================================
            PHOTO CAROUSEL (Real Touch-Swipeable Gallery)
            =================================================================== -->
-      <div class="carousel-wrapper" id="prop-carousel">
+      <div class="carousel-wrapper" id="prop-carousel" onclick="handleHeroTap(event)">
         
         <!-- Track of 7 real property photos -->
         <div class="carousel-track" id="carousel-track">
@@ -1286,8 +2040,55 @@
           </div>
         </div>
 
+        <!-- INLINE STAGE: PLANO ARQUITECTÓNICO 2D -->
+        <div class="hero-inline-stage" id="app-hero-stage-plano" onclick="event.stopPropagation(); openAppFullscreenViewer('plano')">
+          <div style="width: 100%; height: 100%; background: #FFFFFF; border-radius: 14px; padding: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; box-shadow: 0 8px 24px rgba(0,0,0,0.35);">
+            <svg viewBox="0 0 800 500" style="width: 100%; height: 100%;">
+              <rect width="800" height="500" fill="#f8fafc"/>
+              <rect x="50" y="45" width="700" height="400" fill="#ffffff" stroke="#0f172a" stroke-width="10"/>
+              <rect x="55" y="50" width="245" height="195" fill="#f8fafc"/>
+              <rect x="300" y="50" width="235" height="195" fill="#fff7ed"/>
+              <rect x="535" y="50" width="210" height="195" fill="#f8fafc"/>
+              <line x1="300" y1="45" x2="300" y2="215" stroke="#0f172a" stroke-width="6"/>
+              <line x1="535" y1="45" x2="535" y2="215" stroke="#0f172a" stroke-width="6"/>
+              <line x1="50" y1="245" x2="250" y2="245" stroke="#0f172a" stroke-width="6"/>
+              <line x1="295" y1="245" x2="490" y2="245" stroke="#0f172a" stroke-width="6"/>
+              <line x1="535" y1="245" x2="750" y2="245" stroke="#0f172a" stroke-width="6"/>
+              <line x1="390" y1="280" x2="390" y2="445" stroke="#0f172a" stroke-width="6"/>
+              <text x="175" y="145" text-anchor="middle" font-size="18" font-weight="800" fill="#0f172a">SALA JUNTAS</text>
+              <text x="175" y="170" text-anchor="middle" font-size="14" font-weight="600" fill="#64748b">5.2m × 4.1m</text>
+              <text x="418" y="145" text-anchor="middle" font-size="18" font-weight="800" fill="#ea580c">ÁREA OPERATIVA</text>
+              <text x="418" y="170" text-anchor="middle" font-size="14" font-weight="600" fill="#9a3412">6.4m × 4.8m</text>
+              <text x="640" y="145" text-anchor="middle" font-size="18" font-weight="800" fill="#0f172a">DIRECCIÓN</text>
+              <text x="640" y="170" text-anchor="middle" font-size="14" font-weight="600" fill="#64748b">4.5m × 4.1m</text>
+              <text x="220" y="345" text-anchor="middle" font-size="18" font-weight="800" fill="#0f172a">RECEPCIÓN Y LOBBY</text>
+              <text x="220" y="370" text-anchor="middle" font-size="14" font-weight="600" fill="#64748b">7.1m × 4.2m</text>
+              <text x="570" y="345" text-anchor="middle" font-size="18" font-weight="800" fill="#0f172a">2 BAÑOS &amp; ARCHIVO</text>
+              <text x="570" y="370" text-anchor="middle" font-size="14" font-weight="600" fill="#64748b">116 m² Totales</text>
+            </svg>
+            <div style="position: absolute; bottom: 6px; right: 8px; background: rgba(15,23,42,0.85); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px;">Toca para ampliar plano</div>
+          </div>
+        </div>
+
+        <!-- INLINE STAGE: MODELO 3D INTERACTIVO -->
+        <div class="hero-inline-stage" id="app-hero-stage-3d" onclick="event.stopPropagation(); openAppFullscreenViewer('3d')">
+          <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; perspective: 800px; position: relative;">
+            <div style="width: 220px; height: 145px; transform-style: preserve-3d; transform: rotateX(55deg) rotateZ(-35deg); position: relative;">
+              <div style="position:absolute; inset:0; background: linear-gradient(135deg, #334155, #1e293b); border: 2.5px solid #FF7900; border-radius: 6px; box-shadow: 0 20px 40px rgba(0,0,0,0.7);">
+                <div style="position:absolute; left:0; top:0; width:44%; height:52%; border-right:2px solid #cbd5e1; border-bottom:2px solid #cbd5e1; display:flex; align-items:center; justify-content:center; color:#fff; font-size:8px; font-weight:800;">JUNTAS</div>
+                <div style="position:absolute; left:44%; top:0; width:56%; height:52%; border-bottom:2px solid #cbd5e1; background:rgba(255,121,0,0.2); display:flex; align-items:center; justify-content:center; color:#fed7aa; font-size:8px; font-weight:800;">OPERATIVA</div>
+                <div style="position:absolute; left:0; top:52%; width:55%; height:48%; border-right:2px solid #cbd5e1; display:flex; align-items:center; justify-content:center; color:#e2e8f0; font-size:8px; font-weight:800;">RECEPCIÓN</div>
+                <div style="position:absolute; left:55%; top:52%; width:45%; height:48%; display:flex; align-items:center; justify-content:center; color:#bae6fd; font-size:8px; font-weight:800;">GERENCIA</div>
+              </div>
+              <div style="position:absolute; left:0; top:0; width:100%; height:28px; background:rgba(241,245,249,0.85); transform-origin: top; transform: rotateX(-90deg);"></div>
+              <div style="position:absolute; left:0; top:0; width:28px; height:100%; background:rgba(203,213,225,0.85); transform-origin: left; transform: rotateY(90deg);"></div>
+            </div>
+            <div style="position: absolute; bottom: 4px; background: rgba(255,121,0,0.92); color: #fff; font-size: 10.5px; font-weight: 800; padding: 4px 10px; border-radius: 9999px;">Toca para abrir Tour Propiedad interactivo</div>
+          </div>
+        </div>
+
         <!-- Top Left: Clean Frosted Glass Back Button -->
-        <button type="button" class="glass-btn btn-top-back" onclick="handleBack()" title="Volver">
+        <button type="button" class="glass-btn btn-top-back" onclick="event.stopPropagation(); handleBack()" title="Volver">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
@@ -1295,12 +2096,12 @@
 
         <!-- Top Right: Favorite & Share Glass Buttons -->
         <div class="btn-top-actions">
-          <button type="button" id="btn-fav" class="glass-btn" onclick="toggleFavorite()" title="Favorito">
+          <button type="button" id="btn-fav" class="glass-btn" onclick="event.stopPropagation(); toggleFavorite()" title="Favorito">
             <svg class="fav-heart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
             </svg>
           </button>
-          <button type="button" class="glass-btn" onclick="shareProperty()" title="Compartir">
+          <button type="button" class="glass-btn" onclick="event.stopPropagation(); shareProperty()" title="Compartir">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
               <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
@@ -1308,27 +2109,54 @@
           </button>
         </div>
 
-        <!-- Desktop Navigation Arrows (Hover) -->
-        <button type="button" class="carousel-nav-arrow carousel-arrow-prev" onclick="prevSlide()" title="Foto anterior">
+        <!-- Centered Photo Navigation Arrows (Smart single/dual direction, only on Fotos view) -->
+        <button type="button" id="hero-arrow-prev" class="carousel-nav-arrow carousel-arrow-prev" style="display: none;" onclick="event.stopPropagation(); prevSlide()" title="Foto anterior">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
-        <button type="button" class="carousel-nav-arrow carousel-arrow-next" onclick="nextSlide()" title="Siguiente foto">
+        <button type="button" id="hero-arrow-next" class="carousel-nav-arrow carousel-arrow-next" onclick="event.stopPropagation(); nextSlide()" title="Siguiente foto">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
 
-        <!-- Bottom Left: Counter Badge (1/7) -->
-        <div class="carousel-counter-badge" id="carousel-counter">1/7</div>
+        <!-- Bottom Left: Counter Badge (1 / 7) -->
+        <div class="carousel-counter-badge" id="carousel-counter">1 / 7</div>
 
-        <!-- Bottom Center: Pagination Dots -->
-        <div class="carousel-dots" id="carousel-dots">
-          <span class="dot active" onclick="goToSlide(0)"></span>
-          <span class="dot" onclick="goToSlide(1)"></span>
-          <span class="dot" onclick="goToSlide(2)"></span>
-          <span class="dot" onclick="goToSlide(3)"></span>
-          <span class="dot" onclick="goToSlide(4)"></span>
-          <span class="dot" onclick="goToSlide(5)"></span>
-          <span class="dot" onclick="goToSlide(6)"></span>
+        <!-- Bottom Center: Floating Dark Glass Pill Switcher (Fotos | Plano | Tour Propiedad) -->
+        <div class="hero-media-pill-bar" onclick="event.stopPropagation()">
+          <!-- 1. Fotos -->
+          <button type="button" id="app-hero-tab-fotos" class="hero-media-pill-btn active" onclick="switchAppHeroMediaTab('fotos')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2.5"/>
+              <circle cx="8.5" cy="9.5" r="1.5" fill="currentColor"/>
+              <path d="M21 16l-5.5-5.5L9 17l-3-3-3 3"/>
+            </svg>
+            <span>Fotos</span>
+          </button>
+
+          <!-- 2. Plano -->
+          <button type="button" id="app-hero-tab-plano" class="hero-media-pill-btn" onclick="switchAppHeroMediaTab('plano')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 10h7V3"/>
+              <path d="M14 3v5h7"/>
+              <path d="M14 14v7"/>
+              <path d="M3 16h5"/>
+            </svg>
+            <span>Plano</span>
+          </button>
+
+          <!-- 3. Tour Propiedad -->
+          <button type="button" id="app-hero-tab-3d" class="hero-media-pill-btn" onclick="switchAppHeroMediaTab('3d')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+            <span>Tour Propiedad</span>
+          </button>
         </div>
+
+        <!-- Hidden dots container for backward compatibility -->
+        <div class="carousel-dots" id="carousel-dots"></div>
       </div>
 
       <!-- ===================================================================
@@ -1918,36 +2746,614 @@
 
   </div>
 
+  <!-- FULLSCREEN MEDIA VIEWER MODAL (Fotos | Plano | 3D Centered + Tall Photo + Bottom Realtor Bar) -->
+  <div id="app-fullscreen-viewer" class="app-fs-modal">
+    <!-- 1. Top Header Bar (Pill Centered) -->
+    <div class="app-fs-topbar">
+      <button type="button" class="app-fs-back-btn" onclick="closeAppFullscreenViewer()" title="Cerrar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+
+      <!-- Center Segmented Pill: Fotos | Plano | Tour Propiedad -->
+      <div class="app-fs-seg-pill">
+        <button type="button" id="app-fs-tab-fotos" class="app-fs-seg-btn active" onclick="switchAppFsMediaTab('fotos')">Fotos</button>
+        <button type="button" id="app-fs-tab-plano" class="app-fs-seg-btn" onclick="switchAppFsMediaTab('plano')">Plano</button>
+        <button type="button" id="app-fs-tab-3d" class="app-fs-seg-btn" onclick="switchAppFsMediaTab('3d')">Tour Propiedad</button>
+      </div>
+
+      <!-- Right Actions: Guardar & Compartir -->
+      <div class="app-fs-right-actions">
+        <button type="button" class="app-fs-action-btn" onclick="toggleFavorite()" title="Guardar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+        <button type="button" class="app-fs-action-btn" onclick="shareProperty()" title="Compartir">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <polyline points="16 6 12 2 8 6"/>
+            <line x1="12" y1="2" x2="12" y2="15"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. Center Stage (Tall Photo with Full Protagonism) -->
+    <div class="app-fs-stage">
+      <!-- STAGE A: FOTOS (Immersive Ambient Blur + Edge-to-Edge Uncropped Photo + Interactive Zoom + Thumbnail Dock) -->
+      <div id="app-fs-stage-fotos" style="width: 100%; max-width: 100%; min-width: 0; flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
+        <!-- 1. Immersive Ambient Blur Background -->
+        <img id="app-fs-ambient-img" class="app-fs-ambient-bg" src="assets/replica/gallery/oficina-1.jpg" alt="">
+        <div class="app-fs-ambient-vignette"></div>
+
+        <!-- Navigation Arrows -->
+        <button type="button" id="app-fs-arrow-prev" class="app-fs-arrow" style="left: 12px; display: none;" onclick="prevSlide()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+
+        <button type="button" id="app-fs-arrow-next" class="app-fs-arrow" style="right: 12px;" onclick="nextSlide()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <!-- 2. Edge-to-Edge Photo Viewport (Double-tap or click button to Zoom & Pan) -->
+        <div id="app-fs-photo-vp" class="app-fs-photo-viewport" ondblclick="toggleAppFsPhotoZoom()">
+          <img id="app-fs-main-img" class="app-fs-main-photo" src="assets/replica/gallery/oficina-1.jpg" alt="Foto en pantalla completa">
+        </div>
+
+        <!-- 3. Counter + Zoom Toggle Row -->
+        <div class="app-fs-controls-row">
+          <div id="app-fs-counter-pill" class="app-fs-pill-badge">1 de 7</div>
+          <button type="button" id="app-fs-zoom-btn" class="app-fs-zoom-btn" onclick="toggleAppFsPhotoZoom()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+            <span id="app-fs-zoom-label">Ampliar foto</span>
+          </button>
+        </div>
+
+        <!-- 4. Bottom Interactive Thumbnail Strip -->
+        <div id="app-fs-thumbs-dock" class="app-fs-thumbs-dock no-scrollbar"></div>
+      </div>
+
+      <!-- STAGE B: PLANO 2D INTERACTIVO -->
+      <div id="app-fs-stage-plano" style="width: 100%; height: 100%; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 12px; position: relative;">
+        <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 6px; background: rgba(15,23,42,0.85); padding: 4px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); z-index: 30;">
+          <button type="button" onclick="zoomAppBlueprint(-0.2)" style="width: 28px; height: 28px; border-radius: 6px; border: none; background: rgba(255,255,255,0.12); color: #fff; font-weight: 800; cursor: pointer;">−</button>
+          <span id="app-bp-zoom-val" style="font-size: 11px; font-weight: 700; color: #e2e8f0; display: flex; align-items: center; padding: 0 4px;">100%</span>
+          <button type="button" onclick="zoomAppBlueprint(0.2)" style="width: 28px; height: 28px; border-radius: 6px; border: none; background: rgba(255,255,255,0.12); color: #fff; font-weight: 800; cursor: pointer;">+</button>
+        </div>
+
+        <div style="width: 100%; max-width: 820px; height: 100%; background: #FFFFFF; border-radius: 20px; padding: 14px; display: flex; align-items: center; justify-content: center; overflow: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+          <div id="app-fs-bp-wrap" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease;">
+            <svg viewBox="0 0 800 500" style="width: 100%; height: 100%;">
+              <rect width="800" height="500" fill="#f8fafc"/>
+              <rect x="50" y="45" width="700" height="400" fill="#ffffff" stroke="#0f172a" stroke-width="8"/>
+              <rect x="54" y="49" width="246" height="196" fill="#f8fafc"/>
+              <rect x="300" y="49" width="235" height="196" fill="#fff7ed"/>
+              <rect x="535" y="49" width="211" height="196" fill="#f8fafc"/>
+              <line x1="300" y1="45" x2="300" y2="215" stroke="#0f172a" stroke-width="5"/>
+              <line x1="535" y1="45" x2="535" y2="215" stroke="#0f172a" stroke-width="5"/>
+              <line x1="50" y1="245" x2="250" y2="245" stroke="#0f172a" stroke-width="5"/>
+              <line x1="295" y1="245" x2="490" y2="245" stroke="#0f172a" stroke-width="5"/>
+              <line x1="535" y1="245" x2="750" y2="245" stroke="#0f172a" stroke-width="5"/>
+              <line x1="390" y1="280" x2="390" y2="445" stroke="#0f172a" stroke-width="5"/>
+              <rect x="115" y="95" width="120" height="54" rx="8" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+              <rect x="340" y="90" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+              <rect x="420" y="90" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+              <text x="175" y="190" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">SALA DE JUNTAS</text>
+              <text x="175" y="210" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">5.20 m × 4.10 m (21.3 m²)</text>
+              <text x="418" y="190" text-anchor="middle" font-size="14" font-weight="800" fill="#ea580c">ÁREA OPERATIVA</text>
+              <text x="418" y="210" text-anchor="middle" font-size="11" font-weight="600" fill="#9a3412">6.40 m × 4.80 m (30.7 m²)</text>
+              <text x="640" y="145" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">DIRECCIÓN</text>
+              <text x="640" y="165" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">4.50 m × 4.10 m (18.5 m²)</text>
+              <text x="220" y="345" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">RECEPCIÓN Y LOBBY</text>
+              <text x="220" y="365" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">7.10 m × 4.20 m (29.8 m²)</text>
+              <text x="570" y="345" text-anchor="middle" font-size="14" font-weight="800" fill="#0f172a">2 BAÑOS &amp; ARCHIVO</text>
+              <text x="570" y="365" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">16.0 m² · Total 116 m²</text>
+              <line x1="50" y1="25" x2="750" y2="25" stroke="#ea580c" stroke-width="2"/>
+              <text x="400" y="18" text-anchor="middle" font-size="12" font-weight="800" fill="#ea580c">15.40 m</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE C: MODELO 3D INTERACTIVO -->
+      <div id="app-fs-stage-3d" style="width: 100%; height: 100%; display: none; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 14px; right: 14px; display: flex; gap: 6px; z-index: 30;">
+          <button type="button" onclick="rotateApp3D(-30)" style="padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.6); color: #fff; font-size: 11px; font-weight: 700; cursor: pointer;">↺ Rotar</button>
+          <button type="button" onclick="rotateApp3D(30)" style="padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.6); color: #fff; font-size: 11px; font-weight: 700; cursor: pointer;">↻ Rotar</button>
+        </div>
+
+        <div id="app-fs-3d-vp" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; perspective: 1000px; cursor: grab;">
+          <div id="app-fs-3d-model" style="width: 310px; height: 210px; transform-style: preserve-3d; transform: rotateX(55deg) rotateZ(-35deg); transition: transform 0.12s ease-out; position: relative;">
+            <div style="position:absolute; inset:0; background: linear-gradient(135deg, #1e293b, #0f172a); border: 3.5px solid #FF7900; border-radius: 10px; box-shadow: 0 30px 60px rgba(0,0,0,0.85);">
+              <div style="position:absolute; left:0; top:0; width:44%; height:52%; border-right:3px solid #cbd5e1; border-bottom:3px solid #cbd5e1; background:rgba(255,255,255,0.07); display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:800;">SALA JUNTAS</div>
+              <div style="position:absolute; left:44%; top:0; width:56%; height:52%; border-bottom:3px solid #cbd5e1; background:rgba(255,121,0,0.18); display:flex; align-items:center; justify-content:center; color:#fed7aa; font-size:10px; font-weight:800;">OPERATIVA</div>
+              <div style="position:absolute; left:0; top:52%; width:55%; height:48%; border-right:3px solid #cbd5e1; background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; color:#e2e8f0; font-size:10px; font-weight:800;">RECEPCIÓN</div>
+              <div style="position:absolute; left:55%; top:52%; width:45%; height:48%; background:rgba(255,121,0,0.12); display:flex; align-items:center; justify-content:center; color:#fdba74; font-size:10px; font-weight:800;">DIRECCIÓN</div>
+            </div>
+            <div style="position:absolute; left:0; top:0; width:100%; height:46px; background:rgba(241,245,249,0.88); border:1px solid #94a3b8; transform-origin: top; transform: rotateX(-90deg);"></div>
+            <div style="position:absolute; left:0; top:0; width:46px; height:100%; background:rgba(203,213,225,0.88); border:1px solid #94a3b8; transform-origin: left; transform: rotateY(90deg);"></div>
+            <div style="position:absolute; left:44%; top:0; width:38px; height:52%; background:rgba(255,121,0,0.72); border:1px solid #fb923c; transform-origin: left; transform: rotateY(90deg);"></div>
+            <button type="button" onclick="goToSlide(2); switchAppFsMediaTab('fotos')" style="position:absolute; left:14%; top:22%; transform: translateZ(38px); background:#FF7900; color:#fff; border:2px solid #fff; border-radius:9999px; padding:3px 9px; font-size:9.5px; font-weight:800; cursor:pointer;">● Juntas</button>
+            <button type="button" onclick="goToSlide(4); switchAppFsMediaTab('fotos')" style="position:absolute; left:58%; top:22%; transform: translateZ(38px); background:#FF7900; color:#fff; border:2px solid #fff; border-radius:9999px; padding:3px 9px; font-size:9.5px; font-weight:800; cursor:pointer;">● Operativa</button>
+            <button type="button" onclick="goToSlide(3); switchAppFsMediaTab('fotos')" style="position:absolute; left:20%; top:70%; transform: translateZ(38px); background:#EA580C; color:#fff; border:2px solid #fff; border-radius:9999px; padding:3px 9px; font-size:9.5px; font-weight:800; cursor:pointer;">● Lobby</button>
+          </div>
+        </div>
+
+        <div style="position: absolute; bottom: 16px; background: rgba(0,0,0,0.7); color: #E2E8F0; font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.12);">
+          Desliza para rotar el modelo 3D o toca un ambiente
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Bottom Realtor Card Bar (Foto del Realtor + Botón Ofertar sin $ + Botón Contactar) -->
+    <div class="app-fs-bottombar">
+      <div class="app-fs-realtor-info" onclick="closeAppFullscreenViewer(); openRealtorProfileModal();">
+        <img src="assets/replica/agent-jessica.png" alt="Jessica Dueñas" class="app-fs-realtor-avatar" id="app-fs-agent-avatar">
+        <div class="app-fs-realtor-meta">
+          <span class="app-fs-realtor-role">
+            Realtor
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#FF7900" style="flex-shrink: 0;">
+              <path d="M12 2L15.09 5.26L19.5 4.5L20.26 8.91L23.5 12L20.26 15.09L19.5 19.5L15.09 18.74L12 22L8.91 18.74L4.5 19.5L3.74 15.09L0.5 12L3.74 8.91L4.5 4.5L8.91 5.26L12 2Z"/>
+              <polyline points="8 12 11 15 16 9" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="app-fs-realtor-name" id="app-fs-agent-name">Jessica Dueñas</span>
+        </div>
+      </div>
+
+      <div class="app-fs-realtor-btns">
+        <button type="button" class="app-fs-btn-offer" onclick="ofertarAgente()">
+          Ofertar
+        </button>
+        <button type="button" class="app-fs-btn-contact" onclick="contactarAgente()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+          Contactar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE OFERTA DIRECTA AL WHATSAPP DEL REALTOR (ALQUILER / COMPRA) -->
+  <div id="enkapta-offer-modal" class="offer-modal-backdrop" onclick="if (event.target === this) closeOfferModal()">
+    <div class="offer-modal-card" onclick="event.stopPropagation()">
+      <!-- Header -->
+      <div class="offer-modal-header">
+        <div class="offer-realtor-mini">
+          <img src="assets/replica/agent-jessica.png" alt="Realtor" id="offer-modal-avatar">
+          <div class="offer-realtor-mini-text">
+            <span class="offer-modal-kicker">Oferta Directa · Enkapta</span>
+            <span class="offer-modal-title" id="offer-modal-realtor-name">Jessica Dueñas</span>
+          </div>
+        </div>
+        <button type="button" class="offer-close-btn" onclick="closeOfferModal()" title="Cerrar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Segmented Switcher: Alquiler | Compra -->
+      <div class="offer-mode-tabs-wrap">
+        <div class="offer-mode-tabs">
+          <button type="button" id="offer-tab-alquiler" class="offer-mode-tab active" onclick="switchOfferMode('alquiler')">
+            Alquiler
+          </button>
+          <button type="button" id="offer-tab-compra" class="offer-mode-tab" onclick="switchOfferMode('compra')">
+            Compra
+          </button>
+        </div>
+      </div>
+
+      <!-- Body: 2 Option Panels -->
+      <div class="offer-modal-body no-scrollbar">
+        <!-- OPCIÓN 1: ALQUILER -->
+        <div id="offer-panel-alquiler" style="display: flex; flex-direction: column; gap: 11px;">
+          <div class="offer-field-group">
+            <label class="offer-label" for="offer-alq-monto">Monto a ofertar (mensual)</label>
+            <div class="offer-input-wrap">
+              <span class="offer-input-prefix">$</span>
+              <input type="text" id="offer-alq-monto" class="offer-input has-prefix" placeholder="Ej. 850 USD">
+            </div>
+          </div>
+
+          <div class="offer-field-row-2">
+            <div class="offer-field-group">
+              <label class="offer-label" for="offer-alq-deposito">Meses depósito</label>
+              <select id="offer-alq-deposito" class="offer-select">
+                <option value="1 mes">1 mes</option>
+                <option value="2 meses" selected>2 meses</option>
+                <option value="3 meses">3 meses</option>
+                <option value="4 meses">4 meses</option>
+                <option value="6 meses">6 meses</option>
+              </select>
+            </div>
+
+            <div class="offer-field-group">
+              <label class="offer-label" for="offer-alq-adelantado">Meses por adelantado</label>
+              <select id="offer-alq-adelantado" class="offer-select">
+                <option value="1 mes">1 mes</option>
+                <option value="2 meses">2 meses</option>
+                <option value="3 meses" selected>3 meses</option>
+                <option value="6 meses">6 meses</option>
+                <option value="12 meses (1 año)">12 meses</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="offer-field-group">
+            <label class="offer-label">Tipo de persona</label>
+            <div class="offer-person-pills">
+              <button type="button" id="offer-person-natural" class="offer-person-pill active" onclick="selectOfferPersona('Persona Natural')">
+                Persona Natural
+              </button>
+              <button type="button" id="offer-person-juridica" class="offer-person-pill" onclick="selectOfferPersona('Persona Jurídica')">
+                Persona Jurídica
+              </button>
+            </div>
+          </div>
+
+          <div class="offer-field-group">
+            <label class="offer-label" for="offer-alq-nota">Nota</label>
+            <textarea id="offer-alq-nota" class="offer-textarea" placeholder="Escribe algún detalle o condición adicional para el realtor..."></textarea>
+          </div>
+        </div>
+
+        <!-- OPCIÓN 2: COMPRA -->
+        <div id="offer-panel-compra" style="display: none; flex-direction: column; gap: 11px;">
+          <div class="offer-field-row-2">
+            <div class="offer-field-group">
+              <label class="offer-label" for="offer-com-precio">Precio pagaría</label>
+              <div class="offer-input-wrap">
+                <span class="offer-input-prefix">$</span>
+                <input type="text" id="offer-com-precio" class="offer-input has-prefix" placeholder="Ej. 62,000">
+              </div>
+            </div>
+
+            <div class="offer-field-group">
+              <label class="offer-label" for="offer-com-inicial">Inicial</label>
+              <div class="offer-input-wrap">
+                <span class="offer-input-prefix">$</span>
+                <input type="text" id="offer-com-inicial" class="offer-input has-prefix" placeholder="Ej. 20,000 / 30%">
+              </div>
+            </div>
+          </div>
+
+          <div class="offer-field-group">
+            <label class="offer-label" for="offer-com-forma">Forma de pago</label>
+            <select id="offer-com-forma" class="offer-select">
+              <option value="Contado / Transferencia bancaria" selected>Contado / Transferencia bancaria</option>
+              <option value="Efectivo / Divisas">Efectivo / Divisas</option>
+              <option value="Financiamiento / Cuotas con propietario">Financiamiento / Cuotas</option>
+              <option value="Criptomonedas (USDT)">Criptomonedas (USDT)</option>
+              <option value="Pago Mixto">Pago Mixto</option>
+            </select>
+          </div>
+
+          <div class="offer-field-group">
+            <label class="offer-label" for="offer-com-tiempo">Tiempo de negociación</label>
+            <select id="offer-com-tiempo" class="offer-select">
+              <option value="Inmediato (7 a 15 días)" selected>Inmediato (7 a 15 días)</option>
+              <option value="30 días">30 días</option>
+              <option value="45 a 60 días">45 a 60 días</option>
+              <option value="90 días / A convenir">90 días / A convenir</option>
+            </select>
+          </div>
+
+          <div class="offer-field-group">
+            <label class="offer-label" for="offer-com-nota">Nota</label>
+            <textarea id="offer-com-nota" class="offer-textarea" placeholder="Escribe detalles adicionales de tu propuesta de compra..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer CTA -->
+      <div class="offer-modal-footer">
+        <button type="button" class="offer-submit-btn" onclick="submitOfferToWhatsApp()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+          <span>Enviar oferta</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // =========================================================================
-    // SLIDER / CAROUSEL LOGIC (Touch Swipes + Click + Dots)
+    // SLIDER / CAROUSEL LOGIC + FOTOS | PLANO | 3D VIEWER
     // =========================================================================
     let currentSlide = 0;
     let totalSlides = 7;
+    let appHeroMediaTab = 'fotos';
+    let appFsMediaTab = 'fotos';
+    let appBpZoom = 1;
+    let app3DRotZ = -35;
+    let app3DRotX = 55;
     const track = document.getElementById('carousel-track');
     const counter = document.getElementById('carousel-counter');
     const dots = document.querySelectorAll('.carousel-dots .dot');
     const carouselWrapper = document.getElementById('prop-carousel');
 
+    function getCarouselImagesList() {
+      const imgs = document.querySelectorAll('#carousel-track .carousel-slide img');
+      return Array.from(imgs).map(i => i.getAttribute('src'));
+    }
+
+    function updateCarouselArrows() {
+      const heroPrev = document.getElementById('hero-arrow-prev');
+      const heroNext = document.getElementById('hero-arrow-next');
+      const fsPrev = document.getElementById('app-fs-arrow-prev');
+      const fsNext = document.getElementById('app-fs-arrow-next');
+      const isHeroFotos = (appHeroMediaTab === 'fotos');
+      const canPrev = isHeroFotos && totalSlides > 1 && currentSlide > 0;
+      const canNext = isHeroFotos && totalSlides > 1 && currentSlide < (totalSlides - 1);
+
+      if (heroPrev) heroPrev.style.display = canPrev ? 'flex' : 'none';
+      if (heroNext) heroNext.style.display = canNext ? 'flex' : 'none';
+      if (counter) counter.style.display = isHeroFotos ? 'block' : 'none';
+
+      if (fsPrev) fsPrev.style.display = (totalSlides > 1 && currentSlide > 0) ? 'flex' : 'none';
+      if (fsNext) fsNext.style.display = (totalSlides > 1 && currentSlide < totalSlides - 1) ? 'flex' : 'none';
+    }
+
+    let appFsPhotoZoom = 1;
+    let appFsPanX = 0;
+    let appFsPanY = 0;
+
+    function resetAppFsPhotoZoom() {
+      appFsPhotoZoom = 1;
+      appFsPanX = 0;
+      appFsPanY = 0;
+      const fsImg = document.getElementById('app-fs-main-img');
+      const vp = document.getElementById('app-fs-photo-vp');
+      const zoomBtn = document.getElementById('app-fs-zoom-btn');
+      const zoomLabel = document.getElementById('app-fs-zoom-label');
+      if (fsImg) fsImg.style.transform = 'translate3d(0px, 0px, 0) scale(1)';
+      if (vp) vp.classList.remove('is-zoomed');
+      if (zoomBtn) zoomBtn.classList.remove('active');
+      if (zoomLabel) zoomLabel.textContent = 'Ampliar foto';
+    }
+
+    function applyAppFsPhotoTransform() {
+      const fsImg = document.getElementById('app-fs-main-img');
+      if (!fsImg) return;
+      fsImg.style.transform = `translate3d(${appFsPanX}px, ${appFsPanY}px, 0) scale(${appFsPhotoZoom})`;
+    }
+
+    function toggleAppFsPhotoZoom() {
+      const vp = document.getElementById('app-fs-photo-vp');
+      const zoomBtn = document.getElementById('app-fs-zoom-btn');
+      const zoomLabel = document.getElementById('app-fs-zoom-label');
+      if (appFsPhotoZoom > 1) {
+        resetAppFsPhotoZoom();
+      } else {
+        appFsPhotoZoom = 1.85;
+        appFsPanX = 0;
+        appFsPanY = 0;
+        applyAppFsPhotoTransform();
+        if (vp) vp.classList.add('is-zoomed');
+        if (zoomBtn) zoomBtn.classList.add('active');
+        if (zoomLabel) zoomLabel.textContent = 'Ver completa (1x)';
+      }
+    }
+
+    function renderAppFsThumbnails() {
+      const dock = document.getElementById('app-fs-thumbs-dock');
+      if (!dock) return;
+      const imgs = getCarouselImagesList();
+      if (dock.children.length !== imgs.length) {
+        dock.innerHTML = '';
+        imgs.forEach((src, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'app-fs-thumb-item' + (idx === currentSlide ? ' active' : '');
+          btn.onclick = () => goToSlide(idx);
+          btn.innerHTML = `<img src="${src}" alt="Miniatura ${idx + 1}">`;
+          dock.appendChild(btn);
+        });
+      } else {
+        Array.from(dock.children).forEach((btn, idx) => {
+          btn.classList.toggle('active', idx === currentSlide);
+          const img = btn.querySelector('img');
+          if (img && imgs[idx] && img.getAttribute('src') !== imgs[idx]) {
+            img.src = imgs[idx];
+          }
+        });
+      }
+      const activeThumb = dock.children[currentSlide];
+      if (activeThumb) {
+        const targetScrollLeft = activeThumb.offsetLeft - (dock.clientWidth / 2) + (activeThumb.offsetWidth / 2);
+        dock.scrollTo({ left: Math.max(0, targetScrollLeft), behavior: 'smooth' });
+      }
+      if (document.documentElement.scrollLeft !== 0) document.documentElement.scrollLeft = 0;
+      if (document.body.scrollLeft !== 0) document.body.scrollLeft = 0;
+    }
+
+    // Interactive Drag/Pan (when zoomed) + Swipe & Double-Tap (when 1x) on Fullscreen Photo Viewport
+    (function initAppFsPhotoGestures() {
+      const vp = document.getElementById('app-fs-photo-vp');
+      const fsImg = document.getElementById('app-fs-main-img');
+      if (!vp || !fsImg) return;
+      let isPointerDown = false;
+      let startX = 0, startY = 0;
+      let originPanX = 0, originPanY = 0;
+      let lastTapTime = 0;
+
+      vp.addEventListener('pointerdown', (e) => {
+        isPointerDown = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        originPanX = appFsPanX;
+        originPanY = appFsPanY;
+        if (appFsPhotoZoom > 1) {
+          fsImg.style.transition = 'none';
+        }
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!isPointerDown) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        if (appFsPhotoZoom > 1) {
+          const maxPanX = 160;
+          const maxPanY = 140;
+          appFsPanX = Math.max(-maxPanX, Math.min(maxPanX, originPanX + dx));
+          appFsPanY = Math.max(-maxPanY, Math.min(maxPanY, originPanY + dy));
+          applyAppFsPhotoTransform();
+        }
+      });
+
+      window.addEventListener('pointerup', (e) => {
+        if (!isPointerDown) return;
+        isPointerDown = false;
+        fsImg.style.transition = 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1)';
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        const dist = Math.hypot(dx, dy);
+
+        // Double tap detection on touch devices
+        if (dist < 10 && e.pointerType === 'touch') {
+          const now = Date.now();
+          if (now - lastTapTime < 300) {
+            toggleAppFsPhotoZoom();
+            lastTapTime = 0;
+            return;
+          }
+          lastTapTime = now;
+        }
+
+        // Swipe left/right to change slide when not zoomed
+        if (appFsPhotoZoom === 1 && Math.abs(dx) > 40 && Math.abs(dy) < 60) {
+          if (dx < 0) nextSlide();
+          else prevSlide();
+        }
+      });
+    })();
+
     function updateCarousel() {
       if (!track) return;
       track.style.transform = `translateX(-${currentSlide * 100}%)`;
-      if (counter) counter.textContent = `${currentSlide + 1}/${totalSlides}`;
+      if (counter) counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
       const allDots = document.querySelectorAll('.carousel-dots .dot');
       allDots.forEach((dot, idx) => {
         dot.classList.toggle('active', idx === currentSlide);
       });
+      // Sync Fullscreen Viewer Photo + Ambient Blur + Thumbnails
+      resetAppFsPhotoZoom();
+      const imgs = getCarouselImagesList();
+      const fsImg = document.getElementById('app-fs-main-img');
+      const fsAmbient = document.getElementById('app-fs-ambient-img');
+      const fsCounter = document.getElementById('app-fs-counter-pill');
+      if (fsImg && imgs[currentSlide]) fsImg.src = imgs[currentSlide];
+      if (fsAmbient && imgs[currentSlide]) fsAmbient.src = imgs[currentSlide];
+      if (fsCounter) fsCounter.textContent = `${currentSlide + 1} de ${totalSlides}`;
+      renderAppFsThumbnails();
+      updateCarouselArrows();
     }
 
+    function switchAppHeroMediaTab(tab) {
+      appHeroMediaTab = tab;
+      ['fotos', 'plano', '3d'].forEach(t => {
+        const btn = document.getElementById('app-hero-tab-' + t);
+        if (btn) btn.classList.toggle('active', t === tab);
+      });
+      const stagePlano = document.getElementById('app-hero-stage-plano');
+      const stage3D = document.getElementById('app-hero-stage-3d');
+      if (stagePlano) stagePlano.classList.toggle('active', tab === 'plano');
+      if (stage3D) stage3D.classList.toggle('active', tab === '3d');
+      updateCarouselArrows();
+    }
+
+    function handleHeroTap(e) {
+      if (e.target.closest('button') || e.target.closest('.hero-media-pill-bar')) return;
+      if (Math.abs(touchDeltaX) > 12) return;
+      openAppFullscreenViewer(appHeroMediaTab);
+    }
+
+    function openAppFullscreenViewer(initialTab) {
+      const modal = document.getElementById('app-fullscreen-viewer');
+      if (!modal) return;
+      // Sync dynamic realtor info if loaded
+      const realtorAvatar = document.getElementById('realtor-avatar');
+      const realtorName = document.getElementById('realtor-display-name');
+      const fsAvatar = document.getElementById('app-fs-agent-avatar');
+      const fsName = document.getElementById('app-fs-agent-name');
+      if (fsAvatar && realtorAvatar && realtorAvatar.src) fsAvatar.src = realtorAvatar.src;
+      if (fsName && realtorName && realtorName.textContent) fsName.textContent = realtorName.textContent.trim();
+
+      modal.classList.add('active');
+      switchAppFsMediaTab(initialTab || appHeroMediaTab || 'fotos');
+      updateCarousel();
+    }
+
+    function closeAppFullscreenViewer() {
+      const modal = document.getElementById('app-fullscreen-viewer');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function switchAppFsMediaTab(tab) {
+      appFsMediaTab = tab;
+      ['fotos', 'plano', '3d'].forEach(t => {
+        const btn = document.getElementById('app-fs-tab-' + t);
+        const stage = document.getElementById('app-fs-stage-' + t);
+        if (btn) btn.classList.toggle('active', t === tab);
+        if (stage) stage.style.display = (t === tab) ? 'flex' : 'none';
+      });
+    }
+
+    function zoomAppBlueprint(delta) {
+      appBpZoom = Math.min(2.2, Math.max(0.6, appBpZoom + delta));
+      const wrap = document.getElementById('app-fs-bp-wrap');
+      const val = document.getElementById('app-bp-zoom-val');
+      if (wrap) wrap.style.transform = `scale(${appBpZoom})`;
+      if (val) val.textContent = `${Math.round(appBpZoom * 100)}%`;
+    }
+
+    function rotateApp3D(deltaZ) {
+      app3DRotZ += deltaZ;
+      const m = document.getElementById('app-fs-3d-model');
+      if (m) m.style.transform = `rotateX(${app3DRotX}deg) rotateZ(${app3DRotZ}deg)`;
+    }
+
+    // Touch & Mouse Drag for 3D Model in App Fullscreen Viewer
+    (function initApp3DDrag() {
+      const vp = document.getElementById('app-fs-3d-vp');
+      const m = document.getElementById('app-fs-3d-model');
+      if (!vp || !m) return;
+      let dragging = false, sx = 0, sy = 0;
+      vp.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('button')) return;
+        dragging = true; sx = e.clientX; sy = e.clientY;
+      });
+      window.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        const dx = e.clientX - sx, dy = e.clientY - sy;
+        sx = e.clientX; sy = e.clientY;
+        app3DRotZ += dx * 0.5;
+        app3DRotX = Math.min(75, Math.max(25, app3DRotX - dy * 0.3));
+        m.style.transform = `rotateX(${app3DRotX}deg) rotateZ(${app3DRotZ}deg)`;
+      });
+      window.addEventListener('pointerup', () => { dragging = false; });
+    })();
+
     function nextSlide() {
-      if (totalSlides <= 1) return;
-      currentSlide = (currentSlide + 1) % totalSlides;
+      if (appHeroMediaTab !== 'fotos') switchAppHeroMediaTab('fotos');
+      if (totalSlides <= 1 || currentSlide >= totalSlides - 1) return;
+      currentSlide = currentSlide + 1;
       updateCarousel();
     }
 
     function prevSlide() {
-      if (totalSlides <= 1) return;
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      if (appHeroMediaTab !== 'fotos') switchAppHeroMediaTab('fotos');
+      if (totalSlides <= 1 || currentSlide <= 0) return;
+      currentSlide = currentSlide - 1;
       updateCarousel();
     }
 
@@ -1983,7 +3389,7 @@
         }
       });
 
-      if (counterEl) counterEl.textContent = `1/${totalSlides}`;
+      if (counterEl) counterEl.textContent = `1 / ${totalSlides}`;
       updateCarousel();
     }
 
@@ -2441,17 +3847,120 @@
       showToast('💬 Abriendo chat por WhatsApp...');
     }
 
-    // 2. Botón Ofertar de la fichita del Realtor (WhatsApp con mensaje de oferta)
+    // 2. Modal de Oferta Directa (Alquiler y Compra -> WhatsApp del Realtor)
+    let currentOfferMode = 'alquiler';
+    let currentOfferPersona = 'Persona Natural';
+
     function ofertarAgente() {
-      if (!isUserLoggedIn()) {
-        redirectToLogin();
-        return;
+      openOfferModal();
+    }
+
+    function openOfferModal(defaultMode) {
+      const modal = document.getElementById('enkapta-offer-modal');
+      if (!modal) return;
+
+      // Sincronizar avatar y nombre del realtor
+      const realtorAvatar = document.getElementById('realtor-avatar');
+      const realtorName = document.getElementById('realtor-display-name');
+      const modalAvatar = document.getElementById('offer-modal-avatar');
+      const modalName = document.getElementById('offer-modal-realtor-name');
+      if (modalAvatar && realtorAvatar && realtorAvatar.src) modalAvatar.src = realtorAvatar.src;
+      if (modalName && realtorName && realtorName.textContent) modalName.textContent = realtorName.textContent.trim();
+
+      // Pre-seleccionar modo según la propiedad o mantener selección
+      if (defaultMode) {
+        switchOfferMode(defaultMode);
+      } else {
+        const periodEl = document.querySelector('.prop-price-period');
+        const periodTxt = periodEl ? periodEl.textContent.toLowerCase() : '';
+        if (periodTxt.includes('alquiler')) {
+          switchOfferMode('alquiler');
+        } else if (periodTxt.includes('venta')) {
+          switchOfferMode('compra');
+        }
       }
-      const title = document.querySelector('.prop-title') ? document.querySelector('.prop-title').textContent : 'Inmueble';
-      const price = document.querySelector('.prop-price-val') ? document.querySelector('.prop-price-val').textContent : '';
-      const msg = encodeURIComponent(`¡Hola! Me interesa hacer una oferta formal por la propiedad: ${title} (${price}) en Enkapta.`);
-      window.open(`https://wa.me/584120000000?text=${msg}`, '_blank');
-      showToast('💬 Abriendo WhatsApp para ofertar...');
+
+      modal.classList.add('active');
+    }
+
+    function closeOfferModal() {
+      const modal = document.getElementById('enkapta-offer-modal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function switchOfferMode(mode) {
+      currentOfferMode = mode;
+      const tabAlq = document.getElementById('offer-tab-alquiler');
+      const tabCom = document.getElementById('offer-tab-compra');
+      const panelAlq = document.getElementById('offer-panel-alquiler');
+      const panelCom = document.getElementById('offer-panel-compra');
+
+      if (tabAlq) tabAlq.classList.toggle('active', mode === 'alquiler');
+      if (tabCom) tabCom.classList.toggle('active', mode === 'compra');
+      if (panelAlq) panelAlq.style.display = (mode === 'alquiler') ? 'flex' : 'none';
+      if (panelCom) panelCom.style.display = (mode === 'compra') ? 'flex' : 'none';
+    }
+
+    function selectOfferPersona(tipo) {
+      currentOfferPersona = tipo;
+      const btnNat = document.getElementById('offer-person-natural');
+      const btnJur = document.getElementById('offer-person-juridica');
+      if (btnNat) btnNat.classList.toggle('active', tipo === 'Persona Natural');
+      if (btnJur) btnJur.classList.toggle('active', tipo === 'Persona Jurídica');
+    }
+
+    function submitOfferToWhatsApp() {
+      const title = document.querySelector('.prop-title') ? document.querySelector('.prop-title').textContent.trim() : 'Inmueble';
+      const listedPrice = document.querySelector('.prop-price-val') ? document.querySelector('.prop-price-val').textContent.trim() : '';
+      const realtorName = document.getElementById('realtor-display-name') ? document.getElementById('realtor-display-name').textContent.trim() : 'Realtor';
+
+      let messageLines = [];
+
+      if (currentOfferMode === 'alquiler') {
+        const monto = (document.getElementById('offer-alq-monto')?.value || '').trim() || listedPrice || 'A consultar';
+        const deposito = document.getElementById('offer-alq-deposito')?.value || '2 meses';
+        const adelantado = document.getElementById('offer-alq-adelantado')?.value || '3 meses';
+        const nota = (document.getElementById('offer-alq-nota')?.value || '').trim();
+
+        messageLines = [
+          `Hola ${realtorName}, te comparto mi oferta de *Alquiler* desde *Enkapta*:`,
+          ``,
+          `*Propiedad:* ${title} (${listedPrice})`,
+          `*Monto a ofertar:* $${monto.replace(/^\$/, '')}`,
+          `*Meses depósito:* ${deposito}`,
+          `*Meses por adelantado:* ${adelantado}`,
+          `*Tipo de persona:* ${currentOfferPersona}`
+        ];
+        if (nota) {
+          messageLines.push(`*Nota:* ${nota}`);
+        }
+      } else {
+        const precio = (document.getElementById('offer-com-precio')?.value || '').trim() || listedPrice || 'A consultar';
+        const inicial = (document.getElementById('offer-com-inicial')?.value || '').trim() || 'A convenir';
+        const forma = document.getElementById('offer-com-forma')?.value || 'Contado / Transferencia bancaria';
+        const tiempo = document.getElementById('offer-com-tiempo')?.value || 'Inmediato (7 a 15 días)';
+        const nota = (document.getElementById('offer-com-nota')?.value || '').trim();
+
+        messageLines = [
+          `Hola ${realtorName}, te comparto mi oferta de *Compra* desde *Enkapta*:`,
+          ``,
+          `*Propiedad:* ${title} (${listedPrice})`,
+          `*Precio que pagaría:* $${precio.replace(/^\$/, '')}`,
+          `*Inicial:* ${inicial.startsWith('$') ? inicial : '$' + inicial}`,
+          `*Forma de pago:* ${forma}`,
+          `*Tiempo de negociación:* ${tiempo}`
+        ];
+        if (nota) {
+          messageLines.push(`*Nota:* ${nota}`);
+        }
+      }
+
+      messageLines.push(``, `Ficha: ${window.location.href}`);
+
+      const encodedMsg = encodeURIComponent(messageLines.join('\n'));
+      closeOfferModal();
+      window.open(`https://wa.me/584120000000?text=${encodedMsg}`, '_blank');
+      showToast('💬 Enviando oferta al WhatsApp del Realtor...');
     }
 
     // 3. Botón Llamar

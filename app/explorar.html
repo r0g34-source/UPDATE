@@ -1801,6 +1801,10 @@
           <span class="chip-icon">💼</span>
           <span class="chip-label">Brokers</span>
         </button>
+        <button class="keyword-chip" onclick="filterAgentsByKeyword(this, 'agente')">
+          <span class="chip-icon">👤</span>
+          <span class="chip-label">Agente</span>
+        </button>
         <button class="keyword-chip" onclick="filterAgentsByKeyword(this, 'agencia')">
           <span class="chip-icon">🏢</span>
           <span class="chip-label">Agencias</span>
@@ -3920,7 +3924,8 @@
       if (roleParam) {
         selectedAgentRole = roleParam;
         document.querySelectorAll('#keyword-chips-agents .keyword-chip').forEach(b => {
-          if (b.textContent.toLowerCase().includes(roleParam)) b.classList.add('active');
+          const onClickAttr = b.getAttribute('onclick') || '';
+          if (onClickAttr.includes("'" + roleParam + "'") || b.textContent.toLowerCase().includes(roleParam)) b.classList.add('active');
           else b.classList.remove('active');
         });
         const roleBtn = document.getElementById('btn-agent-role-' + roleParam);
@@ -4068,6 +4073,8 @@
 
         // 1. Keyword chip
         if (currentAgentKeyword === 'broker' && !role.includes('broker') && !text.includes('broker')) {
+          match = false;
+        } else if (currentAgentKeyword === 'agente' && !role.includes('agente') && !role.includes('broker') && !text.includes('agente') && !text.includes('broker')) {
           match = false;
         } else if (currentAgentKeyword === 'agencia' && !role.includes('agencia') && !text.includes('agencia')) {
           match = false;
