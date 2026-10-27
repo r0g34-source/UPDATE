@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excelente, Oficina de 135 m² con factibilidad de adaptarla a tu modelo de negocio — Enkapta</title>
+  <meta name="description" content="Se alquila impecable oficina de 135m2 en Edificio Cámara de Comercio de Caracas, Distrito Capital.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Inter & Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Leaflet CSS & JS for Interactive Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#FF7900',
+              hover: '#E66D00',
+              glow: '#FF9433',
+              light: '#FFF4EB',
+              dark: '#CC6100'
+            },
+            surface: {
+              50: '#F9FAFB',
+              100: '#F3F4F6',
+              200: '#E5E7EB',
+              800: '#1F2937',
+              900: '#111827'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'glow': '0 0 25px -5px rgba(255, 121, 0, 0.4)',
+            'card-hover': '0 20px 30px -10px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            'floating': '0 16px 48px -12px rgba(15, 23, 42, 0.18)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Leaflet z-index fix */
+    .leaflet-pane {
+      z-index: 10 !important;
+    }
+    .leaflet-top, .leaflet-bottom {
+      z-index: 11 !important;
+    }
+
+    /* Custom thin scrollbar for sticky sidebar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #e2e8f0;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #cbd5e1;
+    }
+    .custom-scrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: #e2e8f0 transparent;
+    }
+  </style>
+
+  <!-- Auth Logic -->
+  <script src="assets/auth.js"></script>
+</head>
+<body class="bg-gray-50/60 text-gray-900 min-h-screen flex flex-col">
+
+  <!-- TOP BAR / HEADER -->
+  <header class="bg-white sticky top-0 z-50 border-b border-gray-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+      
+      <!-- LEFT: Logo + Nav Items (Calendly Style) -->
+      <div class="flex items-center space-x-7 lg:space-x-9">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-2 group shrink-0">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shadow-2xs shrink-0 overflow-hidden">
+            <img src="assets/enkapta-logo1.png" alt="Enkapta Logo" class="w-8 h-8 object-contain rounded-lg"/>
+          </div>
+          <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            Enkapta
+          </span>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-6 lg:space-x-7">
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="index.html">Inicio</a>
+          <a class="text-primary font-extrabold transition-colors text-xs sm:text-sm" href="propiedades.html">Propiedades</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="planes.html">Planes</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="quienes-somos.html">Quiénes somos</a>
+          <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="contacto.html">Contacto</a>
+        </nav>
+
+      </div>
+
+      <!-- RIGHT: Calendly Style Auth Buttons -->
+      <div class="hidden md:flex items-center space-x-3">
+        <div id="header-auth-container"></div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center md:hidden">
+        <button id="mobile-menu-btn" class="p-1.5 rounded-lg text-gray-800 hover:text-gray-900 hover:bg-white/60 focus:outline-none">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Nav Flyout -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 mt-2 rounded-2xl mx-4 shadow-lg">
+    <div id="mobile-auth-container"></div>
+    <a href="index.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Inicio</a>
+    <a href="propiedades.html" class="block px-3 py-2 rounded-lg text-sm font-bold text-primary bg-orange-50">Propiedades</a>
+    <a href="planes.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Planes</a>
+    <a href="quienes-somos.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Quiénes somos</a>
+    <a href="contacto.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Contacto</a>
+  </div>
+</header>
+
+  <!-- MAIN PROPERTY DETAILS -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-1">
+    
+    <!-- BACK BUTTON -->
+    <div class="mb-5">
+      <a href="propiedades.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-gray-200/90 text-xs sm:text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:text-primary transition-all shadow-xs">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Volver a propiedades</span>
+      </a>
+    </div>
+
+    <!-- 2-COLUMN LAYOUT -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      
+      <!-- LEFT COLUMN: GALLERY & PROPERTY INFORMATION (66% width on desktop) -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- IMAGE GALLERY CAROUSEL -->
+        <div class="space-y-4">
+          <!-- Main Hero Stage with Fotos | Plano | 3D Switcher -->
+          <div class="relative w-full h-96 sm:h-[500px] md:h-[580px] lg:h-[640px] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#14171c] group shadow-md select-none">
+            
+            <!-- STAGE 1: FOTOS VIEW -->
+            <div id="hero-stage-fotos" class="w-full h-full relative cursor-pointer" onclick="if (!event.target.closest('button')) openFullscreenGallery('fotos')">
+              <img 
+                id="main-image" 
+                src="assets/properties/gallery/oficina-1.jpg" 
+                alt="Excelente, Oficina de 135 m²" 
+                class="w-full h-full object-cover transition-all duration-300 group-hover:scale-[1.02]"
+              />
+
+              <!-- Floating Centered Prev Button (hidden on first photo) -->
+              <button type="button" id="web-hero-prev" onclick="event.stopPropagation(); prevImage()" class="hidden absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0F172A]/65 hover:bg-[#0F172A]/85 backdrop-blur-md text-white flex items-center justify-center shadow-lg transition-all hover:scale-105 active:scale-95 z-20 cursor-pointer border border-white/20">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+              </button>
+
+              <!-- Floating Centered Next Button (hidden on last photo) -->
+              <button type="button" id="web-hero-next" onclick="event.stopPropagation(); nextImage()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0F172A]/65 hover:bg-[#0F172A]/85 backdrop-blur-md text-white flex items-center justify-center shadow-lg transition-all hover:scale-105 active:scale-95 z-20 cursor-pointer border border-white/20">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+              </button>
+            </div>
+
+            <!-- STAGE 2: PLANO 2D INTERACTIVO (Inline Preview) -->
+            <div id="hero-stage-plano" class="hidden w-full h-full relative bg-[#0F172A] flex flex-col items-center justify-center p-4 sm:p-8 pb-20 cursor-pointer" onclick="if (!event.target.closest('button')) openFullscreenGallery('plano')">
+              <div class="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-bold px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>Plano Arquitectónico Acotado · 135 m²</span>
+              </div>
+              <!-- Blueprint SVG -->
+              <div class="w-full h-full max-w-3xl bg-white rounded-2xl shadow-2xl p-4 sm:p-6 flex items-center justify-center relative overflow-hidden border border-gray-200">
+                <svg viewBox="0 0 800 500" class="w-full h-full max-h-full">
+                  <defs>
+                    <pattern id="bp-grid-hero" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+                    </pattern>
+                  </defs>
+                  <rect width="800" height="500" fill="url(#bp-grid-hero)"/>
+                  <!-- Outer Walls -->
+                  <rect x="60" y="50" width="680" height="390" fill="#ffffff" stroke="#0f172a" stroke-width="8"/>
+                  <!-- Room Fills -->
+                  <rect x="64" y="54" width="240" height="190" fill="#f8fafc"/>
+                  <rect x="304" y="54" width="230" height="190" fill="#fff7ed"/>
+                  <rect x="534" y="54" width="202" height="190" fill="#f8fafc"/>
+                  <rect x="64" y="244" width="320" height="192" fill="#f8fafc"/>
+                  <rect x="384" y="244" width="180" height="192" fill="#f1f5f9"/>
+                  <rect x="564" y="244" width="172" height="192" fill="#f8fafc"/>
+                  <!-- Internal Partitions -->
+                  <line x1="304" y1="50" x2="304" y2="210" stroke="#0f172a" stroke-width="5"/>
+                  <line x1="534" y1="50" x2="534" y2="210" stroke="#0f172a" stroke-width="5"/>
+                  <line x1="60" y1="244" x2="250" y2="244" stroke="#0f172a" stroke-width="5"/>
+                  <line x1="295" y1="244" x2="490" y2="244" stroke="#0f172a" stroke-width="5"/>
+                  <line x1="535" y1="244" x2="740" y2="244" stroke="#0f172a" stroke-width="5"/>
+                  <line x1="384" y1="280" x2="384" y2="440" stroke="#0f172a" stroke-width="5"/>
+                  <line x1="564" y1="280" x2="564" y2="440" stroke="#0f172a" stroke-width="5"/>
+                  <!-- Door Swings -->
+                  <path d="M 250 244 A 45 45 0 0 1 295 200" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+                  <line x1="250" y1="244" x2="250" y2="200" stroke="#0f172a" stroke-width="3"/>
+                  <path d="M 490 244 A 45 45 0 0 0 535 200" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+                  <line x1="535" y1="244" x2="535" y2="200" stroke="#0f172a" stroke-width="3"/>
+                  <!-- Furniture: Conference Table -->
+                  <rect x="120" y="105" width="120" height="56" rx="8" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+                  <!-- Workstations -->
+                  <rect x="345" y="95" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+                  <rect x="425" y="95" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+                  <rect x="345" y="150" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+                  <rect x="425" y="150" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+                  <!-- Room Labels -->
+                  <text x="180" y="195" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">SALA DE JUNTAS</text>
+                  <text x="180" y="213" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">5.20 m × 4.10 m (21.3 m²)</text>
+                  <text x="418" y="210" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ÁREA OPERATIVA / COWORK</text>
+                  <text x="418" y="227" text-anchor="middle" font-size="11" font-weight="600" fill="#9a3412">6.40 m × 4.80 m (30.7 m²)</text>
+                  <text x="635" y="145" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">DIRECCIÓN GENERAL</text>
+                  <text x="635" y="163" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">4.50 m × 4.10 m (18.5 m²)</text>
+                  <text x="220" y="340" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">RECEPCIÓN Y LOBBY</text>
+                  <text x="220" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">7.10 m × 4.20 m (29.8 m²)</text>
+                  <text x="474" y="340" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">KITCHENETTE &amp; 2 BAÑOS</text>
+                  <text x="474" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">3.80 m × 4.20 m (16.0 m²)</text>
+                  <text x="650" y="340" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">GERENCIA / ARCHIVO</text>
+                  <text x="650" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">4.45 m × 4.20 m (18.7 m²)</text>
+                  <!-- Outer Dimension Lines -->
+                  <line x1="60" y1="28" x2="740" y2="28" stroke="#ea580c" stroke-width="2"/>
+                  <text x="400" y="21" text-anchor="middle" font-size="12" font-weight="800" fill="#ea580c">16.20 m</text>
+                  <line x1="768" y1="50" x2="768" y2="440" stroke="#ea580c" stroke-width="2"/>
+                  <text x="775" y="250" text-anchor="middle" font-size="12" font-weight="800" fill="#ea580c" transform="rotate(90 775 250)">8.35 m</text>
+                </svg>
+                <div class="absolute bottom-3 right-3 bg-gray-900/85 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                  <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-orange-400"></i>
+                  <span>Clic para abrir plano interactivo</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- STAGE 3: MODELO 3D INTERACTIVO (Inline Preview) -->
+            <div id="hero-stage-3d" class="hidden w-full h-full relative bg-gradient-to-b from-[#0F172A] via-[#1E293B] to-[#0F172A] flex flex-col items-center justify-center overflow-hidden pb-16">
+              <div class="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-bold px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                <span>Maqueta 3D Interactiva · Arrastra para rotar</span>
+              </div>
+              <button type="button" onclick="openFullscreenGallery('3d')" class="absolute top-4 right-16 bg-primary hover:bg-primary-hover text-white text-xs font-bold px-3.5 py-2 rounded-full shadow-lg flex items-center gap-1.5 z-20 cursor-pointer transition-transform hover:scale-105">
+                <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                <span>Abrir 3D en Pantalla Completa</span>
+              </button>
+              <!-- Interactive Isometric 3D Dollhouse -->
+              <div id="hero-3d-viewport" class="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing" style="perspective: 1100px;">
+                <div id="hero-3d-dollhouse" style="width: 340px; height: 230px; transform-style: preserve-3d; transform: rotateX(56deg) rotateZ(-38deg); transition: transform 0.08s linear; position: relative;">
+                  <!-- Base Slab -->
+                  <div style="position:absolute; inset:0; background: linear-gradient(135deg, #334155, #1e293b); border: 3px solid #FF7900; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,0.75); transform: translateZ(0px);">
+                    <!-- Floor layout lines inside 3D slab -->
+                    <div style="position:absolute; left:0; top:0; width:42%; height:52%; border-right:3px solid #cbd5e1; border-bottom:3px solid #cbd5e1; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:800;">SALA JUNTAS</div>
+                    <div style="position:absolute; left:42%; top:0; width:58%; height:52%; border-bottom:3px solid #cbd5e1; background:rgba(255,121,0,0.16); display:flex; align-items:center; justify-content:center; color:#fed7aa; font-size:10px; font-weight:800;">COWORK / OFICINAS</div>
+                    <div style="position:absolute; left:0; top:52%; width:55%; height:48%; border-right:3px solid #cbd5e1; background:rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; color:#e2e8f0; font-size:10px; font-weight:800;">RECEPCIÓN</div>
+                    <div style="position:absolute; left:55%; top:52%; width:45%; height:48%; background:rgba(255,121,0,0.12); display:flex; align-items:center; justify-content:center; color:#fdba74; font-size:10px; font-weight:800;">DIRECCIÓN</div>
+                  </div>
+                  <!-- Extruded 3D Walls -->
+                  <div style="position:absolute; left:0; top:0; width:100%; height:44px; background:rgba(241,245,249,0.85); border:1px solid #94a3b8; transform-origin: top; transform: rotateX(-90deg);"></div>
+                  <div style="position:absolute; left:0; top:0; width:44px; height:100%; background:rgba(226,232,240,0.88); border:1px solid #94a3b8; transform-origin: left; transform: rotateY(90deg);"></div>
+                  <div style="position:absolute; left:42%; top:0; width:36px; height:52%; background:rgba(255,121,0,0.65); border:1px solid #fb923c; transform-origin: left; transform: rotateY(90deg);"></div>
+                  <!-- Interactive Hotspot Pins floating in 3D -->
+                  <button type="button" onclick="event.stopPropagation(); openFullscreenGallery('3d')" style="position:absolute; left:20%; top:25%; transform: translateZ(34px) rotateZ(38deg) rotateX(-56deg); background:#FF7900; color:#fff; border:2px solid #fff; border-radius:9999px; padding:3px 9px; font-size:10px; font-weight:800; box-shadow:0 4px 12px rgba(0,0,0,0.4); cursor:pointer;">1. Juntas</button>
+                  <button type="button" onclick="event.stopPropagation(); openFullscreenGallery('3d')" style="position:absolute; left:65%; top:24%; transform: translateZ(34px) rotateZ(38deg) rotateX(-56deg); background:#FF7900; color:#fff; border:2px solid #fff; border-radius:9999px; padding:3px 9px; font-size:10px; font-weight:800; box-shadow:0 4px 12px rgba(0,0,0,0.4); cursor:pointer;">2. Operativa</button>
+                  <button type="button" onclick="event.stopPropagation(); openFullscreenGallery('3d')" style="position:absolute; left:28%; top:74%; transform: translateZ(34px) rotateZ(38deg) rotateX(-56deg); background:#EA580C; color:#fff; border:2px solid #fff; border-radius:9999px; padding:3px 9px; font-size:10px; font-weight:800; box-shadow:0 4px 12px rgba(0,0,0,0.4); cursor:pointer;">3. Lobby 360°</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top Right Action Controls: Fullscreen & Share -->
+            <div class="absolute top-4 right-4 flex items-center gap-2 z-20">
+              <!-- Fullscreen Button -->
+              <button 
+                type="button"
+                onclick="event.stopPropagation(); openFullscreenGallery()" 
+                title="Ver en pantalla completa" 
+                class="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-primary flex items-center justify-center shadow-md transition-all hover:scale-110 active:scale-95 cursor-pointer"
+              >
+                <i data-lucide="maximize" class="w-4 h-4"></i>
+              </button>
+
+              <!-- Share Button -->
+              <button 
+                type="button"
+                onclick="event.stopPropagation(); shareProperty()" 
+                title="Compartir" 
+                class="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-primary flex items-center justify-center shadow-md transition-all hover:scale-110 active:scale-95 cursor-pointer"
+              >
+                <i data-lucide="share-2" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- ===============================================================
+                 BOTTOM OVERLAY BAR (Left: 1 / 7 pill | Centered: Fotos / Plano / 3D pill)
+                 =============================================================== -->
+            <div class="absolute inset-x-0 bottom-0 p-4 sm:p-5 flex items-center justify-between bg-gradient-to-t from-black/65 via-black/20 to-transparent z-30 pointer-events-none">
+              
+              <!-- Left: Counter Pill (e.g. 1 / 7) -->
+              <div id="web-hero-counter-pill" class="pointer-events-auto bg-[#0F172A]/88 backdrop-blur-md text-white text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-full shadow-lg border border-white/15 tracking-wide">
+                <span id="current-index-badge">1</span> / 7
+              </div>
+
+              <!-- Center: Floating Dark Glass Pill Switcher (Fotos | Plano | 3D) -->
+              <div class="pointer-events-auto absolute left-1/2 -translate-x-1/2 bg-[#0F172A]/90 backdrop-blur-xl p-1 sm:p-1.5 rounded-full flex items-center gap-1 sm:gap-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.45)] border border-white/15">
+                
+                <!-- 1. Fotos -->
+                <button 
+                  type="button"
+                  id="hero-tab-fotos"
+                  onclick="event.stopPropagation(); switchHeroMediaTab('fotos')" 
+                  class="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer bg-white text-gray-900 shadow-sm"
+                >
+                  <!-- Picture Icon -->
+                  <svg class="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="16" rx="2.5"/>
+                    <circle cx="8.5" cy="9.5" r="1.5" fill="currentColor"/>
+                    <path d="M21 16l-5.5-5.5L9 17l-3-3-3 3"/>
+                  </svg>
+                  <span>Fotos</span>
+                </button>
+
+                <!-- 2. Plano -->
+                <button 
+                  type="button"
+                  id="hero-tab-plano"
+                  onclick="event.stopPropagation(); switchHeroMediaTab('plano')" 
+                  class="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer text-white hover:bg-white/10"
+                >
+                  <!-- Floor Plan Icon (Matches screenshot 1) -->
+                  <svg class="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M3 10h7V3"/>
+                    <path d="M14 3v5h7"/>
+                    <path d="M14 14v7"/>
+                    <path d="M3 16h5"/>
+                  </svg>
+                  <span>Plano</span>
+                </button>
+
+                <!-- 3. Tour Propiedad -->
+                <button 
+                  type="button"
+                  id="hero-tab-3d"
+                  onclick="event.stopPropagation(); switchHeroMediaTab('3d')" 
+                  class="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer text-white hover:bg-white/10"
+                >
+                  <!-- 3D Isometric Cube Icon (Matches screenshot 1) -->
+                  <svg class="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                  </svg>
+                  <span>Tour Propiedad</span>
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Thumbnails Row (Más grandes y visibles) -->
+          <div class="flex items-center gap-3 overflow-x-auto pb-2 pt-1 no-scrollbar">
+            <button onclick="selectImage(0)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-primary ring-2 ring-primary/30 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-1.jpg" alt="Thumb 1" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(1)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-2.jpg" alt="Thumb 2" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(2)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-3.jpg" alt="Thumb 3" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(3)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-4.jpg" alt="Thumb 4" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(4)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-5.jpg" alt="Thumb 5" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(5)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-6.jpg" alt="Thumb 6" class="w-full h-full object-cover"/>
+            </button>
+            <button onclick="selectImage(6)" class="thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer">
+              <img src="assets/properties/gallery/oficina-7.jpg" alt="Thumb 7" class="w-full h-full object-cover"/>
+            </button>
+          </div>
+        </div>
+
+        <!-- PROPERTY HEADER: TITLE, PRICE & SPECS -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm space-y-6">
+          
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <!-- Title and Location -->
+            <div class="max-w-2xl">
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight">
+                Excelente, Oficina de 135 m² con factibilidad de adaptarla a tu modelo de negocio
+              </h1>
+              
+              <div class="flex items-center gap-1.5 text-sm font-medium text-gray-500 mt-2.5">
+                <i data-lucide="map-pin" class="w-4 h-4 text-primary shrink-0"></i>
+                <span>Distrito Capital • Venezuela</span>
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="text-left sm:text-right shrink-0">
+              <div class="text-3xl sm:text-4xl font-black text-primary">
+                USD 860
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Specs: Habitaciones & Área -->
+          <div class="flex items-center gap-6 pt-2 pb-1 text-sm sm:text-base font-semibold text-gray-800">
+            <div class="flex items-center gap-2">
+              <i data-lucide="bed-double" class="w-5 h-5 text-primary"></i>
+              <span>6 Habitaciones</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="ruler" class="w-5 h-5 text-primary"></i>
+              <span>Área: 135 m²</span>
+            </div>
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <div class="pt-6 border-t border-gray-100 space-y-4">
+            <h2 class="text-lg sm:text-xl font-bold text-gray-900">Descripción</h2>
+            <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+              ¡Impulsa tu negocio en el espacio ideal! Se alquila impecable oficina de 135m2 diseñada para el máximo rendimiento. Espacios amplios, iluminados y listos para ocupar. Distribución: 5 cubículos espaciosos (ideales para gerencia o equipos operativos). Comodidades: 2 baños y kitchinette integrada. Ubicación: Edificio Camara de Comercio de Caracas. ¡La imagen corporativa que tu empresa merece!
+            </p>
+
+            <!-- Technical attributes row -->
+            <div class="pt-3 space-y-1.5 text-sm text-gray-700">
+              <div><span class="font-bold text-gray-900">Fecha de construcción:</span> Año 1974</div>
+              <div><span class="font-bold text-gray-900">Status:</span> Usado</div>
+              <div><span class="font-bold text-gray-900">Área construida:</span> 135 m²</div>
+            </div>
+          </div>
+
+          <!-- CARACTERÍSTICAS -->
+          <div class="pt-6 border-t border-gray-100">
+            <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">Características</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs sm:text-sm font-semibold text-gray-700">
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="car" class="w-5 h-5 text-primary"></i>
+                <span>Estacionamiento</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="arrow-up-down" class="w-5 h-5 text-primary"></i>
+                <span>Ascensor</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="shield-check" class="w-5 h-5 text-primary"></i>
+                <span>Seguridad</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- METADATA GRID (Categoría, Tipo, Estado, Municipio) -->
+          <div class="pt-6 border-t border-gray-100 grid grid-cols-2 gap-y-3 gap-x-6 text-sm">
+            <div>
+              <span class="text-gray-500">Categoría:</span>
+              <span class="font-semibold text-gray-900 ml-1">Alquiler</span>
+            </div>
+            <div>
+              <span class="text-gray-500">Tipo:</span>
+              <span class="font-semibold text-gray-900 ml-1">Oficina</span>
+            </div>
+            <div>
+              <span class="text-gray-500">Estado:</span>
+              <span class="font-semibold text-gray-900 ml-1">Distrito Capital</span>
+            </div>
+            <div>
+              <span class="text-gray-500">Municipio:</span>
+              <span class="font-semibold text-gray-900 ml-1">Libertador</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: SIDEBAR (PUBLICADOR, ACCIONES, MAPA) (Sticky on desktop, never clipped) -->
+      <aside class="space-y-4 lg:sticky lg:top-20 lg:self-start lg:z-30">
+        
+        <!-- CARD: PUBLICADOR -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl border border-gray-200/80 p-5 sm:p-6 shadow-sm">
+          <h2 class="text-base sm:text-lg font-bold text-gray-900 mb-3.5">Publicador</h2>
+          
+          <a href="perfil.html?u=duenas" class="flex items-center gap-3.5 sm:gap-4 group/publisher cursor-pointer">
+            <!-- Dueñas Agency Logo -->
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-black flex items-center justify-center shrink-0 border border-gray-100 shadow-xs group-hover/publisher:ring-2 group-hover/publisher:ring-primary/40 transition-all">
+              <img src="assets/duenas-logo.jpg" alt="Dueñas Real Estate" class="w-full h-full object-cover"/>
+            </div>
+
+            <!-- Broker Info -->
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5 font-bold text-gray-900 text-sm sm:text-base group-hover/publisher:text-primary transition-colors">
+                <span>Daniel Dueñas</span>
+                <i data-lucide="badge-check" class="w-4 h-4 text-primary shrink-0" title="Broker Verificado"></i>
+              </div>
+              <p class="text-xs text-gray-500 mt-0.5">Publicado por: broker</p>
+              <p class="text-xs text-gray-500 mt-0.5 truncate">jdb@dre.com.ve</p>
+            </div>
+          </a>
+
+          <!-- SECCIÓN DE CONTACTO: ¿Te interesó esta propiedad? -->
+          <div class="pt-4 mt-4 border-t border-gray-100 space-y-2.5">
+            <h3 class="text-xs sm:text-sm font-bold text-gray-900">
+              ¿Te interesó esta propiedad?
+            </h3>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button 
+                type="button" 
+                onclick="openWebOfferModal()"
+                class="w-full py-3 px-4 rounded-xl bg-white hover:bg-orange-50/60 border border-gray-200 hover:border-primary/40 active:scale-[0.98] text-gray-900 font-bold text-xs sm:text-sm transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <i data-lucide="message-circle" class="w-4 h-4 text-primary"></i>
+                <span>Ofertar</span>
+              </button>
+              <button 
+                type="button" 
+                onclick="requireAuthForContact('https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interes%C3%B3%20esta%20propiedad:%20Excelente,%20Oficina%20de%20135%20m%C2%B2%20en%20C%C3%A1mara%20de%20Comercio%20de%20Caracas')"
+                class="w-full py-3 px-4 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:shadow-lg hover:shadow-primary/30 flex items-center justify-center gap-2 cursor-pointer group"
+              >
+                <i data-lucide="message-square" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                <span>Contáctame</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="space-y-2">
+          <!-- Guardar en favoritos -->
+          <button id="btn-fav" onclick="toggleFav()" class="w-full flex items-center justify-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-white border border-gray-200/90 hover:bg-gray-50 text-gray-700 text-xs sm:text-sm font-semibold transition-all shadow-xs group cursor-pointer">
+            <i id="fav-icon" data-lucide="heart" class="w-4 h-4 text-gray-500 group-hover:text-red-500 transition-colors"></i>
+            <span id="fav-text">Guardar en favoritos</span>
+          </button>
+
+          <!-- Ver perfil del propietario -->
+          <a href="perfil.html?u=duenas" class="w-full flex items-center justify-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-white border border-gray-200/90 hover:bg-gray-50 text-gray-700 text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer">
+            <i data-lucide="user" class="w-4 h-4 text-gray-500"></i>
+            <span>Ver perfil del propietario</span>
+          </a>
+
+          <!-- Compartir propiedad -->
+          <button onclick="shareProperty()" class="w-full flex items-center justify-center gap-2.5 py-2.5 px-3.5 rounded-xl bg-white border border-gray-200/90 hover:bg-gray-50 text-gray-700 text-xs sm:text-sm font-semibold transition-all shadow-xs cursor-pointer">
+            <i data-lucide="share-2" class="w-4 h-4 text-gray-500"></i>
+            <span>Compartir propiedad</span>
+          </button>
+        </div>
+
+        <!-- CARD: UBICACIÓN (Interactive Map matching original) -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl border border-gray-200/80 p-4 sm:p-5 shadow-sm space-y-3">
+          <h2 class="text-sm sm:text-base font-bold text-gray-900">Ubicación</h2>
+          
+          <div class="relative w-full h-44 sm:h-48 rounded-xl sm:rounded-2xl overflow-hidden border border-gray-100">
+            <div id="map" class="w-full h-full"></div>
+            
+            <!-- Expand / Fullscreen Button -->
+            <button onclick="toggleMapFullscreen()" title="Pantalla completa" class="absolute bottom-2.5 right-2.5 z-20 w-8 h-8 rounded-lg bg-white shadow-md border border-gray-200/90 flex items-center justify-center text-gray-700 hover:text-primary transition-all cursor-pointer">
+              <i data-lucide="maximize" class="w-4 h-4"></i>
+            </button>
+          </div>
+          
+          <p class="text-[11px] sm:text-xs text-gray-500 leading-tight">
+            <span class="font-semibold text-gray-700">Zona:</span> Edif. Cámara de Comercio, Av Este 2, Caracas 1050, Distrito Capital.
+          </p>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- RECOMENDACIONES: PROPIEDADES SIMILARES                                     -->
+  <!-- ========================================================================= -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 w-full">
+    <!-- Header de Recomendaciones -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+          Propiedades similares
+        </h2>
+        <p class="text-sm sm:text-base text-gray-500 mt-1">
+          Inmuebles verificados con ubicación y características afines que te pueden interesar.
+        </p>
+      </div>
+
+      <a href="propiedades.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-hover group transition-colors shrink-0">
+        <span>Ver todas las propiedades</span>
+        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+      </a>
+    </div>
+
+    <!-- Cards Grid (3 Columnas con tamaño más balanceado y compacto) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- CARD 1: Oficina en venta El Recreo OSVI -->
+      <div onclick="if (!event.target.closest('button')) window.location.href='propiedad-detalle.html'" class="cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col">
+        <div class="relative h-52 sm:h-56 overflow-hidden">
+          <img 
+            src="assets/properties/prop-2.png" 
+            alt="Oficina en venta El Recreo OSVI" 
+            class="w-full h-full object-cover transition-opacity duration-300"
+          >
+          <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Oficina</span>
+          </div>
+          <button class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+            <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-2">
+              Oficina en venta El Recreo OSVI
+            </h3>
+            
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <div class="w-8 h-8 rounded-full ring-2 ring-primary/20 shadow-2xs overflow-hidden shrink-0 border border-white bg-gray-100">
+                  <img src="assets/realtors/valeria.jpg" alt="Lic. Valeria Valera" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="flex items-center gap-1 min-w-0">
+                  <span class="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-primary transition-colors tracking-tight truncate">
+                    Lic. Valeria Valera
+                  </span>
+                  <i data-lucide="badge-check" class="w-4 h-4 text-primary shrink-0" title="Realtor Verificado"></i>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 shrink-0 ml-2">
+                <button 
+                  type="button" 
+                  onclick="event.stopPropagation(); requireAuthForContact('tel:+584248407372')" 
+                  title="Llamar por teléfono"
+                  class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer group/call"
+                >
+                  <i data-lucide="phone" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/call:scale-110 transition-transform"></i>
+                </button>
+                <button 
+                  type="button" 
+                  onclick="event.stopPropagation(); requireAuthForContact('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Oficina%20en%20venta%20El%20Recreo')" 
+                  title="Enviar mensaje directo"
+                  class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer group/msg"
+                >
+                  <i data-lucide="message-square" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/msg:scale-110 transition-transform"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-2.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i> Distrito Capital, El Recreo
+            </div>
+
+            <div class="text-xl sm:text-2xl font-black text-primary">
+              USD 152.000
+            </div>
+          </div>
+
+          <!-- Specs with Orange Icons matching Home -->
+          <div class="pt-3 border-t border-gray-100 flex items-center flex-wrap gap-x-3.5 gap-y-1.5 text-xs text-gray-700 font-bold">
+            <div class="flex items-center gap-1">
+              <i data-lucide="bed" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>hab. 3</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="bath" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>baños 3</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="car" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>estac. 2</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="ruler" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>área 235 m²</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Oficina en venta bello monte torre financiera JULI -->
+      <div onclick="if (!event.target.closest('button')) window.location.href='propiedad-detalle.html'" class="cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col">
+        <div class="relative h-52 sm:h-56 overflow-hidden">
+          <img 
+            src="assets/properties/prop-3.jpg" 
+            alt="Oficina en venta bello monte torre financiera JULI" 
+            class="w-full h-full object-cover transition-opacity duration-300"
+          >
+          <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Oficina</span>
+          </div>
+          <button class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+            <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-2">
+              Oficina en venta bello monte torre financiera JULI
+            </h3>
+            
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <div class="w-8 h-8 rounded-full ring-2 ring-primary/20 shadow-2xs overflow-hidden shrink-0 border border-white bg-gray-100">
+                  <img src="assets/realtors/roberto.jpg" alt="Roberto Rodríguez" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="flex items-center gap-1 min-w-0">
+                  <span class="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-primary transition-colors tracking-tight truncate">
+                    Roberto Rodríguez
+                  </span>
+                  <i data-lucide="badge-check" class="w-4 h-4 text-primary shrink-0" title="Realtor Verificado"></i>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 shrink-0 ml-2">
+                <button 
+                  type="button" 
+                  onclick="event.stopPropagation(); requireAuthForContact('tel:+584248407372')" 
+                  title="Llamar por teléfono"
+                  class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer group/call"
+                >
+                  <i data-lucide="phone" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/call:scale-110 transition-transform"></i>
+                </button>
+                <button 
+                  type="button" 
+                  onclick="event.stopPropagation(); requireAuthForContact('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Oficina%20en%20venta%20Bello%20Monte')" 
+                  title="Enviar mensaje directo"
+                  class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer group/msg"
+                >
+                  <i data-lucide="message-square" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/msg:scale-110 transition-transform"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-2.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i> Distrito Capital, Bello Monte
+            </div>
+
+            <div class="text-xl sm:text-2xl font-black text-primary">
+              USD 147.000
+            </div>
+          </div>
+
+          <!-- Specs with Orange Icons matching Home -->
+          <div class="pt-3 border-t border-gray-100 flex items-center flex-wrap gap-x-3.5 gap-y-1.5 text-xs text-gray-700 font-bold">
+            <div class="flex items-center gap-1">
+              <i data-lucide="bed" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>hab. 2</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="bath" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>baños 2</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="car" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>estac. 2</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="ruler" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>área 190 m²</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: Casa comercial Colinas De Los Chaguaramos OSVI -->
+      <div onclick="if (!event.target.closest('button')) window.location.href='propiedad-detalle.html'" class="cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col">
+        <div class="relative h-52 sm:h-56 overflow-hidden">
+          <img 
+            src="assets/properties/prop-1.jpg" 
+            alt="Casa comercial Colinas De Los Chaguaramos OSVI" 
+            class="w-full h-full object-cover transition-opacity duration-300"
+          >
+          <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Comercial</span>
+          </div>
+          <button class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+            <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-2">
+              Casa comercial Colinas De Los Chaguaramos OSVI
+            </h3>
+            
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <div class="w-8 h-8 rounded-full ring-2 ring-primary/20 shadow-2xs overflow-hidden shrink-0 border border-white bg-gray-100">
+                  <img src="assets/realtors/carlos.jpg" alt="Lic. Carlos Mendoza" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <div class="flex items-center gap-1 min-w-0">
+                  <span class="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-primary transition-colors tracking-tight truncate">
+                    Lic. Carlos Mendoza
+                  </span>
+                  <i data-lucide="badge-check" class="w-4 h-4 text-primary shrink-0" title="Realtor Verificado"></i>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 shrink-0 ml-2">
+                <button 
+                  type="button" 
+                  onclick="event.stopPropagation(); requireAuthForContact('tel:+584248407372')" 
+                  title="Llamar por teléfono"
+                  class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer group/call"
+                >
+                  <i data-lucide="phone" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/call:scale-110 transition-transform"></i>
+                </button>
+                <button 
+                  type="button" 
+                  onclick="event.stopPropagation(); requireAuthForContact('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Casa%20comercial%20Colinas%20De%20Los%20Chaguaramos')" 
+                  title="Enviar mensaje directo"
+                  class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-50 hover:bg-orange-50 text-gray-400 hover:text-primary border border-gray-200/80 hover:border-primary/40 flex items-center justify-center transition-all duration-200 active:scale-90 shadow-2xs shrink-0 cursor-pointer group/msg"
+                >
+                  <i data-lucide="message-square" class="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/msg:scale-110 transition-transform"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-2.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i> Distrito Capital, Libertador
+            </div>
+
+            <div class="text-xl sm:text-2xl font-black text-primary">
+              USD 935.000
+            </div>
+          </div>
+
+          <!-- Specs with Orange Icons matching Home -->
+          <div class="pt-3 border-t border-gray-100 flex items-center flex-wrap gap-x-3.5 gap-y-1.5 text-xs text-gray-700 font-bold">
+            <div class="flex items-center gap-1">
+              <i data-lucide="bed" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>hab. 5</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="bath" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>baños 7</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="car" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>estac. 6</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <i data-lucide="ruler" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+              <span>área 850 m²</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- NEW FOOTER GRID -->
+      <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
+        
+        <!-- Left Section: 4 Columnas de Navegación de Propiedash -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 flex-1">
+          
+          <!-- 1. EXPLORAR -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Explorar</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="propiedades.html?categoria=Venta" class="hover:text-primary transition-colors">Comprar</a></li>
+              <li><a href="propiedades.html?categoria=Alquiler" class="hover:text-primary transition-colors">Alquilar</a></li>
+              <li><a href="propiedades.html" class="hover:text-primary transition-colors">Propiedades por estado</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Directorio de profesionales</a></li>
+            </ul>
+          </div>
+
+          <!-- 2. RECURSOS -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Recursos</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="aspectos-legales.html" class="hover:text-primary transition-colors">Aspectos legales</a></li>
+              <li><a href="glosario.html" class="hover:text-primary transition-colors">Glosario inmobiliario</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Noticias</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. EMPRESA -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Empresa</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="quienes-somos.html" class="hover:text-primary transition-colors">Sobre nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Trabaja con nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Prensa</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Precios</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Publica tu propiedad</a></li>
+              <li><a href="contacto.html" class="hover:text-primary transition-colors">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- 4. LEGAL -->
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Legal</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Términos y condiciones</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Política de privacidad</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Eliminar cuenta</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Preguntas frecuentes</a></li>
+              <li><a href="https://wa.me/584248407372" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Centro de ayuda</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right Section: Marca, Slogan, Tarjetas Móviles y Redes (Estilo Privy) -->
+        <div class="lg:w-96 flex flex-col items-start lg:items-end text-left lg:text-right shrink-0">
+          
+          <!-- Logo Enkapta en Naranja (sin icono) -->
+          <a href="index.html" class="inline-flex items-center mb-4 group">
+            <span class="text-3xl sm:text-4xl font-black text-primary tracking-tight group-hover:brightness-110 transition-all">Enkapta</span>
+          </a>
+
+          <!-- Slogan / Tagline (Estilo Privy) -->
+          <p class="text-base sm:text-lg font-semibold text-gray-800 lg:text-right max-w-sm mb-6 leading-snug">
+            La plataforma inmobiliaria moderna. Conectamos compradores, inquilinos y agentes.
+          </p>
+
+          <!-- EN TU MÓVIL O TABLET - Tarjetas App Store & Google Play (Propiedash) -->
+          <div class="mb-6 w-full flex flex-col items-start lg:items-end">
+            <span class="text-xs font-black uppercase tracking-wider text-gray-400 mb-3 block">En tu móvil o tablet</span>
+            <div class="flex items-center gap-3 flex-wrap justify-start lg:justify-end">
+              
+              <!-- Tarjeta App Store iOS -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 fill-current shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.15.65-2.84 1.45-.6.7-.99 1.77-.96 2.83 1.08.08 2.18-.56 2.79-1.41z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[10px] text-gray-300 font-normal">Descárgalo en el</div>
+                  <div class="text-xs font-bold text-white tracking-wide">App Store</div>
+                </div>
+              </a>
+
+              <!-- Tarjeta Google Play Android -->
+              <a href="#" class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-black hover:bg-gray-900 text-white transition-all shadow-xs hover:shadow-md border border-black group">
+                <svg class="w-5 h-5 shrink-0 group-hover:scale-105 transition-transform" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M3.61 1.814L13.793 12 3.61 22.186A2.296 2.296 0 0 1 3 20.655V3.345c0-.6.23-1.157.61-1.531z"/>
+                  <path fill="#FBBC04" d="M17.186 8.607L13.793 12l3.393 3.393 3.83-2.189a1.642 1.642 0 0 0 0-2.812l-3.83-2.189z"/>
+                  <path fill="#EA4335" d="M3.61 1.814l10.183 10.186 3.393-3.393L5.474.965A2.327 2.327 0 0 0 3.61 1.814z"/>
+                  <path fill="#34A853" d="M3.61 22.186A2.327 2.327 0 0 0 5.474 23.035l11.712-7.642-3.393-3.393L3.61 22.186z"/>
+                </svg>
+                <div class="text-left leading-tight">
+                  <div class="text-[9px] uppercase tracking-wider text-gray-300 font-medium">DESCARGAR EN</div>
+                  <div class="text-xs font-bold text-white tracking-wide">Google Play</div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Redes Sociales (Instagram, Facebook, TikTok) -->
+          <div class="flex items-center gap-3 justify-start lg:justify-end mb-4">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Instagram">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Facebook">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="TikTok">
+              <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Copyright (Estilo Privy) -->
+          <div class="text-xs text-gray-400 font-medium lg:text-right">
+            © 2026 Enkapta, C.A. Todos los derechos reservados.
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX / FULLSCREEN MEDIA VIEWER (Fotos | Plano | 3D Centered + Tall Photo + Bottom Realtor Bar) -->
+  <div id="fullscreen-modal" class="hidden fixed inset-0 z-[100] bg-[#141619] flex flex-col justify-between select-none animate-fadeIn text-white">
+    
+    <!-- 1. TOP HEADER BAR (Back | Centered Fotos / Plano / 3D Pill | Guardar + Compartir) -->
+    <div class="relative h-14 sm:h-16 bg-[#0F172A] border-b border-primary/25 px-3 sm:px-6 flex items-center justify-between gap-2 z-30 shrink-0">
+      
+      <!-- Left: Back Arrow + Optional Desktop Address -->
+      <button 
+        type="button" 
+        onclick="closeFullscreenGallery()" 
+        class="flex items-center gap-2 text-gray-200 hover:text-white transition-colors min-w-0 cursor-pointer group"
+        title="Volver a la ficha"
+      >
+        <div class="w-9 h-9 rounded-full bg-white/10 group-hover:bg-white/20 flex items-center justify-center transition-colors shrink-0">
+          <i data-lucide="chevron-left" class="w-5 h-5 text-white"></i>
+        </div>
+        <span class="hidden lg:inline text-xs sm:text-sm font-semibold truncate max-w-xs text-gray-300">
+          Edif. Cámara de Comercio, Av. Este 2
+        </span>
+      </button>
+
+      <!-- Center: Segmented Pill Switcher (Fotos | Plano | 3D) Centered in Header -->
+      <div class="absolute left-1/2 -translate-x-1/2 bg-[#1E293B] p-1 rounded-full flex items-center gap-0.5 sm:gap-1 shadow-inner border border-white/10 shrink-0">
+        <button 
+          type="button" 
+          id="fs-tab-fotos"
+          onclick="switchFsMediaTab('fotos')" 
+          class="px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer bg-white text-gray-900 shadow-sm"
+        >
+          Fotos
+        </button>
+        <button 
+          type="button" 
+          id="fs-tab-plano"
+          onclick="switchFsMediaTab('plano')" 
+          class="px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer text-gray-200 hover:text-white"
+        >
+          Plano
+        </button>
+        <button 
+          type="button" 
+          id="fs-tab-3d"
+          onclick="switchFsMediaTab('3d')" 
+          class="px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer text-gray-200 hover:text-white"
+        >
+          Tour Propiedad
+        </button>
+      </div>
+
+      <!-- Right: Guardar & Compartir -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <button 
+          type="button" 
+          onclick="toggleFav()" 
+          class="w-9 h-9 sm:w-auto sm:px-3 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-200 hover:text-white transition-colors cursor-pointer"
+          title="Guardar"
+        >
+          <i id="fs-fav-icon" data-lucide="heart" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Guardar</span>
+        </button>
+
+        <button 
+          type="button" 
+          onclick="shareProperty()" 
+          class="w-9 h-9 sm:w-auto sm:px-3 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-200 hover:text-white transition-colors cursor-pointer"
+          title="Compartir"
+        >
+          <i data-lucide="share" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Compartir</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. CENTER STAGE (Tall Photo with Full Protagonism + Plano + 3D Panels) -->
+    <div class="relative flex-1 flex items-center justify-center bg-[#0F172A] overflow-hidden py-2 sm:py-4">
+
+      <!-- PANEL A: FOTOS VIEW -->
+      <div id="fs-stage-fotos" class="w-full h-full flex items-center justify-center relative px-2 sm:px-14">
+        
+        <!-- Left Circular Arrow < (hidden on first photo) -->
+        <button 
+          type="button"
+          id="web-fs-prev"
+          onclick="prevImage()" 
+          title="Foto anterior" 
+          class="hidden absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0F172A]/65 hover:bg-[#0F172A]/85 backdrop-blur-md text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl z-30 cursor-pointer border border-white/20"
+        >
+          <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        </button>
+
+        <!-- Main Centered Photo + Counter Pill at Bottom Center -->
+        <div class="relative max-w-5xl w-full h-full flex items-center justify-center">
+          <img 
+            id="fs-main-image" 
+            src="assets/properties/gallery/oficina-1.jpg" 
+            alt="Vista en pantalla completa" 
+            class="max-w-full max-h-full w-auto h-auto object-contain rounded-2xl shadow-2xl border border-white/10 transition-all duration-200"
+          />
+
+          <!-- Counter Pill "1 de 7" at bottom center of photo -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#0F172A]/85 backdrop-blur-md text-white text-xs sm:text-sm font-bold px-4 py-1.5 rounded-full shadow-lg border border-white/15">
+            <span id="fs-current-index">1</span> de 7
+          </div>
+        </div>
+
+        <!-- Right Circular Arrow > (hidden on last photo) -->
+        <button 
+          type="button"
+          id="web-fs-next"
+          onclick="nextImage()" 
+          title="Siguiente foto" 
+          class="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0F172A]/65 hover:bg-[#0F172A]/85 backdrop-blur-md text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl z-30 cursor-pointer border border-white/20"
+        >
+          <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        </button>
+
+        <!-- Bottom-Left Native Fullscreen Expand Icon -->
+        <button 
+          type="button"
+          onclick="toggleNativeFullscreen()" 
+          title="Pantalla completa" 
+          class="hidden sm:flex absolute bottom-4 left-6 w-10 h-10 rounded-full bg-black/65 hover:bg-black/90 text-white items-center justify-center border border-white/15 transition-all cursor-pointer z-30"
+        >
+          <i data-lucide="maximize-2" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- PANEL B: PLANO (FLOOR PLAN) VIEW -->
+      <div id="fs-stage-plano" class="hidden w-full h-full flex flex-col items-center justify-center relative px-3 sm:px-10">
+        <!-- Zoom & Floor Controls -->
+        <div class="absolute top-3 right-5 sm:top-4 sm:right-12 flex items-center gap-2 z-30 bg-black/70 backdrop-blur-md p-1.5 rounded-xl border border-white/15">
+          <button type="button" onclick="zoomBlueprint(-0.15)" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center cursor-pointer" title="Alejar">−</button>
+          <span id="bp-zoom-label" class="text-xs font-bold px-2 text-gray-200">100%</span>
+          <button type="button" onclick="zoomBlueprint(0.15)" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center cursor-pointer" title="Acercar">+</button>
+          <button type="button" onclick="resetBlueprintZoom()" class="px-2.5 h-8 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-bold cursor-pointer">Restablecer</button>
+        </div>
+
+        <!-- Blueprint Canvas -->
+        <div class="w-full max-w-4xl h-full bg-white rounded-2xl shadow-2xl p-4 sm:p-8 flex items-center justify-center overflow-auto border border-gray-300">
+          <div id="fs-blueprint-wrap" class="w-full h-full flex items-center justify-center transition-transform duration-200">
+            <svg viewBox="0 0 800 500" class="w-full h-full max-h-full">
+              <defs>
+                <pattern id="bp-grid-fs" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="800" height="500" fill="url(#bp-grid-fs)"/>
+              <!-- Outer Walls -->
+              <rect x="60" y="50" width="680" height="390" fill="#ffffff" stroke="#0f172a" stroke-width="8"/>
+              <!-- Room Fills -->
+              <rect x="64" y="54" width="240" height="190" fill="#f8fafc"/>
+              <rect x="304" y="54" width="230" height="190" fill="#fff7ed"/>
+              <rect x="534" y="54" width="202" height="190" fill="#f8fafc"/>
+              <rect x="64" y="244" width="320" height="192" fill="#f8fafc"/>
+              <rect x="384" y="244" width="180" height="192" fill="#f1f5f9"/>
+              <rect x="564" y="244" width="172" height="192" fill="#f8fafc"/>
+              <!-- Internal Partitions -->
+              <line x1="304" y1="50" x2="304" y2="210" stroke="#0f172a" stroke-width="5"/>
+              <line x1="534" y1="50" x2="534" y2="210" stroke="#0f172a" stroke-width="5"/>
+              <line x1="60" y1="244" x2="250" y2="244" stroke="#0f172a" stroke-width="5"/>
+              <line x1="295" y1="244" x2="490" y2="244" stroke="#0f172a" stroke-width="5"/>
+              <line x1="535" y1="244" x2="740" y2="244" stroke="#0f172a" stroke-width="5"/>
+              <line x1="384" y1="280" x2="384" y2="440" stroke="#0f172a" stroke-width="5"/>
+              <line x1="564" y1="280" x2="564" y2="440" stroke="#0f172a" stroke-width="5"/>
+              <!-- Door Swings -->
+              <path d="M 250 244 A 45 45 0 0 1 295 200" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+              <line x1="250" y1="244" x2="250" y2="200" stroke="#0f172a" stroke-width="3"/>
+              <path d="M 490 244 A 45 45 0 0 0 535 200" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+              <line x1="535" y1="244" x2="535" y2="200" stroke="#0f172a" stroke-width="3"/>
+              <!-- Furniture -->
+              <rect x="120" y="105" width="120" height="56" rx="8" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+              <rect x="345" y="95" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+              <rect x="425" y="95" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+              <rect x="345" y="150" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+              <rect x="425" y="150" width="65" height="35" rx="4" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+              <!-- Room Labels -->
+              <text x="180" y="195" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">SALA DE JUNTAS</text>
+              <text x="180" y="213" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">5.20 m × 4.10 m (21.3 m²)</text>
+              <text x="418" y="210" text-anchor="middle" font-size="13" font-weight="800" fill="#ea580c">ÁREA OPERATIVA / COWORK</text>
+              <text x="418" y="227" text-anchor="middle" font-size="11" font-weight="600" fill="#9a3412">6.40 m × 4.80 m (30.7 m²)</text>
+              <text x="635" y="145" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">DIRECCIÓN GENERAL</text>
+              <text x="635" y="163" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">4.50 m × 4.10 m (18.5 m²)</text>
+              <text x="220" y="340" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">RECEPCIÓN Y LOBBY</text>
+              <text x="220" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">7.10 m × 4.20 m (29.8 m²)</text>
+              <text x="474" y="340" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">KITCHENETTE &amp; 2 BAÑOS</text>
+              <text x="474" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">3.80 m × 4.20 m (16.0 m²)</text>
+              <text x="650" y="340" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">GERENCIA / ARCHIVO</text>
+              <text x="650" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#64748b">4.45 m × 4.20 m (18.7 m²)</text>
+              <!-- Outer Dimension Lines -->
+              <line x1="60" y1="28" x2="740" y2="28" stroke="#ea580c" stroke-width="2"/>
+              <text x="400" y="21" text-anchor="middle" font-size="12" font-weight="800" fill="#ea580c">16.20 m</text>
+              <line x1="768" y1="50" x2="768" y2="440" stroke="#ea580c" stroke-width="2"/>
+              <text x="775" y="250" text-anchor="middle" font-size="12" font-weight="800" fill="#ea580c" transform="rotate(90 775 250)">8.35 m</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL C: MODELO 3D INTERACTIVO VIEW -->
+      <div id="fs-stage-3d" class="hidden w-full h-full flex flex-col items-center justify-center relative overflow-hidden">
+        <!-- Controls Bar -->
+        <div class="absolute top-3 right-5 sm:top-4 sm:right-12 flex items-center gap-2 z-30 bg-black/70 backdrop-blur-md p-1.5 rounded-xl border border-white/15">
+          <button type="button" onclick="rotateFs3D(-25)" class="px-3 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-bold cursor-pointer">↺ Rotar Izq</button>
+          <button type="button" onclick="rotateFs3D(25)" class="px-3 h-8 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-bold cursor-pointer">↻ Rotar Der</button>
+          <button type="button" onclick="resetFs3D()" class="px-3 h-8 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-bold cursor-pointer">Vista Isométrica</button>
+        </div>
+
+        <!-- 3D Interactive Stage -->
+        <div id="fs-3d-viewport" class="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing" style="perspective: 1300px;">
+          <div id="fs-3d-dollhouse" style="width: 520px; height: 340px; max-width: 85vw; max-height: 55vw; transform-style: preserve-3d; transform: rotateX(55deg) rotateZ(-35deg); transition: transform 0.12s ease-out; position: relative;">
+            <!-- Base Floor Slab -->
+            <div style="position:absolute; inset:0; background: linear-gradient(135deg, #1e293b, #0f172a); border: 4px solid #FF7900; border-radius: 10px; box-shadow: 0 40px 80px rgba(0,0,0,0.85);">
+              <div style="position:absolute; left:0; top:0; width:42%; height:52%; border-right:4px solid #cbd5e1; border-bottom:4px solid #cbd5e1; background:rgba(255,255,255,0.07); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:800;">
+                <span>SALA DE JUNTAS</span>
+                <span style="font-size:10px; color:#94a3b8;">21.3 m²</span>
+              </div>
+              <div style="position:absolute; left:42%; top:0; width:58%; height:52%; border-bottom:4px solid #cbd5e1; background:rgba(255,121,0,0.18); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fed7aa; font-size:12px; font-weight:800;">
+                <span>ÁREA OPERATIVA / COWORK</span>
+                <span style="font-size:10px; color:#fdba74;">30.7 m²</span>
+              </div>
+              <div style="position:absolute; left:0; top:52%; width:55%; height:48%; border-right:4px solid #cbd5e1; background:rgba(255,255,255,0.05); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#e2e8f0; font-size:12px; font-weight:800;">
+                <span>RECEPCIÓN &amp; LOBBY</span>
+                <span style="font-size:10px; color:#94a3b8;">29.8 m²</span>
+              </div>
+              <div style="position:absolute; left:55%; top:52%; width:45%; height:48%; background:rgba(255,121,0,0.12); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fdba74; font-size:12px; font-weight:800;">
+                <span>DIRECCIÓN &amp; SERVICIOS</span>
+                <span style="font-size:10px; color:#fed7aa;">53.2 m²</span>
+              </div>
+            </div>
+            <!-- 3D Extruded Walls -->
+            <div style="position:absolute; left:0; top:0; width:100%; height:64px; background:rgba(241,245,249,0.88); border:1px solid #94a3b8; transform-origin: top; transform: rotateX(-90deg);"></div>
+            <div style="position:absolute; left:0; top:0; width:64px; height:100%; background:rgba(203,213,225,0.88); border:1px solid #94a3b8; transform-origin: left; transform: rotateY(90deg);"></div>
+            <div style="position:absolute; left:42%; top:0; width:52px; height:52%; background:rgba(255,121,0,0.72); border:1px solid #fb923c; transform-origin: left; transform: rotateY(90deg);"></div>
+            <div style="position:absolute; left:0; top:52%; width:100%; height:48px; background:rgba(148,163,184,0.65); border:1px solid #cbd5e1; transform-origin: top; transform: rotateX(-90deg);"></div>
+            <!-- Interactive Room Hotspots (Click to jump to room photo) -->
+            <button type="button" onclick="selectImage(2); switchFsMediaTab('fotos')" style="position:absolute; left:18%; top:24%; transform: translateZ(48px); background:#FF7900; color:#fff; border:2px solid #fff; border-radius:9999px; padding:5px 12px; font-size:11px; font-weight:800; box-shadow:0 6px 16px rgba(0,0,0,0.45); cursor:pointer;">● Sala de Juntas</button>
+            <button type="button" onclick="selectImage(4); switchFsMediaTab('fotos')" style="position:absolute; left:62%; top:24%; transform: translateZ(48px); background:#FF7900; color:#fff; border:2px solid #fff; border-radius:9999px; padding:5px 12px; font-size:11px; font-weight:800; box-shadow:0 6px 16px rgba(0,0,0,0.45); cursor:pointer;">● Área Operativa</button>
+            <button type="button" onclick="selectImage(3); switchFsMediaTab('fotos')" style="position:absolute; left:24%; top:72%; transform: translateZ(48px); background:#EA580C; color:#fff; border:2px solid #fff; border-radius:9999px; padding:5px 12px; font-size:11px; font-weight:800; box-shadow:0 6px 16px rgba(0,0,0,0.45); cursor:pointer;">● Recepción</button>
+            <button type="button" onclick="selectImage(5); switchFsMediaTab('fotos')" style="position:absolute; left:70%; top:72%; transform: translateZ(48px); background:#FF7900; color:#fff; border:2px solid #fff; border-radius:9999px; padding:5px 12px; font-size:11px; font-weight:800; box-shadow:0 6px 16px rgba(0,0,0,0.45); cursor:pointer;">● Dirección</button>
+          </div>
+        </div>
+
+        <div class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-md text-gray-200 text-xs font-semibold px-4 py-2 rounded-full border border-white/10">
+          Arrastra con el mouse o toca un punto naranja para explorar cada ambiente
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3. BOTTOM REALTOR BAR (Foto del Realtor + Botón de Oferta sin $ + Botón de Contacto con Colores Enkapta) -->
+    <div class="bg-[#0F172A] border-t border-primary/25 px-4 sm:px-8 py-3 flex items-center justify-between gap-4 z-30 shrink-0">
+      <!-- Left: Realtor Photo & Name -->
+      <div class="flex items-center gap-3 min-w-0 flex-1">
+        <div class="relative shrink-0">
+          <img src="assets/duenas-logo.jpg" alt="Daniel Dueñas" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-primary shadow-md"/>
+          <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-[#0F172A]"></span>
+        </div>
+        <div class="min-w-0 overflow-hidden">
+          <div class="text-[10px] sm:text-xs font-extrabold uppercase tracking-wider text-primary leading-tight flex items-center gap-1 truncate">
+            <span>Realtor</span>
+            <i data-lucide="badge-check" class="w-3.5 h-3.5 text-primary shrink-0"></i>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-sm sm:text-base font-extrabold text-white truncate">Daniel Dueñas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Ofertar & Contactar Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <button 
+          type="button" 
+          onclick="openWebOfferModal()" 
+          class="px-4 sm:px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white text-xs sm:text-sm font-extrabold flex items-center justify-center transition-all active:scale-95 cursor-pointer"
+        >
+          <span>Ofertar</span>
+        </button>
+
+        <button 
+          type="button" 
+          onclick="requireAuthForContact('https://wa.me/584248407372?text=Hola%20Daniel,%20vi%20tu%20propiedad%20Oficina%20en%20alquiler%20La%20Candelaria%20en%20Enkapta%20y%20deseo%20más%20información.')" 
+          class="px-4 sm:px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs sm:text-sm font-extrabold flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer"
+        >
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Contactar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE OFERTA DIRECTA AL WHATSAPP DEL REALTOR (ALQUILER & COMPRA - ULTRA CLEAN) -->
+  <div id="web-offer-modal" class="fixed inset-0 z-[120] hidden items-center justify-center bg-slate-900/35 backdrop-blur-md p-4" onclick="if (event.target === this) closeWebOfferModal()">
+    <div class="w-full max-w-md bg-white rounded-[26px] border border-slate-200/80 shadow-[0_20px_50px_rgba(15,23,42,0.14)] overflow-hidden text-slate-900 flex flex-col max-h-[90vh]" onclick="event.stopPropagation()">
+      <!-- Header -->
+      <div class="px-6 pt-5 pb-3.5 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3 min-w-0">
+          <img src="assets/duenas-logo.jpg" alt="Daniel Dueñas" class="w-10 h-10 rounded-full object-cover border border-slate-200 shrink-0">
+          <div class="min-w-0">
+            <span class="block text-[11px] font-semibold text-slate-500">Oferta Directa · Enkapta</span>
+            <h3 class="text-base font-extrabold text-slate-900 tracking-tight truncate">Daniel Dueñas</h3>
+          </div>
+        </div>
+        <button type="button" onclick="closeWebOfferModal()" class="w-8 h-8 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors cursor-pointer">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Segmented Switcher: Alquiler | Compra -->
+      <div class="px-6 pb-2 shrink-0">
+        <div class="grid grid-cols-2 bg-slate-50 border border-slate-100 p-1 rounded-2xl gap-1">
+          <button type="button" id="web-offer-tab-alquiler" onclick="switchWebOfferMode('alquiler')" class="py-2 px-3 rounded-xl text-xs font-extrabold transition-all cursor-pointer bg-white text-slate-900 shadow-xs flex items-center justify-center">
+            <span>Alquiler</span>
+          </button>
+          <button type="button" id="web-offer-tab-compra" onclick="switchWebOfferMode('compra')" class="py-2 px-3 rounded-xl text-xs font-semibold transition-all cursor-pointer text-slate-500 hover:text-slate-800 flex items-center justify-center">
+            <span>Compra</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="px-6 py-3 overflow-y-auto space-y-3.5">
+        <!-- OPCIÓN 1: ALQUILER -->
+        <div id="web-offer-panel-alquiler" class="space-y-3.5">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Monto a ofertar (mensual)</label>
+            <div class="relative flex items-center">
+              <span class="absolute left-3.5 text-sm font-bold text-slate-400">$</span>
+              <input type="text" id="web-offer-alq-monto" placeholder="Ej. 850 USD" class="w-full pl-8 pr-3.5 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-primary focus:ring-3 focus:ring-primary/10 outline-none text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal transition-all">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5">Meses depósito</label>
+              <select id="web-offer-alq-deposito" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-primary focus:ring-3 focus:ring-primary/10 outline-none text-sm font-semibold text-slate-900 transition-all">
+                <option value="1 mes">1 mes</option>
+                <option value="2 meses" selected>2 meses</option>
+                <option value="3 meses">3 meses</option>
+                <option value="4 meses">4 meses</option>
+                <option value="6 meses">6 meses</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5">Meses por adelantado</label>
+              <select id="web-offer-alq-adelantado" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-primary focus:ring-3 focus:ring-primary/10 outline-none text-sm font-semibold text-slate-900 transition-all">
+                <option value="1 mes">1 mes</option>
+                <option value="2 meses">2 meses</option>
+                <option value="3 meses" selected>3 meses</option>
+                <option value="6 meses">6 meses</option>
+                <option value="12 meses (1 año)">12 meses</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Tipo de persona</label>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button type="button" id="web-person-natural" onclick="selectWebOfferPersona('Persona Natural')" class="py-2.5 px-3 rounded-xl border border-primary bg-orange-50/60 text-primary text-xs font-bold transition-all cursor-pointer">
+                Persona Natural
+              </button>
+              <button type="button" id="web-person-juridica" onclick="selectWebOfferPersona('Persona Jurídica')" class="py-2.5 px-3 rounded-xl border border-slate-200 bg-white text-slate-600 text-xs font-semibold transition-all cursor-pointer">
+                Persona Jurídica
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Nota</label>
+            <textarea id="web-offer-alq-nota" rows="2" placeholder="Escribe algún detalle o condición adicional para el realtor..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-primary focus:ring-3 focus:ring-primary/10 outline-none text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal resize-none transition-all"></textarea>
+          </div>
+        </div>
+
+        <!-- OPCIÓN 2: COMPRA -->
+        <div id="web-offer-panel-compra" class="hidden space-y-3.5">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5">Precio pagaría</label>
+              <div class="relative flex items-center">
+                <span class="absolute left-3.5 text-sm font-bold text-slate-400">$</span>
+                <input type="text" id="web-offer-com-precio" placeholder="Ej. 62,000" class="w-full pl-8 pr-3 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-primary focus:ring-3 focus:ring-primary/10 outline-none text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal transition-all">
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5">Inicial</label>
+              <div class="relative flex items-center">
+                <span class="absolute left-3.5 text-sm font-bold text-slate-400">$</span>
+                <input type="text" id="web-offer-com-inicial" placeholder="Ej. 20,000 / 30%" class="w-full pl-8 pr-3 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-primary focus:ring-3 focus:ring-primary/10 outline-none text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal transition-all">
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Forma de pago</label>
+            <select id="web-offer-com-forma" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-primary focus:ring-3 focus:ring-primary/10 outline-none text-sm font-semibold text-slate-900 transition-all">
+              <option value="Contado / Transferencia bancaria" selected>Contado / Transferencia bancaria</option>
+              <option value="Efectivo / Divisas">Efectivo / Divisas</option>
+              <option value="Financiamiento / Cuotas con propietario">Financiamiento / Cuotas</option>
+              <option value="Criptomonedas (USDT)">Criptomonedas (USDT)</option>
+              <option value="Pago Mixto">Pago Mixto</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Tiempo de negociación</label>
+            <select id="web-offer-com-tiempo" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-primary focus:ring-3 focus:ring-primary/10 outline-none text-sm font-semibold text-slate-900 transition-all">
+              <option value="Inmediato (7 a 15 días)" selected>Inmediato (7 a 15 días)</option>
+              <option value="30 días">30 días</option>
+              <option value="45 a 60 días">45 a 60 días</option>
+              <option value="90 días / A convenir">90 días / A convenir</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1.5">Nota</label>
+            <textarea id="web-offer-com-nota" rows="2" placeholder="Escribe detalles adicionales de tu propuesta de compra..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white focus:border-primary focus:ring-3 focus:ring-primary/10 outline-none text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal resize-none transition-all"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="px-6 pt-3 pb-5 bg-white shrink-0">
+        <button type="button" onclick="submitWebOfferToWhatsApp()" class="w-full py-3.5 px-4 rounded-2xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Enviar oferta</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Gallery images list
+    const galleryImages = [
+      'assets/properties/gallery/oficina-1.jpg',
+      'assets/properties/gallery/oficina-2.jpg',
+      'assets/properties/gallery/oficina-3.jpg',
+      'assets/properties/gallery/oficina-4.jpg',
+      'assets/properties/gallery/oficina-5.jpg',
+      'assets/properties/gallery/oficina-6.jpg',
+      'assets/properties/gallery/oficina-7.jpg'
+    ];
+
+    let currentIndex = 0;
+    let currentHeroMediaTab = 'fotos';
+    let currentFsMediaTab = 'fotos';
+    let bpZoomLevel = 1;
+    let fs3DRotZ = -35;
+    let fs3DRotX = 55;
+
+    // Switch inline hero stage (Fotos | Plano | 3D)
+    function switchHeroMediaTab(tab) {
+      currentHeroMediaTab = tab;
+      const stages = ['fotos', 'plano', '3d'];
+      stages.forEach(s => {
+        const stageEl = document.getElementById('hero-stage-' + s);
+        const btnEl = document.getElementById('hero-tab-' + s);
+        if (stageEl) {
+          stageEl.classList.toggle('hidden', s !== tab);
+        }
+        if (btnEl) {
+          if (s === tab) {
+            btnEl.className = 'flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer bg-white text-gray-900 shadow-sm';
+          } else {
+            btnEl.className = 'flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer text-white hover:bg-white/10';
+          }
+        }
+      });
+      const counterPill = document.getElementById('web-hero-counter-pill');
+      if (counterPill) counterPill.classList.toggle('hidden', tab !== 'fotos');
+    }
+
+    // Switch Fullscreen Modal stage (Fotos | Plano | 3D)
+    function switchFsMediaTab(tab) {
+      currentFsMediaTab = tab;
+      const stages = ['fotos', 'plano', '3d'];
+      stages.forEach(s => {
+        const stageEl = document.getElementById('fs-stage-' + s);
+        const btnEl = document.getElementById('fs-tab-' + s);
+        if (stageEl) {
+          stageEl.classList.toggle('hidden', s !== tab);
+        }
+        if (btnEl) {
+          if (s === tab) {
+            btnEl.className = 'px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer bg-white text-gray-900 shadow-sm';
+          } else {
+            btnEl.className = 'px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer text-gray-200 hover:text-white';
+          }
+        }
+      });
+    }
+
+    function zoomBlueprint(delta) {
+      bpZoomLevel = Math.min(2.2, Math.max(0.6, bpZoomLevel + delta));
+      const wrap = document.getElementById('fs-blueprint-wrap');
+      const label = document.getElementById('bp-zoom-label');
+      if (wrap) wrap.style.transform = `scale(${bpZoomLevel})`;
+      if (label) label.textContent = `${Math.round(bpZoomLevel * 100)}%`;
+    }
+
+    function resetBlueprintZoom() {
+      bpZoomLevel = 1;
+      const wrap = document.getElementById('fs-blueprint-wrap');
+      const label = document.getElementById('bp-zoom-label');
+      if (wrap) wrap.style.transform = 'scale(1)';
+      if (label) label.textContent = '100%';
+    }
+
+    function rotateFs3D(deltaZ) {
+      fs3DRotZ += deltaZ;
+      const dh = document.getElementById('fs-3d-dollhouse');
+      if (dh) dh.style.transform = `rotateX(${fs3DRotX}deg) rotateZ(${fs3DRotZ}deg)`;
+    }
+
+    function resetFs3D() {
+      fs3DRotX = 55;
+      fs3DRotZ = -35;
+      const dh = document.getElementById('fs-3d-dollhouse');
+      if (dh) dh.style.transform = `rotateX(${fs3DRotX}deg) rotateZ(${fs3DRotZ}deg)`;
+    }
+
+    // Drag-to-rotate for 3D Dollhouse (Hero & Fullscreen)
+    function init3DDrag(viewportId, dollhouseId) {
+      const vp = document.getElementById(viewportId);
+      const dh = document.getElementById(dollhouseId);
+      if (!vp || !dh) return;
+      let dragging = false, startX = 0, startY = 0, rotZ = -35, rotX = 55;
+      vp.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button')) return;
+        dragging = true; startX = e.clientX; startY = e.clientY;
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        startX = e.clientX; startY = e.clientY;
+        rotZ += dx * 0.45;
+        rotX = Math.min(78, Math.max(25, rotX - dy * 0.3));
+        dh.style.transform = `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
+      });
+      window.addEventListener('mouseup', () => { dragging = false; });
+    }
+    init3DDrag('hero-3d-viewport', 'hero-3d-dollhouse');
+    init3DDrag('fs-3d-viewport', 'fs-3d-dollhouse');
+
+    function updateGalleryUI() {
+      const mainImg = document.getElementById('main-image');
+      const badge = document.getElementById('current-index-badge');
+      const thumbs = document.querySelectorAll('.thumb-btn');
+
+      if (mainImg) mainImg.src = galleryImages[currentIndex];
+      if (badge) badge.textContent = currentIndex + 1;
+
+      thumbs.forEach((thumb, idx) => {
+        if (idx === currentIndex) {
+          thumb.className = 'thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-primary ring-2 ring-primary/30 opacity-100 transition-all scale-105 cursor-pointer';
+        } else {
+          thumb.className = 'thumb-btn shrink-0 w-28 sm:w-32 md:w-36 h-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-transparent opacity-70 hover:opacity-100 transition-all cursor-pointer';
+        }
+      });
+
+      // Smart single/dual direction arrows
+      const canPrev = currentIndex > 0;
+      const canNext = currentIndex < galleryImages.length - 1;
+      const heroPrev = document.getElementById('web-hero-prev');
+      const heroNext = document.getElementById('web-hero-next');
+      const fsPrev = document.getElementById('web-fs-prev');
+      const fsNext = document.getElementById('web-fs-next');
+      if (heroPrev) heroPrev.classList.toggle('hidden', !canPrev);
+      if (heroNext) heroNext.classList.toggle('hidden', !canNext);
+      if (fsPrev) fsPrev.classList.toggle('hidden', !canPrev);
+      if (fsNext) fsNext.classList.toggle('hidden', !canNext);
+
+      // Update Fullscreen Modal UI if present
+      const fsImg = document.getElementById('fs-main-image');
+      const fsBadge = document.getElementById('fs-current-index');
+
+      if (fsImg) fsImg.src = galleryImages[currentIndex];
+      if (fsBadge) fsBadge.textContent = currentIndex + 1;
+    }
+
+    function selectImage(index) {
+      currentIndex = index;
+      if (currentHeroMediaTab !== 'fotos') switchHeroMediaTab('fotos');
+      updateGalleryUI();
+    }
+
+    function nextImage() {
+      if (currentHeroMediaTab !== 'fotos') switchHeroMediaTab('fotos');
+      if (currentIndex >= galleryImages.length - 1) return;
+      currentIndex = currentIndex + 1;
+      updateGalleryUI();
+    }
+
+    function prevImage() {
+      if (currentHeroMediaTab !== 'fotos') switchHeroMediaTab('fotos');
+      if (currentIndex <= 0) return;
+      currentIndex = currentIndex - 1;
+      updateGalleryUI();
+    }
+
+    // Fullscreen Gallery Logic
+    function openFullscreenGallery(initialTab) {
+      const modal = document.getElementById('fullscreen-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      switchFsMediaTab(initialTab || currentHeroMediaTab || 'fotos');
+      updateGalleryUI();
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      }
+    }
+
+    function closeFullscreenGallery() {
+      const modal = document.getElementById('fullscreen-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function toggleNativeFullscreen() {
+      const modal = document.getElementById('fullscreen-modal');
+      if (!document.fullscreenElement) {
+        if (modal && modal.requestFullscreen) {
+          modal.requestFullscreen().catch(() => {});
+        } else if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+    }
+
+    // Keyboard navigation: Escape to close, Left/Right arrows to navigate
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('fullscreen-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeFullscreenGallery();
+        if (e.key === 'ArrowRight' && currentFsMediaTab === 'fotos') nextImage();
+        if (e.key === 'ArrowLeft' && currentFsMediaTab === 'fotos') prevImage();
+      }
+    });
+
+    // Favorite button toggle
+    let isFav = false;
+    function toggleFav() {
+      isFav = !isFav;
+      const icon = document.getElementById('fav-icon');
+      const text = document.getElementById('fav-text');
+      if (isFav) {
+        icon.classList.remove('text-gray-500');
+        icon.classList.add('text-red-500', 'fill-red-500');
+        text.textContent = 'Guardado en favoritos';
+      } else {
+        icon.classList.remove('text-red-500', 'fill-red-500');
+        icon.classList.add('text-gray-500');
+        text.textContent = 'Guardar en favoritos';
+      }
+    }
+
+    // Share link
+    function shareProperty() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Excelente, Oficina de 135 m² — Enkapta',
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Enlace copiado al portapapeles');
+      }
+    }
+
+    // Leaflet Interactive Map Initialization
+    // Coordinates for Edif. Cámara de Comercio de Caracas, Av Este 2, La Candelaria / Bellas Artes
+    const lat = 10.5042;
+    const lng = -66.8995;
+
+    const map = L.map('map', {
+      center: [lat, lng],
+      zoom: 15,
+      zoomControl: true
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Custom marker icon matching red pin
+    const redPin = L.divIcon({
+      className: 'custom-pin',
+      html: `
+        <div style="transform: translate(-50%, -100%);">
+          <svg width="34" height="42" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0C5.37258 0 0 5.37258 0 12C0 19.5 12 30 12 30C12 30 24 19.5 24 12C24 5.37258 18.6274 0 12 0Z" fill="#EA4335"/>
+            <circle cx="12" cy="11" r="5" fill="#FFFFFF"/>
+          </svg>
+        </div>
+      `,
+      iconSize: [34, 42],
+      iconAnchor: [17, 30]
+    });
+
+    L.marker([lat, lng], { icon: redPin })
+      .addTo(map)
+      .bindPopup('<b>Edif. Cámara de Comercio</b><br>Av. Este 2, Caracas')
+      .openPopup();
+
+    function toggleMapFullscreen() {
+      const mapEl = document.getElementById('map').parentElement;
+      if (!document.fullscreenElement) {
+        mapEl.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Modal de Oferta Directa al WhatsApp del Realtor (Alquiler / Compra)
+    let webOfferMode = 'alquiler';
+    let webOfferPersona = 'Persona Natural';
+
+    function openWebOfferModal(defaultMode) {
+      const modal = document.getElementById('web-offer-modal');
+      if (!modal) return;
+      if (defaultMode) switchWebOfferMode(defaultMode);
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeWebOfferModal() {
+      const modal = document.getElementById('web-offer-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function switchWebOfferMode(mode) {
+      webOfferMode = mode;
+      const tabAlq = document.getElementById('web-offer-tab-alquiler');
+      const tabCom = document.getElementById('web-offer-tab-compra');
+      const panelAlq = document.getElementById('web-offer-panel-alquiler');
+      const panelCom = document.getElementById('web-offer-panel-compra');
+
+      if (tabAlq) {
+        tabAlq.className = (mode === 'alquiler')
+          ? 'py-2 px-3 rounded-xl text-xs font-extrabold transition-all cursor-pointer bg-white text-slate-900 shadow-xs flex items-center justify-center'
+          : 'py-2 px-3 rounded-xl text-xs font-semibold transition-all cursor-pointer text-slate-500 hover:text-slate-800 flex items-center justify-center';
+      }
+      if (tabCom) {
+        tabCom.className = (mode === 'compra')
+          ? 'py-2 px-3 rounded-xl text-xs font-extrabold transition-all cursor-pointer bg-white text-slate-900 shadow-xs flex items-center justify-center'
+          : 'py-2 px-3 rounded-xl text-xs font-semibold transition-all cursor-pointer text-slate-500 hover:text-slate-800 flex items-center justify-center';
+      }
+      if (panelAlq) panelAlq.classList.toggle('hidden', mode !== 'alquiler');
+      if (panelCom) panelCom.classList.toggle('hidden', mode !== 'compra');
+    }
+
+    function selectWebOfferPersona(tipo) {
+      webOfferPersona = tipo;
+      const btnNat = document.getElementById('web-person-natural');
+      const btnJur = document.getElementById('web-person-juridica');
+      if (btnNat) {
+        btnNat.className = (tipo === 'Persona Natural')
+          ? 'py-2.5 px-3 rounded-xl border border-primary bg-orange-50/60 text-primary text-xs font-bold transition-all cursor-pointer'
+          : 'py-2.5 px-3 rounded-xl border border-slate-200 bg-white text-slate-600 text-xs font-semibold transition-all cursor-pointer';
+      }
+      if (btnJur) {
+        btnJur.className = (tipo === 'Persona Jurídica')
+          ? 'py-2.5 px-3 rounded-xl border border-primary bg-orange-50/60 text-primary text-xs font-bold transition-all cursor-pointer'
+          : 'py-2.5 px-3 rounded-xl border border-slate-200 bg-white text-slate-600 text-xs font-semibold transition-all cursor-pointer';
+      }
+    }
+
+    function submitWebOfferToWhatsApp() {
+      const propTitle = 'Oficina en alquiler La Candelaria (135 m²)';
+      let lines = [];
+
+      if (webOfferMode === 'alquiler') {
+        const monto = (document.getElementById('web-offer-alq-monto')?.value || '').trim() || '860 USD';
+        const deposito = document.getElementById('web-offer-alq-deposito')?.value || '2 meses';
+        const adelantado = document.getElementById('web-offer-alq-adelantado')?.value || '3 meses';
+        const nota = (document.getElementById('web-offer-alq-nota')?.value || '').trim();
+
+        lines = [
+          `Hola Daniel, te comparto mi oferta de *Alquiler* desde *Enkapta*:`,
+          ``,
+          `*Propiedad:* ${propTitle}`,
+          `*Monto a ofertar:* $${monto.replace(/^\$/, '')}`,
+          `*Meses depósito:* ${deposito}`,
+          `*Meses por adelantado:* ${adelantado}`,
+          `*Tipo de persona:* ${webOfferPersona}`
+        ];
+        if (nota) lines.push(`*Nota:* ${nota}`);
+      } else {
+        const precio = (document.getElementById('web-offer-com-precio')?.value || '').trim() || 'A consultar';
+        const inicial = (document.getElementById('web-offer-com-inicial')?.value || '').trim() || 'A convenir';
+        const forma = document.getElementById('web-offer-com-forma')?.value || 'Contado / Transferencia bancaria';
+        const tiempo = document.getElementById('web-offer-com-tiempo')?.value || 'Inmediato (7 a 15 días)';
+        const nota = (document.getElementById('web-offer-com-nota')?.value || '').trim();
+
+        lines = [
+          `Hola Daniel, te comparto mi oferta de *Compra* desde *Enkapta*:`,
+          ``,
+          `*Propiedad:* ${propTitle}`,
+          `*Precio que pagaría:* $${precio.replace(/^\$/, '')}`,
+          `*Inicial:* ${inicial.startsWith('$') ? inicial : '$' + inicial}`,
+          `*Forma de pago:* ${forma}`,
+          `*Tiempo de negociación:* ${tiempo}`
+        ];
+        if (nota) lines.push(`*Nota:* ${nota}`);
+      }
+
+      lines.push(``, `Ficha: ${window.location.href}`);
+
+      closeWebOfferModal();
+      window.open(`https://wa.me/584248407372?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
+    }
+  </script>
+</body>
+</html>

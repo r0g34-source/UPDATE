@@ -919,10 +919,17 @@
       display: inline-flex;
     }
 
+    .card-realtor-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
     .card-msg-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       display: flex;
@@ -2370,11 +2377,18 @@
                     </span>
                   </div>
                 </div>
-                <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre%20la%20propiedad:%20Casa%20en%20Venta%20-%20El%20Junquito', '_blank')" title="Contactar por WhatsApp">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                </button>
+                <div class="card-realtor-actions">
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.location.href='tel:+584248407372'" title="Llamar por teléfono">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre%20la%20propiedad:%20Casa%20en%20Venta%20-%20El%20Junquito', '_blank')" title="Contactar por WhatsApp">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <!-- Location -->
@@ -2449,11 +2463,18 @@
                     </span>
                   </div>
                 </div>
-                <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Casa%20comercial%20Colinas%20De%20Los%20Chaguaramos', '_blank')" title="Contactar por WhatsApp">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                </button>
+                <div class="card-realtor-actions">
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.location.href='tel:+584248407372'" title="Llamar por teléfono">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Casa%20comercial%20Colinas%20De%20Los%20Chaguaramos', '_blank')" title="Contactar por WhatsApp">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <!-- Location -->
@@ -2528,11 +2549,18 @@
                     </span>
                   </div>
                 </div>
-                <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20CR%20OASIS%20LECHERIA', '_blank')" title="Contactar por WhatsApp">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                </button>
+                <div class="card-realtor-actions">
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.location.href='tel:+584248407372'" title="Llamar por teléfono">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20CR%20OASIS%20LECHERIA', '_blank')" title="Contactar por WhatsApp">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <!-- Location -->
@@ -2607,11 +2635,18 @@
                     </span>
                   </div>
                 </div>
-                <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Oficina%20El%20Recreo', '_blank')" title="Contactar por WhatsApp">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                </button>
+                <div class="card-realtor-actions">
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.location.href='tel:+584248407372'" title="Llamar por teléfono">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="card-msg-btn" onclick="event.stopPropagation(); window.open('https://wa.me/584248407372?text=Hola,%20quisiera%20consultar%20sobre:%20Oficina%20El%20Recreo', '_blank')" title="Contactar por WhatsApp">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <!-- Location -->

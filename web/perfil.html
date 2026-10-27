@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Dueñas — Broker Inmobiliario Certificado | Enkapta</title>
+  <meta name="description" content="Perfil profesional de Daniel Dueñas en Enkapta. Conoce su trayectoria, cartera de propiedades exclusivas en Caracas y contáctalo directamente por WhatsApp.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Inter Font (Clean, Modern, Minimalist Architecture) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#FF7900',
+              hover: '#E66D00',
+              glow: '#FF9433',
+              light: '#FFF4EB',
+              dark: '#CC6100'
+            },
+            surface: {
+              50: '#F9FAFB',
+              100: '#F3F4F6',
+              200: '#E5E7EB',
+              800: '#1F2937',
+              900: '#111827'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            'glow': '0 0 25px -5px rgba(255, 121, 0, 0.4)',
+            'card-hover': '0 20px 30px -10px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            'floating': '0 16px 48px -12px rgba(15, 23, 42, 0.18)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: -0.011em;
+    }
+
+    /* Animación de entrada suave para pestañas */
+    @keyframes fadeInFilter {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .filter-card-anim {
+      animation: fadeInFilter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+
+  <script>
+    // Limpieza inmediata de datos residuales del demo Daniel Dueñas en el navegador del usuario
+    try {
+      const raw = localStorage.getItem("enkapta_realtor_profile");
+      if (raw) {
+        const p = JSON.parse(raw);
+        if (p.name === "Daniel Dueñas" || p.slug === "duenas" || (p.agency && p.agency.includes("Dueñas"))) {
+          localStorage.removeItem("enkapta_realtor_profile");
+        }
+      }
+    } catch(e) {}
+  </script>
+
+  <!-- Auth Logic -->
+  <script src="assets/auth.js"></script>
+</head>
+<body class="bg-gray-50/70 text-gray-900 min-h-screen flex flex-col">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE PREVISUALIZACIÓN (Oculta por defecto para apariencia final limpia)  -->
+  <!-- ========================================================================= -->
+  <aside id="preview-mode-bar" class="hidden w-full bg-slate-900 text-white text-xs border-b border-slate-800 z-50 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+        <span id="preview-mode-title" class="text-slate-300">
+          Viendo: <strong class="text-white font-semibold">Perfil de Roger (Vitrina limpia - 0 inmuebles)</strong>
+        </span>
+      </div>
+      <div class="flex items-center gap-1.5 shrink-0">
+        <span class="text-[11px] text-slate-400 hidden sm:inline mr-1">Alternar vista:</span>
+        <button 
+          type="button" 
+          id="btn-toggle-roger"
+          onclick="switchProfileView('me')" 
+          class="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white text-slate-900 shadow-2xs transition-all cursor-pointer"
+        >
+          Mi Perfil (Vacío)
+        </button>
+        <button 
+          type="button" 
+          id="btn-toggle-duenas"
+          onclick="switchProfileView('duenas')" 
+          class="px-2.5 py-1 rounded-md text-[11px] font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all cursor-pointer"
+        >
+          Demo Daniel Dueñas (6 inmuebles)
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- 1. TOP BAR / HEADER GLOBAL DE ENKAPTA                                      -->
+  <!-- ========================================================================= -->
+  <header class="bg-white sticky top-0 z-50 border-b border-gray-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- LEFT: Logo + Nav Items -->
+        <div class="flex items-center space-x-7 lg:space-x-9">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center gap-2 group shrink-0">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 shadow-2xs shrink-0 overflow-hidden">
+              <img src="assets/enkapta-logo1.png" alt="Enkapta Logo" class="w-8 h-8 object-contain rounded-lg"/>
+            </div>
+            <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+              Enkapta
+            </span>
+          </a>
+
+          <!-- Navigation Links -->
+          <nav class="hidden md:flex items-center space-x-6 lg:space-x-7">
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="index.html">Inicio</a>
+            <a class="text-primary font-extrabold transition-colors text-sm font-bold" href="propiedades.html">Propiedades</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="planes.html">Planes</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="quienes-somos.html">Quiénes somos</a>
+            <a class="text-gray-800 hover:text-primary transition-colors text-sm font-bold" href="contacto.html">Contacto</a>
+          </nav>
+        </div>
+
+        <!-- RIGHT: Auth / Profile Dynamic Container -->
+        <div class="hidden md:flex items-center space-x-3">
+          <div id="header-auth-container"></div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center md:hidden">
+          <button id="mobile-menu-btn" class="p-1.5 rounded-lg text-gray-800 hover:text-gray-900 hover:bg-white/60 focus:outline-none">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Nav Flyout -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2 mt-2 rounded-2xl mx-4 shadow-lg">
+      <div id="mobile-auth-container"></div>
+      <a href="index.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Inicio</a>
+      <a href="propiedades.html" class="block px-3 py-2 rounded-lg text-sm font-bold text-primary bg-orange-50">Propiedades</a>
+      <a href="planes.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Planes</a>
+      <a href="quienes-somos.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Quiénes somos</a>
+      <a href="contacto.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Contacto</a>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. HERO COVER BANNER (ESTILO FACEBOOK PROFILE + ENKAPTA BRANDING)          -->
+  <!-- ========================================================================= -->
+  <section id="realtor-banner-section" class="w-full relative h-48 sm:h-64 lg:h-76 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 overflow-hidden">
+    <!-- Patrón geométrico sutil por defecto cuando no hay imagen cargada -->
+    <div id="realtor-banner-pattern" class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+    <!-- Imagen de Portada Inmobiliaria Panorámica (Oculta si el asesor no ha subido portada) -->
+    <img 
+      id="realtor-banner-img"
+      src="" 
+      alt="Portada del Asesor" 
+      class="hidden w-full h-full object-cover object-center opacity-85 filter brightness-95"
+    />
+    
+    <!-- Gradiente Sutil de Fondo -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent"></div>
+
+    <!-- Badges Flotantes en la Portada (Dinámicos y Responsivos: en móvil se alinean verticalmente sin partir el texto) -->
+    <div class="absolute top-3 right-3 sm:top-6 sm:right-8 flex flex-col-reverse items-end sm:flex-row sm:items-center gap-1.5 sm:gap-2 z-10 max-w-[calc(100%-1.5rem)] sm:max-w-none">
+      <span id="realtor-location-badge-container" class="hidden items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs font-semibold shadow-md whitespace-nowrap max-w-full">
+        <i data-lucide="map-pin" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary shrink-0"></i>
+        <span id="realtor-location-badge" class="truncate block max-w-[265px] sm:max-w-xs md:max-w-none"></span>
+      </span>
+      <span id="realtor-agency-badge" class="hidden items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-primary/95 backdrop-blur-md text-white text-[11px] sm:text-xs font-bold shadow-md whitespace-nowrap shrink-0">
+        <i data-lucide="shield-check" class="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0"></i>
+        <span>Agencia Aliada</span>
+      </span>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. BARRA SUPERIOR DE IDENTIDAD DEL REALTOR                                 -->
+  <!-- ========================================================================= -->
+  <section class="w-full bg-white border-b border-gray-200/80 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Fila Principal: Avatar Superpuesto, Info y Botones de Acción -->
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 pt-3.5 sm:pt-4 pb-6">
+        
+        <!-- Izquierda: Avatar Circular y Nombre -->
+        <div class="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-6 z-10">
+          
+          <!-- Avatar del Realtor / Agencia con Aro Blanco (Sin badge en la foto) -->
+          <div id="realtor-avatar-container" class="-mt-20 sm:-mt-24 lg:-mt-28 relative shrink-0 w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-3xl sm:rounded-[32px] ring-4 ring-white shadow-xl bg-gray-900 overflow-hidden border border-gray-100 flex items-center justify-center">
+            <img 
+              id="realtor-avatar-img"
+              src="" 
+              alt="Avatar del Asesor" 
+              class="hidden w-full h-full object-cover"
+            />
+            <span id="realtor-avatar-initial" class="text-3xl sm:text-5xl font-extrabold text-white select-none">R</span>
+          </div>
+
+          <!-- Título, Identidad y Rol -->
+          <div class="pt-2 sm:pt-0 sm:pb-1 space-y-1">
+            <div class="flex items-center flex-wrap gap-2.5">
+              <!-- Nombre de Usuario con Palomita Verificada estilo Instagram al lado -->
+              <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight inline-flex items-center gap-2">
+                <span id="realtor-name">Roger</span>
+                <!-- Palomita verificada estilo Instagram oficial -->
+                <svg id="realtor-verified-badge" class="w-6 h-6 sm:w-7 sm:h-7 text-primary fill-current shrink-0" viewBox="0 0 24 24" title="Verificado">
+                  <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                </svg>
+              </h1>
+            </div>
+
+            <p class="text-sm sm:text-base font-normal text-gray-600 flex items-center gap-2 flex-wrap">
+              <span id="realtor-title" class="text-gray-900 font-medium">Asesor Inmobiliario</span>
+              <span id="realtor-agency-sep" class="hidden text-gray-300">/</span>
+              <span id="realtor-agency" class="hidden text-primary font-semibold"></span>
+            </p>
+
+            <p id="realtor-short-bio" class="text-xs sm:text-sm text-gray-400 max-w-xl leading-relaxed pt-0.5 font-normal italic">
+              Este asesor aún no ha añadido una descripción a su perfil.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Derecha: Botones de Acción (Contactar por WhatsApp y Compartir) -->
+        <div class="flex items-center gap-2.5 sm:gap-3 shrink-0 pt-2 lg:pt-0">
+          
+          <!-- Botón Principal: Contactar -->
+          <a 
+            id="realtor-contact-btn"
+            href="mailto:rogeralejandroquijadaavilera@gmail.com?subject=Consulta%20Inmobiliaria%20v%C3%ADa%20Enkapta" 
+            class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer group"
+          >
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            <span>Contactar</span>
+          </a>
+
+          <!-- Botón Secundario: Compartir Perfil -->
+          <button 
+            type="button" 
+            onclick="shareRealtorProfile()" 
+            class="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-medium text-xs sm:text-sm shadow-2xs hover:shadow-xs active:scale-[0.98] transition-all cursor-pointer"
+            title="Compartir perfil"
+          >
+            <i data-lucide="share-2" class="w-4 h-4 text-gray-400"></i>
+            <span class="hidden sm:inline">Compartir</span>
+          </button>
+
+          <!-- Botón de Correo Directo -->
+          <a 
+            id="realtor-email-btn"
+            href="mailto:jdb@dre.com.ve?subject=Consulta%20Inmobiliaria%20v%C3%ADa%20Enkapta" 
+            class="w-10 h-10 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-600 hover:text-primary flex items-center justify-center shadow-2xs transition-all"
+            title="Enviar correo"
+          >
+            <i data-lucide="mail" class="w-4 h-4"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- Fila de Estadísticas en Tarjetas Organizadas (Bordes más definidos y números en gris) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 py-6 border-t border-gray-100">
+        
+        <!-- Stat 1: Propiedades Activas -->
+        <div class="bg-white rounded-2xl border border-gray-200/90 hover:border-gray-300 p-4 sm:p-5 text-center flex flex-col items-center justify-center shadow-2xs transition-all">
+          <div id="realtor-stat-properties" class="text-2xl sm:text-3xl font-extrabold text-gray-500 tracking-tight leading-none">
+            0
+          </div>
+          <p class="text-xs text-gray-400 font-medium mt-2">
+            Inmuebles activos
+          </p>
+        </div>
+
+        <!-- Stat 2: Tiempo de Respuesta -->
+        <div class="bg-white rounded-2xl border border-gray-200/90 hover:border-gray-300 p-4 sm:p-5 text-center flex flex-col items-center justify-center shadow-2xs transition-all">
+          <div id="realtor-stat-response" class="text-2xl sm:text-3xl font-extrabold text-gray-500 tracking-tight leading-none">
+            —
+          </div>
+          <p class="text-xs text-gray-400 font-medium mt-2">
+            Tiempo de respuesta
+          </p>
+        </div>
+
+        <!-- Stat 3: Trayectoria -->
+        <div class="bg-white rounded-2xl border border-gray-200/90 hover:border-gray-300 p-4 sm:p-5 text-center flex flex-col items-center justify-center shadow-2xs transition-all">
+          <div id="realtor-stat-years" class="text-2xl sm:text-3xl font-extrabold text-gray-500 tracking-tight leading-none">
+            Nuevo asesor
+          </div>
+          <p class="text-xs text-gray-400 font-medium mt-2">
+            En el sector
+          </p>
+        </div>
+
+        <!-- Stat 4: Calificación -->
+        <div class="bg-white rounded-2xl border border-gray-200/90 hover:border-gray-300 p-4 sm:p-5 text-center flex flex-col items-center justify-center shadow-2xs transition-all">
+          <div class="text-2xl sm:text-3xl font-extrabold text-gray-500 tracking-tight leading-none flex items-center justify-center gap-1">
+            <span id="realtor-stat-rating">—</span>
+            <span id="realtor-stat-star" class="hidden text-amber-400 text-lg leading-none">★</span>
+          </div>
+          <p id="realtor-stat-reviews" class="text-xs text-gray-400 font-medium mt-2">
+            Sin calificaciones
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. CONTENIDO PRINCIPAL: 2 COLUMNAS (ESTILO FACEBOOK EN DESKTOP)           -->
+  <!-- ========================================================================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 flex-1 w-full">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- ===================================================================== -->
+      <!-- COLUMNA IZQUIERDA: FICHA DEL REALTOR / SIDEBAR DE CONTACTO (4 Cols)   -->
+      <!-- ===================================================================== -->
+      <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+        
+        <!-- CARD 1: INFORMACIÓN & CONTACTO DIRECTO (Estilo Cédula de Perfil) -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl border border-gray-200/90 p-5 sm:p-6 shadow-sm space-y-5">
+          
+          <h2 class="text-base sm:text-lg font-bold text-gray-900 flex items-center gap-2">
+            <i data-lucide="user-check" class="w-5 h-5 text-primary"></i>
+            <span>Información del Asesor</span>
+          </h2>
+
+          <!-- Mini Biografía Dinámica -->
+          <p id="realtor-full-bio" class="text-xs sm:text-sm text-gray-400 italic leading-relaxed">
+            Aún no se ha añadido una presentación o biografía detallada para este perfil.
+          </p>
+
+          <div class="border-t border-gray-100"></div>
+
+          <!-- Lista de Detalles de Contacto y Ubicación -->
+          <div class="space-y-3.5 text-xs sm:text-sm text-gray-700 font-medium">
+            
+            <!-- WhatsApp -->
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center shrink-0">
+                <i data-lucide="phone" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <span class="text-[10px] uppercase font-bold text-gray-400 block leading-tight tracking-wider">WhatsApp Directo</span>
+                <a id="sidebar-realtor-whatsapp" href="javascript:void(0)" class="text-gray-400 pointer-events-none font-normal transition-colors">
+                  No registrado
+                </a>
+              </div>
+            </div>
+
+            <!-- Email Corporativo -->
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center shrink-0">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <span class="text-[10px] uppercase font-bold text-gray-400 block leading-tight tracking-wider">Correo Corporativo</span>
+                <a id="sidebar-realtor-email" href="mailto:rogeralejandroquijadaavilera@gmail.com" class="text-gray-900 hover:text-primary font-semibold truncate block transition-colors">
+                  rogeralejandroquijadaavilera@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <!-- Agencia Aliada -->
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center shrink-0">
+                <i data-lucide="briefcase" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <span class="text-[10px] uppercase font-bold text-gray-400 block leading-tight tracking-wider">Inmobiliaria</span>
+                <span id="sidebar-realtor-agency" class="text-gray-400 font-normal block">No especificada</span>
+              </div>
+            </div>
+
+            <!-- Zonas de Cobertura -->
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <span class="text-[10px] uppercase font-bold text-gray-400 block leading-tight tracking-wider">Zonas principales</span>
+                <span id="sidebar-realtor-zones" class="text-gray-400 font-normal block">No especificadas</span>
+              </div>
+            </div>
+
+            <!-- Verificación -->
+            <div class="flex items-center gap-3">
+              <div id="sidebar-realtor-audit-icon-wrap" class="w-8 h-8 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center shrink-0">
+                <i data-lucide="shield-check" class="w-4 h-4 text-gray-400"></i>
+              </div>
+              <div class="min-w-0 flex-1">
+                <span class="text-[10px] uppercase font-bold text-gray-400 block leading-tight tracking-wider">Verificación</span>
+                <span id="sidebar-realtor-audit" class="text-gray-500 font-normal flex items-center gap-1">
+                  <span>En proceso</span>
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div id="realtor-social-divider" class="border-t border-gray-100 hidden"></div>
+
+          <!-- Redes Sociales Configurables (Solo se muestran si están cargadas) -->
+          <div id="realtor-social-section" class="hidden">
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-2.5">
+              Canales Profesionales
+            </span>
+            <div id="realtor-social-container" class="flex items-center gap-2 flex-wrap">
+              <!-- Renderizado dinámicamente con JavaScript -->
+            </div>
+          </div>
+
+        </div>
+
+      </aside>
+
+      <!-- ===================================================================== -->
+      <!-- COLUMNA DERECHA: CARTERA DE INMUEBLES PUBLICADOS (8 Cols)             -->
+      <!-- ===================================================================== -->
+      <section class="lg:col-span-8 space-y-6">
+        
+        <!-- BARRA DE PESTAÑAS / FILTROS DE OPERACIÓN (Sin caja contenedora, minimalista y limpio) -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1">
+          
+          <!-- Pestañas: Todas | Venta | Alquiler -->
+          <div class="inline-flex items-center gap-1.5 p-1 bg-gray-200/60 rounded-xl">
+            <button 
+              type="button" 
+              onclick="filterProperties('todos', this)" 
+              id="filter-tab-todos"
+              class="filter-tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-white text-gray-900 shadow-xs cursor-pointer transition-all"
+            >
+              Todas (0)
+            </button>
+            <button 
+              type="button" 
+              onclick="filterProperties('venta', this)" 
+              id="filter-tab-venta"
+              class="filter-tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold text-gray-600 hover:text-gray-900 cursor-pointer transition-all"
+            >
+              En Venta (0)
+            </button>
+            <button 
+              type="button" 
+              onclick="filterProperties('alquiler', this)" 
+              id="filter-tab-alquiler"
+              class="filter-tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-bold text-gray-600 hover:text-gray-900 cursor-pointer transition-all"
+            >
+              En Alquiler (0)
+            </button>
+          </div>
+        </div>
+
+        <!-- GRID DE PROPIEDADES DEL REALTOR -->
+        <div id="realtor-properties-grid" class="hidden grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          
+          <!-- PROPIEDAD 1: Oficina en Alquiler (La del Detalle) -->
+          <div data-tipo="alquiler" class="property-card filter-card-anim bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col cursor-pointer" onclick="if (!event.target.closest('button, a')) window.location.href='propiedad-detalle.html'">
+            <div class="relative h-52 sm:h-56 overflow-hidden">
+              <img src="assets/properties/gallery/oficina-1.jpg" alt="Oficina Cámara de Comercio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Alquiler</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Oficina</span>
+              </div>
+              <button type="button" onclick="event.stopPropagation(); toggleCardFav(this)" class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+                <i data-lucide="heart" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-1">
+                  Excelente, Oficina de 135 m² en Cámara de Comercio
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-3">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i>
+                  <span>Distrito Capital, Libertador · Los Caobos</span>
+                </div>
+                <div class="text-xl sm:text-2xl font-black text-primary mb-3">
+                  USD 860 <span class="text-xs text-gray-400 font-normal">/mes</span>
+                </div>
+              </div>
+
+              <!-- Specs -->
+              <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-700 font-bold">
+                <div class="flex items-center gap-3">
+                  <span>hab. 6</span>
+                  <span>baños 2</span>
+                  <span>área 135 m²</span>
+                </div>
+                <a 
+                  href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20la%20Oficina%20en%20C%C3%A1mara%20de%20Comercio%20(USD%20860)" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  onclick="event.stopPropagation()" 
+                  class="w-8 h-8 rounded-lg bg-orange-50 hover:bg-primary text-primary hover:text-white flex items-center justify-center transition-colors"
+                  title="Consultar por WhatsApp"
+                >
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROPIEDAD 2: Apartamento en Las Mercedes (Venta) -->
+          <div data-tipo="venta" class="property-card filter-card-anim bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col cursor-pointer" onclick="if (!event.target.closest('button, a')) window.location.href='propiedad-detalle.html'">
+            <div class="relative h-52 sm:h-56 overflow-hidden">
+              <img src="assets/properties/prop-1.jpg" alt="Apartamento en Las Mercedes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Apartamento</span>
+              </div>
+              <button type="button" onclick="event.stopPropagation(); toggleCardFav(this)" class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+                <i data-lucide="heart" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-1">
+                  Apartamento moderno remodelado con terraza
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-3">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i>
+                  <span>Miranda, Baruta · Las Mercedes</span>
+                </div>
+                <div class="text-xl sm:text-2xl font-black text-primary mb-3">
+                  USD 185.000
+                </div>
+              </div>
+
+              <!-- Specs -->
+              <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-700 font-bold">
+                <div class="flex items-center gap-3">
+                  <span>hab. 3</span>
+                  <span>baños 2</span>
+                  <span>área 120 m²</span>
+                </div>
+                <a 
+                  href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20el%20Apto%20en%20Las%20Mercedes%20(USD%20185.000)" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  onclick="event.stopPropagation()" 
+                  class="w-8 h-8 rounded-lg bg-orange-50 hover:bg-primary text-primary hover:text-white flex items-center justify-center transition-colors"
+                  title="Consultar por WhatsApp"
+                >
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROPIEDAD 3: Penthouse en Altamira (Venta) -->
+          <div data-tipo="venta" class="property-card filter-card-anim bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col cursor-pointer" onclick="if (!event.target.closest('button, a')) window.location.href='propiedad-detalle.html'">
+            <div class="relative h-52 sm:h-56 overflow-hidden">
+              <img src="assets/properties/prop-2.png" alt="Penthouse en Altamira" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Penthouse</span>
+              </div>
+              <button type="button" onclick="event.stopPropagation(); toggleCardFav(this)" class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+                <i data-lucide="heart" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-1">
+                  Exclusivo Penthouse con vista 360° al Ávila
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-3">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i>
+                  <span>Miranda, Chacao · Altamira</span>
+                </div>
+                <div class="text-xl sm:text-2xl font-black text-primary mb-3">
+                  USD 340.000
+                </div>
+              </div>
+
+              <!-- Specs -->
+              <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-700 font-bold">
+                <div class="flex items-center gap-3">
+                  <span>hab. 4</span>
+                  <span>baños 4</span>
+                  <span>área 280 m²</span>
+                </div>
+                <a 
+                  href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20el%20Penthouse%20en%20Altamira%20(USD%20340.000)" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  onclick="event.stopPropagation()" 
+                  class="w-8 h-8 rounded-lg bg-orange-50 hover:bg-primary text-primary hover:text-white flex items-center justify-center transition-colors"
+                  title="Consultar por WhatsApp"
+                >
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROPIEDAD 4: Quinta en La Lagunita (Venta) -->
+          <div data-tipo="venta" class="property-card filter-card-anim bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col cursor-pointer" onclick="if (!event.target.closest('button, a')) window.location.href='propiedad-detalle.html'">
+            <div class="relative h-52 sm:h-56 overflow-hidden">
+              <img src="assets/properties/prop-3.jpg" alt="Quinta en La Lagunita" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Casa</span>
+              </div>
+              <button type="button" onclick="event.stopPropagation(); toggleCardFav(this)" class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+                <i data-lucide="heart" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-1">
+                  Residencia unifamiliar con amplio jardín privado
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-3">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i>
+                  <span>Miranda, El Hatillo · La Lagunita</span>
+                </div>
+                <div class="text-xl sm:text-2xl font-black text-primary mb-3">
+                  USD 450.000
+                </div>
+              </div>
+
+              <!-- Specs -->
+              <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-700 font-bold">
+                <div class="flex items-center gap-3">
+                  <span>hab. 5</span>
+                  <span>baños 5</span>
+                  <span>área 650 m²</span>
+                </div>
+                <a 
+                  href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20la%20Quinta%20en%20La%20Lagunita%20(USD%20450.000)" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  onclick="event.stopPropagation()" 
+                  class="w-8 h-8 rounded-lg bg-orange-50 hover:bg-primary text-primary hover:text-white flex items-center justify-center transition-colors"
+                  title="Consultar por WhatsApp"
+                >
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROPIEDAD 5: Local Comercial en Chacao (Alquiler) -->
+          <div data-tipo="alquiler" class="property-card filter-card-anim bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col cursor-pointer" onclick="if (!event.target.closest('button, a')) window.location.href='propiedad-detalle.html'">
+            <div class="relative h-52 sm:h-56 overflow-hidden">
+              <img src="assets/properties/gallery/oficina-3.jpg" alt="Local Comercial Chacao" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Alquiler</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Local</span>
+              </div>
+              <button type="button" onclick="event.stopPropagation(); toggleCardFav(this)" class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+                <i data-lucide="heart" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-1">
+                  Local comercial a pie de calle en zona de alto tráfico
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-3">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i>
+                  <span>Miranda, Chacao · Casco Central</span>
+                </div>
+                <div class="text-xl sm:text-2xl font-black text-primary mb-3">
+                  USD 1.200 <span class="text-xs text-gray-400 font-normal">/mes</span>
+                </div>
+              </div>
+
+              <!-- Specs -->
+              <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-700 font-bold">
+                <div class="flex items-center gap-3">
+                  <span>baños 2</span>
+                  <span>estac. 3</span>
+                  <span>área 95 m²</span>
+                </div>
+                <a 
+                  href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20el%20Local%20en%20Chacao%20(USD%201.200)" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  onclick="event.stopPropagation()" 
+                  class="w-8 h-8 rounded-lg bg-orange-50 hover:bg-primary text-primary hover:text-white flex items-center justify-center transition-colors"
+                  title="Consultar por WhatsApp"
+                >
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROPIEDAD 6: Townhouse en Los Palos Grandes (Venta) -->
+          <div data-tipo="venta" class="property-card filter-card-anim bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 group flex flex-col cursor-pointer" onclick="if (!event.target.closest('button, a')) window.location.href='propiedad-detalle.html'">
+            <div class="relative h-52 sm:h-56 overflow-hidden">
+              <img src="assets/properties/fav-apto.jpg" alt="Townhouse Los Palos Grandes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute top-3.5 left-3.5 flex gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary text-white shadow-md">Venta</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-900/80 backdrop-blur-md text-white">Townhouse</span>
+              </div>
+              <button type="button" onclick="event.stopPropagation(); toggleCardFav(this)" class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-700 hover:text-red-500 backdrop-blur-md flex items-center justify-center shadow-md transition-all">
+                <i data-lucide="heart" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1 mb-1">
+                  Townhouse de diseño moderno en calle cerrada
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs font-medium text-gray-500 mb-3">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-primary"></i>
+                  <span>Miranda, Chacao · Los Palos Grandes</span>
+                </div>
+                <div class="text-xl sm:text-2xl font-black text-primary mb-3">
+                  USD 290.000
+                </div>
+              </div>
+
+              <!-- Specs -->
+              <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-700 font-bold">
+                <div class="flex items-center gap-3">
+                  <span>hab. 3</span>
+                  <span>baños 3</span>
+                  <span>área 190 m²</span>
+                </div>
+                <a 
+                  href="https://wa.me/584248407372?text=Hola%20Daniel,%20me%20interesa%20el%20Townhouse%20en%20Los%20Palos%20Grandes%20(USD%20290.000)" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  onclick="event.stopPropagation()" 
+                  class="w-8 h-8 rounded-lg bg-orange-50 hover:bg-primary text-primary hover:text-white flex items-center justify-center transition-colors"
+                  title="Consultar por WhatsApp"
+                >
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ESTADO VACÍO CUANDO EL ASESOR TIENE 0 INMUEBLES (ROGER / NUEVO ASESOR) -->
+        <div id="realtor-empty-properties-state" class="bg-white rounded-2xl sm:rounded-3xl border border-gray-200/80 p-8 sm:p-14 text-center shadow-xs">
+          <div class="max-w-md mx-auto space-y-4">
+            <!-- Textos limpios y tipográficos -->
+            <div class="space-y-1.5">
+              <h3 id="empty-state-title" class="text-base sm:text-lg font-bold text-gray-900 tracking-tight">
+                Aún no hay inmuebles publicados en esta vitrina
+              </h3>
+              <p id="empty-state-desc" class="text-xs sm:text-sm text-gray-500 leading-relaxed font-normal">
+                Las propiedades en venta o alquiler que publique este asesor aparecerán aquí organizadas con fotos de alta resolución, características y contacto directo.
+              </p>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a 
+                id="empty-state-publish-btn"
+                href="planes.html" 
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-hover active:scale-[0.98] text-white font-semibold text-xs sm:text-sm shadow-xs transition-all cursor-pointer"
+              >
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                <span>Publicar primer inmueble</span>
+              </a>
+              <a 
+                href="propiedades.html" 
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-medium text-xs sm:text-sm shadow-2xs hover:shadow-xs active:scale-[0.98] transition-all cursor-pointer"
+              >
+                <i data-lucide="search" class="w-4 h-4 text-gray-400"></i>
+                <span>Explorar inmuebles en Caracas</span>
+              </a>
+            </div>
+
+            <div id="empty-state-hint" class="pt-2 text-[11px] text-gray-400">
+              ¿Eres el titular de esta cuenta? Activa un cupo desde tu panel para comenzar a publicar.
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- TOAST NOTIFICACIÓN AL COMPARTIR PERFIL                                     -->
+  <!-- ========================================================================= -->
+  <div id="share-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-gray-900/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-xl border border-white/10 flex items-center gap-2.5 text-xs sm:text-sm font-bold">
+      <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+      <span>¡Enlace del perfil copiado al portapapeles!</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER OFICIAL DE ENKAPTA                                                 -->
+  <!-- ========================================================================= -->
+  <footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
+        
+        <!-- 4 Columnas de Navegación -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 flex-1">
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Explorar</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="propiedades.html?categoria=Venta" class="hover:text-primary transition-colors">Comprar</a></li>
+              <li><a href="propiedades.html?categoria=Alquiler" class="hover:text-primary transition-colors">Alquilar</a></li>
+              <li><a href="propiedades.html" class="hover:text-primary transition-colors">Propiedades por estado</a></li>
+              <li><a href="perfil.html" class="hover:text-primary transition-colors font-bold text-primary">Directorio de profesionales</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Recursos</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="aspectos-legales.html" class="hover:text-primary transition-colors">Aspectos legales</a></li>
+              <li><a href="glosario.html" class="hover:text-primary transition-colors">Glosario inmobiliario</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Noticias</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Empresa</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="quienes-somos.html" class="hover:text-primary transition-colors">Sobre nosotros</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Trabaja con nosotros</a></li>
+              <li><a href="planes.html" class="hover:text-primary transition-colors">Planes para brokers</a></li>
+              <li><a href="contacto.html" class="hover:text-primary transition-colors">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-black tracking-wider text-gray-900 uppercase mb-4 sm:mb-5">Legal</h4>
+            <ul class="space-y-3 text-sm text-gray-600 font-medium">
+              <li><a href="#" class="hover:text-primary transition-colors">Términos y condiciones</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Política de privacidad</a></li>
+              <li><a href="#" class="hover:text-primary transition-colors">Seguridad de datos</a></li>
+              <li><a href="https://wa.me/584248407372" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Centro de ayuda</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Marca, Slogan y Redes -->
+        <div class="lg:w-96 flex flex-col items-start lg:items-end text-left lg:text-right shrink-0">
+          <a href="index.html" class="inline-flex items-center mb-4 group">
+            <span class="text-3xl sm:text-4xl font-black text-primary tracking-tight group-hover:brightness-110 transition-all">Enkapta</span>
+          </a>
+          <p class="text-base sm:text-lg font-semibold text-gray-800 lg:text-right max-w-sm mb-6 leading-snug">
+            La plataforma inmobiliaria moderna. Conectamos compradores, inquilinos y agentes certificados.
+          </p>
+
+          <div class="flex items-center gap-3 justify-start lg:justify-end mb-4">
+            <a href="https://www.instagram.com/enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Instagram">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="Facebook">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@enkapta" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-110 shadow-2xs" title="TikTok">
+              <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/></svg>
+            </a>
+          </div>
+
+          <div class="text-xs text-gray-400 font-medium lg:text-right">
+            © 2026 Enkapta, C.A. Todos los derechos reservados.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- SCRIPTS DE INTERACCIÓN                                                     -->
+  <!-- ========================================================================= -->
+  <script>
+    // Inicializar Lucide Icons
+    if (typeof lucide !== 'undefined' && lucide.createIcons) {
+      lucide.createIcons();
+    }
+
+    // Menú Móvil
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Filtrar Propiedades por Tipo (Todas / Venta / Alquiler)
+    function filterProperties(tipo, clickedBtn) {
+      // Actualizar estilo visual de las pestañas
+      const allTabs = document.querySelectorAll('.filter-tab-btn');
+      allTabs.forEach(tab => {
+        tab.classList.remove('active', 'bg-white', 'text-gray-900', 'shadow-xs');
+        tab.classList.add('text-gray-600');
+      });
+      clickedBtn.classList.add('active', 'bg-white', 'text-gray-900', 'shadow-xs');
+      clickedBtn.classList.remove('text-gray-600');
+
+      // Filtrar las tarjetas del DOM
+      const cards = document.querySelectorAll('#realtor-properties-grid .property-card');
+      cards.forEach(card => {
+        const cardTipo = card.getAttribute('data-tipo');
+        if (tipo === 'todos' || cardTipo === tipo) {
+          card.classList.remove('hidden');
+          card.classList.add('filter-card-anim');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Compartir Perfil con Copiado al Portapapeles y Toast
+    function shareRealtorProfile() {
+      const profileUrl = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(profileUrl).then(() => {
+          showShareToast();
+        }).catch(() => {
+          showShareToast();
+        });
+      } else {
+        showShareToast();
+      }
+    }
+
+    function showShareToast() {
+      const toast = document.getElementById('share-toast');
+      if (!toast) return;
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+
+    // Toggle Favoritos en Tarjetas
+    function toggleCardFav(button) {
+      const icon = button.querySelector('svg');
+      if (icon) {
+        const isFav = button.classList.contains('text-red-500');
+        if (isFav) {
+          button.classList.remove('text-red-500');
+          button.classList.add('text-gray-700');
+          icon.setAttribute('fill', 'none');
+        } else {
+          button.classList.add('text-red-500');
+          button.classList.remove('text-gray-700');
+          icon.setAttribute('fill', 'currentColor');
+        }
+      }
+    }
+
+    // Alternar entre modo de vista de perfil (Perfil Real Roger Vacío vs Demo Daniel Dueñas)
+    function switchProfileView(target) {
+      if (history.replaceState) {
+        const newUrl = window.location.pathname + (target === 'duenas' ? '?u=duenas' : '?u=me');
+        history.replaceState(null, '', newUrl);
+      }
+      initRealtorProfilePage(target);
+    }
+
+    // Carga y renderizado dinámico de la Ficha del Realtor (Puente con mi-cuenta.html)
+    function initRealtorProfilePage(forcedTarget = null) {
+      // 1. Determinar si se solicitó explícitamente ver el perfil de Dueñas o el perfil de Roger
+      const urlParams = new URLSearchParams(window.location.search);
+      const authUserObj = (typeof getAuthUser === 'function') ? getAuthUser() : null;
+      const userParam = forcedTarget || urlParams.get("u") || urlParams.get("user") || urlParams.get("slug");
+
+      // Es Roger si viene desde "Mi Cuenta" o se pide explícitamente ?u=me, ?u=roger, etc.
+      const isRoger = userParam === "me" || 
+                      userParam === "roger" || 
+                      userParam === "self" || 
+                      userParam === "mi-perfil" || 
+                      (authUserObj && userParam === authUserObj.slug);
+
+      // Por defecto para cualquier propiedad o catálogo público, es el realtor Daniel Dueñas
+      const isDuenas = !isRoger;
+
+      // 2. Obtener el perfil correspondiente
+      const profile = (typeof getRealtorProfile === 'function') 
+        ? getRealtorProfile(isRoger ? 'me' : 'duenas') 
+        : (isRoger ? ROGER_DEFAULT_REALTOR_PROFILE : DUENAS_REALTOR_PROFILE);
+      if (!profile) return;
+
+      // Actualizar Título del Documento
+      document.title = `${profile.name} — ${profile.title || 'Asesor Inmobiliario'} | Enkapta`;
+
+      // Actualizar Barra Superior de Previsualización
+      const previewTitle = document.getElementById("preview-mode-title");
+      const btnToggleRoger = document.getElementById("btn-toggle-roger");
+      const btnToggleDuenas = document.getElementById("btn-toggle-duenas");
+
+      if (previewTitle) {
+        if (isDuenas) {
+          previewTitle.innerHTML = 'Viendo: <strong class="text-white font-semibold">Perfil Demo de Daniel Dueñas (6 inmuebles en vitrina)</strong>';
+        } else {
+          previewTitle.innerHTML = `Viendo: <strong class="text-white font-semibold">Perfil de ${profile.name} (Vitrina inicial limpia - 0 inmuebles)</strong>`;
+        }
+      }
+
+      if (btnToggleRoger && btnToggleDuenas) {
+        if (isDuenas) {
+          btnToggleDuenas.className = "px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white text-slate-900 shadow-2xs transition-all cursor-pointer";
+          btnToggleRoger.className = "px-2.5 py-1 rounded-md text-[11px] font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all cursor-pointer";
+        } else {
+          btnToggleRoger.className = "px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white text-slate-900 shadow-2xs transition-all cursor-pointer";
+          btnToggleDuenas.className = "px-2.5 py-1 rounded-md text-[11px] font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all cursor-pointer";
+        }
+      }
+
+      // 1. Portada / Banner
+      const bannerImg = document.getElementById("realtor-banner-img");
+      const bannerPattern = document.getElementById("realtor-banner-pattern");
+      const hasCustomBanner = isDuenas 
+        ? true 
+        : (profile.banner && profile.banner.trim() !== "" && profile.banner !== "assets/banner-background.jpg");
+
+      if (hasCustomBanner) {
+        if (bannerImg) {
+          bannerImg.src = profile.banner || (isDuenas ? "assets/banner-background.jpg" : "");
+          bannerImg.classList.remove("hidden");
+        }
+        if (bannerPattern) bannerPattern.classList.add("hidden");
+      } else {
+        if (bannerImg) bannerImg.classList.add("hidden");
+        if (bannerPattern) bannerPattern.classList.remove("hidden");
+      }
+
+      // Badges Flotantes en la Portada
+      const locBadgeContainer = document.getElementById("realtor-location-badge-container");
+      const locBadge = document.getElementById("realtor-location-badge");
+      if (locBadgeContainer && locBadge) {
+        if (profile.zones && profile.zones.trim() !== "") {
+          locBadge.textContent = profile.zones;
+          locBadgeContainer.classList.remove("hidden");
+          locBadgeContainer.classList.add("inline-flex");
+        } else {
+          locBadgeContainer.classList.add("hidden");
+          locBadgeContainer.classList.remove("inline-flex");
+        }
+      }
+
+      const agencyBadge = document.getElementById("realtor-agency-badge");
+      if (agencyBadge) {
+        if (profile.isCertified || (isDuenas && profile.agency)) {
+          agencyBadge.classList.remove("hidden");
+          agencyBadge.classList.add("inline-flex");
+        } else {
+          agencyBadge.classList.add("hidden");
+          agencyBadge.classList.remove("inline-flex");
+        }
+      }
+
+      // 2. Avatar / Foto (o Inicial tipográfica minimalista si no tiene foto)
+      const avatarImg = document.getElementById("realtor-avatar-img");
+      const avatarInitial = document.getElementById("realtor-avatar-initial");
+      if (profile.avatar && profile.avatar.trim() !== "") {
+        if (avatarImg) {
+          avatarImg.src = profile.avatar;
+          avatarImg.classList.remove("hidden");
+        }
+        if (avatarInitial) avatarInitial.classList.add("hidden");
+      } else {
+        if (avatarImg) avatarImg.classList.add("hidden");
+        if (avatarInitial) {
+          avatarInitial.textContent = (profile.name || "R").charAt(0).toUpperCase();
+          avatarInitial.classList.remove("hidden");
+        }
+      }
+
+      // 3. Nombre
+      const nameEl = document.getElementById("realtor-name");
+      if (nameEl && profile.name) {
+        nameEl.textContent = profile.name;
+      }
+
+      // Palomita Verificada estilo oficial (se muestra solo si está verificado)
+      const verifiedBadge = document.getElementById("realtor-verified-badge");
+      if (verifiedBadge) {
+        if (profile.isVerified) {
+          verifiedBadge.classList.remove("hidden");
+        } else {
+          verifiedBadge.classList.add("hidden");
+        }
+      }
+
+      // 4. Cargo / Título y Agencia
+      const titleEl = document.getElementById("realtor-title");
+      if (titleEl) {
+        titleEl.textContent = profile.title || "Asesor Inmobiliario";
+      }
+
+      const agencyEl = document.getElementById("realtor-agency");
+      const agencySep = document.getElementById("realtor-agency-sep");
+      const hasAgency = !!(profile.agency && profile.agency.trim() !== "");
+      if (agencyEl) {
+        if (hasAgency) {
+          agencyEl.textContent = profile.agency;
+          agencyEl.classList.remove("hidden");
+          if (agencySep) agencySep.classList.remove("hidden");
+        } else {
+          agencyEl.classList.add("hidden");
+          if (agencySep) agencySep.classList.add("hidden");
+        }
+      }
+      const sidebarAgencyEl = document.getElementById("sidebar-realtor-agency");
+      if (sidebarAgencyEl) {
+        if (hasAgency) {
+          sidebarAgencyEl.textContent = profile.legalAgency || profile.agency;
+          sidebarAgencyEl.className = "text-gray-900 font-semibold block";
+        } else {
+          sidebarAgencyEl.textContent = "No especificada";
+          sidebarAgencyEl.className = "text-gray-400 font-normal block";
+        }
+      }
+
+      // 6. Biografías
+      const shortBioEl = document.getElementById("realtor-short-bio");
+      const fullBioEl = document.getElementById("realtor-full-bio");
+      const hasBio = !!(profile.bio && profile.bio.trim() !== "");
+
+      if (shortBioEl) {
+        if (hasBio) {
+          shortBioEl.textContent = profile.shortBio || profile.bio;
+          shortBioEl.className = "text-xs sm:text-sm text-gray-600 max-w-xl leading-relaxed pt-0.5 font-normal";
+        } else {
+          shortBioEl.textContent = "Este asesor aún no ha añadido una descripción a su perfil.";
+          shortBioEl.className = "text-xs sm:text-sm text-gray-400 max-w-xl leading-relaxed pt-0.5 font-normal italic";
+        }
+      }
+
+      if (fullBioEl) {
+        if (hasBio) {
+          fullBioEl.textContent = profile.bio;
+          fullBioEl.className = "text-xs sm:text-sm text-gray-600 leading-relaxed";
+        } else {
+          fullBioEl.textContent = "Aún no se ha añadido una presentación o biografía detallada para este perfil.";
+          fullBioEl.className = "text-xs sm:text-sm text-gray-400 italic leading-relaxed";
+        }
+      }
+
+      // 7. Zonas
+      const zonesEl = document.getElementById("sidebar-realtor-zones");
+      if (zonesEl) {
+        if (profile.zones && profile.zones.trim() !== "") {
+          zonesEl.textContent = profile.zones;
+          zonesEl.className = "text-gray-900 font-semibold block";
+        } else {
+          zonesEl.textContent = "No especificadas";
+          zonesEl.className = "text-gray-400 font-normal block";
+        }
+      }
+
+      // 8. Contacto WhatsApp
+      const cleanPhone = (profile.phone || "").replace(/\D/g, "");
+      const waUrl = cleanPhone 
+        ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hola ' + profile.name + ', vi tu perfil en Enkapta y quisiera consultar sobre tus propiedades disponibles')}` 
+        : (profile.email ? `mailto:${profile.email}` : '#');
+      const contactBtn = document.getElementById("realtor-contact-btn");
+      if (contactBtn) {
+        contactBtn.href = waUrl;
+        if (!cleanPhone && profile.email) {
+          contactBtn.innerHTML = '<i data-lucide="mail" class="w-4 h-4"></i><span>Contactar</span>';
+        } else {
+          contactBtn.innerHTML = '<i data-lucide="message-square" class="w-4 h-4"></i><span>Contactar</span>';
+        }
+      }
+      const sidebarWa = document.getElementById("sidebar-realtor-whatsapp");
+      if (sidebarWa) {
+        if (cleanPhone) {
+          sidebarWa.href = waUrl;
+          sidebarWa.textContent = profile.phone;
+          sidebarWa.className = "text-gray-900 font-semibold hover:text-primary transition-colors";
+        } else {
+          sidebarWa.href = "javascript:void(0)";
+          sidebarWa.textContent = "No registrado";
+          sidebarWa.className = "text-gray-400 pointer-events-none font-normal transition-colors";
+        }
+      }
+
+      // Estado de Verificación en Sidebar
+      const sidebarAuditEl = document.getElementById("sidebar-realtor-audit");
+      const sidebarAuditIconWrap = document.getElementById("sidebar-realtor-audit-icon-wrap");
+      if (sidebarAuditEl) {
+        if (profile.isCertified || profile.isVerified) {
+          sidebarAuditEl.innerHTML = '<span class="text-emerald-700 font-semibold">Verificado</span>';
+          if (sidebarAuditIconWrap) {
+            sidebarAuditIconWrap.className = "w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0";
+            sidebarAuditIconWrap.innerHTML = '<i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>';
+          }
+        } else {
+          sidebarAuditEl.innerHTML = '<span class="text-gray-500 font-normal">En proceso</span>';
+          if (sidebarAuditIconWrap) {
+            sidebarAuditIconWrap.className = "w-8 h-8 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center shrink-0";
+            sidebarAuditIconWrap.innerHTML = '<i data-lucide="shield-check" class="w-4 h-4 text-gray-400"></i>';
+          }
+        }
+      }
+
+      // 9. Correo
+      if (profile.email) {
+        const mailUrl = `mailto:${profile.email}?subject=${encodeURIComponent('Consulta Inmobiliaria vía Enkapta')}`;
+        const emailBtn = document.getElementById("realtor-email-btn");
+        if (emailBtn) emailBtn.href = mailUrl;
+        const sidebarEmail = document.getElementById("sidebar-realtor-email");
+        if (sidebarEmail) {
+          sidebarEmail.href = mailUrl;
+          sidebarEmail.textContent = profile.email;
+        }
+      }
+
+      // 10. Estadísticas de Confianza Dinámicas
+      const stats = profile.stats || {};
+      const propCount = (profile.propertyCount !== undefined) ? profile.propertyCount : (isDuenas ? 14 : 0);
+
+      const statPropEl = document.getElementById("realtor-stat-properties");
+      if (statPropEl) statPropEl.textContent = stats.properties !== undefined ? stats.properties : propCount;
+
+      const statRespEl = document.getElementById("realtor-stat-response");
+      if (statRespEl) statRespEl.textContent = stats.responseTime || (isDuenas ? "< 5 min" : "—");
+
+      const statYearsEl = document.getElementById("realtor-stat-years");
+      if (statYearsEl) statYearsEl.textContent = stats.experience || (isDuenas ? "10+ años" : "Nuevo asesor");
+
+      const statRatingEl = document.getElementById("realtor-stat-rating");
+      const statStarEl = document.getElementById("realtor-stat-star");
+      const hasRating = isDuenas || (stats.rating && stats.rating !== "—" && stats.rating !== "");
+      if (statRatingEl) statRatingEl.textContent = hasRating ? (stats.rating || "5.0") : "—";
+      if (statStarEl) {
+        if (hasRating) statStarEl.classList.remove("hidden");
+        else statStarEl.classList.add("hidden");
+      }
+
+      const statReviewsEl = document.getElementById("realtor-stat-reviews");
+      if (statReviewsEl) statReviewsEl.textContent = stats.reviewsCount || (isDuenas ? "48 reseñas auditadas" : "Sin calificaciones");
+
+      // 11. Redes Sociales Dinámicas (Estilo Instagram / Bio link)
+      // "si quiere o no colocar los iconos de sus redes primero debe de configurarlo en su perfil"
+      const socialSection = document.getElementById("realtor-social-section");
+      const socialDivider = document.getElementById("realtor-social-divider");
+      const socialContainer = document.getElementById("realtor-social-container");
+
+      if (socialContainer) {
+        const socials = profile.socials || {};
+        let html = "";
+
+        // Instagram
+        if (socials.instagram && socials.instagram.trim()) {
+          let ig = socials.instagram.trim();
+          if (!ig.startsWith("http")) ig = "https://instagram.com/" + ig.replace(/^@/, "");
+          html += `
+            <a href="${ig}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-gray-100 hover:bg-black hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-105" title="Instagram">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          `;
+        }
+
+        // LinkedIn
+        if (socials.linkedin && socials.linkedin.trim()) {
+          let li = socials.linkedin.trim();
+          if (!li.startsWith("http")) li = "https://" + li;
+          html += `
+            <a href="${li}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-gray-100 hover:bg-[#0A66C2] hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-105" title="LinkedIn">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          `;
+        }
+
+        // Facebook
+        if (socials.facebook && socials.facebook.trim()) {
+          let fb = socials.facebook.trim();
+          if (!fb.startsWith("http")) fb = "https://" + fb;
+          html += `
+            <a href="${fb}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-gray-100 hover:bg-blue-600 hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-105" title="Facebook">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          `;
+        }
+
+        // Sitio Web
+        if (socials.website && socials.website.trim()) {
+          let web = socials.website.trim();
+          if (!web.startsWith("http")) web = "https://" + web;
+          html += `
+            <a href="${web}" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-gray-100 hover:bg-primary hover:text-white text-gray-700 flex items-center justify-center transition-all hover:scale-105" title="Sitio Web Oficial">
+              <i data-lucide="globe" class="w-4 h-4"></i>
+            </a>
+          `;
+        }
+
+        socialContainer.innerHTML = html;
+
+        // Si no hay redes configuradas, ocultar la sección completa
+        if (html.trim() === "") {
+          if (socialSection) socialSection.classList.add("hidden");
+          if (socialDivider) socialDivider.classList.add("hidden");
+        } else {
+          if (socialSection) socialSection.classList.remove("hidden");
+          if (socialDivider) socialDivider.classList.remove("hidden");
+        }
+      }
+
+      // 12. Cartera de Inmuebles: Mostrar Grid o Estado Vacío Minimalista
+      const propertiesGrid = document.getElementById("realtor-properties-grid");
+      const emptyState = document.getElementById("realtor-empty-properties-state");
+      const tabTodos = document.getElementById("filter-tab-todos");
+      const tabVenta = document.getElementById("filter-tab-venta");
+      const tabAlquiler = document.getElementById("filter-tab-alquiler");
+      const emptyTitle = document.getElementById("empty-state-title");
+      const emptyDesc = document.getElementById("empty-state-desc");
+
+      if (propCount === 0) {
+        // ESTADO VACÍO (ROGER / NUEVO ASESOR)
+        if (propertiesGrid) propertiesGrid.classList.add("hidden");
+        if (emptyState) emptyState.classList.remove("hidden");
+
+        if (tabTodos) tabTodos.textContent = "Todas (0)";
+        if (tabVenta) tabVenta.textContent = "En Venta (0)";
+        if (tabAlquiler) tabAlquiler.textContent = "En Alquiler (0)";
+
+        if (emptyTitle) {
+          emptyTitle.textContent = isDuenas 
+            ? "Aún no hay inmuebles publicados en esta vitrina" 
+            : "Aún no tienes inmuebles publicados en tu vitrina";
+        }
+        if (emptyDesc) {
+          emptyDesc.textContent = isDuenas
+            ? "Las propiedades en venta o alquiler que publique este asesor aparecerán aquí organizadas con fotos de alta resolución, características y contacto directo."
+            : "Tu vitrina inmobiliaria está lista. Al publicar tus propiedades en venta o alquiler, aparecerán aquí organizadas con fotos de alta resolución, características y contacto directo para tus clientes.";
+        }
+      } else {
+        // ESTADO CON INMUEBLES (DANIEL DUEÑAS DEMO)
+        if (propertiesGrid) propertiesGrid.classList.remove("hidden");
+        if (emptyState) emptyState.classList.add("hidden");
+
+        if (tabTodos) tabTodos.textContent = "Todas (6)";
+        if (tabVenta) tabVenta.textContent = "En Venta (4)";
+        if (tabAlquiler) tabAlquiler.textContent = "En Alquiler (2)";
+      }
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initRealtorProfilePage();
+    });
+  </script>
+
+</body>
+</html>
